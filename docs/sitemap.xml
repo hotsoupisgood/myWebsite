@@ -2,47 +2,47 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://example.com/posts/firstpost/</loc>
+    <loc>https://lucashenry.xyz/posts/firstpost/</loc>
     <lastmod>2018-05-01</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/about/</loc>
+    <loc>https://lucashenry.xyz/about/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/posts/</loc>
+    <loc>https://lucashenry.xyz/posts/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/</loc>
+    <loc>https://lucashenry.xyz/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/page-list/</loc>
+    <loc>https://lucashenry.xyz/page-list/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/tags/</loc>
+    <loc>https://lucashenry.xyz/tags/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/tags/eleventy/</loc>
+    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/tags/another-tag/</loc>
+    <loc>https://lucashenry.xyz/tags/another-tag/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/posts/secondpost/</loc>
+    <loc>https://lucashenry.xyz/posts/secondpost/</loc>
     <lastmod>2022-06-16</lastmod>
   </url>
 </urlset>

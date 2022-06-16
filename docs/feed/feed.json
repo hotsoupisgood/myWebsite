@@ -1,25 +1,25 @@
 {
   "version": "https://jsonfeed.org/version/1.1",
-  "title": "Walking Through the Woods",
+  "title": "The Anza Beaver",
   "language": "en",
-  "home_page_url": "https://example.com/",
-  "feed_url": "https://example.com/feed/feed.json",
-  "description": "I am writing about my experiences as a naval navel-gazer.",
+  "home_page_url": "https://lucashenry.xyz/",
+  "feed_url": "https://lucashenry.xyz/feed/feed.json",
+  "description": "My public notes.",
   "author": {
-    "name": "Your Name Here",
-    "url": "https://example.com/about-me/"
+    "name": "Lucas",
+    "url": "https://lucashenry.xyz/about-me/"
   },
   "items": [{
-      "id": "https://example.com/posts/secondpost/",
-      "url": "https://example.com/posts/secondpost/",
+      "id": "https://lucashenry.xyz/posts/secondpost/",
+      "url": "https://lucashenry.xyz/posts/secondpost/",
       "title": "Post with Eleventy.",
-      "content_html": "<h2 id=\"section-header\" tabindex=\"-1\">Section Header <a class=\"direct-link\" href=\"https://example.com/posts/secondpost/#section-header\" aria-hidden=\"true\">#</a></h2>\n<ol>\n<li>Navigate to your website directory</li>\n</ol>\n<pre><code>cd /path/to/website/directory\n</code></pre>\n<ol start=\"2\">\n<li>Make a blog post, edit your site, etc...</li>\n<li>Build your project.</li>\n</ol>\n<pre><code>npx Eleventy\n</code></pre>\n<ol start=\"4\">\n<li>Stage your changes. (Add changes you made to git)</li>\n</ol>\n<pre><code>git add *\n</code></pre>\n<ol start=\"5\">\n<li>Commit your changes to git.</li>\n</ol>\n<pre><code>git commit -m &quot;description of your changes&quot;\n</code></pre>\n<ol start=\"6\">\n<li>Upload your changes to github.</li>\n</ol>\n<pre><code>git push\n</code></pre>\n<ol start=\"7\">\n<li>Done! You should see your website updated.</li>\n</ol>\n",
+      "content_html": "<h2 id=\"section-header\" tabindex=\"-1\">Section Header <a class=\"direct-link\" href=\"https://lucashenry.xyz/posts/secondpost/#section-header\" aria-hidden=\"true\">#</a></h2>\n<ol>\n<li>Navigate to your website directory</li>\n</ol>\n<pre><code>cd /path/to/website/directory\n</code></pre>\n<ol start=\"2\">\n<li>Make a blog post, edit your site, etc...</li>\n<li>Build your project.</li>\n</ol>\n<pre><code>npx Eleventy\n</code></pre>\n<ol start=\"4\">\n<li>Stage your changes. (Add changes you made to git)</li>\n</ol>\n<pre><code>git add *\n</code></pre>\n<ol start=\"5\">\n<li>Commit your changes to git.</li>\n</ol>\n<pre><code>git commit -m &quot;description of your changes&quot;\n</code></pre>\n<ol start=\"6\">\n<li>Upload your changes to github.</li>\n</ol>\n<pre><code>git push\n</code></pre>\n<ol start=\"7\">\n<li>Done! You should see your website updated.</li>\n</ol>\n",
       "date_published": "2022-06-16T00:00:00Z"
     },{
-      "id": "https://example.com/posts/firstpost/",
-      "url": "https://example.com/posts/firstpost/",
+      "id": "https://lucashenry.xyz/posts/firstpost/",
+      "url": "https://lucashenry.xyz/posts/firstpost/",
       "title": "This is my first post.",
-      "content_html": "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\n<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>\n<h2 id=\"section-header\" tabindex=\"-1\">Section Header <a class=\"direct-link\" href=\"https://example.com/posts/firstpost/#section-header\" aria-hidden=\"true\">#</a></h2>\n<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>\n<pre class=\"language-diff-js\"><code class=\"language-diff-js\">// this is a command<br />function myCommand() {<br /><span class=\"token inserted-sign inserted language-js\"><span class=\"token prefix inserted\">+</span>\t<span class=\"token keyword\">let</span> counter <span class=\"token operator\">=</span> <span class=\"token number\">0</span><span class=\"token punctuation\">;</span><br /><span class=\"token prefix inserted\">+</span>\tcounter<span class=\"token operator\">++</span><span class=\"token punctuation\">;</span><br /></span>}<br /><br />// Test with a line break above this line.<br />console.log('Test');</code></pre>\n",
+      "content_html": "<p>Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.</p>\n<p>Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.</p>\n<h2 id=\"section-header\" tabindex=\"-1\">Section Header <a class=\"direct-link\" href=\"https://lucashenry.xyz/posts/firstpost/#section-header\" aria-hidden=\"true\">#</a></h2>\n<p>Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.</p>\n<pre class=\"language-diff-js\"><code class=\"language-diff-js\">// this is a command<br />function myCommand() {<br /><span class=\"token inserted-sign inserted language-js\"><span class=\"token prefix inserted\">+</span>\t<span class=\"token keyword\">let</span> counter <span class=\"token operator\">=</span> <span class=\"token number\">0</span><span class=\"token punctuation\">;</span><br /><span class=\"token prefix inserted\">+</span>\tcounter<span class=\"token operator\">++</span><span class=\"token punctuation\">;</span><br /></span>}<br /><br />// Test with a line break above this line.<br />console.log('Test');</code></pre>\n",
       "date_published": "2018-05-01T00:00:00Z"
     }
   ]
