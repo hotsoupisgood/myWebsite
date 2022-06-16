@@ -1,7 +1,7 @@
 ---
 title: Post with Eleventy.
 description: This is an explanation on how to post to your github site with the Eleventy framework.
-date: 2022-06-16.
+date: 2022-06-16
 tags:
   - Eleventy
 layout: layouts/post.njk
