@@ -47,6 +47,8 @@ main :first-child {
 }
 header {
   border-bottom: 1px dashed var(--lightgray);
+  display: flex;
+  flex-direction: row;
 }
 header:after {
   content: "";
