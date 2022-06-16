@@ -1,18 +1,32 @@
 ---
-title: This is my second post.
-description: This is a post on My Blog about leveraging agile frameworks.
-date: 2018-07-04
+title: Post with Eleventy.
+description: This is an explanation on how to post to your github site with the Eleventy framework.
+date: 2022-06-16.
 tags:
-  - number 2
+  - Eleventy
 layout: layouts/post.njk
 ---
-Leverage agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. Organically grow the holistic world view of disruptive innovation via workplace diversity and empowerment.
 
 ## Section Header
-
-<a href="{{ '/posts/firstpost/' | url }}">First post</a>
-<a href="{{ '/posts/thirdpost/' | url }}">Third post</a>
-
-Bring to the table win-win survival strategies to ensure proactive domination. At the end of the day, going forward, a new normal that has evolved from generation X is on the runway heading towards a streamlined cloud solution. User generated content in real-time will have multiple touchpoints for offshoring.
-
-Capitalize on low hanging fruit to identify a ballpark value added activity to beta test. Override the digital divide with additional clickthroughs from DevOps. Nanotechnology immersion along the information highway will close the loop on focusing solely on the bottom line.
+1. Navigate to your website directory
+```
+cd /path/to/website/directory
+```
+2. Make a blog post, edit your site, etc...
+3. Build your project.
+```
+npx Eleventy
+```
+4. Stage your changes. (Add changes you made to git)
+```
+git add *
+```
+5. Commit your changes to git.
+```
+git commit -m "description of your changes"
+```
+6. Upload your changes to github.
+```
+git push
+```
+7. Done! You should see your website updated.
