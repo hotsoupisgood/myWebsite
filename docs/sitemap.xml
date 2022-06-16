@@ -52,12 +52,12 @@
   </url>
   
   <url>
-    <loc>https://example.com/tags/second-tag/</loc>
+    <loc>https://example.com/tags/number-2/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
   <url>
-    <loc>https://example.com/tags/number-2/</loc>
+    <loc>https://example.com/tags/second-tag/</loc>
     <lastmod>2022-06-13</lastmod>
   </url>
   
