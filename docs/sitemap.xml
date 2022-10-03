@@ -2,6 +2,21 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lucashenry.xyz/projects/thisagora/</loc>
+    <lastmod>2016-05-17</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/projects/iotabet/</loc>
+    <lastmod>2018-08-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/projects/thebe/</loc>
+    <lastmod>2020-02-02</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/posts/secondpost/</loc>
     <lastmod>2022-06-16</lastmod>
   </url>
@@ -29,16 +44,6 @@
   <url>
     <loc>https://lucashenry.xyz/tags/projects/</loc>
     <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/projects/iotabet/</loc>
-    <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/projects/thebe/</loc>
-    <lastmod>2022-09-19</lastmod>
   </url>
   
   <url>
