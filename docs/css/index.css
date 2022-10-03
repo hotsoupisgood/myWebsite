@@ -27,10 +27,8 @@ body {
 p:last-child {
   margin-bottom: 0;
 }
-p,
-.tmpl-post li,
-img {
-  max-width: 40em;
+p img {
+  max-width: 100%;
 }
 p,
 .tmpl-post li {
@@ -44,6 +42,7 @@ a[href]:visited {
 }
 main {
   padding: 1rem;
+  max-width: 70vw;
 }
 main :first-child {
   margin-top: 0;
@@ -65,13 +64,19 @@ header ul {
 }
 .image-subheader {
   width: 20em;
-  height: 30em;
+  max-height: 30em;
   overflow: hidden;
 }
 .image-subheader img {
   /* width: 100%;
   height: 100%; */
-  object-fit: cover;
+  object-fit: none;
+  object-position: 50% 50%;
+  max-height: 80vh;
+}.subheader .subtext {
+  margin-top: 2px;
+  font-style: italic;
+  font-size: small;
 }
 table {
   margin: 1em 0;
@@ -143,6 +148,7 @@ code {
 .postlist {
   list-style: none;
   padding: 0;
+  max-width: 40rem;
 }
 .postlist-item {
   display: flex;
