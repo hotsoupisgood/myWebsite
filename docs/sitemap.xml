@@ -2,47 +2,50 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://lucashenry.xyz/posts/firstpost/</loc>
-    <lastmod>2018-05-01</lastmod>
+    <loc>https://lucashenry.xyz/posts/secondpost/</loc>
+    <lastmod>2022-06-16</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/about/</loc>
-    <lastmod>2022-06-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/posts/</loc>
-    <lastmod>2022-06-13</lastmod>
+    <lastmod>2022-09-14</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/</loc>
-    <lastmod>2022-06-13</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/page-list/</loc>
-    <lastmod>2022-06-13</lastmod>
+    <lastmod>2022-09-14</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/tags/</loc>
-    <lastmod>2022-06-13</lastmod>
+    <lastmod>2022-09-14</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/tags/eleventy/</loc>
-    <lastmod>2022-06-13</lastmod>
+    <lastmod>2022-09-14</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/another-tag/</loc>
-    <lastmod>2022-06-13</lastmod>
+    <loc>https://lucashenry.xyz/tags/projects/</loc>
+    <lastmod>2022-09-14</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/posts/secondpost/</loc>
-    <lastmod>2022-06-16</lastmod>
+    <loc>https://lucashenry.xyz/projects/iotabet/</loc>
+    <lastmod>2022-09-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/projects/thebe/</loc>
+    <lastmod>2022-09-19</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/projects/nameTBD/</loc>
+    <lastmod>2022-10-03</lastmod>
+  </url>
+  <url>
+    <loc>img/resume_sanitized.pdf</loc>
   </url>
 </urlset>

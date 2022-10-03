@@ -7,4 +7,5 @@ eleventyNavigation:
   order: 3
 ---
 
-I am a person that writes stuff.
+I am a person that makes stuff.
+[link to resume](/img/resume_sanitized.pdf)
