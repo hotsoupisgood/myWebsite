@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lucashenry.xyz/projects/ratbird/</loc>
+    <lastmod>2015-09-26</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/projects/thisagora/</loc>
     <lastmod>2016-05-17</lastmod>
   </url>
