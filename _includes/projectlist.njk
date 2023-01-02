@@ -1,6 +1,9 @@
 <ol reversed class="postlist">
 {% for post in postslist | reverse %}
   <li class="postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
+    
+    <input type="checkbox" class="read-more-state" id="post-{{loop.index0}}" />
+    
     <div class="projectlist-header">
       {% if post.data.title %}<h1>{{ post.data.title }}</h1>{% else %}<code>{{ post.url }}</code>{% endif %}
       <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
@@ -10,7 +13,10 @@
       {% endfor %}
     </div>
     {# {% include "post.njk" %} #}
-    {{ post.templateContent | safe }}
-  </li>
+    <div class="content">
+      {{ post.templateContent | safe }}
+    </div>
+    <label for="post-{{loop.index0}}" class="read-more-trigger"></label>
+    </li>
 {% endfor %}
 </ol>

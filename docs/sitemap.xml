@@ -22,38 +22,48 @@
   </url>
   
   <url>
+    <loc>https://lucashenry.xyz/projects/nameTBD/</loc>
+    <lastmod>2022-01-14</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/posts/secondpost/</loc>
     <lastmod>2022-06-16</lastmod>
   </url>
   
   <url>
+    <loc>https://lucashenry.xyz/projects/baking1/</loc>
+    <lastmod>2022-12-22</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/about/</loc>
-    <lastmod>2022-09-14</lastmod>
+    <lastmod>2023-01-01</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/</loc>
-    <lastmod>2022-09-14</lastmod>
+    <lastmod>2023-01-01</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/tags/</loc>
-    <lastmod>2022-09-14</lastmod>
+    <lastmod>2023-01-01</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/tags/eleventy/</loc>
-    <lastmod>2022-09-14</lastmod>
+    <lastmod>2023-01-01</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/tags/projects/</loc>
-    <lastmod>2022-09-14</lastmod>
+    <lastmod>2023-01-01</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/projects/nameTBD/</loc>
-    <lastmod>2022-10-03</lastmod>
+    <loc>https://lucashenry.xyz/_site/404/</loc>
+    <lastmod>2023-01-01</lastmod>
   </url>
   <url>
     <loc>img/resume_sanitized.pdf</loc>
