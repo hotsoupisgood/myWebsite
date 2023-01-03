@@ -4,6 +4,8 @@ title: Breakthrough Bake
 templateClass: tmpl-post
 date: 2022-12-22
 ---
+![uncooked focaccia](img/focaccia_uncooked.jpg)
+  
 ## Focaccia recipe
 #### Ingredients
 Dough:
@@ -37,6 +39,8 @@ Toppings:
 15. Evenly spread your topping mixture on the dough.
 16. Cook for 20 minutes, or until lightly browned.
 17. Place on cooling rack until eating temperature.
+![cooked focaccia](img/focaccia_cooked.jpg)
+
 <!--
 #### Story
 I dislike when the preamble is before recipes so I am including a postamble instead.  
