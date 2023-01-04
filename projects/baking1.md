@@ -39,10 +39,6 @@ Toppings:
 15. Evenly spread your topping mixture on the dough.
 16. Cook for 20 minutes, or until lightly browned.
 17. Place on cooling rack until eating temperature.
-![cooked focaccia](img/focaccia_cooked.jpg)
 
-<!--
-#### Story
-I dislike when the preamble is before recipes so I am including a postamble instead.  
-I started making bread several months ago where I began with country loafs. I tweaked and simplified recipes I saw online until I was happy with the dough.  -->
+![cooked focaccia](img/focaccia_cooked.jpg)
 
