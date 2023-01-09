@@ -34,7 +34,7 @@ Toppings:
 10. Pinch and stretch the dough up and fold it onto itself. Do this ~5 times, or until you are satisfied with yourself.
 11. Place into an oiled baking instrument, I prefer a 10" cast iron skillet.
 12. Let dough rest until doubled in size (1 hour). Be conservative with this step. Overproving can lead to denser dough.
-13. Preheat your oven so it is ready when the dough is.
+13. Preheat your oven to 450°F.
 14. Oil your fingers and press, fingers spread, all the way into the dough until your finger tips touch the metal underneath. Do this until there are dimples roughly every 2cm.
 15. Evenly spread your topping mixture on the dough.
 16. Cook for 20 minutes, or until lightly browned.
