@@ -1,6 +1,6 @@
 ---
 layout: layouts/post.njk
-title: Breakthrough Bake
+title: Focaccia Recipe
 templateClass: tmpl-post
 date: 2022-12-22
 ---
