@@ -6,7 +6,6 @@ date: 2022-12-22
 ---
 ![uncooked focaccia](img/focaccia_uncooked.jpg)
   
-## Focaccia recipe
 #### Ingredients
 Dough:
 * 2 cups flour (Substituting 1 cup for rye or whole wheat will work fine, and lead to a hardier dough)
