@@ -42,7 +42,7 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/projects/</loc>
+    <loc>https://lucashenry.xyz/tags/cooking/</loc>
     <lastmod>2022-09-14</lastmod>
   </url>
   
@@ -52,7 +52,22 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/projects/baking1/</loc>
+    <loc>https://lucashenry.xyz/tags/projects/</loc>
+    <lastmod>2022-09-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/books/</loc>
+    <lastmod>2022-09-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/books/in_progress/</loc>
+    <lastmod>2022-12-22</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/cooking/foccacia/</loc>
     <lastmod>2022-12-22</lastmod>
   </url>
   
@@ -64,6 +79,16 @@
   <url>
     <loc>https://lucashenry.xyz/_site/404/</loc>
     <lastmod>2023-01-09</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/books/</loc>
+    <lastmod>2023-10-16</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/cooking/</loc>
+    <lastmod>2023-10-16</lastmod>
   </url>
   <url>
     <loc>img/resume_sanitized.pdf</loc>

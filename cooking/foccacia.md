@@ -4,7 +4,7 @@ title: Focaccia Recipe
 templateClass: tmpl-post
 date: 2022-12-22
 ---
-![uncooked focaccia](img/focaccia_uncooked.jpg)
+![uncooked focaccia](/img/focaccia_uncooked.jpg)
   
 #### Ingredients
 Dough:
@@ -39,5 +39,5 @@ Toppings:
 16. Cook for 20 minutes, or until lightly browned.
 17. Place on cooling rack until eating temperature.
 
-![cooked focaccia](img/focaccia_cooked.jpg)
+![cooked focaccia](/img/focaccia_cooked.jpg)
 
