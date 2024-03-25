@@ -27,41 +27,6 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/about/</loc>
-    <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/</loc>
-    <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/</loc>
-    <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/books/</loc>
-    <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/cooking/</loc>
-    <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
-    <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/projects/</loc>
-    <lastmod>2022-09-14</lastmod>
-  </url>
-  
-  <url>
     <loc>https://lucashenry.xyz/books/fairytail/</loc>
     <lastmod>2022-12-22</lastmod>
   </url>
@@ -82,18 +47,58 @@
   </url>
   
   <url>
+    <loc>https://lucashenry.xyz/projects/breakup/</loc>
+    <lastmod>2024-03-25</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/_site/404/</loc>
-    <lastmod>2023-01-09</lastmod>
+    <lastmod>2024-03-25</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/about/</loc>
+    <lastmod>2024-03-25</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/books/</loc>
-    <lastmod>2023-10-16</lastmod>
+    <lastmod>2024-03-25</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/cooking/</loc>
-    <lastmod>2023-10-16</lastmod>
+    <lastmod>2024-03-25</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/</loc>
+    <lastmod>2024-03-25</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/</loc>
+    <lastmod>2024-03-25</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/books/</loc>
+    <lastmod>2024-03-25</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/cooking/</loc>
+    <lastmod>2024-03-25</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
+    <lastmod>2024-03-25</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/projects/</loc>
+    <lastmod>2024-03-25</lastmod>
   </url>
   <url>
     <loc>img/resume_sanitized.pdf</loc>
