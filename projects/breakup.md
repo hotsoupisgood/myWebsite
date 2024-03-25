@@ -21,7 +21,7 @@ What I found was that the sentiment did not just get more negative leading up to
 
 ![Breakup graph. It shows how we had good and bad days leading up to the breakup.](img/gfemotions.png)  
 
-For my second research question, I was unfortunately unable to find other people's breakup texts online to answer my second research question.  
+For my second research question, I unfortunately was unable to find other people's breakup text data. Maybe the NSA or Facebook will throw me a bone one day.  
 
 Here is a little piece I wrote describing the breakup. I hope you enjoy it.
 
