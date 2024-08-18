@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Breakup Text Analysis</title>
+    <title>Personal Text Analysis</title>
     <meta name="description" content="My public notes.">
     <meta name="generator" content="Eleventy v1.0.2">
 
@@ -31,27 +31,24 @@
     </div>
     
     <main class="tmpl-post">
-      <h1>Breakup Text Analysis</h1>
+      <h1>Personal Text Analysis</h1>
 
 <time datetime="2024-03-25">25 Mar 2024</time><a href="/tags/projects/" class="post-tag">projects</a>
 <div class="read-more-target">
-  <p>At the turn of the new year I went through a breakup with my ex. The breakup was messy and confusing and led me to injuring both of my achilles while over-training for a marathon as I was running away from my problems. Since then, I have been bedridden with way too much time to think about what went wrong. So I decided the healthiest form of closure would be looking into signs of the breakup in our messages! /s</p>
-<p>I was interested in two research questions:</p>
-<p>Were there any observable trends in our messages leading up to the breakup?<br>
-Do these trends express themselves in other breakups?</p>
-<p>To answer these questions I looked at the polarization of our text messages leading up to the breakup, with the hypothesis being: As the texts get close to the breakup, they will show more negative sentiment relative to earlier in the year. I only have data for 2023, but I believe this will be enough for a preliminary analysis because the breakup was in November/December.</p>
-<p>First I had to decrypt the Signal database, which can be done with <a href="https://content.govdelivery.com/accounts/USDODDC3/bulletins/2e03518#:~:text=Decrypting%20the%20Signal%20%E2%80%9Cdb.,table%20(see%20Figure%20below).">this guide</a>. Once I got it opened in my database manager I exported a csv of the messages with my ex and started cleaning the data in Jupyter and python. I then preformed the sentiment analysis with <a href="https://github.com/cjhutto/vaderSentiment">VaderSentiment</a> and binned the sentiment for each day, for me and my ex-partner.</p>
-<p>What I found was that the sentiment did not just get more negative leading up to the breakup. It got more positive too! In the figure below, see how some days show increasing positivity and other increasing negativity as time goes on. Which, if I think about it, makes perfect sense. As my ex and I were working through our issues, we would have days where we feel like we are going to make it, followed up by days where we both feel like it's over. The intense switching of positive and negative emotions can be seen in this data.</p>
-<p><img src="img/gfemotions.png" alt="Breakup graph. It shows how we had good and bad days leading up to the breakup."></p>
-<p>For my second research question, I unfortunately was unable to find other people's breakup text data. Maybe the NSA or Facebook will throw me a bone one day.</p>
-<p>Here is a little piece I wrote describing the breakup. I hope you enjoy it.</p>
-<h3 id="love-vs-body" tabindex="-1">Love vs Body <a class="direct-link" href="#love-vs-body" aria-hidden="true">#</a></h3>
-<p>Laying on the couch in pain, I questioned why I push myself physically. Was it the breakup? I don’t know. It was fun, but I always do this. This happened with biking, backpacking, and now running. When I grab hold of a new love I inevitably beat myself to death with it.</p>
-<p>Cycling was my first love. I started my ride at 6am. The bay was filled to the brim with a cool, damp mist. Rolling over the golden gate bridge and deep into silicon valley, I stopped at a bench. The fog was burning off, the sun was making its appearance, and I could feel my muscles spasming. Maybe next time I would be more prepared.</p>
-<p>Backpacking was my second. I was halfway through my hike up the mountain, eight miles in. I had just passed the lush, west facing side where ferns percolated the edges of the trail, brushing against my hips. I was tapping the rocks with the tips of my shoes, throwing off dust and quickly climbing to the middle portion. The sun had just crested the distant peak, I had forgotten my boots, stubbornly pushing on despite the sharp pebbles digging into my feet. In the back of my mind, I hoped to share the beauty of the mountains with someone, without the pain.</p>
-<p>Running was my third. I finished up my run, walked up the old creaky staircase going to my moms small studio, yanked the door open and plopped myself on the couch. I had just accomplished my longest run yet. After only running seriously for one month I was running 8 miles with ease. Although compared with today's running partner, I was still miles behind, she had continued the run another 14 miles until she circumnavigated the city.</p>
-<p>My ex was my fourth love. It ended in a mess and the “what ifs” linger. What if we spent more time together? What if we closed the long distance sooner? Would we have not grown so far apart? What if we did not push our relationship over the edge? What if we noticed the damage we were inflicting, taking a moment to stop, and turn around? My last love showed me how to run, and I ran away from the emotions of the breakup until I was broken up with by both.</p>
-<p>One month later I am sitting in bed patiently waiting for my tendons to rebuild. Without the blood vessels they do not have the energy for a speedy recovery like muscles. So I wait here, biding my time in bed. Listening to the birds through the open window, praying my next love does not strike me dead.</p>
+  <p>At the beginning of the year I went through a breakup and did an exploratory data analysis (EDA) of my text messages with this person.</p>
+<p>I was interested in exploring the following questions:</p>
+<p>What illustrative trends can we see to validate that this is normal data?<br>
+Are there observable trends in our messages leading up to the breakup?</p>
+<p>To answer 1. I plotted the time in day that the texts take place, binned by hour. It shows what you would expect, texts drop in the middle of the night. One interesting trend is that I (orange) text a little more in the morning, and my ex (blue)  is more active in the evening. Which is cool to see because I was more of a morning person.<br>
+<img src="img/textsbyhourinday.png" alt="Picture of texts binned per hour of day."><br>
+This illustrative plot shows that my data is relatively normal, which is good because this analysis may be able to be applied to future data.</p>
+<p>To answer 2. I applied a sentiment analysis algorithm to each text to get the table of positive or negative values for our data. I binned these values by day for each of us, and plotted them. I noticed an increased variability leading up to the breakup (which took place at the far right of the plot).<br>
+<img src="img/sentement.png" alt="Plot of sentiment."><br>
+The next plot is of the variance, binned by week this time, to capture the day to day variability seen in the prior plot.<br>
+<img src="img/sentimentvariance.png" alt="Plot of sentiment variance."></p>
+<p>As my ex and I were working through our issues, we would have days where we feel like we are going to make it, followed up by days where we both feel like it's over. The intense switching of positive and negative emotions can be seen in this data! This was so cool for me to see and is one of the reasons I love data analysis of contemporary issues. You can observe trends that you feel!</p>
+<p>I do have one lingering question. Do these trends express themselves in other breakups? I scoured the internet and unfortunately could not find any ethical data.</p>
+<p>This was a cool project for me and I hope someone could get some value out of it too. :)</p>
 
 </div>
 <input type="checkbox" class="read-more-state" id="post-abc" />
