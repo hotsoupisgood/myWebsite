@@ -27,11 +27,6 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/books/fairytail/</loc>
-    <lastmod>2022-12-22</lastmod>
-  </url>
-  
-  <url>
     <loc>https://lucashenry.xyz/cooking/foccacia/</loc>
     <lastmod>2022-12-22</lastmod>
   </url>
@@ -82,22 +77,17 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/cooking/</loc>
-    <lastmod>2024-08-14</lastmod>
-  </url>
-  
-  <url>
     <loc>https://lucashenry.xyz/tags/projects/</loc>
     <lastmod>2024-08-14</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/books/</loc>
+    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
     <lastmod>2024-08-14</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
+    <loc>https://lucashenry.xyz/tags/cooking/</loc>
     <lastmod>2024-08-14</lastmod>
   </url>
   <url>
