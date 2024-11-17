@@ -77,7 +77,7 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/projects/</loc>
+    <loc>https://lucashenry.xyz/tags/cooking/</loc>
     <lastmod>2024-08-14</lastmod>
   </url>
   
@@ -87,8 +87,13 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/cooking/</loc>
+    <loc>https://lucashenry.xyz/tags/projects/</loc>
     <lastmod>2024-08-14</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/projects/mosaicofgenes/</loc>
+    <lastmod>2024-11-17</lastmod>
   </url>
   <url>
     <loc>img/resume_sanitized.pdf</loc>
