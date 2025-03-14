@@ -264,9 +264,13 @@ a[href].post-tag:focus {
 }
 /* Project list specifics */
 .projectlist-header {
-  /* display: flex;
-  flex-direction: row;
-  justify-content: space-between; */
+  border-bottom: 1px dashed var(--lightgray);
+  border-top: 1px dashed var(--lightgray);
+  margin-bottom: 1rem;
+  padding-bottom: .5rem;
+  width: 100%;
+}.projectlist-header h1{
+  margin-bottom: 0;
 }
 
 /* Warning */
