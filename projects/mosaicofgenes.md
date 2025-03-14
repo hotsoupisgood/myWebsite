@@ -4,9 +4,16 @@ title: Gene Expression Level site
 templateClass: tmpl-post
 date: 2024-11-17
 ---
-Made this app/microservice for when I get curious about gene expression levels in various tissues. It queries Open Targets to get normalized TPS values that contain your tissue type then divides it by the total to get a percentage tissue type. Uses Vue.js and Reactive SpringBoot (JAVA/Webflux). [Link](https://mosaicofgenes.com/)
+I made a microservice I thought would be useful for investigating gene expression levels in various tissues.  
 
-![Mosaic microservice app](img/mosaic.png)  
+[Here is a link to the website](https://mosaicofgenes.com/)
 
+![Mosaic microservice app](img/mosaicofgenes_front.png)  
+
+It queries [Open Targets](https://www.opentargets.org/) to get normalized TPS values that contain your tissue types of interest, then divides those values by every normalized value to get a percentage for tissue type.  
+
+I used Vue.js and Reactive SpringBoot (JAVA/Webflux).  
+
+![Mosaic microservice app](img/mosaicofgenes_graph.png)  
 
 
