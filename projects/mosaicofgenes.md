@@ -11,7 +11,7 @@ A microservice useful for comparing gene expression across various tissues.
 ![Mosaic microservice front page](img/mosaicofgenes_front.png)  
 ![Mosaic microservice app graph](img/mosaicofgenes_graph.png)  
 
-It queries [Open Targets](https://www.opentargets.org/) to get normalized TPS values for your gene, then divides the sum that match your tissue with the sum total. 
+It queries [Open Targets](https://www.opentargets.org/) to get the normalized TPS values for your gene, sums them, then divides them by sum total of all TPS values for the gene. 
 
 I used Vue.js and Java (SpringBoot/Webflux).  
 
