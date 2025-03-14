@@ -4,7 +4,8 @@
     margin-left:  0%!important;
   }
   .subheader {
-    width: 105vw;
+    width: 120vw;
+    margin-left: -1vw;
   }
   .subheader .image-subheader {
     width: 100%;
@@ -14,6 +15,9 @@
   }
   .tmpl-home {
     max-width: 90vw;
+  }
+  html body {
+    max-width: 100vw;
   }
 }
 
@@ -72,6 +76,8 @@ header {
   border-bottom: 1px dashed var(--lightgray);
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 /* header:after {
   content: "";
