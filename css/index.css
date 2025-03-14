@@ -12,6 +12,9 @@
   .subheader .subtext {
     text-align: center;
   }
+  .tmpl-home {
+    max-width: 90vw;
+  }
 }
 
 /* Colors */
