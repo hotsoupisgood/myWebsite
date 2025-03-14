@@ -1,3 +1,19 @@
+@media (max-aspect-ratio: 1/2) {
+  p img {
+    max-width:    95%!important;
+    margin-left:  0%!important;
+  }
+  .subheader {
+    width: 101vw;
+  }
+  .subheader .image-subheader {
+    width: 100%;
+  }
+  .subheader .subtext {
+    text-align: center;
+  }
+}
+
 /* Colors */
 :root {
   --lightgray: #e0e0e0;
@@ -27,9 +43,6 @@ body {
 p:last-child {
   margin-bottom: 0;
 }
-/* img {
-  max-width: 100%;
-} */
 p img {
   max-width: 60%;
   margin-left: 20%;
@@ -169,12 +182,7 @@ code {
   transition-delay: 0;
   transition-duration: .5s;
   transition-property: all;
-  /* mask-image: linear-gradient(to bottom, white 100%, transparent 100%); */
   -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-
-  /* background-image : linear-gradient(to bottom, 
-  rgba(255,255,255, 0), 
-  rgba(255,255,255, 1) 90%); */
 }
 .postlist-item:before {
   display: inline-block;
@@ -269,7 +277,8 @@ a[href].post-tag:focus {
   margin-bottom: 1rem;
   padding-bottom: .5rem;
   width: 100%;
-}.projectlist-header h1{
+}
+.projectlist-header h1{
   margin-bottom: 0;
 }
 
