@@ -67,6 +67,11 @@
   </url>
   
   <url>
+    <loc>https://lucashenry.xyz/photos/</loc>
+    <lastmod>2024-08-14</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/</loc>
     <lastmod>2024-08-14</lastmod>
   </url>
@@ -92,6 +97,11 @@
   </url>
   
   <url>
+    <loc>https://lucashenry.xyz/tags/photos/</loc>
+    <lastmod>2024-08-14</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/projects/mosaicofgenes/</loc>
     <lastmod>2024-11-17</lastmod>
   </url>
@@ -99,6 +109,11 @@
   <url>
     <loc>https://lucashenry.xyz/cooking/gallette/</loc>
     <lastmod>2025-05-01</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/photos/washington/</loc>
+    <lastmod>2025-08-01</lastmod>
   </url>
   <url>
     <loc>img/resume_sanitized.pdf</loc>

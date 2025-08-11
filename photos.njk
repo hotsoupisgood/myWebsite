@@ -1,0 +1,12 @@
+---
+layout: layouts/home.njk
+eleventyNavigation:
+  key: Photos
+  order: 2
+---
+
+
+{% set postslist = collections.photos %}
+{% set postslistCounter = collections.photos | length %}
+{% include "projectlist.njk" %}
+
