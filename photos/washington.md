@@ -4,7 +4,7 @@ title: Washington
 templateClass: tmpl-post
 date: 2025-08
 ---
-Photography from around Washington State.  
+Photography from around Washington State... 
 
 ![forest in the distance olympic np](/img/washington/washington%20-%201.jpeg)  
 ![elk heard olympic np](/img/washington/washington%20-%202.jpeg)
@@ -24,3 +24,5 @@ Photography from around Washington State.
 ![deception pass](/img/washington/washington%20-%2016.jpeg)  
 
 https://www.youtube.com/watch?v=ijCxLy6lcdc
+
+Shot on the Sony A7 III and Fujifilm X-T30 III.
