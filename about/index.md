@@ -8,4 +8,3 @@ eleventyNavigation:
 ---
 
 I am a person that makes stuff.
-[link to resume](/img/resume_sanitized.pdf)
