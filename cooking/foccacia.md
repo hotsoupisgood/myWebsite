@@ -13,18 +13,18 @@ Dough:
 * 1 teaspoon brown sugar
 * 1.5 teaspoon instant yeast
 * 1 cup warm water
-* 1 teaspoon evoo
+* 1 teaspoon extra virgin olive oil (EVOO)
 Toppings:
 * chopped olives
 * chopped garlic
 * rosemary
-* extra virgin olive oil (EVOO)
+* EVOO
  
 #### Directions
 1. Heat up water to room temperature
 2. Mix in sugar, and yeast. Let rest.
 3. In a large bowl, whisk together your flour and salt.
-4. In a small bowl, combine chopped olives, garlic, rosemary and a few tablespoons of extra virgin olive oil (EVOO). Let rest.
+4. In a small bowl, combine chopped olives, garlic, rosemary and a few tablespoons of EVOO. Let rest.
 5. Combine the sugar-yeast-water and one tablespoon of EVOO with the dry ingredients and mix together with a spatula until fully combined. The dough should be very wet. I like to describe it as halfway between pancake batter and a country loaf.
 6. Pinch and stretch the dough up and fold it onto itself. Do this ~5 times, or until you are satisfied with yourself.
 7. Wait 5 minutes, then repeat the previous step >2 times.
