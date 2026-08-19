@@ -41,6 +41,32 @@
     <input type="checkbox" class="read-more-state" id="post-0" />
     
     <div class="projectlist-header">
+      <h1>Cappuccino Index Claim Significance</h1>
+      <time class="postlist-date" datetime="2026-04-04">04 Apr 2026</time>
+      
+        
+        <a href="/tags/projects/" class="post-tag">projects</a>
+      
+    </div>
+    
+    <div class="content">
+      <p>In a <a href="https://www.youtube.com/watch?v=WtlE3BW9Nqs">new James Hoffmann video</a> on the cappuccino index, he surveyed his audience asking baristas to report the country they live in, cost of a cappuccino, and their wage. He used the average number of cappuccinos a worker can buy with one hour of wages as the index. Then compared indices to support some hypothesis. I wanted to test the comparability of the countries. Specifically Italy and Australia because James referenced them. So, I started by bootstrapping the samples and plotting the mean and 95% confidence interval, shown below.</p>
+<p><img src="img/all-ratio-cap-index.png" alt="all significant comparisons"><br>
+Italy stands out as having the most uncertain estimate. The sample means could really span a wide range. To see if Italy can be compared to the countries closest to it in the ranking, I bootstrapped a pairwise test by sampling the difference between Italy and each other country below</p>
+<p><img src="img/italy-ratio-cap-index.png" alt="Italy's significant comparisons"><br>
+The grey x's show the countries that are not significantly different from Italy (in black).</p>
+<p>Given his data, we really cannot confidently claim that Italy has the second highest index. To make a more robust dataset one would need to have more confident samples.</p>
+<p><img src="img/cap-index-sample-size.png" alt="Number of samples per country"></p>
+
+    </div>
+    <label for="post-0" class="read-more-trigger"></label>
+    </li>
+
+  <li class="postlist-item">
+    
+    <input type="checkbox" class="read-more-state" id="post-1" />
+    
+    <div class="projectlist-header">
       <h1>Gene Expression Level site</h1>
       <time class="postlist-date" datetime="2024-11-17">17 Nov 2024</time>
       
@@ -58,12 +84,12 @@
 <p>I used Vue.js and Java (SpringBoot/Webflux).</p>
 
     </div>
-    <label for="post-0" class="read-more-trigger"></label>
+    <label for="post-1" class="read-more-trigger"></label>
     </li>
 
   <li class="postlist-item">
     
-    <input type="checkbox" class="read-more-state" id="post-1" />
+    <input type="checkbox" class="read-more-state" id="post-2" />
     
     <div class="projectlist-header">
       <h1>Pomodoro Timer App</h1>
@@ -79,12 +105,12 @@
 <p>I have a problem at work. When I get locked in, I forget to take breaks. Breaks are great for the body and the mind because they help prevent repetitive stress injuries and increase creativity. To fix this, I created a Pomodoro timer for IOS (and soon to be web). I wanted something very simple, without ads, that would not track me. I could not find anything that satisfied these requirements so I built my own!</p>
 
     </div>
-    <label for="post-1" class="read-more-trigger"></label>
+    <label for="post-2" class="read-more-trigger"></label>
     </li>
 
   <li class="postlist-item">
     
-    <input type="checkbox" class="read-more-state" id="post-2" />
+    <input type="checkbox" class="read-more-state" id="post-3" />
     
     <div class="projectlist-header">
       <h1>Personal Text Analysis</h1>
@@ -112,12 +138,12 @@ The next plot is of the variance, binned by week this time, to capture the day t
 <p>This was a cool project for me and I hope someone could get some value out of it too. :)</p>
 
     </div>
-    <label for="post-2" class="read-more-trigger"></label>
+    <label for="post-3" class="read-more-trigger"></label>
     </li>
 
   <li class="postlist-item">
     
-    <input type="checkbox" class="read-more-state" id="post-3" />
+    <input type="checkbox" class="read-more-state" id="post-4" />
     
     <div class="projectlist-header">
       <h1>organize.monster</h1>
@@ -134,12 +160,12 @@ The next plot is of the variance, binned by week this time, to capture the day t
 <p><img src="img/OrganizeProjectSchema.jpg" alt="Drawing of what it would look like"></p>
 
     </div>
-    <label for="post-3" class="read-more-trigger"></label>
+    <label for="post-4" class="read-more-trigger"></label>
     </li>
 
   <li class="postlist-item">
     
-    <input type="checkbox" class="read-more-state" id="post-4" />
+    <input type="checkbox" class="read-more-state" id="post-5" />
     
     <div class="projectlist-header">
       <h1>Thebe</h1>
@@ -155,12 +181,12 @@ The next plot is of the variance, binned by week this time, to capture the day t
 <p><img src="img/thebe.gif" alt="Thebe example gif"></p>
 
     </div>
-    <label for="post-4" class="read-more-trigger"></label>
+    <label for="post-5" class="read-more-trigger"></label>
     </li>
 
   <li class="postlist-item">
     
-    <input type="checkbox" class="read-more-state" id="post-5" />
+    <input type="checkbox" class="read-more-state" id="post-6" />
     
     <div class="projectlist-header">
       <h1>IOTA Bet</h1>
@@ -176,12 +202,12 @@ The next plot is of the variance, binned by week this time, to capture the day t
 <p><img src="img/iotabet.png" alt="Screenshot of the finalized product"></p>
 
     </div>
-    <label for="post-5" class="read-more-trigger"></label>
+    <label for="post-6" class="read-more-trigger"></label>
     </li>
 
   <li class="postlist-item">
     
-    <input type="checkbox" class="read-more-state" id="post-6" />
+    <input type="checkbox" class="read-more-state" id="post-7" />
     
     <div class="projectlist-header">
       <h1>This Agora</h1>
@@ -197,12 +223,12 @@ The next plot is of the variance, binned by week this time, to capture the day t
 <p><img src="img/thisagora.png" alt="Picture of this agora in a semi functioning state"></p>
 
     </div>
-    <label for="post-6" class="read-more-trigger"></label>
+    <label for="post-7" class="read-more-trigger"></label>
     </li>
 
   <li class="postlist-item">
     
-    <input type="checkbox" class="read-more-state" id="post-7" />
+    <input type="checkbox" class="read-more-state" id="post-8" />
     
     <div class="projectlist-header">
       <h1>Rat Bird</h1>
@@ -219,7 +245,7 @@ The next plot is of the variance, binned by week this time, to capture the day t
 <p><img src="https://raw.githubusercontent.com/hotsoupisgood/RatBird-GDX/master/screenShots/home.png" alt="Picture of my old game ratbird"></p>
 
     </div>
-    <label for="post-7" class="read-more-trigger"></label>
+    <label for="post-8" class="read-more-trigger"></label>
     </li>
 
 </ol>

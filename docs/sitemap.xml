@@ -77,17 +77,17 @@
   </url>
   
   <url>
+    <loc>https://lucashenry.xyz/tags/photos/</loc>
+    <lastmod>2024-08-14</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/tags/eleventy/</loc>
     <lastmod>2024-08-14</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/tags/projects/</loc>
-    <lastmod>2024-08-14</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/photos/</loc>
     <lastmod>2024-08-14</lastmod>
   </url>
   
@@ -109,6 +109,11 @@
   <url>
     <loc>https://lucashenry.xyz/cooking/foccacia/</loc>
     <lastmod>2026-01-03</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/projects/cap-index/</loc>
+    <lastmod>2026-04-04</lastmod>
   </url>
   <url>
     <loc>img/resume_sanitized.pdf</loc>

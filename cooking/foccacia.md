@@ -12,7 +12,7 @@ Dough:
 * 1 teaspoon salt
 * 1 teaspoon brown sugar
 * 1.5 teaspoon instant yeast
-* 1 cup warm water
+* `1 cup warm water
 * 1 teaspoon extra virgin olive oil (EVOO)
 Toppings:
 * chopped olives

@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run *)",
+      "Bash(npx @11ty/eleventy)",
+      "Bash(command -v npm node npx)",
+      "Read(//Users/fluffypony/.nvm/**)",
+      "Read(//Users/fluffypony/**)",
+      "Read(//Users/fluffypony/.config/fish/**)",
+      "Bash(/Users/fluffypony/.nvm/versions/node/v20.15.0/bin/npm run *)"
+    ]
+  }
+}
