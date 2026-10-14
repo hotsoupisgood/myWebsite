@@ -1,22 +1,26 @@
-<ol reversed class="postlist">
+<ol reversed class="cardlist">
 {% for post in postslist | reverse %}
-  <li class="postlist-item{% if post.url == url %} postlist-item-active{% endif %}">
-    
-    <input type="checkbox" class="read-more-state" id="post-{{loop.index0}}" />
-    
-    <div class="projectlist-header">
-      {% if post.data.title %}<h1>{{ post.data.title }}</h1>{% else %}<code>{{ post.url }}</code>{% endif %}
-      <time class="postlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
-      {% for tag in post.data.tags | filterTagList %}
-        {% set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
+  {%- set auto = post.templateContent | firstImage %}
+  {%- set thumbSrc = post.data.image or auto.src %}
+  <li class="cardlist-item">
+
+    <div class="cardlist-meta">
+      <h2 class="cardlist-title"><a href="{{ post.url | url }}">{% if post.data.title %}{{ post.data.title }}{% else %}{{ post.url }}{% endif %}</a></h2>
+      <time class="cardlist-date" datetime="{{ post.date | htmlDateString }}">{{ post.date | readableDate }}</time>
+      {%- for tag in post.data.tags | filterTagList %}
+        {%- set tagUrl %}/tags/{{ tag | slug }}/{% endset %}
         <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
-      {% endfor %}
+      {%- endfor %}
     </div>
-    {# {% include "post.njk" %} #}
-    <div class="content">
-      {{ post.templateContent | safe }}
-    </div>
-    <label for="post-{{loop.index0}}" class="read-more-trigger"></label>
-    </li>
+
+    <p class="cardlist-excerpt">{{ post.data.description or post.templateContent | excerpt(200) }}</p>
+
+    {%- if thumbSrc %}
+    <a class="cardlist-thumb" href="{{ post.url | url }}" tabindex="-1" aria-hidden="true">
+      <img src="{{ thumbSrc }}" alt="" loading="lazy">
+    </a>
+    {%- endif %}
+
+  </li>
 {% endfor %}
 </ol>

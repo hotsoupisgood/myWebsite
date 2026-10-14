@@ -9,4 +9,4 @@ A chat alongside a collaborative live document. Useful for times when group chat
 
 [Link to prototype](http://143.244.203.2:3000/)
 
-![Drawing of what it would look like](img/OrganizeProjectSchema.jpg)
+![Drawing of what it would look like](/img/OrganizeProjectSchema.jpg)

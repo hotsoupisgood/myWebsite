@@ -2,7 +2,13 @@
 layout: layouts/base.njk
 templateClass: tmpl-post
 ---
-<h1>{{ title }}</h1>
+<div class="post-head">
+  {%- if not eleventyNavigation %}
+  {%- set back = tags | backTo %}
+  <a href="{{ back.url | url }}" class="back-link" aria-label="Back to {{ back.label }}" title="Back to {{ back.label }}">&#8592;</a>
+  {%- endif %}
+  <h1>{{ title }}</h1>
+</div>
 
 <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
 {%- for tag in tags | filterTagList -%}
@@ -13,6 +19,3 @@ templateClass: tmpl-post
   {{ content | safe }}
 </div>
 <input type="checkbox" class="read-more-state" id="post-abc" />
-
-
-

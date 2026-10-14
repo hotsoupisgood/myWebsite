@@ -184,15 +184,6 @@ code {
   padding-bottom: 1rem;
 
 }
-.content {
-  max-width: 100%;
-  max-height: 20em;
-  overflow: hidden;
-  transition-delay: 0;
-  transition-duration: .5s;
-  transition-property: all;
-  -webkit-mask-image: -webkit-gradient(linear, left 90%, left bottom, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
-}
 .postlist-item:before {
   display: inline-block;
   pointer-events: none;
@@ -254,41 +245,118 @@ a[href].post-tag:focus {
   display: none;
 }
 
-.read-more-state:checked ~ .content  {
-  opacity: 1;
-  /* font-size: inherit; */
-  max-height: 999em;
-  -webkit-mask-image: none;
+/* Post header with back link */
+.post-head {
+  display: flex;
+  align-items: baseline;
+  gap: .6rem;
+}
+.post-head h1 {
+  margin: 0;
+}
+.back-link {
+  flex: none;
+  font-size: 1.6rem;
+  line-height: 1;
+  text-decoration: none;
+}
+a[href].back-link,
+a[href].back-link:visited {
+  color: var(--gray);
+}
+a[href].back-link:hover,
+a[href].back-link:focus {
+  color: var(--darkgray);
 }
 
-.read-more-state  ~ .read-more-trigger:before{
-  content: 'Show more';
+/* Compact post cards (projects, cooking, photos listings) */
+.cardlist {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
 }
-
-.read-more-state:checked ~ .read-more-trigger:before {
-  content: 'Show less';
+.cardlist-item {
+  display: grid;
+  grid-template-columns: 15rem minmax(0, 1fr) 13rem;
+  gap: 0 2rem;
+  align-items: start;
+  line-height: 1.5;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--lightgray);
 }
-
-.read-more-trigger {
-  cursor: pointer;
-  display: inline-block;
-  padding: 0 .5em;
+.cardlist-item:first-child {
+  border-top: 0;
+  padding-top: .5rem;
+}
+.cardlist-title {
+  margin: 0 0 .35rem;
+  font-size: 1.25em;
+  line-height: 1.25;
+}
+.cardlist-title a[href],
+.cardlist-title a[href]:visited {
+  color: var(--darkgray);
+  text-decoration: none;
+}
+.cardlist-title a[href]:hover,
+.cardlist-title a[href]:focus {
+  text-decoration: underline;
+}
+.cardlist-date {
+  font-size: 0.8125em;
   color: #666;
-  font-size: .9em;
-  line-height: 2;
-  width: 100%;
-  min-height: 1em;
+  word-spacing: -0.5px;
 }
-/* Project list specifics */
-.projectlist-header {
-  border-bottom: 1px dashed var(--lightgray);
-  border-top: 1px dashed var(--lightgray);
-  margin-bottom: 1rem;
-  padding-bottom: .5rem;
-  width: 100%;
+.cardlist-excerpt {
+  margin: 0;
+  color: #666;
 }
-.projectlist-header h1{
-  margin-bottom: 0;
+.cardlist-thumb {
+  display: block;
+  overflow: hidden;
+  border: 1px solid var(--lightgray);
+  border-radius: 3px;
+}
+.cardlist-thumb img {
+  display: block;
+  width: 100%;
+  height: 8.5rem;
+  max-width: none;
+  margin: 0;
+  object-fit: cover;
+}
+
+@media (max-width: 60rem) {
+  .cardlist-item {
+    grid-template-columns: minmax(0, 1fr) 9rem;
+    gap: 0 1.25rem;
+  }
+  .cardlist-meta,
+  .cardlist-excerpt {
+    grid-column: 1;
+  }
+  .cardlist-excerpt {
+    margin-top: .5rem;
+  }
+  .cardlist-thumb {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+  }
+  .cardlist-thumb img {
+    height: 6rem;
+  }
+}
+
+@media (max-width: 34rem) {
+  .cardlist-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cardlist-thumb {
+    grid-column: 1;
+    grid-row: auto;
+    margin-top: .85rem;
+  }
 }
 
 /* Warning */

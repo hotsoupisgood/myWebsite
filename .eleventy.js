@@ -49,6 +49,65 @@ module.exports = function(eleventyConfig) {
     return Math.min.apply(null, numbers);
   });
 
+  // Plain text summary of a post, used by the compact listing.
+  eleventyConfig.addFilter("excerpt", (content, limit = 200) => {
+    if(!content) {
+      return "";
+    }
+
+    let text = String(content)
+      .replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/&nbsp;/g, " ")
+      .replace(/&lt;/g, "<")
+      .replace(/&gt;/g, ">")
+      .replace(/&quot;/g, '"')
+      .replace(/&#(?:39|x27);/g, "'")
+      .replace(/&amp;/g, "&")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if(text.length <= limit) {
+      return text;
+    }
+
+    let cut = text.slice(0, limit);
+    let lastSpace = cut.lastIndexOf(" ");
+    return (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[,.;:]$/, "") + "\u2026";
+  });
+
+  // Listing page a post belongs to, used by the back link on post pages.
+  // Anything not listed here falls back to the projects listing at "/".
+  const sections = {
+    cooking: { url: "/cooking/", label: "Cooking" },
+    photos: { url: "/photos/", label: "Photos" }
+  };
+
+  eleventyConfig.addFilter("backTo", tags => {
+    let match = (tags || []).map(tag => sections[tag]).find(Boolean);
+    return match || { url: "/", label: "Projects" };
+  });
+
+  // First image in a post, used as the listing thumbnail.
+  eleventyConfig.addFilter("firstImage", content => {
+    if(!content) {
+      return null;
+    }
+
+    let tag = String(content).match(/<img[^>]*>/i);
+    if(!tag) {
+      return null;
+    }
+
+    let src = tag[0].match(/src=["']([^"']+)["']/i);
+    if(!src) {
+      return null;
+    }
+
+    let alt = tag[0].match(/alt=["']([^"']*)["']/i);
+    return { src: src[1], alt: alt ? alt[1] : "" };
+  });
+
   function filterTagList(tags) {
     return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
   }
