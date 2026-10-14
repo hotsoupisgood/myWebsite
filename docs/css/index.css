@@ -10,9 +10,6 @@
   .subheader .image-subheader {
     width: 100%;
   }
-  .subheader .subtext {
-    text-align: center;
-  }
   .tmpl-home {
     max-width: 90vw;
   }
@@ -99,10 +96,6 @@ header ul {
 .image-subheader img {
     min-width: 100%;
     min-height: 100%;
-}.subheader .subtext {
-  margin-top: 2px;
-  font-style: italic;
-  font-size: small;
 }
 table {
   margin: 1em 0;
