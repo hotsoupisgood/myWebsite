@@ -7,10 +7,10 @@ date: 2026-07-01
 Photography from Ireland and the UK, shot on an Olympus Pen half frame camera. Most of these are two frames sharing one negative, so the pairs are how they came off the roll.
 
 ![diving tower at blackrock in salthill, galway and a kennington tube sign](/img/irelandanduk/subwaydiving.jpg)  
-<span class="caption">Me (above left). My favorite diving spot (above right).</span>
+<span class="caption">Me. My favorite diving spot.</span>
 ![double exposure of blackrock diving tower and a window](/img/irelandanduk/reddiving.jpg)
 ![a presidential motorcade passing a crowd in galway](/img/irelandanduk/higgens.jpg)  
-<span class="caption">Michael D. Higgins is in this car (above).</span>
+<span class="caption">Michael D. Higgins is in this car.</span>
 ![donkey nosing the camera at night](/img/irelandanduk/donkey.jpg)  
 <span class="caption">My lovely neighbor.</span>
 ![swimming with my sisters off the rocks at salthill](/img/irelandanduk/swimmingwithsisters.jpg)
