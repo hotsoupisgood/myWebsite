@@ -7,30 +7,45 @@
     <meta name="description" content="My public notes.">
     <meta name="generator" content="Eleventy v1.0.2">
 
-    <link rel="stylesheet" href="/css/index.css?v=d27c3a03">
+    <link rel="stylesheet" href="/css/index.css?v=a3f14e48">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="stylesheet" href="/css/prism-diff.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lucas">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="Lucas">
   </head>
   <body>
-    <header>
-      <h1 class="home"><a href="/">Lucas</a></h1>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <input type="checkbox" class="nav-state" id="nav-toggle" aria-label="Menu">
+    <div class="topbar">
+      <a class="site-title" href="/">Lucas</a>
+      <label for="nav-toggle" class="nav-open" aria-hidden="true">|||</label>
+    </div>
+
+    <nav class="sidebar" aria-label="Main">
+      <label for="nav-toggle" class="nav-close" aria-hidden="true">&#x2715;</label>
+      <a class="site-title" href="/">Lucas</a>
       <ul class="nav">
         <li class="nav-item"><a href="/">Projects</a></li>
         <li class="nav-item"><a href="/photos/">Photos</a></li>
         <li class="nav-item"><a href="/cooking/">Cooking</a></li>
         <li class="nav-item"><a href="/about/">About Me</a></li>
       </ul>
-    </header>
-    <div class= "subheader">
+
+      <div class="sidebar-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </div>
+    </nav>
+    <label for="nav-toggle" class="nav-scrim"></label>
+
+    <div class="page">
       <div class="image-subheader">
         <img src="/img/banner.webp" alt="Collage of personal photographs">
       </div>
-    </div>
-    
-    <main class="tmpl-home">
-      <h1>Tagged “projects”</h1>
+
+      <main id="main" class="tmpl-home">
+        <h1>Tagged “projects”</h1>
 
 
 <ol reversed class="postlist" style="counter-reset: start-from 11">
@@ -131,12 +146,7 @@
 <p>See <a href="/tags/">all tags</a>.</p>
 
 
-    </main>
-
-    <footer>
-    <a href="https://github.com/hotsoupisgood/myWebsite">This website is on github</a>
-    <p>Contact me about any of my projects at <a href="mailto:contact@lucashenry.xyz">contact@lucashenry.xyz</a></p>
-    </footer>
-
+      </main>
+    </div>
   </body>
 </html>

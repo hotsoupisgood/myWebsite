@@ -14,30 +14,42 @@
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
   </head>
   <body>
-    <header>
-      <h1 class="home"><a href="{{ '/' | url }}">{{ metadata.title }}</a></h1>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <input type="checkbox" class="nav-state" id="nav-toggle" aria-label="Menu">
+    <div class="topbar">
+      <a class="site-title" href="{{ '/' | url }}">{{ metadata.title }}</a>
+      <label for="nav-toggle" class="nav-open" aria-hidden="true">|||</label>
+    </div>
+
+    <nav class="sidebar" aria-label="Main">
+      <label for="nav-toggle" class="nav-close" aria-hidden="true">&#x2715;</label>
+      <a class="site-title" href="{{ '/' | url }}">{{ metadata.title }}</a>
 
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
       <ul class="nav">
       {%- for entry in collections.all | eleventyNavigation %}
-        <li class="nav-item{% if entry.url == page.url %} nav-item-active{% endif %}"><a href="{{ entry.url | url }}">{{ entry.title }}</a></li>
+        <li class="nav-item"><a href="{{ entry.url | url }}"{% if entry.url == page.url %} aria-current="page"{% endif %}>{{ entry.title }}</a></li>
       {%- endfor %}
       </ul>
-    </header>
-    <div class= "subheader">
+
+      <div class="sidebar-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="{{ metadata.feed.path | url }}">Feed</a>
+      </div>
+    </nav>
+    <label for="nav-toggle" class="nav-scrim"></label>
+
+    <div class="page">
+      {%- if templateClass != 'tmpl-post' %}
       <div class="image-subheader">
         <img src="{{ '/img/banner.webp' }}" alt="Collage of personal photographs">
       </div>
+      {%- endif %}
+
+      <main id="main"{% if templateClass %} class="{{ templateClass }}"{% endif %}>
+        {{ content | safe }}
+      </main>
     </div>
-    
-    <main{% if templateClass %} class="{{ templateClass }}"{% endif %}>
-      {{ content | safe }}
-    </main>
-
-    <footer>
-    <a href="https://github.com/hotsoupisgood/myWebsite">This website is on github</a>
-    <p>Contact me about any of my projects at <a href="mailto:contact@lucashenry.xyz">contact@lucashenry.xyz</a></p>
-    </footer>
-
   </body>
 </html>
