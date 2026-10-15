@@ -13,6 +13,7 @@ Photography from Ireland and the UK, shot on an Olympus Pen half frame camera. M
 <span class="caption">Michael D. Higgins is in this car (above).</span>
 ![donkey nosing the camera at night](/img/irelandanduk/donkey.jpg)  
 <span class="caption">My lovely neighbor.</span>
+![swimming with my sisters off the rocks at salthill](/img/irelandanduk/swimmingwithsisters.jpg)
 ![spitalfields market and the city of london skyline](/img/irelandanduk/londonbuildings.jpg)
 ![chinatown lanterns and a tree lined path in a london park](/img/irelandanduk/londonlookingup.jpg)
 ![me with a coffee at the barbican](/img/irelandanduk/meandbarbican.jpg)
