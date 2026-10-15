@@ -41,7 +41,7 @@
     <label for="nav-toggle" class="nav-scrim"></label>
 
     <div class="page">
-      {%- if templateClass != 'tmpl-post' %}
+      {%- if templateClass != 'tmpl-post' or eleventyNavigation %}
       <div class="image-subheader">
         <img src="{{ '/img/banner.webp' }}" alt="Collage of personal photographs">
       </div>

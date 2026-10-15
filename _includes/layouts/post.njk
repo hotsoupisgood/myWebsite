@@ -10,7 +10,9 @@ templateClass: tmpl-post
   <h1>{{ title }}</h1>
 </div>
 
+{%- if not eleventyNavigation %}
 <time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+{%- endif %}
 {%- for tag in tags | filterTagList -%}
 {%- set tagUrl %}/tags/{{ tag | slug }}/{% endset -%}
 <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
