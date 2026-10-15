@@ -16,6 +16,8 @@ Michael D. Higgins is in this car.
 ![me with a coffee at the barbican](/img/irelandanduk/meandbarbican.jpg)
 ![tower bridge from london bridge and a street in the city](/img/irelandanduk/motionblurcar.jpg)
 ![a brick tunnel, a sunset and a person sitting under a bridge on the thames foreshore](/img/irelandanduk/londondeath.jpg)
-![drinking from a bottle and a blurred tube platform](/img/irelandanduk/drinkingsubwayblur.jpg)
+![drinking from a bottle and a blurred tube platform](/img/irelandanduk/drinkingsubwayblur.jpg)  
+
+https://www.youtube.com/watch?v=NdYWuo9OFAw
 
 Shot on the Olympus Pen half frame camera.
