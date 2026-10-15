@@ -9,7 +9,7 @@ Photography from Ireland and the UK, shot on an Olympus Pen half frame camera. M
 ![diving tower at blackrock in salthill, galway and a kennington tube sign](/img/irelandanduk/subwaydiving.jpg)
 ![double exposure of blackrock diving tower and a window](/img/irelandanduk/reddiving.jpg)
 ![a presidential motorcade passing a crowd in galway](/img/irelandanduk/higgens.jpg)  
-Michael D. Higgins is in this car.
+<span class="caption">Michael D. Higgins is in this car (above).</span>
 ![donkey nosing the camera at night](/img/irelandanduk/donkey.jpg)
 ![spitalfields market and the city of london skyline](/img/irelandanduk/londonbuildings.jpg)
 ![chinatown lanterns and a tree lined path in a london park](/img/irelandanduk/londonlookingup.jpg)

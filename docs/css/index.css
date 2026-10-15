@@ -33,6 +33,12 @@ p img {
   max-width: min(100%, 44rem);
   margin: 0 auto;
 }
+.caption {
+  display: block;
+  max-width: min(100%, 44rem);
+  margin: 0 auto;
+  text-align: center;
+}
 p,
 .tmpl-post li {
   line-height: 1.45;
