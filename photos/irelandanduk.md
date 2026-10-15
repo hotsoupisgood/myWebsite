@@ -2,7 +2,7 @@
 layout: layouts/post.njk
 title: Ireland and the UK
 templateClass: tmpl-post
-date: 2025-10
+date: 2026-07-01
 ---
 Photography from Ireland and the UK, shot on an Olympus Pen half frame camera. Most of these are two frames sharing one negative, so the pairs are how they came off the roll.
 
