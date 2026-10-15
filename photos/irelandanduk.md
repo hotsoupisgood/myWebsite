@@ -12,7 +12,7 @@ Photography from Ireland and the UK, shot on an Olympus Pen half frame camera. M
 ![a presidential motorcade passing a crowd in galway](/img/irelandanduk/higgens.jpg)  
 <span class="caption">Michael D. Higgins is in this car (above).</span>
 ![donkey nosing the camera at night](/img/irelandanduk/donkey.jpg)  
-<span class="caption">A donkey I lived near and would go pet sometimes. (above)</span>
+<span class="caption">A donkey I lived near and would go pet sometimes (above).</span>
 ![spitalfields market and the city of london skyline](/img/irelandanduk/londonbuildings.jpg)
 ![chinatown lanterns and a tree lined path in a london park](/img/irelandanduk/londonlookingup.jpg)
 ![me with a coffee at the barbican](/img/irelandanduk/meandbarbican.jpg)
