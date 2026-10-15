@@ -39,6 +39,10 @@ p img {
   margin: 0 auto;
   text-align: center;
 }
+.eleventy-plugin-youtube-embed {
+  max-width: min(100%, 44rem);
+  margin: 0 auto;
+}
 p,
 .tmpl-post li {
   line-height: 1.45;
