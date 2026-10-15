@@ -17,7 +17,8 @@ Photography from Ireland and the UK, shot on an Olympus Pen half frame camera. M
 ![chinatown lanterns and a tree lined path in a london park](/img/irelandanduk/londonlookingup.jpg)
 ![me with a coffee at the barbican](/img/irelandanduk/meandbarbican.jpg)
 ![tower bridge from london bridge and a street in the city](/img/irelandanduk/motionblurcar.jpg)
-![a brick tunnel, a sunset and a person sitting under a bridge on the thames foreshore](/img/irelandanduk/londondeath.jpg)
+![a brick tunnel, a sunset and a person sitting under a bridge on the thames foreshore](/img/irelandanduk/londondeath.jpg)  
+<span class="caption">Catacombs.</span>
 ![drinking from a bottle and a blurred tube platform](/img/irelandanduk/drinkingsubwayblur.jpg)  
 
 https://www.youtube.com/watch?v=NdYWuo9OFAw
