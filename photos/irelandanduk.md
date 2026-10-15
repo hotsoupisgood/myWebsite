@@ -21,6 +21,6 @@ Photography from Ireland and the UK, shot on an Olympus Pen half frame camera. M
 <span class="caption">Catacombs.</span>
 ![drinking from a bottle and a blurred tube platform](/img/irelandanduk/drinkingsubwayblur.jpg)  
 
-https://www.youtube.com/watch?v=NdYWuo9OFAw
+https://www.youtube.com/watch?v=SqdWTeXWvOg
 
 Shot on the Olympus Pen half frame camera.
