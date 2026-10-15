@@ -15,14 +15,7 @@
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <input type="checkbox" class="nav-state" id="nav-toggle" aria-label="Menu">
-    <div class="topbar">
-      <a class="site-title" href="{{ '/' | url }}">{{ metadata.title }}</a>
-      <label for="nav-toggle" class="nav-open" aria-hidden="true">|||</label>
-    </div>
-
     <nav class="sidebar" aria-label="Main">
-      <label for="nav-toggle" class="nav-close" aria-hidden="true">&#x2715;</label>
       <a class="site-title" href="{{ '/' | url }}">{{ metadata.title }}</a>
 
       {#- Read more about `eleventy-navigation` at https://www.11ty.dev/docs/plugins/navigation/ #}
@@ -32,14 +25,15 @@
       {%- endfor %}
       </ul>
 
-      <div class="sidebar-foot">
+      {%- set footLinks %}
         <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
         <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
         <a href="mailto:contact@lucashenry.xyz">Contact</a>
         <a href="{{ metadata.feed.path | url }}">Feed</a>
+      {%- endset %}
+      <div class="sidebar-foot">{{ footLinks | safe }}
       </div>
     </nav>
-    <label for="nav-toggle" class="nav-scrim"></label>
 
     <div class="page">
       {%- if templateClass != 'tmpl-post' or eleventyNavigation %}
@@ -51,6 +45,9 @@
       <main id="main"{% if templateClass %} class="{{ templateClass }}"{% endif %}>
         {{ content | safe }}
       </main>
+
+      <footer class="page-foot">{{ footLinks | safe }}
+      </footer>
     </div>
   </body>
 </html>
