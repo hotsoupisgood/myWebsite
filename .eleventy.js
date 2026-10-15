@@ -80,13 +80,15 @@ module.exports = function(eleventyConfig) {
   // Listing page a post belongs to, used by the back link on post pages.
   // Anything not listed here falls back to the projects listing at "/".
   const sections = {
+    projects: { url: "/", label: "Projects" },
     cooking: { url: "/cooking/", label: "Cooking" },
     photos: { url: "/photos/", label: "Photos" }
   };
 
   eleventyConfig.addFilter("backTo", tags => {
     let match = (tags || []).map(tag => sections[tag]).find(Boolean);
-    return match || { url: "/", label: "Projects" };
+    // Anything with no section listing of its own goes to the front page.
+    return match || { url: "/", label: "Home" };
   });
 
   // First image in a post, used as the listing thumbnail.
@@ -109,11 +111,27 @@ module.exports = function(eleventyConfig) {
     return { src: src[1], alt: alt ? alt[1] : "" };
   });
 
+  // Directory tags duplicate the section listings, so they are not shown as
+  // chips and not offered as tag pages.
+  const sectionTags = ["projects", "cooking", "photos"];
+
   function filterTagList(tags) {
-    return (tags || []).filter(tag => ["all", "nav", "post", "posts"].indexOf(tag) === -1);
+    return (tags || []).filter(tag =>
+      ["all", "nav", "post", "posts"].indexOf(tag) === -1 &&
+      sectionTags.indexOf(tag) === -1);
   }
 
   eleventyConfig.addFilter("filterTagList", filterTagList)
+
+  // Everything the feeds should carry. The feeds used to read
+  // collections.posts, which holds a single 2022 entry, because all real
+  // content lives under the projects, cooking and photos directories.
+  eleventyConfig.addCollection("feed", function(collection) {
+    return collection.getAll()
+      .filter(item => (item.data.tags || [])
+        .some(tag => ["projects", "cooking", "photos", "posts"].indexOf(tag) !== -1))
+      .sort((a, b) => a.date - b.date);
+  });
 
   // Create an array of all tags
   eleventyConfig.addCollection("tagList", function(collection) {
@@ -145,7 +163,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.setBrowserSyncConfig({
     callbacks: {
       ready: function(err, browserSync) {
-        const content_404 = fs.readFileSync('_site/404.html');
+        const content_404 = fs.readFileSync('docs/404.html');
 
         browserSync.addMiddleware("*", (req, res) => {
           // Provides the 404 content without redirect.

@@ -7,7 +7,7 @@
     <meta name="description" content="My public notes.">
     <meta name="generator" content="Eleventy v1.0.2">
 
-    <link rel="stylesheet" href="/css/index.css?v=1cdace51">
+    <link rel="stylesheet" href="/css/index.css?v=d2e240a5">
     <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
     <link rel="stylesheet" href="/css/prism-diff.css">
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lucas">
@@ -38,7 +38,7 @@
   <a href="/" class="back-link" aria-label="Back to Projects" title="Back to Projects">&#8592;</a>
   <h1>Modelling Irish Hospital Trolley Counts</h1>
 </div>
-<time datetime="2026-04-03">03 Apr 2026</time><a href="/tags/projects/" class="post-tag">projects</a>
+<time datetime="2026-04-03">03 Apr 2026</time>
 <div class="read-more-target">
   <p>Ireland's Health Service Executive (HSE) publishes a daily count of patients on hospital trolleys, people admitted through emergency departments who don't have a bed and end up being treated in a corridor or overflow ward instead. It's the number <a href="https://www.irishtimes.com/health/2023/01/03/numbers-waiting-for-hospital-beds-hits-new-record-of-931/">Irish news uses</a> to talk about overcrowding. The problem is it's always reported as a raw count, and a raw count is just correlated with the region's population. We wanted to know whether, once you control for population, some parts of the country are actually under more strain than others, or whether the differences you see in the news are just noise.</p>
 <p>We scraped the HSE's daily report every day from January 2023 to April 2026, and aggregated counts up to weekly totals for each of Ireland's six health regions. The raw weekly series below already shows a lot going on.</p>
@@ -57,7 +57,6 @@ In the plot above, the effect bottoms out the week of August 19th at 7.29 fewer 
 <p>Code and data pipeline are on <a href="https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis">GitHub</a>, and there's an interactive version of the results at <a href="https://hsereport.ie">hsereport.ie</a>.</p>
 
 </div>
-<input type="checkbox" class="read-more-state" id="post-abc" />
 
       </main>
 

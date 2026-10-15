@@ -5,12 +5,235 @@
 	
 	<link href="https://lucashenry.xyz/feed/feed.xml" rel="self"/>
 	<link href="https://lucashenry.xyz/"/>
-	<updated>2022-06-16T00:00:00Z</updated>
+	<updated>2026-04-04T00:00:00Z</updated>
 	<id>https://lucashenry.xyz/</id>
 	<author>
 		<name>Lucas</name>
 		<email>contact@lucashenry.xyz</email>
 	</author>
+	
+	<entry>
+		<title>Cappuccino Index Claim Significance</title>
+		<link href="https://lucashenry.xyz/projects/cap-index/"/>
+		<updated>2026-04-04T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/cap-index/</id>
+		<content type="html">&lt;p&gt;James Hoffmann&#39;s &lt;a href=&quot;https://www.youtube.com/watch?v=WtlE3BW9Nqs&quot;&gt;new video on the cappuccino index&lt;/a&gt; surveys baristas for the country they work in, the price of a cappuccino at their café, and their hourly wage, then uses the number of cappuccinos a barista could buy with an hour&#39;s wage to rank countries. By his numbers, Italy comes in second overall, just behind Australia. The problem is the survey is small and self-selected, so I wanted to know whether that gap between countries is real or just noise.&lt;/p&gt;
+&lt;p&gt;I focused on Italy and Australia since James called them out directly. So I bootstrapped the samples and plotted the mean and 95% confidence interval for every country, shown below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/all-ratio-cap-index.png&quot; alt=&quot;all significant comparisons&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Italy stands out immediately. It has the widest confidence interval of any country, and its true mean ratio could plausibly sit anywhere from about 3.6 to 8.4. That&#39;s too wide to take the second highest ranking at face value, so I tested it directly. I bootstrapped a pairwise comparison, sampling the difference in ratio between Italy and each of the other 45 countries, and applied a Bonferroni correction for testing that many pairs at once. If a country&#39;s 95% interval of differences spans zero, it isn&#39;t significantly different from Italy in this two tailed test.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/cap-index-paired-test.png&quot; alt=&quot;paired with italy significance&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The grey x&#39;s mark the countries that aren&#39;t significantly different from Italy, shown in black: eleven in total, including Australia itself. Even the number one and number two spots in Hoffmann&#39;s ranking can&#39;t be reliably told apart with this data.&lt;/p&gt;
+&lt;p&gt;Given that, I don&#39;t think you can confidently claim Italy has the second highest index. Part of the problem is sample size: this was an opt in survey of baristas who watch Hoffmann&#39;s channel, not a random sample, so the number of responses per country tracks how many baristas from that country happened to answer, not anything about the country itself. Italy has about 15 responses. The USA and UK have roughly 600 each. That&#39;s nowhere near enough to pin down a precise ranking.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/cap-index-sample-size.png&quot; alt=&quot;Number of samples per country&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Modelling Irish Hospital Trolley Counts</title>
+		<link href="https://lucashenry.xyz/projects/hse-trolleys/"/>
+		<updated>2026-04-03T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-trolleys/</id>
+		<content type="html">&lt;p&gt;Ireland&#39;s Health Service Executive (HSE) publishes a daily count of patients on hospital trolleys, people admitted through emergency departments who don&#39;t have a bed and end up being treated in a corridor or overflow ward instead. It&#39;s the number &lt;a href=&quot;https://www.irishtimes.com/health/2023/01/03/numbers-waiting-for-hospital-beds-hits-new-record-of-931/&quot;&gt;Irish news uses&lt;/a&gt; to talk about overcrowding. The problem is it&#39;s always reported as a raw count, and a raw count is just correlated with the region&#39;s population. We wanted to know whether, once you control for population, some parts of the country are actually under more strain than others, or whether the differences you see in the news are just noise.&lt;/p&gt;
+&lt;p&gt;We scraped the HSE&#39;s daily report every day from January 2023 to April 2026, and aggregated counts up to weekly totals for each of Ireland&#39;s six health regions. The raw weekly series below already shows a lot going on.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/thesis-regional-overview.png&quot; alt=&quot;Weekly trolley counts by HSE region, 2023 to 2026&quot; /&gt;&lt;br /&gt;
+In the plot above, every region has a sharp dip right around New Year, marked in light blue, that lines up with hospitals discharging people over Christmas to clear beds for the January respiratory surge. And there&#39;s one dip that only shows up in a single region, HSE Mid West, in light red, in August 2024. That one turned out to be real. Mid West had paused scheduled care that month to deal with an overcrowding crisis, and it shows up cleanly in the data as an isolated drop no other region has. We call this the Mid West reset.&lt;/p&gt;
+&lt;p&gt;To compare regions properly, we built a Bayesian time series model in JAGS, with a region specific level, a region specific annual cycle, a shared New Year effect, that one off Mid West reset term, and an AR(2) term to soak up week to week persistence. Everything is scaled per 10,000 population so a region isn&#39;t penalized just for being big.&lt;/p&gt;
+&lt;p&gt;The annual cycle term is the most interesting result of all this for me. &lt;a href=&quot;https://imj.ie/a-comparison-of-summer-and-winter-emergency-hospitalisations-in-ireland/&quot;&gt;Research on Irish hospital admissions&lt;/a&gt; has found about a 40% increase in respiratory admissions in winter compared to summer. To investigate this in our own data, we modeled the timing of that peak for each region. Most regions do peak in winter, matching that pattern. Mid West is the exception, where the timing is uncertain. Below is the modeled peak timing by region, with winter, December through February, shaded in blue.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/thesis-phases-plot.png&quot; alt=&quot;Annual cycle peak timing by region, weeks from New Year&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Another key result is what the regional levels look like once you do that, mapped below.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/thesis-alpha-map.png&quot; alt=&quot;Map of regional trolley levels per 10,000 population&quot; /&gt;&lt;br /&gt;
+There&#39;s a west to east pattern in the map above that holds up statistically too. HSE Mid West runs at 8.13 trolleys per 10,000 population, more than three times HSE Dublin and North East&#39;s 2.27, and fourteen of the fifteen pairwise regional comparisons are statistically significant. The three western regions all sit above the three Dublin regions. None of this is visible in the raw totals, where a big population can make a region look worse than it actually is. This is only clear once you standardize on population, which is exactly the point of doing this properly instead of trusting the headline number.&lt;/p&gt;
+&lt;p&gt;Another interesting part was watching the model recover the shape and size of the Mid West reset. We told it which weeks were affected, since that&#39;s public record, but the size of the drop and its recovery came entirely from the data.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/thesis-midwest-reset.png&quot; alt=&quot;Mid West operational reset effect, August 2024&quot; /&gt;&lt;br /&gt;
+In the plot above, the effect bottoms out the week of August 19th at 7.29 fewer trolleys per 10,000 than the regional level, with a 95% interval that excludes zero, then rebounds back to the regional level by early September. That&#39;s a specific, dated hospital management intervention, with its magnitude inferred purely from how one region&#39;s data diverged from the rest.&lt;/p&gt;
+&lt;p&gt;As a sensitivity analysis, we checked the whole ranking against three other ways of scaling the data (per available bed, per euro of regional budget, per over 65 resident), and the top and bottom of the ranking hold up every time. Only the two middle regions swap places depending on scaling, which is a pretty reassuring sign the west to east story isn&#39;t an artifact of the specific denominator we picked.&lt;/p&gt;
+&lt;p&gt;Code and data pipeline are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis&quot;&gt;GitHub&lt;/a&gt;, and there&#39;s an interactive version of the results at &lt;a href=&quot;https://hsereport.ie/&quot;&gt;hsereport.ie&lt;/a&gt;.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Focaccia Recipe</title>
+		<link href="https://lucashenry.xyz/cooking/foccacia/"/>
+		<updated>2026-01-03T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/cooking/foccacia/</id>
+		<content type="html">&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/focaccia_uncooked.jpg&quot; alt=&quot;uncooked focaccia&quot; /&gt;&lt;/p&gt;
+&lt;h4 id=&quot;ingredients&quot; tabindex=&quot;-1&quot;&gt;Ingredients &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/cooking/foccacia/#ingredients&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Dough:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;2 cups flour (Substituting 1 cup for rye or whole wheat will work fine, and lead to a hardier dough)&lt;/li&gt;
+&lt;li&gt;1 teaspoon salt&lt;/li&gt;
+&lt;li&gt;1 teaspoon brown sugar&lt;/li&gt;
+&lt;li&gt;1.5 teaspoon instant yeast&lt;/li&gt;
+&lt;li&gt;`1 cup warm water&lt;/li&gt;
+&lt;li&gt;1 teaspoon extra virgin olive oil (EVOO)&lt;br /&gt;
+Toppings:&lt;/li&gt;
+&lt;li&gt;chopped olives&lt;/li&gt;
+&lt;li&gt;chopped garlic&lt;/li&gt;
+&lt;li&gt;rosemary&lt;/li&gt;
+&lt;li&gt;EVOO&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&quot;directions&quot; tabindex=&quot;-1&quot;&gt;Directions &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/cooking/foccacia/#directions&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;ol&gt;
+&lt;li&gt;Heat up water to room temperature&lt;/li&gt;
+&lt;li&gt;Mix in sugar, and yeast. Let rest.&lt;/li&gt;
+&lt;li&gt;In a large bowl, whisk together your flour and salt.&lt;/li&gt;
+&lt;li&gt;In a small bowl, combine chopped olives, garlic, rosemary and a few tablespoons of EVOO. Let rest.&lt;/li&gt;
+&lt;li&gt;Combine the sugar-yeast-water and one tablespoon of EVOO with the dry ingredients and mix together with a spatula until fully combined. The dough should be very wet. I like to describe it as halfway between pancake batter and a country loaf.&lt;/li&gt;
+&lt;li&gt;Pinch and stretch the dough up and fold it onto itself. Do this ~5 times, or until you are satisfied with yourself.&lt;/li&gt;
+&lt;li&gt;Wait 5 minutes, then repeat the previous step &amp;gt;2 times.&lt;/li&gt;
+&lt;li&gt;Let dough rest, covered in a damp towel until doubled in size. Around 1 hour if warm. Up to 3 if cold.&lt;/li&gt;
+&lt;li&gt;Place into an oiled baking pan, I prefer a cast iron skillet.&lt;/li&gt;
+&lt;li&gt;Preheat your oven to 450°F, 230°C. Let dough rest when oven is preheating. Be conservative with this step. Overproving can lead to denser dough.&lt;/li&gt;
+&lt;li&gt;Oil your fingers and press, fingers spread, all the way into the dough until your finger tips touch the metal underneath. Do this until there are dimples roughly every 2cm.&lt;/li&gt;
+&lt;li&gt;Spread topping mixture. I find it nice when an olive is stuck in the dimples.&lt;/li&gt;
+&lt;li&gt;Cook for 20 minutes, or until lightly browned. Pour boiling water in a receptacle in the oven for a crispier crust.&lt;/li&gt;
+&lt;li&gt;Place on cooling rack until eating temperature.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/focaccia_cooked.jpg&quot; alt=&quot;cooked focaccia&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Washington</title>
+		<link href="https://lucashenry.xyz/photos/washington/"/>
+		<updated>2025-08-01T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/photos/washington/</id>
+		<content type="html">&lt;p&gt;Photography from around Washington State...&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%201.jpeg&quot; alt=&quot;forest in the distance olympic np&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%202.jpeg&quot; alt=&quot;elk heard olympic np&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%203.jpeg&quot; alt=&quot;elk heard zoomed olympic np&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%204.jpeg&quot; alt=&quot;end of the road in olympic np&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%205.jpeg&quot; alt=&quot;three hills in olympic np&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%206.jpeg&quot; alt=&quot;discovery park&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%207.jpeg&quot; alt=&quot;sea plane landing&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%208.jpeg&quot; alt=&quot;gasworks park&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%209.jpeg&quot; alt=&quot;tributary of the yakima&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%2010.jpeg&quot; alt=&quot;man fishing on his 4x4&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%2011.jpeg&quot; alt=&quot;candid - couple through a reflection&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%2012.jpeg&quot; alt=&quot;seal at the ballard loches&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%2013.jpeg&quot; alt=&quot;mallard duck at the beaver lodge&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%2014.jpeg&quot; alt=&quot;lily&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%2015.jpeg&quot; alt=&quot;dragonflys mating&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/washington/washington%20-%2016.jpeg&quot; alt=&quot;deception pass&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ijCxLy6lcdc&quot;&gt;https://www.youtube.com/watch?v=ijCxLy6lcdc&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Shot on the Sony A7 III and Fujifilm X-T30 III.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Galette Recipe</title>
+		<link href="https://lucashenry.xyz/cooking/gallette/"/>
+		<updated>2025-05-01T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/cooking/gallette/</id>
+		<content type="html">&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/uncooked_rhubarb_galette.jpeg&quot; alt=&quot;uncooked rhubarb galette&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;*Personalized version of &lt;a href=&quot;https://alexandracooks.com/2020/08/08/peach-frangipane-galette/&quot;&gt;this recipe&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&quot;ingredients&quot; tabindex=&quot;-1&quot;&gt;Ingredients &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/cooking/gallette/#ingredients&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h4&gt;
+&lt;p&gt;Topping:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A topping ( Enough to fill the top, extras wont hurt, I have tried strawberry, rhubarb, and apples with great success )&lt;/li&gt;
+&lt;li&gt;Enough sugar to coat topping in bowl&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Dough:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;160g all-purpose flour&lt;/li&gt;
+&lt;li&gt;12 g sugar&lt;/li&gt;
+&lt;li&gt;1/4 teaspoon salt&lt;/li&gt;
+&lt;li&gt;115g cubed unsalted butter at fridge temp&lt;/li&gt;
+&lt;li&gt;70 g ice water&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Frangipane:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;55g almond flour&lt;/li&gt;
+&lt;li&gt;30 g sugar&lt;/li&gt;
+&lt;li&gt;1/4 teaspoon salt&lt;/li&gt;
+&lt;li&gt;30 g butter at room temperature&lt;/li&gt;
+&lt;li&gt;1 egg&lt;/li&gt;
+&lt;li&gt;2 teaspoons vanilla&lt;/li&gt;
+&lt;li&gt;Orange zest + splash of juice ( Optional )&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Instructions&lt;/p&gt;
+&lt;ol start=&quot;0&quot;&gt;
+&lt;li&gt;Evenly slice the topping and put it in a bowl with sugar to breakdown. ( May produce liquid that you can withhold at the end )&lt;/li&gt;
+&lt;li&gt;Heat the oven to 400ºF.&lt;/li&gt;
+&lt;li&gt;To make the crust. In a food processor, pulse flour, sugar and salt together.&lt;/li&gt;
+&lt;li&gt;Add the cold, cubed butter to the food processor.&lt;/li&gt;
+&lt;li&gt;Pulse until the butter is the size of peas. Add ice water and pulse again until the mixture is crumbly.&lt;/li&gt;
+&lt;li&gt;Lay a clean towel or cling wrap on a work surface, then dump the dough mixture into the center.&lt;/li&gt;
+&lt;li&gt;Grab the opposite corners of the wrap together and twist to compress the mixture, pressing the air out and forming into a ball.&lt;/li&gt;
+&lt;li&gt;Put dough ball in fridge.&lt;/li&gt;
+&lt;li&gt;No need to wash food processor.&lt;/li&gt;
+&lt;li&gt;For the frangipane. Combine almond flour, sugar, salt, butter, egg, and vanilla in the food processor. Mix until smooth.&lt;/li&gt;
+&lt;li&gt;Lightly flour a work surface, roll out the dough into a 12+ inch circle, dusting flour when needed to prevent sticking. Transfer dough to a silicone pad for cooking, or parchment paper if you don&#39;t have.&lt;/li&gt;
+&lt;li&gt;Spread the frangipane into the center leaving a 3+ cm border.&lt;/li&gt;
+&lt;li&gt;Arrange your topping in an aesthetic pattern on top.&lt;/li&gt;
+&lt;li&gt;Fold excess dough over to make a nice package.&lt;/li&gt;
+&lt;li&gt;Brush exposed dough with egg wash mixed with a little dairy ( half and half or milk ).&lt;/li&gt;
+&lt;li&gt;Sprinkle a little brown sugar on top of exposed dough. Add little knobs of button on the topping.&lt;/li&gt;
+&lt;li&gt;Bake for 35 minutes or until golden brown.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Apple&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/cooked_apple_galette.jpeg&quot; alt=&quot;cooked apple galette&quot; /&gt;&lt;br /&gt;
+Rhubarb&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/cooked_rhubarb_galette.jpeg&quot; alt=&quot;cooked rhubarb galette&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Gene Expression Level site</title>
+		<link href="https://lucashenry.xyz/projects/mosaicofgenes/"/>
+		<updated>2024-11-17T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/mosaicofgenes/</id>
+		<content type="html">&lt;p&gt;A microservice useful for comparing gene expression across various tissues.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;https://mosaicofgenes.com/&quot;&gt;Here is a link to the website&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/mosaicofgenes_front.png&quot; alt=&quot;Mosaic microservice front page&quot; /&gt;&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/mosaicofgenes_graph.png&quot; alt=&quot;Mosaic microservice app graph&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;It queries &lt;a href=&quot;https://www.opentargets.org/&quot;&gt;Open Targets&lt;/a&gt; to get the normalized TPS values for your gene, sums them, then divides them by sum total of all TPS values for the gene.&lt;/p&gt;
+&lt;p&gt;I used Vue.js and Java (SpringBoot/Webflux).&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Pomodoro Timer App</title>
+		<link href="https://lucashenry.xyz/projects/cutetimer/"/>
+		<updated>2024-08-10T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/cutetimer/</id>
+		<content type="html">&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/tomato1.png&quot; alt=&quot;Picture of my Pomodoro timer app&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I have a problem at work. When I get locked in, I forget to take breaks. Breaks are great for the body and the mind because they help prevent repetitive stress injuries and increase creativity. To fix this, I created a Pomodoro timer for IOS (and soon to be web). I wanted something very simple, without ads, that would not track me. I could not find anything that satisfied these requirements so I built my own!&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Personal Text Analysis</title>
+		<link href="https://lucashenry.xyz/projects/breakup/"/>
+		<updated>2024-03-25T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/breakup/</id>
+		<content type="html">&lt;p&gt;At the beginning of the year I went through a breakup and did an exploratory data analysis (EDA) of my text messages with this person.&lt;/p&gt;
+&lt;p&gt;I was interested in exploring the following questions:&lt;/p&gt;
+&lt;p&gt;What illustrative trends can we see to validate that this is normal data?&lt;br /&gt;
+Are there observable trends in our messages leading up to the breakup?&lt;/p&gt;
+&lt;p&gt;To answer 1. I plotted the time in day that the texts take place, binned by hour. It shows what you would expect, texts drop in the middle of the night. One interesting trend is that I (orange) text a little more in the morning, and my ex (blue)  is more active in the evening. Which is cool to see because I was more of a morning person.&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/textsbyhourinday.png&quot; alt=&quot;Picture of texts binned per hour of day.&quot; /&gt;&lt;br /&gt;
+This illustrative plot shows that my data is relatively normal, which is good because this analysis may be able to be applied to future data.&lt;/p&gt;
+&lt;p&gt;To answer 2. I applied a sentiment analysis algorithm to each text to get the table of positive or negative values for our data. I binned these values by day for each of us, and plotted them. I noticed an increased variability leading up to the breakup (which took place at the far right of the plot).&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/sentement.png&quot; alt=&quot;Plot of sentiment.&quot; /&gt;&lt;br /&gt;
+The next plot is of the variance, binned by week this time, to capture the day to day variability seen in the prior plot.&lt;br /&gt;
+&lt;img src=&quot;https://lucashenry.xyz/img/sentimentvariance.png&quot; alt=&quot;Plot of sentiment variance.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;As my ex and I were working through our issues, we would have days where we feel like we are going to make it, followed up by days where we both feel like it&#39;s over. The intense switching of positive and negative emotions can be seen in this data! This was so cool for me to see and is one of the reasons I love data analysis of contemporary issues. You can observe trends that you feel!&lt;/p&gt;
+&lt;p&gt;I do have one lingering question. Do these trends express themselves in other breakups? I scoured the internet and unfortunately could not find any ethical data.&lt;/p&gt;
+&lt;p&gt;This was a cool project for me and I hope someone could get some value out of it too. :)&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>organize.monster</title>
+		<link href="https://lucashenry.xyz/projects/organizeMonster/"/>
+		<updated>2023-01-08T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/organizeMonster/</id>
+		<content type="html">&lt;p&gt;A chat alongside a collaborative live document. Useful for times when group chats need extra permanence, like during trip planning. Planned tech stack uses: Vue.js, node.js, mongodb.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://143.244.203.2:3000/&quot;&gt;Link to prototype&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/OrganizeProjectSchema.jpg&quot; alt=&quot;Drawing of what it would look like&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Post with Eleventy.</title>
@@ -47,6 +270,47 @@
 &lt;ol start=&quot;7&quot;&gt;
 &lt;li&gt;Done! You should see your website updated.&lt;/li&gt;
 &lt;/ol&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Thebe</title>
+		<link href="https://lucashenry.xyz/projects/thebe/"/>
+		<updated>2020-02-02T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/thebe/</id>
+		<content type="html">&lt;p&gt;Thebe is an alternative to jupyter that can be run with any code editor such as vim or vscode. The tech stack is vue.js and flask. &lt;a href=&quot;https://github.com/hotsoupisgood/Thebe&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/thebe.gif&quot; alt=&quot;Thebe example gif&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>IOTA Bet</title>
+		<link href="https://lucashenry.xyz/projects/iotabet/"/>
+		<updated>2018-08-16T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/iotabet/</id>
+		<content type="html">&lt;p&gt;My friend and I built a web application to facilitate betting online. It would allow users to propose two sided bets, and then users could bet on one side or the other. We did not release it due to the complex regulatory nature of cryptocurrency and betting.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/iotabet.png&quot; alt=&quot;Screenshot of the finalized product&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>This Agora</title>
+		<link href="https://lucashenry.xyz/projects/thisagora/"/>
+		<updated>2016-05-17T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/thisagora/</id>
+		<content type="html">&lt;p&gt;My partner and I built This Agora to be a bridge between a wikipedia and reddit, but the idea began as a polling site. &lt;a href=&quot;https://agora.gradstudent.me/#/discover/0&quot;&gt;Link to semi functional site&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/thisagora.png&quot; alt=&quot;Picture of this agora in a semi functioning state&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Rat Bird</title>
+		<link href="https://lucashenry.xyz/projects/ratbird/"/>
+		<updated>2015-09-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/ratbird/</id>
+		<content type="html">&lt;p&gt;This is one of my first programming projects after learning to code. It was so fun making the art for it because it was scanned cut-outs of doodles I made on my math homework. The tech stack is Android Java and the GDX game library.&lt;br /&gt;
+&lt;a href=&quot;https://github.com/hotsoupisgood/RatBird-GDX&quot;&gt;Github&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/hotsoupisgood/RatBird-GDX/master/screenShots/home.png&quot; alt=&quot;Picture of my old game ratbird&quot; /&gt;&lt;/p&gt;
 </content>
 	</entry>
 </feed>

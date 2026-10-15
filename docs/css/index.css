@@ -333,9 +333,6 @@ a[href].post-tag:focus {
 .postlist-item > .post-tag {
   align-self: center;
 }
-.read-more-state {
-  display: none;
-}
 
 /* Post header with back link */
 .post-head {
