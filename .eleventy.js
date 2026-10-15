@@ -57,6 +57,7 @@ module.exports = function(eleventyConfig) {
 
     let text = String(content)
       .replace(/<(script|style)[\s\S]*?<\/\1>/gi, " ")
+      .replace(/<a[^>]*class="[^"]*direct-link[^"]*"[^>]*>[\s\S]*?<\/a>/gi, "")
       .replace(/<[^>]+>/g, " ")
       .replace(/&nbsp;/g, " ")
       .replace(/&lt;/g, "<")

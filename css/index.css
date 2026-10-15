@@ -20,6 +20,7 @@
 
 /* Colors */
 :root {
+  --content-max: 66rem;
   --lightgray: #e0e0e0;
   --gray: #C0C0C0;
   --darkgray: #333;
@@ -63,7 +64,8 @@ a[href]:visited {
 }
 main {
   padding: 1rem;
-  max-width: 70vw;
+  width: min(90vw, var(--content-max));
+  max-width: 100%;
 }
 main :first-child {
   margin-top: 0;
@@ -86,7 +88,7 @@ header ul {
   flex-direction: row;
 }
 .image-subheader {
-  width: 70vw;
+  width: min(90vw, var(--content-max));
   max-height: 30vh;
   display: flex;
   justify-content: center;
@@ -271,8 +273,8 @@ a[href].back-link:focus {
 }
 .cardlist-item {
   display: grid;
-  grid-template-columns: 15rem minmax(0, 1fr) 13rem;
-  gap: 0 2rem;
+  grid-template-columns: 16rem minmax(0, 1fr) 15rem;
+  gap: 0 2.5rem;
   align-items: start;
   line-height: 1.5;
   padding: 1.75rem 0;
@@ -306,18 +308,22 @@ a[href].back-link:focus {
   color: #666;
 }
 .cardlist-thumb {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 9rem;
   overflow: hidden;
+  background-color: var(--white);
   border: 1px solid var(--lightgray);
   border-radius: 3px;
 }
 .cardlist-thumb img {
   display: block;
   width: 100%;
-  height: 8.5rem;
+  height: 100%;
   max-width: none;
   margin: 0;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 @media (max-width: 60rem) {
@@ -335,8 +341,6 @@ a[href].back-link:focus {
   .cardlist-thumb {
     grid-column: 2;
     grid-row: 1 / span 2;
-  }
-  .cardlist-thumb img {
     height: 6rem;
   }
 }
@@ -349,6 +353,7 @@ a[href].back-link:focus {
     grid-column: 1;
     grid-row: auto;
     margin-top: .85rem;
+    height: 11rem;
   }
 }
 

@@ -13,7 +13,7 @@
       {%- endfor %}
     </div>
 
-    <p class="cardlist-excerpt">{{ post.data.description or post.templateContent | excerpt(200) }}</p>
+    <p class="cardlist-excerpt">{{ post.data.description or post.templateContent | excerpt(240) }}</p>
 
     {%- if thumbSrc %}
     <a class="cardlist-thumb" href="{{ post.url | url }}" tabindex="-1" aria-hidden="true">
