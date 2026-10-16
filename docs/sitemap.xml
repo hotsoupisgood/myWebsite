@@ -72,6 +72,11 @@
   </url>
   
   <url>
+    <loc>https://lucashenry.xyz/tags/llm/</loc>
+    <lastmod>2024-08-14</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/projects/mosaicofgenes/</loc>
     <lastmod>2024-11-17</lastmod>
   </url>
@@ -104,5 +109,10 @@
   <url>
     <loc>https://lucashenry.xyz/photos/irelandanduk/</loc>
     <lastmod>2026-07-01</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/projects/llm-chart-sentiment/</loc>
+    <lastmod>2026-10-15</lastmod>
   </url>
 </urlset>

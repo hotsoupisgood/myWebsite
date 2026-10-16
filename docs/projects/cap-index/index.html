@@ -40,7 +40,13 @@
 </div>
 <time datetime="2026-04-04">04 Apr 2026</time>
 <div class="read-more-target">
-  <p>James Hoffmann's <a href="https://www.youtube.com/watch?v=WtlE3BW9Nqs">new video on the cappuccino index</a> surveys baristas for the country they work in, the price of a cappuccino at their café, and their hourly wage, then uses the number of cappuccinos a barista could buy with an hour's wage to rank countries. By his numbers, Italy comes in second overall, just behind Australia. The problem is the survey is small and self-selected, so I wanted to know whether that gap between countries is real or just noise.</p>
+  <p><strong>TL;DR</strong></p>
+<ul>
+<li>Hoffmann's cappuccino index puts Italy second, just behind Australia.</li>
+<li>That ranking rests on about 15 survey responses from Italy.</li>
+<li>With that little data, Italy isn't significantly different from eleven other countries, including first place Australia.</li>
+</ul>
+<p>James Hoffmann's <a href="https://www.youtube.com/watch?v=WtlE3BW9Nqs">new video on the cappuccino index</a> surveys baristas for the country they work in, the price of a cappuccino at their café, and their hourly wage, then uses the number of cappuccinos a barista could buy with an hour's wage to rank countries. By his numbers, Italy comes in second overall, just behind Australia. The problem is the survey is small and self-selected, so I wanted to know whether that gap between countries is real or just noise.</p>
 <p>I focused on Italy and Australia since James called them out directly. So I bootstrapped the samples and plotted the mean and 95% confidence interval for every country, shown below.</p>
 <p><img src="/img/all-ratio-cap-index.png" alt="all significant comparisons"></p>
 <p>Italy stands out immediately. It has the widest confidence interval of any country, and its true mean ratio could plausibly sit anywhere from about 3.6 to 8.4. That's too wide to take the second highest ranking at face value, so I tested it directly. I bootstrapped a pairwise comparison, sampling the difference in ratio between Italy and each of the other 45 countries, and applied a Bonferroni correction for testing that many pairs at once. If a country's 95% interval of differences spans zero, it isn't significantly different from Italy in this two tailed test.</p>

@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Do LLMs Frame the Same Chart Differently?</title>
+    <meta name="description" content="My public notes.">
+    <meta name="generator" content="Eleventy v1.0.2">
+
+    <link rel="stylesheet" href="/css/index.css?v=0ec57e8c">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/css/prism-diff.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lucas">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Lucas">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="sidebar" aria-label="Main">
+      <a class="site-title" href="/">Lucas</a>
+      <ul class="nav">
+        <li class="nav-item"><a href="/">Projects</a></li>
+        <li class="nav-item"><a href="/photos/">Photos</a></li>
+        <li class="nav-item"><a href="/cooking/">Cooking</a></li>
+        <li class="nav-item"><a href="/about/">About Me</a></li>
+      </ul>
+      <div class="sidebar-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </div>
+    </nav>
+
+    <div class="page">
+
+      <main id="main" class="tmpl-post">
+        <div class="post-head">
+  <a href="/" class="back-link" aria-label="Back to Projects" title="Back to Projects">&#8592;</a>
+  <h1>Do LLMs Frame the Same Chart Differently?</h1>
+</div>
+<time datetime="2026-10-15">15 Oct 2026</time><a href="/tags/llm/" class="post-tag">llm</a>
+<div class="read-more-target">
+  <p><strong>TL;DR</strong></p>
+<ul>
+<li>I asked Claude Opus 5, GPT-5.5 and Grok 4.7 to &quot;interpret this plot&quot; 250 times each for four potentially misleading plots with political connotations and scored all 3,000 replies with VADER.</li>
+<li>The models differ. 11 of 12 pairwise comparisons are significant, and Grok is the usual outlier, lowest on climate and COVID and highest on the pay gap.</li>
+<li>But the words driving the scores, &quot;perfectly flat&quot;, &quot;misleading&quot;, &quot;warming&quot; and &quot;increase&quot;, are about how the plot is drawn or get rated positive when they shouldn't be. VADER measured vocabulary and reply length, not stance.</li>
+<li>To look at the results directly, or read LLM outputs, check out the <a href="https://hotsoupisgood.github.io/AI-Graph-Response-Compare/">dashboard</a>.</li>
+</ul>
+<p>In the zeitgeist of the internet there are memes about Grok being <a href="https://gizmodo.com/enter-grok-elon-musks-anti-woke-chatbot-1850994584">anti woke</a> and hyperbolic, and it has <a href="https://www.scientificamerican.com/article/elon-musks-ai-chatbot-grok-is-reciting-climate-denial-talking-points/">recited climate denial talking points</a>, brought up <a href="https://www.nbcnews.com/tech/tech-news/elon-musks-ai-chatbot-grok-brings-south-african-white-genocide-claims-rcna206838">South African &quot;white genocide&quot;</a> in unrelated replies, and <a href="https://techcrunch.com/2025/07/15/xai-says-it-has-fixed-grok-4s-problematic-responses/">posted antisemitic content</a>. If that's real, it should read certain plots differently from other models. So my hypothesis was that Grok's interpretations of a race and IQ plot, a climate plot, a COVID deaths and masks plot, and a gender pay gap plot would lean racist, anti climate change, critical of COVID related government actions, and dismissive of the pay gap, and that this would show up as more negative sentiment on all four. All four were picked to be potentially misleading, with political connotations. The prompt was the same every time, &quot;Interpret this plot.&quot;</p>
+<p><img src="/img/llm-chart-sentiment/co2.png" alt="Global average temperature in Fahrenheit, 1880 to 2015, on an axis that makes it look flat"></p>
+<p><strong>Power calculation.</strong> Running LLMs on images is relatively expensive, so I wanted to know how many replies I actually needed before spending anything. Earlier runs with the previous model generation had an SD of 0.39 in sentiment within a model and plot pair. To detect a 0.10 difference between two models at 80% power, with a small penalty for using a rank test, that gives about 250 replies per model per plot.</p>
+<p><strong>Pilot.</strong> A pilot of 50 per cell with the current models, Claude Opus 5, GPT-5.5 and Grok 4.7, came out at SD 0.52. They write longer and more varied replies than the last generation. Detecting 0.10, after correcting for three comparisons per plot, would now need about 600 per cell. I kept n at 250, which means the smallest detectable difference is about 0.15, and froze that before collecting any more data. Changing n after seeing p values is optional stopping, so I also removed a &quot;show to panel and loop back&quot; step from the plan and <a href="https://hotsoupisgood.github.io/AI-Graph-Response-Compare/flow_iterate.html">kept the old version</a> for the record.</p>
+<p><strong>Scoring.</strong> Each of the 3,000 replies was scored with VADER, which gives a sentiment from −1 to +1. VADER scores based on a corpus of rated words, not a model, which matters below.</p>
+<p><strong>Tests.</strong> For each plot, three pairwise Mann-Whitney U tests, Bonferroni corrected, with Cliff's delta and a bootstrap 95% CI on the mean difference.</p>
+<p><img src="/img/llm-chart-sentiment/means-ci.png" alt="Mean VADER compound per model per chart, with 95% confidence intervals"></p>
+<table>
+<thead>
+<tr>
+<th>Chart</th>
+<th>Claude</th>
+<th>ChatGPT</th>
+<th>Grok</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CO2 / climate</td>
+<td>+0.65</td>
+<td>+0.63</td>
+<td>+0.36</td>
+</tr>
+<tr>
+<td>COVID &amp; masks</td>
+<td>+0.24</td>
+<td>+0.09</td>
+<td>−0.34</td>
+</tr>
+<tr>
+<td>Gender pay gap</td>
+<td>+0.28</td>
+<td>+0.24</td>
+<td>+0.69</td>
+</tr>
+<tr>
+<td>Race &amp; IQ</td>
+<td>+0.32</td>
+<td>−0.12</td>
+<td>+0.18</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Results.</strong> 11 of 12 pairwise comparisons are significant. Grok has the lowest sentiment on climate and COVID and the highest on the pay gap. On race and IQ it sits in the middle, and ChatGPT is the only model that goes negative.</p>
+<p><strong>Which words drove it.</strong> On the climate plot the top positive words are &quot;warming&quot;, &quot;perfectly&quot; and &quot;increase&quot;, and the top negative word is &quot;misleading&quot;. &quot;Perfectly&quot; is almost always &quot;perfectly flat&quot; and &quot;misleading&quot; is about the axis, so neither is about climate at all, and VADER rates &quot;warming&quot; and &quot;increase&quot; as pleasant words, which they aren't here. All three models say the same thing about that plot, that the wide axis hides a real rise, and Claude says &quot;misleading&quot; in 244 of its 250 replies yet scores highest because its long replies pick up more positive words. Grok's low score comes from shorter replies with fewer of those words, not from a different view of climate change.</p>
+<p>So the differences between models are real, but the sentiment is misleading once you look at the words behind it. VADER measured vocabulary and reply length, not stance, and the hypothesis about Grok is neither supported nor refuted by it. Every reply is readable on the <a href="https://hotsoupisgood.github.io/AI-Graph-Response-Compare/">results page</a>, and the code is on <a href="https://github.com/hotsoupisgood/AI-Graph-Response-Compare">GitHub</a>.</p>
+
+</div>
+
+      </main>
+
+      <footer class="page-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </footer>
+    </div>
+  </body>
+</html>

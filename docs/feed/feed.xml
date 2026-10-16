@@ -5,12 +5,73 @@
 	
 	<link href="https://lucashenry.xyz/feed/feed.xml" rel="self"/>
 	<link href="https://lucashenry.xyz/"/>
-	<updated>2026-07-01T00:00:00Z</updated>
+	<updated>2026-10-15T00:00:00Z</updated>
 	<id>https://lucashenry.xyz/</id>
 	<author>
 		<name>Lucas</name>
 		<email>contact@lucashenry.xyz</email>
 	</author>
+	
+	<entry>
+		<title>Do LLMs Frame the Same Chart Differently?</title>
+		<link href="https://lucashenry.xyz/projects/llm-chart-sentiment/"/>
+		<updated>2026-10-15T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/llm-chart-sentiment/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I asked Claude Opus 5, GPT-5.5 and Grok 4.7 to &amp;quot;interpret this plot&amp;quot; 250 times each for four potentially misleading plots with political connotations and scored all 3,000 replies with VADER.&lt;/li&gt;
+&lt;li&gt;The models differ. 11 of 12 pairwise comparisons are significant, and Grok is the usual outlier, lowest on climate and COVID and highest on the pay gap.&lt;/li&gt;
+&lt;li&gt;But the words driving the scores, &amp;quot;perfectly flat&amp;quot;, &amp;quot;misleading&amp;quot;, &amp;quot;warming&amp;quot; and &amp;quot;increase&amp;quot;, are about how the plot is drawn or get rated positive when they shouldn&#39;t be. VADER measured vocabulary and reply length, not stance.&lt;/li&gt;
+&lt;li&gt;To look at the results directly, or read LLM outputs, check out the &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/&quot;&gt;dashboard&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the zeitgeist of the internet there are memes about Grok being &lt;a href=&quot;https://gizmodo.com/enter-grok-elon-musks-anti-woke-chatbot-1850994584&quot;&gt;anti woke&lt;/a&gt; and hyperbolic, and it has &lt;a href=&quot;https://www.scientificamerican.com/article/elon-musks-ai-chatbot-grok-is-reciting-climate-denial-talking-points/&quot;&gt;recited climate denial talking points&lt;/a&gt;, brought up &lt;a href=&quot;https://www.nbcnews.com/tech/tech-news/elon-musks-ai-chatbot-grok-brings-south-african-white-genocide-claims-rcna206838&quot;&gt;South African &amp;quot;white genocide&amp;quot;&lt;/a&gt; in unrelated replies, and &lt;a href=&quot;https://techcrunch.com/2025/07/15/xai-says-it-has-fixed-grok-4s-problematic-responses/&quot;&gt;posted antisemitic content&lt;/a&gt;. If that&#39;s real, it should read certain plots differently from other models. So my hypothesis was that Grok&#39;s interpretations of a race and IQ plot, a climate plot, a COVID deaths and masks plot, and a gender pay gap plot would lean racist, anti climate change, critical of COVID related government actions, and dismissive of the pay gap, and that this would show up as more negative sentiment on all four. All four were picked to be potentially misleading, with political connotations. The prompt was the same every time, &amp;quot;Interpret this plot.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/llm-chart-sentiment/co2.png&quot; alt=&quot;Global average temperature in Fahrenheit, 1880 to 2015, on an axis that makes it look flat&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Power calculation.&lt;/strong&gt; Running LLMs on images is relatively expensive, so I wanted to know how many replies I actually needed before spending anything. Earlier runs with the previous model generation had an SD of 0.39 in sentiment within a model and plot pair. To detect a 0.10 difference between two models at 80% power, with a small penalty for using a rank test, that gives about 250 replies per model per plot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pilot.&lt;/strong&gt; A pilot of 50 per cell with the current models, Claude Opus 5, GPT-5.5 and Grok 4.7, came out at SD 0.52. They write longer and more varied replies than the last generation. Detecting 0.10, after correcting for three comparisons per plot, would now need about 600 per cell. I kept n at 250, which means the smallest detectable difference is about 0.15, and froze that before collecting any more data. Changing n after seeing p values is optional stopping, so I also removed a &amp;quot;show to panel and loop back&amp;quot; step from the plan and &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/flow_iterate.html&quot;&gt;kept the old version&lt;/a&gt; for the record.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Scoring.&lt;/strong&gt; Each of the 3,000 replies was scored with VADER, which gives a sentiment from −1 to +1. VADER scores based on a corpus of rated words, not a model, which matters below.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tests.&lt;/strong&gt; For each plot, three pairwise Mann-Whitney U tests, Bonferroni corrected, with Cliff&#39;s delta and a bootstrap 95% CI on the mean difference.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/llm-chart-sentiment/means-ci.png&quot; alt=&quot;Mean VADER compound per model per chart, with 95% confidence intervals&quot; /&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Chart&lt;/th&gt;
+&lt;th&gt;Claude&lt;/th&gt;
+&lt;th&gt;ChatGPT&lt;/th&gt;
+&lt;th&gt;Grok&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CO2 / climate&lt;/td&gt;
+&lt;td&gt;+0.65&lt;/td&gt;
+&lt;td&gt;+0.63&lt;/td&gt;
+&lt;td&gt;+0.36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;COVID &amp;amp; masks&lt;/td&gt;
+&lt;td&gt;+0.24&lt;/td&gt;
+&lt;td&gt;+0.09&lt;/td&gt;
+&lt;td&gt;−0.34&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Gender pay gap&lt;/td&gt;
+&lt;td&gt;+0.28&lt;/td&gt;
+&lt;td&gt;+0.24&lt;/td&gt;
+&lt;td&gt;+0.69&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Race &amp;amp; IQ&lt;/td&gt;
+&lt;td&gt;+0.32&lt;/td&gt;
+&lt;td&gt;−0.12&lt;/td&gt;
+&lt;td&gt;+0.18&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Results.&lt;/strong&gt; 11 of 12 pairwise comparisons are significant. Grok has the lowest sentiment on climate and COVID and the highest on the pay gap. On race and IQ it sits in the middle, and ChatGPT is the only model that goes negative.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Which words drove it.&lt;/strong&gt; On the climate plot the top positive words are &amp;quot;warming&amp;quot;, &amp;quot;perfectly&amp;quot; and &amp;quot;increase&amp;quot;, and the top negative word is &amp;quot;misleading&amp;quot;. &amp;quot;Perfectly&amp;quot; is almost always &amp;quot;perfectly flat&amp;quot; and &amp;quot;misleading&amp;quot; is about the axis, so neither is about climate at all, and VADER rates &amp;quot;warming&amp;quot; and &amp;quot;increase&amp;quot; as pleasant words, which they aren&#39;t here. All three models say the same thing about that plot, that the wide axis hides a real rise, and Claude says &amp;quot;misleading&amp;quot; in 244 of its 250 replies yet scores highest because its long replies pick up more positive words. Grok&#39;s low score comes from shorter replies with fewer of those words, not from a different view of climate change.&lt;/p&gt;
+&lt;p&gt;So the differences between models are real, but the sentiment is misleading once you look at the words behind it. VADER measured vocabulary and reply length, not stance, and the hypothesis about Grok is neither supported nor refuted by it. Every reply is readable on the &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/&quot;&gt;results page&lt;/a&gt;, and the code is on &lt;a href=&quot;https://github.com/hotsoupisgood/AI-Graph-Response-Compare&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Ireland and the UK</title>
@@ -44,7 +105,13 @@
 		<link href="https://lucashenry.xyz/projects/cap-index/"/>
 		<updated>2026-04-04T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/projects/cap-index/</id>
-		<content type="html">&lt;p&gt;James Hoffmann&#39;s &lt;a href=&quot;https://www.youtube.com/watch?v=WtlE3BW9Nqs&quot;&gt;new video on the cappuccino index&lt;/a&gt; surveys baristas for the country they work in, the price of a cappuccino at their café, and their hourly wage, then uses the number of cappuccinos a barista could buy with an hour&#39;s wage to rank countries. By his numbers, Italy comes in second overall, just behind Australia. The problem is the survey is small and self-selected, so I wanted to know whether that gap between countries is real or just noise.&lt;/p&gt;
+		<content type="html">&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Hoffmann&#39;s cappuccino index puts Italy second, just behind Australia.&lt;/li&gt;
+&lt;li&gt;That ranking rests on about 15 survey responses from Italy.&lt;/li&gt;
+&lt;li&gt;With that little data, Italy isn&#39;t significantly different from eleven other countries, including first place Australia.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;James Hoffmann&#39;s &lt;a href=&quot;https://www.youtube.com/watch?v=WtlE3BW9Nqs&quot;&gt;new video on the cappuccino index&lt;/a&gt; surveys baristas for the country they work in, the price of a cappuccino at their café, and their hourly wage, then uses the number of cappuccinos a barista could buy with an hour&#39;s wage to rank countries. By his numbers, Italy comes in second overall, just behind Australia. The problem is the survey is small and self-selected, so I wanted to know whether that gap between countries is real or just noise.&lt;/p&gt;
 &lt;p&gt;I focused on Italy and Australia since James called them out directly. So I bootstrapped the samples and plotted the mean and 95% confidence interval for every country, shown below.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/all-ratio-cap-index.png&quot; alt=&quot;all significant comparisons&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;Italy stands out immediately. It has the widest confidence interval of any country, and its true mean ratio could plausibly sit anywhere from about 3.6 to 8.4. That&#39;s too wide to take the second highest ranking at face value, so I tested it directly. I bootstrapped a pairwise comparison, sampling the difference in ratio between Italy and each of the other 45 countries, and applied a Bonferroni correction for testing that many pairs at once. If a country&#39;s 95% interval of differences spans zero, it isn&#39;t significantly different from Italy in this two tailed test.&lt;/p&gt;
@@ -60,7 +127,14 @@
 		<link href="https://lucashenry.xyz/projects/hse-trolleys/"/>
 		<updated>2026-04-03T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/projects/hse-trolleys/</id>
-		<content type="html">&lt;p&gt;Ireland&#39;s Health Service Executive (HSE) publishes a daily count of patients on hospital trolleys, people admitted through emergency departments who don&#39;t have a bed and end up being treated in a corridor or overflow ward instead. It&#39;s the number &lt;a href=&quot;https://www.irishtimes.com/health/2023/01/03/numbers-waiting-for-hospital-beds-hits-new-record-of-931/&quot;&gt;Irish news uses&lt;/a&gt; to talk about overcrowding. The problem is it&#39;s always reported as a raw count, and a raw count is just correlated with the region&#39;s population. We wanted to know whether, once you control for population, some parts of the country are actually under more strain than others, or whether the differences you see in the news are just noise.&lt;/p&gt;
+		<content type="html">&lt;p&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Irish trolley numbers are reported as raw counts, which mostly reflect how many people live in a region. We fit a Bayesian time series model to weekly counts for the six HSE regions from 2023 to 2026, scaled per 10,000 population.&lt;/li&gt;
+&lt;li&gt;HSE Mid West has the highest regional level, more than three times HSE Dublin and North East, and the three western regions all sit above the three Dublin regions. Fourteen of the fifteen pairwise regional comparisons are statistically significant.&lt;/li&gt;
+&lt;li&gt;Most regions peak in winter, with Mid West&#39;s timing uncertain. Mid West also dipped in August 2024 when it paused scheduled care, and the model estimated the size of that drop given only its timing.&lt;/li&gt;
+&lt;li&gt;A sensitivity analysis with three other ways of scaling the data keeps the top and bottom of the ranking in place. Only the two middle regions swap.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ireland&#39;s Health Service Executive (HSE) publishes a daily count of patients on hospital trolleys, people admitted through emergency departments who don&#39;t have a bed and end up being treated in a corridor or overflow ward instead. It&#39;s the number &lt;a href=&quot;https://www.irishtimes.com/health/2023/01/03/numbers-waiting-for-hospital-beds-hits-new-record-of-931/&quot;&gt;Irish news uses&lt;/a&gt; to talk about overcrowding. The problem is it&#39;s always reported as a raw count, and a raw count is just correlated with the region&#39;s population. We wanted to know whether, once you control for population, some parts of the country are actually under more strain than others, or whether the differences you see in the news are just noise.&lt;/p&gt;
 &lt;p&gt;We scraped the HSE&#39;s daily report every day from January 2023 to April 2026, and aggregated counts up to weekly totals for each of Ireland&#39;s six health regions. The raw weekly series below already shows a lot going on.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/thesis-regional-overview.png&quot; alt=&quot;Weekly trolley counts by HSE region, 2023 to 2026&quot; /&gt;&lt;br /&gt;
 In the plot above, every region has a sharp dip right around New Year, marked in light blue, that lines up with hospitals discharging people over Christmas to clear beds for the January respiratory surge. And there&#39;s one dip that only shows up in a single region, HSE Mid West, in light red, in August 2024. That one turned out to be real. Mid West had paused scheduled care that month to deal with an overcrowding crisis, and it shows up cleanly in the data as an isolated drop no other region has. We call this the Mid West reset.&lt;/p&gt;
