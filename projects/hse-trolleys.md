@@ -4,6 +4,13 @@ title: Modelling Irish Hospital Trolley Counts
 templateClass: tmpl-post
 date: 2026-04-03
 ---
+**TL;DR**
+
+- Irish trolley numbers are reported as raw counts, which mostly reflect how many people live in a region. We fit a Bayesian time series model to weekly counts for the six HSE regions from 2023 to 2026, scaled per 10,000 population.
+- HSE Mid West has the highest regional level, more than three times HSE Dublin and North East, and the three western regions all sit above the three Dublin regions. Fourteen of the fifteen pairwise regional comparisons are statistically significant.
+- Most regions peak in winter, with Mid West's timing uncertain. Mid West also dipped in August 2024 when it paused scheduled care, and the model estimated the size of that drop given only its timing.
+- A sensitivity analysis with three other ways of scaling the data keeps the top and bottom of the ranking in place. Only the two middle regions swap.
+
 Ireland's Health Service Executive (HSE) publishes a daily count of patients on hospital trolleys, people admitted through emergency departments who don't have a bed and end up being treated in a corridor or overflow ward instead. It's the number [Irish news uses](https://www.irishtimes.com/health/2023/01/03/numbers-waiting-for-hospital-beds-hits-new-record-of-931/) to talk about overcrowding. The problem is it's always reported as a raw count, and a raw count is just correlated with the region's population. We wanted to know whether, once you control for population, some parts of the country are actually under more strain than others, or whether the differences you see in the news are just noise.
 
 We scraped the HSE's daily report every day from January 2023 to April 2026, and aggregated counts up to weekly totals for each of Ireland's six health regions. The raw weekly series below already shows a lot going on.
