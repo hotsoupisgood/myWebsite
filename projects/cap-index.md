@@ -4,7 +4,11 @@ title: Cappuccino Index Claim Significance
 templateClass: tmpl-post
 date: 2026-04-04
 ---
-**TL;DR** Hoffmann's cappuccino index puts Italy second, but that ranking rests on about 15 survey responses. With that little data, Italy isn't significantly different from eleven other countries, including first place Australia.
+**TL;DR**
+
+- Hoffmann's cappuccino index puts Italy second, just behind Australia.
+- That ranking rests on about 15 survey responses from Italy.
+- With that little data, Italy isn't significantly different from eleven other countries, including first place Australia.
 
 James Hoffmann's [new video on the cappuccino index](https://www.youtube.com/watch?v=WtlE3BW9Nqs) surveys baristas for the country they work in, the price of a cappuccino at their café, and their hourly wage, then uses the number of cappuccinos a barista could buy with an hour's wage to rank countries. By his numbers, Italy comes in second overall, just behind Australia. The problem is the survey is small and self-selected, so I wanted to know whether that gap between countries is real or just noise.
 
