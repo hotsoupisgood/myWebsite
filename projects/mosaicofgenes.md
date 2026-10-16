@@ -3,6 +3,11 @@ layout: layouts/post.njk
 title: Gene Expression Level site
 templateClass: tmpl-post
 date: 2024-11-17
+tags:
+  - web app
+  - vue
+  - java
+  - bioinformatics
 ---
 A microservice useful for comparing gene expression across various tissues.  
 

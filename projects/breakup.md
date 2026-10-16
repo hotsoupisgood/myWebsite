@@ -3,6 +3,9 @@ layout: layouts/post.njk
 title: Personal Text Analysis
 templateClass: tmpl-post
 date: 2024-03-25
+tags:
+  - statistics
+  - sentiment analysis
 ---
 
 

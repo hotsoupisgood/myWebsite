@@ -5,6 +5,8 @@ templateClass: tmpl-post
 date: 2026-10-15
 tags:
   - llm
+  - statistics
+  - sentiment analysis
 ---
 **TL;DR**
 

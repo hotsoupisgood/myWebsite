@@ -3,6 +3,10 @@ layout: layouts/post.njk
 title: organize.monster
 templateClass: tmpl-post
 date: 2023-01-08
+tags:
+  - web app
+  - vue
+  - node
 ---
 
 A chat alongside a collaborative live document. Useful for times when group chats need extra permanence, like during trip planning. Planned tech stack uses: Vue.js, node.js, mongodb.  

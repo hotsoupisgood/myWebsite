@@ -3,6 +3,9 @@ layout: layouts/post.njk
 title: Cappuccino Index Claim Significance 
 templateClass: tmpl-post
 date: 2026-04-04
+tags:
+  - statistics
+  - bootstrap
 ---
 **TL;DR**
 

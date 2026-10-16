@@ -3,6 +3,10 @@ layout: layouts/post.njk
 title: Rat Bird
 templateClass: tmpl-post
 date: 2015-09-26
+tags:
+  - game
+  - android
+  - java
 ---
 
 This is one of my first programming projects after learning to code. It was so fun making the art for it because it was scanned cut-outs of doodles I made on my math homework. The tech stack is Android Java and the GDX game library. 

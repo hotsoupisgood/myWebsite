@@ -3,6 +3,9 @@ layout: layouts/post.njk
 title: Pomodoro Timer App
 templateClass: tmpl-post
 date: 2024-08-10
+tags:
+  - ios
+  - app
 ---
 ![Picture of my Pomodoro timer app](/img/tomato1.png)  
 

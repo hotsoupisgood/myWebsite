@@ -3,6 +3,11 @@ layout: layouts/post.njk
 title: Modelling Irish Hospital Trolley Counts
 templateClass: tmpl-post
 date: 2026-04-03
+tags:
+  - statistics
+  - bayesian
+  - jags
+  - time series
 ---
 **TL;DR**
 
