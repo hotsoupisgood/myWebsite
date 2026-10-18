@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="1145" viewBox="0 0 1160 1145" role="img" aria-labelledby="title desc">
+<title id="title">How I start a technical project</title><desc id="desc">Start with Wikipedia and questions. Ask an LLM for the best reviews or textbooks on the subject. Read and work on paper. Use LLM explanations at roadblocks, return to sources or choose another source, collect notes, and create a final learning artifact.</desc>
+<rect width="100%" height="100%" fill="#ffffff"/>
+<rect x="320" y="20" width="160" height="55" rx="28" fill="#eaf1f8" stroke="#9bacbd" stroke-width="2"/>
+<text x="373.5" y="37" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Start</text>
+<polyline points="400,75 400,110" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="400,110 394.7263190753538,100.3465918192059 405.2736809246462,100.3465918192059" fill="#245a81"/>
+<rect x="100" y="110" width="600" height="70" rx="0" fill="#ffffff" stroke="#9bacbd" stroke-width="2"/>
+<text x="209.0" y="132.0" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Explore Wikipedia. Note questions.</text>
+<polyline points="400,180 400,220" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="400,220 394.7263190753538,210.3465918192059 405.2736809246462,210.3465918192059" fill="#245a81"/>
+<rect x="100" y="220" width="600" height="70" rx="0" fill="#ffffff" stroke="#9bacbd" stroke-width="2"/>
+<text x="224.0" y="229.0" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Ask an LLM for the best reviews</text>
+<text x="249.5" y="255.0" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">or textbooks on the subject</text>
+<polyline points="400,290 400,330" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="400,330 394.7263190753538,320.3465918192059 405.2736809246462,320.3465918192059" fill="#245a81"/>
+<rect x="100" y="330" width="600" height="70" rx="0" fill="#ffffff" stroke="#9bacbd" stroke-width="2"/>
+<text x="233.015625" y="339.0" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Follow the source. Take notes.</text>
+<text x="262.015625" y="365.0" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Test your understanding.</text>
+<polyline points="400,400 400,440" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="400,440 394.7263190753538,430.3465918192059 405.2736809246462,430.3465918192059" fill="#245a81"/>
+<polygon points="400.0,440 620,495.0 400.0,550 180,495.0" fill="#eaf1f8" stroke="#9bacbd" stroke-width="2"/>
+<text x="305.5" y="482" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#172b3a">Hit a roadblock?</text>
+<polyline points="620,495 780,495" fill="none" stroke="#91466b" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="780,495 770.3465918192059,500.2736809246462 770.3465918192059,489.7263190753538" fill="#91466b"/>
+<text x="676" y="466" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#91466b">YES</text>
+<rect x="780" y="450" width="300" height="90" rx="0" fill="#fceaf2" stroke="#bd8aa1" stroke-width="2"/>
+<text x="862.5" y="483" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#91466b">Ask an LLM</text>
+<polyline points="930,450 930,365 700,365" fill="none" stroke="#91466b" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="700,365 709.6534081807941,359.7263190753538 709.6534081807941,370.2736809246462" fill="#91466b"/>
+<text x="770" y="332" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#91466b">Return to the source</text>
+<polyline points="400,550 400,650" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="400,650 394.7263190753538,640.3465918192059 405.2736809246462,640.3465918192059" fill="#245a81"/>
+<text x="416" y="590" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#245a81">NO / RESOLVED</text>
+<rect x="100" y="650" width="600" height="70" rx="0" fill="#ffffff" stroke="#9bacbd" stroke-width="2"/>
+<text x="206.0" y="672.0" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Gather notes and worked examples</text>
+<polyline points="400,720 400,760" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="400,760 394.7263190753538,750.3465918192059 405.2736809246462,750.3465918192059" fill="#245a81"/>
+<polygon points="400.0,760 640,820.0 400.0,880 160,820.0" fill="#eaf1f8" stroke="#9bacbd" stroke-width="2"/>
+<text x="349.5" y="791" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#172b3a">Ready to</text>
+<text x="331.5" y="822" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#172b3a">synthesize?</text>
+<polyline points="160,820 50,820 50,365 100,365" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="100,365 90.3465918192059,370.2736809246462 90.3465918192059,359.7263190753538" fill="#245a81"/>
+<text x="65" y="787" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#245a81">NOT YET</text>
+<polyline points="400,880 400,930" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="400,930 394.7263190753538,920.3465918192059 405.2736809246462,920.3465918192059" fill="#245a81"/>
+<text x="416" y="896" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#245a81">YES</text>
+<polygon points="100,930 700,930 700.0,1010.0 693.939393939394,1010.6342391965657 687.8787878787879,1011.2659245357374 681.8181818181819,1011.8925124436041 675.7575757575758,1012.5114798718108 669.6969696969697,1013.1203344569849 663.6363636363636,1013.7166245566033 657.5757575757576,1014.2979491208918 651.5151515151515,1014.8619673610046 645.4545454545454,1015.406408174556 639.3939393939394,1015.9290792905464 633.3333333333333,1016.4278760968654 627.2727272727273,1016.9007901148211 621.2121212121212,1017.3459170865754 615.1515151515151,1017.7614646429175 609.0909090909091,1018.1457595205034 603.030303030303,1018.4972542994951 596.969696969697,1018.8145336344758 590.9090909090909,1019.0963199535452 584.8484848484848,1019.341478602651 578.7878787878788,1019.5490224144407 572.7272727272727,1019.7181156832354 566.6666666666667,1019.848077530122 560.6060606060605,1019.9383846446126 554.5454545454545,1019.98867339183 548.4848484848485,1019.9987412767388 542.4242424242425,1019.9685477595194 536.3636363636364,1019.8982144188093 530.3030303030303,1019.7880244621477 524.2424242424242,1019.6384215855994 518.1818181818182,1019.4500081871466 512.1212121212121,1019.2235429410458 506.060606060606,1018.9599377429133 500.0,1018.6602540378444 493.93939393939394,1018.3256985463477 487.8787878787878,1017.9576184053083 481.8181818181818,1017.5574957435426 475.75757575757575,1017.1269417137886 469.6969696969697,1016.667690005163 463.63636363636357,1016.181589862206 457.57575757575756,1015.6705986386277 451.5151515151515,1015.136773915734 445.45454545454544,1014.5822652172741 439.3939393939394,1014.0093053540661 433.33333333333337,1013.4202014332567 427.27272727272725,1012.8173255684143 421.21212121212113,1012.2031053278654 415.1515151515151,1011.5800139597335 409.09090909090907,1010.9505604330418 403.030303030303,1010.3172793349806 396.96969696969694,1009.6827206650194 390.9090909090909,1009.0494395669582 384.8484848484848,1008.4199860402665 378.7878787878788,1007.7968946721346 372.7272727272727,1007.1826744315857 366.66666666666663,1006.5797985667433 360.60606060606057,1005.9906946459339 354.5454545454545,1005.4177347827259 348.4848484848485,1004.863226084266 342.4242424242424,1004.3294013613723 336.3636363636364,1003.818410137794 330.30303030303025,1003.332309994837 324.24242424242425,1002.8730582862114 318.18181818181813,1002.4425042564574 312.1212121212121,1002.0423815946917 306.06060606060606,1001.6743014536523 299.99999999999994,1001.3397459621556 293.9393939393939,1001.0400622570867 287.8787878787878,1000.7764570589542 281.81818181818176,1000.5499918128534 275.7575757575757,1000.3615784144006 269.69696969696963,1000.2119755378523 263.6363636363636,1000.1017855811907 257.5757575757575,1000.0314522404806 251.5151515151515,1000.0012587232612 245.45454545454538,1000.01132660817 239.39393939393935,1000.0616153553874 233.33333333333331,1000.151922469878 227.27272727272722,1000.2818843167646 221.2121212121212,1000.4509775855593 215.1515151515151,1000.658521397349 209.09090909090907,1000.9036800464548 203.03030303030295,1001.1854663655242 196.96969696969694,1001.5027457005049 190.90909090909088,1001.8542404794966 184.84848484848482,1002.2385353570825 178.78787878787875,1002.6540829134246 172.72727272727266,1003.0992098851789 166.66666666666663,1003.5721239031346 160.60606060606054,1004.0709207094536 154.5454545454545,1004.593591825444 148.48484848484847,1005.1380326389954 142.42424242424238,1005.7020508791082 136.36363636363632,1006.2833754433967 130.30303030303023,1006.8796655430151 124.24242424242419,1007.4885201281892 118.18181818181816,1008.1074875563959 112.12121212121207,1008.7340754642626 106.06060606060603,1009.3657608034343 100.0,1010.0" fill="#eaf1f8" stroke="#9bacbd" stroke-width="2"/>
+<text x="211.0" y="952.0" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Create the final learning document</text>
+<rect x="780" y="650" width="300" height="80" rx="0" fill="#f4f5f7" stroke="#9bacbd" stroke-width="2"/>
+<text x="824.0" y="679" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Revisit the sources</text>
+<polyline points="930,540 930,650" fill="none" stroke="#4d5b68" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="930,650 924.7263190753538,640.3465918192059 935.2736809246462,640.3465918192059" fill="#4d5b68"/>
+<text x="946" y="570" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#4d5b68">Source not</text>
+<text x="946" y="593" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#4d5b68">helping?</text>
+<polyline points="1080,690 1110,690 1110,255 700,255" fill="none" stroke="#4d5b68" stroke-width="2" stroke-linejoin="round"/>
+<polygon points="700,255 709.6534081807941,249.72631907535376 709.6534081807941,260.2736809246462" fill="#4d5b68"/>
+<polyline points="400,1010 400,1070" fill="none" stroke="#245a81" stroke-width="3" stroke-linejoin="round"/>
+<polygon points="400,1070 394.7263190753538,1060.346591819206 405.2736809246462,1060.346591819206" fill="#245a81"/>
+<rect x="320" y="1070" width="160" height="55" rx="28" fill="#eaf1f8" stroke="#9bacbd" stroke-width="2"/>
+<text x="366.5" y="1087" dominant-baseline="text-before-edge" font-family="Arial, sans-serif" font-size="23" font-weight="700" fill="#172b3a">Finish</text>
+</svg>
