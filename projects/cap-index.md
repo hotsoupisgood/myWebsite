@@ -7,7 +7,7 @@ tags:
   - statistics
   - bootstrap
 ---
-**TL;DR**
+**TLDR:**
 
 - Hoffmann's cappuccino index puts Italy second, just behind Australia.
 - That ranking rests on about 15 survey responses from Italy.

@@ -8,12 +8,11 @@ tags:
   - statistics
   - sentiment analysis
 ---
-**TL;DR**
+**TLDR:**
 
-- I asked Claude Opus 5, GPT-5.5 and Grok 4.7 to "interpret this plot" 250 times each for four potentially misleading plots with political connotations and scored all 3,000 replies with VADER.
-- The models differ. 11 of 12 pairwise comparisons are significant, and Grok is the usual outlier, lowest on climate and COVID and highest on the pay gap.
-- But the words driving the scores, "perfectly flat", "misleading", "warming" and "increase", are about how the plot is drawn or get rated positive when they shouldn't be. VADER measured vocabulary and reply length, not stance.
-- To look at the results directly, or read LLM outputs, check out the [dashboard](https://hotsoupisgood.github.io/AI-Graph-Response-Compare/).
+- I asked three LLMs to interpret four controversial plots 250 times each, then compared the sentiment of their responses.
+- Most comparisons were significantly different. Grok was the usual outlier, lowest on the climate and COVID plots and highest on the pay gap plot.
+- The differences seem to come down to word choice. Auditing a handful of Grok responses did not show an obvious polarized opinion, but in the word drivers plot Grok's word choices looked the most different from the other two. All of this can be seen in the [dashboard](https://hotsoupisgood.github.io/AI-Graph-Response-Compare/).
 
 In the zeitgeist of the internet there are memes about Grok being [anti woke](https://gizmodo.com/enter-grok-elon-musks-anti-woke-chatbot-1850994584) and hyperbolic, and it has [recited climate denial talking points](https://www.scientificamerican.com/article/elon-musks-ai-chatbot-grok-is-reciting-climate-denial-talking-points/), brought up [South African "white genocide"](https://www.nbcnews.com/tech/tech-news/elon-musks-ai-chatbot-grok-brings-south-african-white-genocide-claims-rcna206838) in unrelated replies, and [posted antisemitic content](https://techcrunch.com/2025/07/15/xai-says-it-has-fixed-grok-4s-problematic-responses/). If that's real, it should read certain plots differently from other models. So my hypothesis was that Grok's interpretations of a race and IQ plot, a climate plot, a COVID deaths and masks plot, and a gender pay gap plot would lean racist, anti climate change, critical of COVID related government actions, and dismissive of the pay gap, and that this would show up as more negative sentiment on all four. All four were picked to be potentially misleading, with political connotations. The prompt was the same every time, "Interpret this plot."
 
@@ -41,3 +40,5 @@ In the zeitgeist of the internet there are memes about Grok being [anti woke](ht
 **Which words drove it.** On the climate plot the top positive words are "warming", "perfectly" and "increase", and the top negative word is "misleading". "Perfectly" is almost always "perfectly flat" and "misleading" is about the axis, so neither is about climate at all, and VADER rates "warming" and "increase" as pleasant words, which they aren't here. All three models say the same thing about that plot, that the wide axis hides a real rise, and Claude says "misleading" in 244 of its 250 replies yet scores highest because its long replies pick up more positive words. Grok's low score comes from shorter replies with fewer of those words, not from a different view of climate change.
 
 So the differences between models are real, but the sentiment is misleading once you look at the words behind it. VADER measured vocabulary and reply length, not stance, and the hypothesis about Grok is neither supported nor refuted by it. Every reply is readable on the [results page](https://hotsoupisgood.github.io/AI-Graph-Response-Compare/), and the code is on [GitHub](https://github.com/hotsoupisgood/AI-Graph-Response-Compare).
+
+A future direction would be to use a human or an LLM as a judge to rate whether each reply treats the pay gap as real, which would test the original hypothesis directly.

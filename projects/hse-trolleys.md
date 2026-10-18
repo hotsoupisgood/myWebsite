@@ -9,12 +9,13 @@ tags:
   - jags
   - time series
 ---
-**TL;DR**
+**TLDR:**
 
-- Irish trolley numbers are reported as raw counts, which mostly reflect how many people live in a region. We fit a Bayesian time series model to weekly counts for the six HSE regions from 2023 to 2026, scaled per 10,000 population.
-- HSE Mid West has the highest regional level, more than three times HSE Dublin and North East, and the three western regions all sit above the three Dublin regions. Fourteen of the fifteen pairwise regional comparisons are statistically significant.
-- Most regions peak in winter, with Mid West's timing uncertain. Mid West also dipped in August 2024 when it paused scheduled care, and the model estimated the size of that drop given only its timing.
-- A sensitivity analysis with three other ways of scaling the data keeps the top and bottom of the ranking in place. Only the two middle regions swap.
+- We fit a Bayesian time series model to scraped Irish hospital trolley counts, weekly for each of the six HSE regions from 2023 to 2026, scaled per 10,000 population.
+- Found a west to east pattern. The three western regions sit above the three Dublin regions, and Mid West runs at more than three times Dublin and North East.
+- Found an annual cycle, with most regions peaking in winter and Mid West's timing uncertain.
+- Found a one off drop in Mid West in August 2024 when it paused scheduled care, and given only its timing the model estimated the size of the drop and the recovery from the data.
+- The interactive results are at [hsereport.ie](https://hsereport.ie).
 
 Ireland's Health Service Executive (HSE) publishes a daily count of patients on hospital trolleys, people admitted through emergency departments who don't have a bed and end up being treated in a corridor or overflow ward instead. It's the number [Irish news uses](https://www.irishtimes.com/health/2023/01/03/numbers-waiting-for-hospital-beds-hits-new-record-of-931/) to talk about overcrowding. The problem is it's always reported as a raw count, and a raw count is just correlated with the region's population. We wanted to know whether, once you control for population, some parts of the country are actually under more strain than others, or whether the differences you see in the news are just noise.
 
@@ -40,5 +41,7 @@ Another interesting part was watching the model recover the shape and size of th
 In the plot above, the effect bottoms out the week of August 19th at 7.29 fewer trolleys per 10,000 than the regional level, with a 95% interval that excludes zero, then rebounds back to the regional level by early September. That's a specific, dated hospital management intervention, with its magnitude inferred purely from how one region's data diverged from the rest.
 
 As a sensitivity analysis, we checked the whole ranking against three other ways of scaling the data (per available bed, per euro of regional budget, per over 65 resident), and the top and bottom of the ranking hold up every time. Only the two middle regions swap places depending on scaling, which is a pretty reassuring sign the west to east story isn't an artifact of the specific denominator we picked.
+
+A future direction I would like to try is adding a decision science component, putting a loss function on the posterior so the model could be used to decide where to direct resources rather than only to rank regions.
 
 Code and data pipeline are on [GitHub](https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis), and there's an interactive version of the results at [hsereport.ie](https://hsereport.ie).

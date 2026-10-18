@@ -40,12 +40,13 @@
 </div>
 <time datetime="2026-04-03">03 Apr 2026</time><a href="/tags/statistics/" class="post-tag">statistics</a><a href="/tags/bayesian/" class="post-tag">bayesian</a><a href="/tags/jags/" class="post-tag">jags</a><a href="/tags/time-series/" class="post-tag">time series</a>
 <div class="read-more-target">
-  <p><strong>TL;DR</strong></p>
+  <p><strong>TLDR:</strong></p>
 <ul>
-<li>Irish trolley numbers are reported as raw counts, which mostly reflect how many people live in a region. We fit a Bayesian time series model to weekly counts for the six HSE regions from 2023 to 2026, scaled per 10,000 population.</li>
-<li>HSE Mid West has the highest regional level, more than three times HSE Dublin and North East, and the three western regions all sit above the three Dublin regions. Fourteen of the fifteen pairwise regional comparisons are statistically significant.</li>
-<li>Most regions peak in winter, with Mid West's timing uncertain. Mid West also dipped in August 2024 when it paused scheduled care, and the model estimated the size of that drop given only its timing.</li>
-<li>A sensitivity analysis with three other ways of scaling the data keeps the top and bottom of the ranking in place. Only the two middle regions swap.</li>
+<li>We fit a Bayesian time series model to scraped Irish hospital trolley counts, weekly for each of the six HSE regions from 2023 to 2026, scaled per 10,000 population.</li>
+<li>Found a west to east pattern. The three western regions sit above the three Dublin regions, and Mid West runs at more than three times Dublin and North East.</li>
+<li>Found an annual cycle, with most regions peaking in winter and Mid West's timing uncertain.</li>
+<li>Found a one off drop in Mid West in August 2024 when it paused scheduled care, and given only its timing the model estimated the size of the drop and the recovery from the data.</li>
+<li>The interactive results are at <a href="https://hsereport.ie">hsereport.ie</a>.</li>
 </ul>
 <p>Ireland's Health Service Executive (HSE) publishes a daily count of patients on hospital trolleys, people admitted through emergency departments who don't have a bed and end up being treated in a corridor or overflow ward instead. It's the number <a href="https://www.irishtimes.com/health/2023/01/03/numbers-waiting-for-hospital-beds-hits-new-record-of-931/">Irish news uses</a> to talk about overcrowding. The problem is it's always reported as a raw count, and a raw count is just correlated with the region's population. We wanted to know whether, once you control for population, some parts of the country are actually under more strain than others, or whether the differences you see in the news are just noise.</p>
 <p>We scraped the HSE's daily report every day from January 2023 to April 2026, and aggregated counts up to weekly totals for each of Ireland's six health regions. The raw weekly series below already shows a lot going on.</p>
@@ -61,6 +62,7 @@ There's a west to east pattern in the map above that holds up statistically too.
 <p><img src="/img/thesis-midwest-reset.png" alt="Mid West operational reset effect, August 2024"><br>
 In the plot above, the effect bottoms out the week of August 19th at 7.29 fewer trolleys per 10,000 than the regional level, with a 95% interval that excludes zero, then rebounds back to the regional level by early September. That's a specific, dated hospital management intervention, with its magnitude inferred purely from how one region's data diverged from the rest.</p>
 <p>As a sensitivity analysis, we checked the whole ranking against three other ways of scaling the data (per available bed, per euro of regional budget, per over 65 resident), and the top and bottom of the ranking hold up every time. Only the two middle regions swap places depending on scaling, which is a pretty reassuring sign the west to east story isn't an artifact of the specific denominator we picked.</p>
+<p>A future direction I would like to try is adding a decision science component, putting a loss function on the posterior so the model could be used to decide where to direct resources rather than only to rank regions.</p>
 <p>Code and data pipeline are on <a href="https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis">GitHub</a>, and there's an interactive version of the results at <a href="https://hsereport.ie">hsereport.ie</a>.</p>
 
 </div>

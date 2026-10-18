@@ -7,6 +7,10 @@ tags:
   - llm
   - learning
 ---
+**TLDR:**
+
+- I made a flowchart of how I usually learn things with LLMs.
+
 Studying with LLMs has taken some getting used to, but I have settled into a pattern when I use them to learn or build something technical. The flowchart below has the steps I roughly follow. I almost always begin with Wikipedia. The first couple of paragraphs are usually a good initial summary. Then I hit some friction, usually because Wikipedia is not always written in a gentle way. At that point I go to the best LLM at the time and ask it for the best sources on the subject. For something biological or novel I ask for a scientific review. For something more technical or standard I ask for textbook recommendations. I find these types of sources make the best learning paths.
 
 ![Flowchart of how I start a technical project. Start with Wikipedia, ask an LLM for reviews or textbooks, follow the source, ask an LLM at roadblocks, switch sources if one is not helping, gather notes, then create a final learning document.](/img/learning-with-llms/learning-flowchart.svg)
