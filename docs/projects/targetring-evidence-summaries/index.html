@@ -42,9 +42,9 @@
 <div class="read-more-target">
   <p><strong>TLDR:</strong></p>
 <ul>
-<li>I built a tool that turns a disease name into a figure of what is known about each differentially expressed gene: druggability, safety, tissue expression, drug pipeline, literature, mouse phenotypes.</li>
-<li>A language model writes one short evidence paragraph per gene, from the gathered facts only, with the call made once and stored with the run.</li>
-<li>The model never ranks, filters or decides anything; the paragraph restates the evidence and the rule-based verdict beside it.</li>
+<li>I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.</li>
+<li>I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.</li>
+<li>I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.</li>
 <li><a href="https://hotsoupisgood.github.io/TargetRing/">The tool</a> and <a href="https://github.com/hotsoupisgood/TargetRing">the code</a> are public.</li>
 </ul>
 <p><a href="https://hotsoupisgood.github.io/TargetRing/">targetring</a> takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &quot;not measured&quot; or &quot;the lookup failed&quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.</p>
