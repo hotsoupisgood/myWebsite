@@ -132,22 +132,32 @@
   </url>
   
   <url>
+    <loc>https://lucashenry.xyz/tags/simulation/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/complex-systems/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/health/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/sentiment-analysis/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
     <loc>https://lucashenry.xyz/tags/bayesian/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
   <url>
     <loc>https://lucashenry.xyz/tags/decision-analysis/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/sentiment-analysis/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
@@ -182,22 +192,22 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/simulation/</loc>
+    <loc>https://lucashenry.xyz/tags/jags/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/complex-systems/</loc>
+    <loc>https://lucashenry.xyz/tags/time-series/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/health/</loc>
+    <loc>https://lucashenry.xyz/tags/game/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/vue/</loc>
+    <loc>https://lucashenry.xyz/tags/android/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
@@ -207,7 +217,7 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/bioinformatics/</loc>
+    <loc>https://lucashenry.xyz/tags/vue/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
@@ -217,12 +227,7 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/jags/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/time-series/</loc>
+    <loc>https://lucashenry.xyz/tags/bioinformatics/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
@@ -237,12 +242,7 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/game/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/android/</loc>
+    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
 </urlset>
