@@ -11,7 +11,7 @@ tags:
 **TLDR:**
 
 - I had a Bayesian forecast of Irish hospital trolley pressure from my thesis, and wanted to understand what decision analysis adds to a forecast.
-- I read Smart Choices and Jim Smith's Bayesian Decision Analysis, then built the smallest model that would make the ideas concrete: one region, one week, one yes or no choice.
+- I read two books on decision analysis, then built the smallest model that would make the ideas concrete: one region, one week, one yes or no choice.
 - Found that the forecast alone never told me what to do. The decision turned on three assumptions I had to write down, and the model showed where each one flipped the answer.
 - The executed notebook, design notes and figures are on [GitHub](https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration).
 
