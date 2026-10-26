@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
+    <meta name="description" content="My public notes.">
+    <meta name="generator" content="Eleventy v1.0.2">
+
+    <link rel="stylesheet" href="/css/index.css?v=0ec57e8c">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/css/prism-diff.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lucas">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Lucas">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="sidebar" aria-label="Main">
+      <a class="site-title" href="/">Lucas</a>
+      <ul class="nav">
+        <li class="nav-item"><a href="/">Projects</a></li>
+        <li class="nav-item"><a href="/photos/">Photos</a></li>
+        <li class="nav-item"><a href="/cooking/">Cooking</a></li>
+        <li class="nav-item"><a href="/about/">About Me</a></li>
+      </ul>
+      <div class="sidebar-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </div>
+    </nav>
+
+    <div class="page">
+
+      <main id="main" class="tmpl-post">
+        <div class="post-head">
+  <a href="/" class="back-link" aria-label="Back to Projects" title="Back to Projects">&#8592;</a>
+  <h1>Gathering Drug Target Evidence With a Model That Only Paraphrases</h1>
+</div>
+<time datetime="2026-10-26">26 Oct 2026</time><a href="/tags/bioinformatics/" class="post-tag">bioinformatics</a><a href="/tags/llm/" class="post-tag">llm</a><a href="/tags/tools/" class="post-tag">tools</a>
+<div class="read-more-target">
+  <p><strong>TLDR:</strong></p>
+<ul>
+<li>I built a tool that turns a disease name into a figure of what is known about each differentially expressed gene: druggability, safety, tissue expression, drug pipeline, literature, mouse phenotypes.</li>
+<li>A language model writes one short evidence paragraph per gene, from the gathered facts only, with the call made once and stored with the run.</li>
+<li>The model never ranks, filters or decides anything; the paragraph restates the evidence and the rule-based verdict beside it.</li>
+<li><a href="https://hotsoupisgood.github.io/TargetRing/">The tool</a> and <a href="https://github.com/hotsoupisgood/TargetRing">the code</a> are public.</li>
+</ul>
+<p><a href="https://hotsoupisgood.github.io/TargetRing/">targetring</a> takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &quot;not measured&quot; or &quot;the lookup failed&quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.</p>
+<p><img src="/img/fig_targetring_figure.png" alt="The targetring figure for Crohn's disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre"></p>
+<p>The language model's job is deliberately small. For each gene the tool assembles the facts it already fetched, sends them once to a model with a prompt that forbids recommendations, rankings, invented citations and internal codes, and stores the paragraph with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo's model spend was $1.35, measured 18 October 2026 and shown on the tool's Paid calls tab. A second, smaller call reads the gene's mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn's run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.</p>
+<p><img src="/img/fig_targetring_drawer.png" alt="The MUC1 drawer: the GO verdict with its three checks, the model's phenotype read beside the rule-based one, and the drug pipeline table"></p>
+
+</div>
+
+      </main>
+
+      <footer class="page-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </footer>
+    </div>
+  </body>
+</html>
