@@ -6,7 +6,7 @@ layout: layouts/post.njk
 ---
 
 <figure class="viz" id="ca-transit-viz">
-  <label class="viz-toggle"><input type="checkbox" id="ca-top5"> Always show the 5 counties with the highest share</label>
+  <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 counties with the highest share</label>
   <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the share of workers who commuted by public transportation in that county and its neighbors."></div>
 </figure>
 
