@@ -1,0 +1,524 @@
+[
+ {
+  "fips": "06075",
+  "county": "San Francisco County",
+  "workers": 466388,
+  "workers_moe": 3189,
+  "transit": 87355,
+  "transit_moe": 2496,
+  "share_pct": 18.73
+ },
+ {
+  "fips": "06001",
+  "county": "Alameda County",
+  "workers": 837261,
+  "workers_moe": 4145,
+  "transit": 64325,
+  "transit_moe": 2308,
+  "share_pct": 7.68
+ },
+ {
+  "fips": "06013",
+  "county": "Contra Costa County",
+  "workers": 551854,
+  "workers_moe": 3752,
+  "transit": 29697,
+  "transit_moe": 1853,
+  "share_pct": 5.38
+ },
+ {
+  "fips": "06081",
+  "county": "San Mateo County",
+  "workers": 384595,
+  "workers_moe": 2819,
+  "transit": 19475,
+  "transit_moe": 1333,
+  "share_pct": 5.06
+ },
+ {
+  "fips": "06037",
+  "county": "Los Angeles County",
+  "workers": 4687090,
+  "workers_moe": 11053,
+  "transit": 183355,
+  "transit_moe": 4122,
+  "share_pct": 3.91
+ },
+ {
+  "fips": "06041",
+  "county": "Marin County",
+  "workers": 122873,
+  "workers_moe": 1743,
+  "transit": 4443,
+  "transit_moe": 581,
+  "share_pct": 3.62
+ },
+ {
+  "fips": "06113",
+  "county": "Yolo County",
+  "workers": 102474,
+  "workers_moe": 1661,
+  "transit": 2900,
+  "transit_moe": 477,
+  "share_pct": 2.83
+ },
+ {
+  "fips": "06085",
+  "county": "Santa Clara County",
+  "workers": 970790,
+  "workers_moe": 4277,
+  "transit": 22653,
+  "transit_moe": 1302,
+  "share_pct": 2.33
+ },
+ {
+  "fips": "06083",
+  "county": "Santa Barbara County",
+  "workers": 201783,
+  "workers_moe": 2477,
+  "transit": 4440,
+  "transit_moe": 586,
+  "share_pct": 2.2
+ },
+ {
+  "fips": "06043",
+  "county": "Mariposa County",
+  "workers": 7435,
+  "workers_moe": 468,
+  "transit": 147,
+  "transit_moe": 115,
+  "share_pct": 1.98
+ },
+ {
+  "fips": "06073",
+  "county": "San Diego County",
+  "workers": 1635987,
+  "workers_moe": 6639,
+  "transit": 31598,
+  "transit_moe": 1592,
+  "share_pct": 1.93
+ },
+ {
+  "fips": "06087",
+  "county": "Santa Cruz County",
+  "workers": 125770,
+  "workers_moe": 1985,
+  "transit": 2384,
+  "transit_moe": 452,
+  "share_pct": 1.9
+ },
+ {
+  "fips": "06095",
+  "county": "Solano County",
+  "workers": 204574,
+  "workers_moe": 2220,
+  "transit": 2980,
+  "transit_moe": 512,
+  "share_pct": 1.46
+ },
+ {
+  "fips": "06067",
+  "county": "Sacramento County",
+  "workers": 731947,
+  "workers_moe": 4819,
+  "transit": 9819,
+  "transit_moe": 919,
+  "share_pct": 1.34
+ },
+ {
+  "fips": "06059",
+  "county": "Orange County",
+  "workers": 1565842,
+  "workers_moe": 6376,
+  "transit": 18009,
+  "transit_moe": 1516,
+  "share_pct": 1.15
+ },
+ {
+  "fips": "06053",
+  "county": "Monterey County",
+  "workers": 188150,
+  "workers_moe": 2074,
+  "transit": 2145,
+  "transit_moe": 471,
+  "share_pct": 1.14
+ },
+ {
+  "fips": "06055",
+  "county": "Napa County",
+  "workers": 65795,
+  "workers_moe": 2138,
+  "transit": 752,
+  "transit_moe": 222,
+  "share_pct": 1.14
+ },
+ {
+  "fips": "06097",
+  "county": "Sonoma County",
+  "workers": 237164,
+  "workers_moe": 2470,
+  "transit": 2622,
+  "transit_moe": 373,
+  "share_pct": 1.11
+ },
+ {
+  "fips": "06023",
+  "county": "Humboldt County",
+  "workers": 56342,
+  "workers_moe": 1565,
+  "transit": 572,
+  "transit_moe": 194,
+  "share_pct": 1.02
+ },
+ {
+  "fips": "06071",
+  "county": "San Bernardino County",
+  "workers": 960759,
+  "workers_moe": 4608,
+  "transit": 8664,
+  "transit_moe": 928,
+  "share_pct": 0.9
+ },
+ {
+  "fips": "06077",
+  "county": "San Joaquin County",
+  "workers": 337508,
+  "workers_moe": 3131,
+  "transit": 3011,
+  "transit_moe": 476,
+  "share_pct": 0.89
+ },
+ {
+  "fips": "06051",
+  "county": "Mono County",
+  "workers": 7626,
+  "workers_moe": 447,
+  "transit": 64,
+  "transit_moe": 99,
+  "share_pct": 0.84
+ },
+ {
+  "fips": "06011",
+  "county": "Colusa County",
+  "workers": 9163,
+  "workers_moe": 547,
+  "transit": 76,
+  "transit_moe": 74,
+  "share_pct": 0.83
+ },
+ {
+  "fips": "06099",
+  "county": "Stanislaus County",
+  "workers": 233227,
+  "workers_moe": 2590,
+  "transit": 1935,
+  "transit_moe": 470,
+  "share_pct": 0.83
+ },
+ {
+  "fips": "06019",
+  "county": "Fresno County",
+  "workers": 419664,
+  "workers_moe": 3698,
+  "transit": 3318,
+  "transit_moe": 515,
+  "share_pct": 0.79
+ },
+ {
+  "fips": "06069",
+  "county": "San Benito County",
+  "workers": 31798,
+  "workers_moe": 820,
+  "transit": 251,
+  "transit_moe": 120,
+  "share_pct": 0.79
+ },
+ {
+  "fips": "06105",
+  "county": "Trinity County",
+  "workers": 5164,
+  "workers_moe": 605,
+  "transit": 41,
+  "transit_moe": 45,
+  "share_pct": 0.79
+ },
+ {
+  "fips": "06015",
+  "county": "Del Norte County",
+  "workers": 9743,
+  "workers_moe": 476,
+  "transit": 76,
+  "transit_moe": 58,
+  "share_pct": 0.78
+ },
+ {
+  "fips": "06065",
+  "county": "Riverside County",
+  "workers": 1087103,
+  "workers_moe": 5225,
+  "transit": 7807,
+  "transit_moe": 880,
+  "share_pct": 0.72
+ },
+ {
+  "fips": "06033",
+  "county": "Lake County",
+  "workers": 24224,
+  "workers_moe": 924,
+  "transit": 172,
+  "transit_moe": 112,
+  "share_pct": 0.71
+ },
+ {
+  "fips": "06027",
+  "county": "Inyo County",
+  "workers": 8346,
+  "workers_moe": 321,
+  "transit": 55,
+  "transit_moe": 101,
+  "share_pct": 0.66
+ },
+ {
+  "fips": "06101",
+  "county": "Sutter County",
+  "workers": 41859,
+  "workers_moe": 1103,
+  "transit": 255,
+  "transit_moe": 185,
+  "share_pct": 0.61
+ },
+ {
+  "fips": "06111",
+  "county": "Ventura County",
+  "workers": 400814,
+  "workers_moe": 3126,
+  "transit": 2445,
+  "transit_moe": 398,
+  "share_pct": 0.61
+ },
+ {
+  "fips": "06079",
+  "county": "San Luis Obispo County",
+  "workers": 126611,
+  "workers_moe": 1778,
+  "transit": 739,
+  "transit_moe": 225,
+  "share_pct": 0.58
+ },
+ {
+  "fips": "06007",
+  "county": "Butte County",
+  "workers": 90412,
+  "workers_moe": 1246,
+  "transit": 499,
+  "transit_moe": 183,
+  "share_pct": 0.55
+ },
+ {
+  "fips": "06061",
+  "county": "Placer County",
+  "workers": 192652,
+  "workers_moe": 1943,
+  "transit": 1050,
+  "transit_moe": 299,
+  "share_pct": 0.55
+ },
+ {
+  "fips": "06089",
+  "county": "Shasta County",
+  "workers": 74793,
+  "workers_moe": 1326,
+  "transit": 403,
+  "transit_moe": 216,
+  "share_pct": 0.54
+ },
+ {
+  "fips": "06093",
+  "county": "Siskiyou County",
+  "workers": 16184,
+  "workers_moe": 585,
+  "transit": 88,
+  "transit_moe": 119,
+  "share_pct": 0.54
+ },
+ {
+  "fips": "06047",
+  "county": "Merced County",
+  "workers": 111073,
+  "workers_moe": 2014,
+  "transit": 565,
+  "transit_moe": 272,
+  "share_pct": 0.51
+ },
+ {
+  "fips": "06009",
+  "county": "Calaveras County",
+  "workers": 18264,
+  "workers_moe": 852,
+  "transit": 92,
+  "transit_moe": 79,
+  "share_pct": 0.5
+ },
+ {
+  "fips": "06017",
+  "county": "El Dorado County",
+  "workers": 86589,
+  "workers_moe": 1414,
+  "transit": 431,
+  "transit_moe": 187,
+  "share_pct": 0.5
+ },
+ {
+  "fips": "06115",
+  "county": "Yuba County",
+  "workers": 35801,
+  "workers_moe": 963,
+  "transit": 169,
+  "transit_moe": 102,
+  "share_pct": 0.47
+ },
+ {
+  "fips": "06005",
+  "county": "Amador County",
+  "workers": 15901,
+  "workers_moe": 604,
+  "transit": 68,
+  "transit_moe": 66,
+  "share_pct": 0.43
+ },
+ {
+  "fips": "06107",
+  "county": "Tulare County",
+  "workers": 189030,
+  "workers_moe": 2236,
+  "transit": 783,
+  "transit_moe": 261,
+  "share_pct": 0.41
+ },
+ {
+  "fips": "06031",
+  "county": "Kings County",
+  "workers": 57785,
+  "workers_moe": 1220,
+  "transit": 231,
+  "transit_moe": 124,
+  "share_pct": 0.4
+ },
+ {
+  "fips": "06057",
+  "county": "Nevada County",
+  "workers": 43269,
+  "workers_moe": 1249,
+  "transit": 174,
+  "transit_moe": 113,
+  "share_pct": 0.4
+ },
+ {
+  "fips": "06029",
+  "county": "Kern County",
+  "workers": 356584,
+  "workers_moe": 3211,
+  "transit": 1299,
+  "transit_moe": 264,
+  "share_pct": 0.36
+ },
+ {
+  "fips": "06035",
+  "county": "Lassen County",
+  "workers": 9432,
+  "workers_moe": 472,
+  "transit": 32,
+  "transit_moe": 41,
+  "share_pct": 0.34
+ },
+ {
+  "fips": "06025",
+  "county": "Imperial County",
+  "workers": 60888,
+  "workers_moe": 1506,
+  "transit": 195,
+  "transit_moe": 151,
+  "share_pct": 0.32
+ },
+ {
+  "fips": "06039",
+  "county": "Madera County",
+  "workers": 60117,
+  "workers_moe": 1300,
+  "transit": 172,
+  "transit_moe": 98,
+  "share_pct": 0.29
+ },
+ {
+  "fips": "06003",
+  "county": "Alpine County",
+  "workers": 800,
+  "workers_moe": 181,
+  "transit": 2,
+  "transit_moe": 18,
+  "share_pct": 0.25
+ },
+ {
+  "fips": "06045",
+  "county": "Mendocino County",
+  "workers": 36548,
+  "workers_moe": 1177,
+  "transit": 62,
+  "transit_moe": 61,
+  "share_pct": 0.17
+ },
+ {
+  "fips": "06103",
+  "county": "Tehama County",
+  "workers": 25059,
+  "workers_moe": 792,
+  "transit": 32,
+  "transit_moe": 49,
+  "share_pct": 0.13
+ },
+ {
+  "fips": "06021",
+  "county": "Glenn County",
+  "workers": 11965,
+  "workers_moe": 470,
+  "transit": 14,
+  "transit_moe": 32,
+  "share_pct": 0.12
+ },
+ {
+  "fips": "06109",
+  "county": "Tuolumne County",
+  "workers": 20077,
+  "workers_moe": 857,
+  "transit": 7,
+  "transit_moe": 10,
+  "share_pct": 0.03
+ },
+ {
+  "fips": "06049",
+  "county": "Modoc County",
+  "workers": 3122,
+  "workers_moe": 249,
+  "transit": 0,
+  "transit_moe": 19,
+  "share_pct": 0.0
+ },
+ {
+  "fips": "06063",
+  "county": "Plumas County",
+  "workers": 6779,
+  "workers_moe": 479,
+  "transit": 0,
+  "transit_moe": 21,
+  "share_pct": 0.0
+ },
+ {
+  "fips": "06091",
+  "county": "Sierra County",
+  "workers": 1086,
+  "workers_moe": 235,
+  "transit": 0,
+  "transit_moe": 14,
+  "share_pct": 0.0
+ }
+]

@@ -14,6 +14,7 @@ module.exports = function(eleventyConfig) {
   // Copy the `img` and `css` folders to the output
   eleventyConfig.addPassthroughCopy("img");
   eleventyConfig.addPassthroughCopy("css");
+  eleventyConfig.addPassthroughCopy("visualizations/data");
   eleventyConfig.addPassthroughCopy({"img/favicon": "/" });
 
   // Add plugins
@@ -82,7 +83,8 @@ module.exports = function(eleventyConfig) {
   const sections = {
     projects: { url: "/", label: "Projects" },
     cooking: { url: "/cooking/", label: "Cooking" },
-    photos: { url: "/photos/", label: "Photos" }
+    photos: { url: "/photos/", label: "Photos" },
+    visualizations: { url: "/visualizations/", label: "Visualizations" }
   };
 
   eleventyConfig.addFilter("backTo", tags => {
@@ -113,7 +115,7 @@ module.exports = function(eleventyConfig) {
 
   // Directory tags duplicate the section listings, so they are not shown as
   // chips and not offered as tag pages.
-  const sectionTags = ["projects", "cooking", "photos"];
+  const sectionTags = ["projects", "cooking", "photos", "visualizations"];
 
   function filterTagList(tags) {
     return (tags || []).filter(tag =>
@@ -129,7 +131,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addCollection("feed", function(collection) {
     return collection.getAll()
       .filter(item => (item.data.tags || [])
-        .some(tag => ["projects", "cooking", "photos", "posts"].indexOf(tag) !== -1))
+        .some(tag => ["projects", "cooking", "photos", "visualizations", "posts"].indexOf(tag) !== -1))
       .sort((a, b) => a.date - b.date);
   });
 

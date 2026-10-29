@@ -1,0 +1,12 @@
+---
+layout: layouts/home.njk
+permalink: /visualizations/
+eleventyNavigation:
+  key: Visualizations
+  order: 3.5
+---
+
+
+{% set postslist = collections.visualizations %}
+{% set postslistCounter = collections.visualizations | length %}
+{% include "projectlist.njk" %}

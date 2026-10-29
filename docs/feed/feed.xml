@@ -5,12 +5,88 @@
 	
 	<link href="https://lucashenry.xyz/feed/feed.xml" rel="self"/>
 	<link href="https://lucashenry.xyz/"/>
-	<updated>2026-10-26T00:00:00Z</updated>
+	<updated>2026-10-29T00:00:00Z</updated>
 	<id>https://lucashenry.xyz/</id>
 	<author>
 		<name>Lucas</name>
 		<email>contact@lucashenry.xyz</email>
 	</author>
+	
+	<entry>
+		<title>San Francisco County had the highest share of workers commuting by public transportation in California, 18.7 of 100 workers</title>
+		<link href="https://lucashenry.xyz/visualizations/ca-transit-share/"/>
+		<updated>2026-10-29T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/visualizations/ca-transit-share/</id>
+		<content type="html">&lt;p&gt;Public transportation here means bus, subway, light rail, commuter rail, streetcar and ferry. Taxicabs are not counted. Across California, 2.9 of every 100 workers commuted by public transportation. In 39 of the 58 counties, fewer than 1 of every 100 workers did.&lt;/p&gt;
+&lt;figure class=&quot;viz&quot; id=&quot;ca-transit-viz&quot;&gt;
+  &lt;div id=&quot;ca-transit-chart&quot; role=&quot;img&quot; aria-label=&quot;Horizontal bar chart of the percent of workers who commuted by public transportation in each of the 58 California counties, sorted from highest to lowest&quot;&gt;&lt;/div&gt;
+  &lt;figcaption&gt;Each bar is one county. The value is the percent of workers age 16 and over who usually commuted by public transportation. Hover or tap a bar for the worker count.&lt;/figcaption&gt;
+&lt;/figure&gt;
+&lt;p class=&quot;viz-note&quot;&gt;Bars show the survey estimate only. Margins of error are in the &lt;a href=&quot;https://lucashenry.xyz/visualizations/data/ca_transit_share_2020_2024.csv&quot;&gt;data file (CSV)&lt;/a&gt;. The estimates pool survey responses collected from 2020 to 2024.&lt;/p&gt;
+&lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/ca-transit-share/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;references&quot;&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08301) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;American Community Survey 5-year estimates summary file geography, 2020 to 2024&lt;/em&gt; [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/documentation/Geos20245YR.txt&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/documentation/Geos20245YR.txt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.viz { margin: 1.5rem 0; max-width: 44rem; }
+#ca-transit-chart { width: 100%; position: relative; }
+#ca-transit-chart svg { display: block; width: 100%; height: auto; font-family: inherit; }
+#ca-transit-chart .bar { fill: #082840; }
+#ca-transit-chart .bar:hover, #ca-transit-chart .bar.active { fill: #3a6d96; }
+#ca-transit-chart text { font-size: 12px; fill: #333; }
+#ca-transit-chart .axis-title { font-size: 12px; font-weight: 600; }
+.viz-tip { position: absolute; pointer-events: none; background: #fff; border: 1px solid #c0c0c0; padding: .4rem .55rem; font-size: 13px; line-height: 1.35; box-shadow: 0 2px 6px rgba(0,0,0,.12); display: none; max-width: 15rem; }
+.viz figcaption, .viz-note { font-size: .9rem; color: #555; }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; }
+&lt;/style&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/npm/d3@7&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(function () {
+  var el = document.getElementById(&quot;ca-transit-chart&quot;);
+  var tip = document.createElement(&quot;div&quot;);
+  tip.className = &quot;viz-tip&quot;;
+  el.appendChild(tip);
+  var fmt = d3.format(&quot;,&quot;);
+  d3.json(&quot;/visualizations/data/ca_transit_share_2020_2024.json&quot;).then(function (data) {
+    data.sort(function (a, b) { return b.share_pct - a.share_pct; });
+    function draw() {
+      d3.select(el).select(&quot;svg&quot;).remove();
+      var W = Math.max(300, el.clientWidth);
+      var small = W &lt; 480;
+      var rowH = small ? 15 : 16;
+      var m = { top: 34, right: 44, bottom: 8, left: small ? 104 : 124 };
+      var H = m.top + m.bottom + rowH * data.length;
+      var x = d3.scaleLinear().domain([0, d3.max(data, function (d) { return d.share_pct; })]).range([0, W - m.left - m.right]);
+      var y = d3.scaleBand().domain(data.map(function (d) { return d.county; })).range([m.top, H - m.bottom]).padding(0.18);
+      var svg = d3.select(el).insert(&quot;svg&quot;, &quot;:first-child&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
+      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;axis-title&quot;).attr(&quot;x&quot;, small ? 0 : m.left).attr(&quot;y&quot;, 14).style(&quot;font-size&quot;, small ? &quot;11px&quot; : &quot;12px&quot;).text(&quot;Workers commuting by public transportation (percent)&quot;);
+      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;axis-title&quot;).attr(&quot;x&quot;, 0).attr(&quot;y&quot;, 28).text(&quot;County&quot;);
+      var g = svg.append(&quot;g&quot;).selectAll(&quot;g&quot;).data(data).join(&quot;g&quot;);
+      g.append(&quot;text&quot;).attr(&quot;x&quot;, m.left - 6).attr(&quot;y&quot;, function (d) { return y(d.county) + y.bandwidth() / 2; }).attr(&quot;dy&quot;, &quot;0.35em&quot;).attr(&quot;text-anchor&quot;, &quot;end&quot;)
+        .style(&quot;font-size&quot;, small ? &quot;11px&quot; : &quot;12px&quot;).text(function (d) { return d.county.replace(/ County$/, &quot;&quot;); });
+      g.append(&quot;rect&quot;).attr(&quot;class&quot;, &quot;bar&quot;).attr(&quot;x&quot;, m.left).attr(&quot;y&quot;, function (d) { return y(d.county); })
+        .attr(&quot;width&quot;, function (d) { return Math.max(0.5, x(d.share_pct)); }).attr(&quot;height&quot;, y.bandwidth())
+        .append(&quot;title&quot;).text(function (d) { return d.county + &quot;: &quot; + d.share_pct.toFixed(1) + &quot;% of &quot; + fmt(d.workers) + &quot; workers commuted by public transportation&quot;; });
+      g.append(&quot;text&quot;).attr(&quot;x&quot;, function (d) { return m.left + x(d.share_pct) + 4; }).attr(&quot;y&quot;, function (d) { return y(d.county) + y.bandwidth() / 2; }).attr(&quot;dy&quot;, &quot;0.35em&quot;)
+        .style(&quot;font-size&quot;, small ? &quot;11px&quot; : &quot;12px&quot;).text(function (d) { return d.share_pct.toFixed(1) + &quot;%&quot;; });
+      g.on(&quot;mousemove&quot;, function (ev, d) {
+        var p = d3.pointer(ev, el);
+        tip.innerHTML = &quot;&lt;strong&gt;&quot; + d.county + &quot;&lt;/strong&gt;&lt;br&gt;&quot; + d.share_pct.toFixed(1) + &quot;% commuted by public transportation&lt;br&gt;&quot; + fmt(d.transit) + &quot; of &quot; + fmt(d.workers) + &quot; workers&quot;;
+        tip.style.display = &quot;block&quot;;
+        var left = Math.min(p[0] + 12, el.clientWidth - tip.offsetWidth - 4);
+        tip.style.left = Math.max(0, left) + &quot;px&quot;;
+        tip.style.top = (p[1] + 14) + &quot;px&quot;;
+      }).on(&quot;mouseleave&quot;, function () { tip.style.display = &quot;none&quot;; });
+    }
+    draw();
+    var t; window.addEventListener(&quot;resize&quot;, function () { clearTimeout(t); t = setTimeout(draw, 150); });
+  });
+})();
+&lt;/script&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
