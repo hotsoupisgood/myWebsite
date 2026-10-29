@@ -74,7 +74,7 @@
   <table id="ie-t1"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
   <table id="ie-t2"><caption>The four New Year phases, weeks starting Monday</caption><thead><tr><th>Phase</th><th>Weeks</th></tr></thead><tbody></tbody></table>
 </div>
-<p><strong>Methods.</strong> Data are daily counts of patients on emergency department and ward trolleys from the HSE Urgent and Emergency Care daily report, 1 January 2023 to 5 April 2026, summed into Monday-start weeks for each region and divided by regional population per 10,000 people. The estimates come from model v4.6 of Henry and Bergin (2026): each region has its own level, a yearly cycle, four New Year phase effects, a Mid West operational reset in August 2024, and dependence on the previous two weeks. It was fitted in JAGS with 4 chains of 30,000 iterations, the first 10,000 dropped, giving 80,000 draws. Values are posterior medians. The likely range (95 in 100 credible interval) runs from the 2.5th to the 97.5th percentile of the draws. Significantly means the likely range of a difference between two regions excludes zero. A chance is the share of the 80,000 draws in which the statement holds. The seasonal swing is how far the yearly cycle rises above the level at its peak. Winter follows Met Éireann (2026) and the thesis: 1 December to the end of February. The winter excess is the region's yearly cycle averaged over study weeks starting in December to February, minus its average over the other study weeks, computed in every draw. It uses the yearly cycle only, not the New Year phases. The four phases are the week two weeks before the week containing 1 January, the week before it, which contains 25 December, the week containing 1 January, and the week after it. Each phase effect is the change from the expected value in that week, and the same effect applies every winter. Region boundaries were simplified for display.</p>
+<p><strong>Methods.</strong> Data are daily counts of patients on emergency department and ward trolleys from the HSE Urgent and Emergency Care daily report, 1 January 2023 to 5 April 2026, summed into Monday-start weeks for each region and divided by regional population per 10,000 people. The estimates come from model v4.6 of Henry and Bergin (2026): each region has its own level, a yearly cycle, four New Year phase effects, a Mid West operational reset in August 2024, and dependence on the previous two weeks. It was fitted in JAGS with 4 chains of 30,000 iterations, the first 10,000 dropped, giving 80,000 draws. Values are posterior medians. The likely range (95 in 100 credible interval) runs from the 2.5th to the 97.5th percentile of the draws. Significantly means the likely range of a difference between two regions excludes zero. A chance is the share of the 80,000 draws in which the statement holds. The seasonal swing is how far the yearly cycle rises above the level at its peak. Winter follows Met Éireann (2026) and the thesis: 1 December to the end of February. The winter excess is the region's yearly cycle averaged over study weeks starting in December to February, minus its average over the other study weeks, computed in every draw. It uses the yearly cycle only, not the New Year phases. The four phases are the week two weeks before the week containing 1 January, the week before it, which contains 25 December, the week containing 1 January, and the week after it. Each phase effect is the change from the baseline average in that week, and the same effect applies every winter. Region boundaries were simplified for display.</p>
 <h2 id="references" tabindex="-1">References <a class="direct-link" href="#references" aria-hidden="true">#</a></h2>
 <div class="references">
 <p>Henry, L., &amp; Bergin, E. (2026). <em>A Bayesian time series framework for comparing on trolley counts across Irish HSE health regions</em> [Master's thesis, University of Galway].</p>
@@ -154,13 +154,13 @@
     var PHS = { pm1: "2 weeks before", pre: "Christmas week", mid: "New Year week", post: "Week after" };
     var PHC = { pm1: "#f6c79a", pre: "#e9915a", mid: "#d0652a", post: "#f3d3a8" };
     var M = {
-      alpha: { head: "Level", note: "Level: the expected weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed." },
+      alpha: { head: "Level", note: "Level: the baseline average weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed." },
       amp: { head: "Seasonal swing", note: "Seasonal swing: how far the yearly cycle rises above the level at its winter peak, per 10,000 people a week." },
       pwin: { head: "Chance", prob: true, note: "Chance that the yearly cycle puts more patients on trolleys in winter, December to February, than in the rest of the year, of 100." },
-      pm1: { head: "Change", phase: true, note: "Change from the expected weekly count, per 10,000 people, in the week two weeks before the week that contains 1 January." },
-      pre: { head: "Change", phase: true, note: "Change from the expected weekly count, per 10,000 people, in the week that contains 25 December." },
-      mid: { head: "Change", phase: true, note: "Change from the expected weekly count, per 10,000 people, in the week that contains 1 January." },
-      post: { head: "Change", phase: true, note: "Change from the expected weekly count, per 10,000 people, in the week after the week that contains 1 January." }
+      pm1: { head: "Change", phase: true, note: "Change from the baseline average weekly count, per 10,000 people, in the week two weeks before the week that contains 1 January." },
+      pre: { head: "Change", phase: true, note: "Change from the baseline average weekly count, per 10,000 people, in the week that contains 25 December." },
+      mid: { head: "Change", phase: true, note: "Change from the baseline average weekly count, per 10,000 people, in the week that contains 1 January." },
+      post: { head: "Change", phase: true, note: "Change from the baseline average weekly count, per 10,000 people, in the week after the week that contains 1 January." }
     };
     var sel = document.getElementById("ie-metric"), box = document.getElementById("ie-all");
     var metric = sel.value;
@@ -177,7 +177,7 @@
     function legend() {
       var m = M[metric], L = document.getElementById("ie-legend");
       L.innerHTML = m.phase
-        ? '<span><i class="sw" style="background:#14736b"></i>Fewer patients than expected</span><span><i class="sw" style="background:#c2410c"></i>More patients than expected</span><span><i class="sw" style="background:#2a1a10"></i>Dark top: likely range excludes zero</span>'
+        ? '<span><i class="sw" style="background:#14736b"></i>Fewer patients than the baseline average</span><span><i class="sw" style="background:#c2410c"></i>More patients than the baseline average</span><span><i class="sw" style="background:#2a1a10"></i>Dark top: likely range excludes zero</span>'
         : m.prob ? '<span><i class="sw" style="background:#c2410c"></i>Bar height: chance higher in winter, of 100</span>'
         : '<span><i class="sw" style="background:#c2410c"></i>Bar height: ' + m.head.toLowerCase() + ' per 10,000 people a week</span>';
       document.getElementById("ie-note").textContent = m.note;
