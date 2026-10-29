@@ -44,7 +44,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 #ca-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
 #ca-map .lbl.main { font-weight: 700; font-size: 12px; }
 #ca-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
-.ca-tables { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1.5rem; max-width: 44rem; margin: 0 0 2rem; }
+.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1.5rem; max-width: 44rem; margin: 0 auto 2rem; }
 .ca-tables table { flex: 1 1 16rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
 .ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
 .ca-tables th, .ca-tables td { padding: .3rem .5rem; border-bottom: 1px solid #ead9bd; text-align: left; }
