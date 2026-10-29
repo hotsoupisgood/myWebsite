@@ -1,0 +1,436 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HSE Mid West had significantly more patients on trolleys than any other region, 8.1 per 10,000 people a week</title>
+    <meta name="description" content="Bayesian time series estimates of patients on hospital trolleys per 10,000 people in Ireland&#39;s six HSE health regions, with winter and the Christmas and New Year weeks, January 2023 to April 2026.">
+    <meta name="generator" content="Eleventy v1.0.2">
+
+    <link rel="stylesheet" href="/css/index.css?v=0ec57e8c">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/css/prism-diff.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lucas">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Lucas">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="sidebar" aria-label="Main">
+      <a class="site-title" href="/">Lucas</a>
+      <ul class="nav">
+        <li class="nav-item"><a href="/">Projects</a></li>
+        <li class="nav-item"><a href="/photos/">Photos</a></li>
+        <li class="nav-item"><a href="/cooking/">Cooking</a></li>
+        <li class="nav-item"><a href="/visualizations/">Visualizations</a></li>
+        <li class="nav-item"><a href="/about/">About Me</a></li>
+      </ul>
+      <div class="sidebar-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </div>
+    </nav>
+
+    <div class="page">
+
+      <main id="main" class="tmpl-post">
+        <div class="post-head">
+  <a href="/visualizations/" class="back-link" aria-label="Back to Visualizations" title="Back to Visualizations">&#8592;</a>
+  <h1>HSE Mid West had significantly more patients on trolleys than any other region, 8.1 per 10,000 people a week</h1>
+</div>
+<time datetime="2026-10-29">29 Oct 2026</time>
+<div class="read-more-target">
+  <p>HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (likely range 7.4 to 8.8). That is 1.6 more than HSE West and North West, the next highest (likely range 0.7 to 2.5 more). Every region dropped in the week that contains 25 December. The drop ran from 2.3 per 10,000 in HSE Dublin and North East to 5.4 per 10,000 in HSE Mid West.</p>
+<figure class="viz ie-wide" id="ie-viz">
+  <div class="ca-card">
+    <label class="ca-select" for="ie-metric"><span>Estimate</span>
+      <select id="ie-metric">
+        <option value="alpha" selected>Level, patients per 10,000 people a week</option>
+        <option value="amp">Seasonal swing, per 10,000 people a week</option>
+        <option value="pwin">Chance higher in winter, in 100</option>
+        <option value="pm1">Two weeks before New Year week, change per 10,000</option>
+        <option value="pre">Christmas week, change per 10,000</option>
+        <option value="mid">New Year week, change per 10,000</option>
+        <option value="post">Week after New Year week, change per 10,000</option>
+      </select>
+    </label>
+    <div class="ca-checks">
+      <label class="viz-toggle"><input type="checkbox" id="ie-all" checked> Always show all regions</label>
+    </div>
+  </div>
+  <p class="ca-note" id="ie-note"></p>
+  <p class="bay-legend" id="ie-legend"></p>
+  <div class="ie-grid">
+    <div id="ie-map" role="img" aria-label="Tilted map of Ireland split into the six HSE health regions. A bar rises from each region. Hover or tap a region to show its estimates and its calendar of winters and New Year weeks."></div>
+    <div class="ie-panel" id="ie-panel" aria-live="polite">
+      <p class="ie-info" id="ie-info"></p>
+      <p class="bay-legend ie-tlleg"><span><i class="sw" style="background:#dde5e8"></i>Winter (Met Éireann: December to February)</span><span><i class="sw" style="background:#e9915a"></i>New Year phases</span><span><i class="sw" style="background:#6b5440;height:2px;vertical-align:3px"></i>Weekly count</span></p>
+      <div id="ie-tl"></div>
+    </div>
+  </div>
+</figure>
+<div class="ca-tables">
+  <table id="ie-t1"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
+  <table id="ie-t2"><caption>The four New Year phases, weeks starting Monday</caption><thead><tr><th>Phase</th><th>Weeks</th></tr></thead><tbody></tbody></table>
+</div>
+<p><strong>Methods.</strong> Data are daily counts of patients on emergency department and ward trolleys from the HSE Urgent and Emergency Care daily report, 1 January 2023 to 5 April 2026, summed into Monday-start weeks for each region and divided by regional population per 10,000 people. The estimates come from model v4.6 of Henry and Bergin (2026): each region has its own level, a yearly cycle, four New Year phase effects, a Mid West operational reset in August 2024, and dependence on the previous two weeks. It was fitted in JAGS with 4 chains of 30,000 iterations, the first 10,000 dropped, giving 80,000 draws. Values are posterior medians. The likely range (95 in 100 credible interval) runs from the 2.5th to the 97.5th percentile of the draws. Significantly means the likely range of a difference between two regions excludes zero. A chance is the share of the 80,000 draws in which the statement holds. The seasonal swing is how far the yearly cycle rises above the level at its peak. Winter follows Met Éireann (2026) and the thesis: 1 December to the end of February. The winter excess is the region's yearly cycle averaged over study weeks starting in December to February, minus its average over the other study weeks, computed in every draw. It uses the yearly cycle only, not the New Year phases. The four phases are the week two weeks before the week containing 1 January, the week before it, which contains 25 December, the week containing 1 January, and the week after it. Each phase effect is the change from the expected value in that week, and the same effect applies every winter. Region boundaries were simplified for display.</p>
+<h2 id="references" tabindex="-1">References <a class="direct-link" href="#references" aria-hidden="true">#</a></h2>
+<div class="references">
+<p>Henry, L., &amp; Bergin, E. (2026). <em>A Bayesian time series framework for comparing on trolley counts across Irish HSE health regions</em> [Master's thesis, University of Galway].</p>
+<p>Henry, L., &amp; Bergin, E. (2026). <em>HSE urgent care report Bayesian analysis</em> [Computer software]. GitHub. <a href="https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis">https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis</a></p>
+<p>Health Service Executive. (2026). <em>Urgent and emergency care report</em> [Data set]. <a href="https://www2.hse.ie/services/urgent-emergency-care-report/">https://www2.hse.ie/services/urgent-emergency-care-report/</a></p>
+<p>Met Éireann. (2026). <em>Climate of Ireland</em>. The Irish Meteorological Service. <a href="https://www.met.ie/climate/climate-of-ireland">https://www.met.ie/climate/climate-of-ireland</a></p>
+<p>Bostock, M. (2023). <em>D3.js</em> (Version 7) [Computer software]. <a href="https://d3js.org/">https://d3js.org/</a></p>
+</div>
+<style>
+.viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
+@media (min-width: 66rem) {
+  .viz.ie-wide { max-width: none; width: 62rem; position: relative; left: 50%; transform: translateX(-50%); }
+  .ie-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+}
+#ie-map { width: 100%; }
+.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
+.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b8400e' stroke-width='2'/%3E%3C/svg%3E") no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
+.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .3rem; }
+.bay-legend { font-size: .8rem; color: #6b5440; margin: 0 0 .3rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+.bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
+.ie-panel { background: #fffaf3; border-left: 3px solid #c2410c; padding: .5rem .7rem .3rem; margin: .4rem 0 0; }
+.ie-info { font-size: .85rem; color: #2a1a10; margin: 0 0 .35rem; line-height: 1.45; }
+.ie-info b { font-size: .95rem; }
+.ie-tlleg { font-size: .75rem; }
+#ie-tl svg { display: block; width: 100%; height: auto; font-family: inherit; }
+#ie-tl .ax text { font-size: 10px; fill: #6b5440; }
+#ie-tl .ax line, #ie-tl .ax path { stroke: #b49a78; }
+#ie-tl .ttl { font-size: 10px; fill: #6b5440; font-weight: 600; }
+#ie-tl .ser { fill: none; stroke: #6b5440; stroke-width: 1.1; }
+#ie-tl .zero { stroke: #8a7a6a; stroke-dasharray: 3 3; }
+#ie-tl .ci { stroke: #2a1a10; stroke-width: 2; stroke-linecap: round; }
+#ie-tl .vl { font-size: 10.5px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3px; stroke-linejoin: round; text-anchor: middle; }
+#ie-tl .col.on { stroke: #c2410c; stroke-width: 2; }
+#ie-tl .zoom { stroke: #b49a78; stroke-width: .8; fill: #f1e3c8; opacity: .45; }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+#ie-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+#ie-map .ctx { fill: #ece6dc; stroke: #fffaf0; stroke-width: 0.6; pointer-events: none; }
+#ie-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 1; stroke-linejoin: round; cursor: pointer; }
+#ie-map .county.on { fill: #efbe8a; }
+#ie-map .slab { fill: #d4b483; }
+#ie-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#ie-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
+#ie-map .ctxname { font-size: 9px; fill: #b5a088; font-style: italic; pointer-events: none; text-anchor: middle; }
+#ie-map .bar { pointer-events: none; }
+#ie-map .dot { fill: #6b5440; pointer-events: none; }
+#ie-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
+#ie-map .lbl.main { font-weight: 700; font-size: 12px; }
+#ie-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1rem; max-width: 46rem; margin: 0 auto 2rem; }
+.ca-tables table { flex: 1 1 19rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
+.ca-tables th, .ca-tables td { padding: .3rem .25rem; border-bottom: 1px solid #ead9bd; text-align: left; }
+.ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; font-size: .8rem; }
+#ie-t1 td:nth-child(n+3), #ie-t1 th:nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ca-tables td { font-size: .85rem; }
+#ie-t2 td:nth-child(2) { font-size: .8rem; }
+.ca-tables tr.sig td:nth-child(2) { font-weight: 700; }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
+</style>
+<script src="/visualizations/data/d3.v7.min.js"></script>
+<script src="/visualizations/data/topojson-client.min.js"></script>
+<script>
+(function () {
+  var el = document.getElementById("ie-map");
+  Promise.all([
+    d3.json("/visualizations/data/ireland_hse_regions.json"),
+    d3.json("/visualizations/data/hse_trolley_v46_per10k.json")
+  ]).then(function (res) {
+    var topo = res[0], D = res[1], rows = D.regions;
+    var PH = ["pm1", "pre", "mid", "post"];
+    var PHL = { pm1: "Two weeks before New Year week", pre: "Christmas week, contains 25 December", mid: "New Year week, contains 1 January", post: "Week after New Year week" };
+    var PHS = { pm1: "2 weeks before", pre: "Christmas week", mid: "New Year week", post: "Week after" };
+    var PHC = { pm1: "#f6c79a", pre: "#e9915a", mid: "#d0652a", post: "#f3d3a8" };
+    var M = {
+      alpha: { head: "Level", note: "Level: the expected weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed." },
+      amp: { head: "Seasonal swing", note: "Seasonal swing: how far the yearly cycle rises above the level at its winter peak, per 10,000 people a week." },
+      pwin: { head: "Chance", prob: true, note: "Chance that the yearly cycle puts more patients on trolleys in winter, December to February, than in the rest of the year, of 100." },
+      pm1: { head: "Change", phase: true, note: "Change from the expected weekly count, per 10,000 people, in the week two weeks before the week that contains 1 January." },
+      pre: { head: "Change", phase: true, note: "Change from the expected weekly count, per 10,000 people, in the week that contains 25 December." },
+      mid: { head: "Change", phase: true, note: "Change from the expected weekly count, per 10,000 people, in the week that contains 1 January." },
+      post: { head: "Change", phase: true, note: "Change from the expected weekly count, per 10,000 people, in the week after the week that contains 1 January." }
+    };
+    var sel = document.getElementById("ie-metric"), box = document.getElementById("ie-all");
+    var metric = sel.value;
+    function short(n) { return n.replace(/^HSE /, ""); }
+    function f1(v) { var s = Math.abs(v) < 1 ? d3.format(".2f")(v) : d3.format(".1f")(v); return s.replace("\u2212", "-"); }
+    function sp(v) { return (v > 0 ? "+" : "") + f1(v); }
+    function pc(p) { var n = Math.round(p * 100); return n >= 100 ? "over 99 in 100" : n <= 0 ? "under 1 in 100" : n + " in 100"; }
+    function val(r, m) { m = m || metric; return M[m].prob ? r.pwin[0] * 100 : r[m][0]; }
+    function fmtv(r, m) { m = m || metric; return M[m].prob ? pc(r.pwin[0]) : M[m].phase ? sp(r[m][0]) : f1(r[m][0]); }
+    function rng(q) { return f1(q[1]) + " to " + f1(q[2]); }
+    function sig(r) { var q = r[metric]; return !!M[metric].phase && (q[1] > 0 || q[2] < 0); }
+    var fmtD = d3.timeFormat("%-d %b %Y"), parse = d3.timeParse("%Y-%m-%d");
+
+    function legend() {
+      var m = M[metric], L = document.getElementById("ie-legend");
+      L.innerHTML = m.phase
+        ? '<span><i class="sw" style="background:#14736b"></i>Fewer patients than expected</span><span><i class="sw" style="background:#c2410c"></i>More patients than expected</span><span><i class="sw" style="background:#2a1a10"></i>Dark top: likely range excludes zero</span>'
+        : m.prob ? '<span><i class="sw" style="background:#c2410c"></i>Bar height: chance higher in winter, of 100</span>'
+        : '<span><i class="sw" style="background:#c2410c"></i>Bar height: ' + m.head.toLowerCase() + ' per 10,000 people a week</span>';
+      document.getElementById("ie-note").textContent = m.note;
+    }
+    function tables() {
+      var m = M[metric];
+      var ok = rows.slice().sort(function (a, b) { return val(b) - val(a); });
+      var heads = m.prob ? ["Rank", "Region", "Chance higher in winter", "Winter excess per 10,000"] : ["Rank", "Region", m.head + " per 10,000", "Likely range"];
+      d3.select("#ie-t1 thead tr").selectAll("th").data(heads).join("th").text(function (d) { return d; });
+      d3.select("#ie-t1 caption").text("Regions ranked by " + sel.options[sel.selectedIndex].text.replace(/, (change )?(per 10,000|in 100).*$/, "").toLowerCase().replace("new year", "New Year").replace("christmas", "Christmas"));
+      d3.select("#ie-t1 tbody").selectAll("tr").data(ok).join("tr").attr("class", function (r) { return sig(r) ? "sig" : null; }).html(function (r, i) {
+        if (m.prob) return "<td>" + (i + 1) + "</td><td>" + r.name + "</td><td>" + pc(r.pwin[0]) + "</td><td>" + sp(r.wex[0]) + ", likely range " + rng(r.wex) + "</td>";
+        return "<td>" + (i + 1) + "</td><td>" + r.name + "</td><td>" + fmtv(r) + "</td><td>" + rng(r[metric]) + "</td>";
+      });
+      d3.select("#ie-t2 tbody").selectAll("tr").data(PH).join("tr").html(function (k) {
+        var w = D.phases.filter(function (p) { return p.key === k; })[0].weeks.map(function (s) { return fmtD(parse(s)); });
+        return "<td>" + PHL[k] + "</td><td>" + w.join(", ") + "</td>";
+      });
+    }
+    legend(); tables();
+
+    var info = document.getElementById("ie-info"), tl = document.getElementById("ie-tl");
+    var serMax = d3.max(rows, function (r) { return d3.max(r.series); });
+    var phLo = d3.min(rows, function (r) { return d3.min(PH, function (k) { return r[k][1]; }); });
+    var phHi = d3.max(rows, function (r) { return d3.max(PH, function (k) { return r[k][2]; }); });
+    var dates = D.dates.map(parse), d0 = dates[0], d1 = d3.timeDay.offset(dates[dates.length - 1], 7);
+    var cur = null;
+    function panel(i) {
+      cur = i;
+      var r = rows[i];
+      info.innerHTML = "<b>" + r.name + "</b><br>Level " + f1(r.alpha[0]) + " patients on trolleys per 10,000 people a week, likely range " + rng(r.alpha) + ". "
+        + "Seasonal swing " + f1(r.amp[0]) + " per 10,000, likely range " + rng(r.amp) + ". "
+        + "Winter, December to February, averages " + sp(r.wex[0]) + " per 10,000 against the rest of the year, likely range " + rng(r.wex) + ". Chance trolleys were higher in winter: " + pc(r.pwin[0]) + ". "
+        + "Yearly peak in " + r.peak_month + (r.peak_width_weeks > 20 ? ", poorly pinned: its likely range is " + Math.round(r.peak_width_weeks) + " weeks wide" : ", likely range " + Math.round(r.peak_width_weeks) + " weeks wide") + ". "
+        + r.weeks + " weeks of data, " + fmtD(d0) + " to " + fmtD(d3.timeDay.offset(d1, -1)) + ".";
+      tl.innerHTML = "";
+      var W = Math.max(280, tl.clientWidth), small = W < 400;
+      var L = 34, R = 8, sT = 16, sH = 58, gap = 34, iH = small ? 128 : 140, colLab = small ? 56 : 44;
+      var H = sT + sH + 18 + gap + iH + colLab + 4;
+      var svg = d3.select(tl).append("svg").attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H);
+      var x = d3.scaleTime().domain([d0, d1]).range([L, W - R]);
+      var ys = d3.scaleLinear().domain([0, serMax]).nice().range([sT + sH, sT]);
+      svg.append("text").attr("class", "ttl").attr("x", 0).attr("y", 10).text(small ? "Weekly patients on trolleys per 10,000 people" : "Weekly patients on trolleys per 10,000 people, winters and New Year phases shaded");
+      // winter bands behind everything
+      for (var yr = d0.getFullYear() - 1; yr <= d1.getFullYear(); yr++) {
+        var wa = new Date(yr, 11, 1), wb = new Date(yr + 1, 2, 1);
+        var xa = x(wa < d0 ? d0 : wa), xb = x(wb > d1 ? d1 : wb);
+        if (xb > xa) svg.append("rect").attr("x", xa).attr("width", xb - xa).attr("y", sT).attr("height", sH).attr("fill", "#dde5e8").append("title").text("Winter, Met Éireann: December to February");
+      }
+      D.phases.forEach(function (p) {
+        p.weeks.forEach(function (s) {
+          var a = parse(s);
+          svg.append("rect").attr("x", x(a)).attr("width", Math.max(1.5, x(d3.timeDay.offset(a, 7)) - x(a))).attr("y", sT + 8).attr("height", sH - 8).attr("fill", PHC[p.key]).attr("opacity", metric === p.key ? 1 : .8)
+            .append("title").text(PHL[p.key] + ", week of " + fmtD(a));
+        });
+      });
+      var line = d3.line().defined(function (v) { return v !== null; }).x(function (v, j) { return x(d3.timeDay.offset(dates[j], 3.5)); }).y(function (v) { return ys(v); });
+      svg.append("path").attr("class", "ser").attr("d", line(r.series));
+      var ya = svg.append("g").attr("class", "ax").attr("transform", "translate(" + L + ",0)").call(d3.axisLeft(ys).ticks(3).tickSize(3));
+      ya.select(".domain").remove();
+      var months = d3.timeMonth.range(d3.timeMonth.ceil(d0), d1);
+      var ax = svg.append("g").attr("class", "ax").attr("transform", "translate(0," + (sT + sH) + ")");
+      ax.append("line").attr("x1", L).attr("x2", W - R);
+      months.forEach(function (m) {
+        var q = m.getMonth() % 3 === 0, yr0 = m.getMonth() === 0;
+        ax.append("line").attr("x1", x(m)).attr("x2", x(m)).attr("y2", yr0 ? 9 : q ? 6 : 3);
+        if (yr0) ax.append("text").attr("x", x(m)).attr("y", 18).attr("text-anchor", "middle").attr("font-weight", 600).text(m.getFullYear());
+        else if (q && !small) ax.append("text").attr("x", x(m)).attr("y", 16).attr("text-anchor", "middle").attr("font-size", "9px").text(d3.timeFormat("%b")(m));
+      });
+      var blk = PH.map(function (k) { var w = D.phases.filter(function (p) { return p.key === k; })[0].weeks; return parse(w[w.length - 1]); });
+      var bx0 = x(blk[0]), bx1 = x(d3.timeDay.offset(blk[3], 7));
+      var iT = sT + sH + 18 + gap, cL = L, cR = W - R;
+      svg.append("path").attr("class", "zoom").attr("d", "M" + bx0 + "," + (sT + sH + 20) + "L" + bx1 + "," + (sT + sH + 20) + "L" + cR + "," + (iT - 14) + "L" + cL + "," + (iT - 14) + "Z");
+      svg.append("text").attr("class", "ttl").attr("x", cL).attr("y", iT - 4).text(small ? "Change per 10,000 a week, likely range, chance higher" : "Change per 10,000 people a week, likely range, and chance higher");
+      var yi = d3.scaleLinear().domain([phLo, phHi]).nice().range([iT + iH, iT + 8]);
+      var cw = (cR - cL) / 4;
+      PH.forEach(function (k, j) {
+        var q = r[k], cx = cL + cw * j + cw / 2;
+        svg.append("rect").attr("class", "col" + (metric === k ? " on" : "")).attr("x", cL + cw * j + 1).attr("width", cw - 2).attr("y", iT + 2).attr("height", iH - 2).attr("fill", PHC[k]).attr("fill-opacity", .35);
+        var w = D.phases.filter(function (p) { return p.key === k; })[0].weeks, lw = parse(w[w.length - 1]);
+        var wd = PHS[k].split(" "), l1 = small ? wd.slice(0, wd.length > 2 ? 2 : 1).join(" ") : PHS[k], l2 = small ? wd.slice(wd.length > 2 ? 2 : 1).join(" ") : "", o = small ? 11 : 0;
+        svg.append("text").attr("class", "ttl").attr("x", cx).attr("y", iT + iH + 12).attr("text-anchor", "middle").text(l1);
+        if (l2) svg.append("text").attr("class", "ttl").attr("x", cx).attr("y", iT + iH + 23).attr("text-anchor", "middle").text(l2);
+        var e6 = d3.timeDay.offset(lw, 6), sameM = e6.getMonth() === lw.getMonth();
+        svg.append("text").attr("x", cx).attr("y", iT + iH + 24 + o).attr("text-anchor", "middle").attr("font-size", "9.5px").attr("fill", "#6b5440").text(small ? (sameM ? lw.getDate() + " to " + d3.timeFormat("%-d %b")(e6) : d3.timeFormat("%-d %b")(lw) + " to " + d3.timeFormat("%-d %b")(e6)) : d3.timeFormat("%-d %b")(lw) + " to " + d3.timeFormat("%-d %b")(e6));
+        svg.append("text").attr("x", cx).attr("y", iT + iH + 37 + o).attr("text-anchor", "middle").attr("font-size", "9.5px").attr("fill", "#2a1a10").text(pc(q[3]).replace("over ", ">").replace("under ", "<"));
+      });
+      svg.append("line").attr("class", "zero").attr("x1", cL).attr("x2", cR).attr("y1", yi(0)).attr("y2", yi(0));
+      var yia = svg.append("g").attr("class", "ax").attr("transform", "translate(" + L + ",0)").call(d3.axisLeft(yi).ticks(5).tickSize(3).tickFormat(function (v) { return (v > 0 ? "+" : "") + v; }));
+      yia.select(".domain").remove();
+      PH.forEach(function (k, j) {
+        var q = r[k], cx = cL + cw * j + cw / 2;
+        svg.append("line").attr("class", "ci").attr("x1", cx).attr("x2", cx).attr("y1", yi(q[1])).attr("y2", yi(q[2]));
+        [q[1], q[2]].forEach(function (v) { svg.append("line").attr("class", "ci").attr("x1", cx - 5).attr("x2", cx + 5).attr("y1", yi(v)).attr("y2", yi(v)).attr("stroke-width", 1.4); });
+        svg.append("circle").attr("cx", cx).attr("cy", yi(q[0])).attr("r", 4.5).attr("fill", (q[1] > 0 || q[2] < 0) ? (q[0] < 0 ? "#14736b" : "#c2410c") : "#fffaf3").attr("stroke", "#2a1a10").attr("stroke-width", 1.4)
+          .append("title").text(PHL[k] + ": " + sp(q[0]) + " per 10,000, likely range " + rng(q) + ", " + pc(q[3]) + " chance trolleys were higher");
+        svg.append("text").attr("class", "vl").attr("x", cx).attr("y", q[0] < 0 ? yi(q[2]) - 6 : yi(q[1]) + 13).text(sp(q[0]));
+      });
+    }
+
+    var feats = topojson.feature(topo, topo.objects.regions).features;
+    var ni = topojson.feature(topo, topo.objects.ni).features;
+    var byName = {}; rows.forEach(function (r, i) { byName[r.name] = i; });
+    feats.forEach(function (f) { f.ri = byName[f.properties.Region]; });
+    var maxAll = {};
+    Object.keys(M).forEach(function (k) { maxAll[k] = d3.max(rows, function (r) { return Math.abs(val(r, k)); }); });
+    var TILT = 50 * Math.PI / 180;
+    var land = topojson.merge(topo, topo.objects.regions.geometries);
+    var state = { i: null };
+    var top0 = rows.map(function (r, i) { return i; }).sort(function (a, b) { return val(rows[b]) - val(rows[a]); })[0];
+    function draw() {
+      el.innerHTML = "";
+      var W = Math.max(300, el.clientWidth), small = W < 480;
+      var fc = { type: "FeatureCollection", features: feats.concat(ni) };
+      var B = 1000;
+      var base = d3.geoTransverseMercator().rotate([8, -53.5]).fitSize([B, B], fc);
+      var bb0 = d3.geoPath(base).bounds(fc), front = bb0[1][1], cx0 = (bb0[0][0] + bb0[1][0]) / 2;
+      var DD = 1.4 * B, sinT = Math.sin(TILT), cosT = Math.cos(TILT);
+      function tiltRaw(x, y) { var back = front - y; var sc = DD / (DD + back * cosT); return [cx0 + (x - cx0) * sc, front - back * sinT * sc]; }
+      var k = 1, tx = 0, ty = 0;
+      function tiltPt(x, y) { var q = tiltRaw(x, y); return [q[0] * k + tx, q[1] * k + ty]; }
+      var tf = d3.geoTransform({ point: function (x, y) { var q = tiltPt(x, y); this.stream.point(q[0], q[1]); } });
+      var proj = { stream: function (st) { return base.stream(tf.stream(st)); } };
+      var path = d3.geoPath(proj);
+      var rb = path.bounds(fc);
+      var edge = small ? 5 : 7, pad = 6;
+      var maxH = W * (small ? 0.26 : 0.22);
+      k = (W - 2 * pad) / (rb[1][0] - rb[0][0]);
+      tx = pad - rb[0][0] * k; ty = -rb[0][1] * k;
+      var bpath = d3.geoPath(base);
+      var NUDGE = { "HSE Dublin and North East": [0, 25], "HSE Dublin and South East": [10, -15], "HSE Dublin and Midlands": [-20, 0] };
+      var pts = rows.map(function (r) {
+        var f = feats.filter(function (g) { return g.ri === byName[r.name]; })[0];
+        var c = bpath.centroid(f), n = NUDGE[r.name] || [0, 0];
+        return tiltPt(c[0] + n[0], c[1] + n[1]);
+      });
+      var top = 12;
+      pts.forEach(function (q) { top = Math.max(top, maxH + 34 - q[1]); });
+      ty += top;
+      pts.forEach(function (q) { q[1] += top; });
+      var H = Math.ceil(top + (rb[1][1] - rb[0][1]) * k + edge + 10);
+      var svg = d3.select(el).append("svg").attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H);
+      svg.append("defs").append("filter").attr("id", "ie-blur").attr("x", "-10%").attr("y", "-10%").attr("width", "120%").attr("height", "120%").append("feGaussianBlur").attr("stdDeviation", 5);
+      svg.append("rect").attr("width", W).attr("height", H).attr("fill", "transparent").on("click", function () { clear(); });
+      var landD = path(land);
+      svg.append("path").attr("class", "shadow").attr("d", landD).attr("transform", "translate(5," + (edge + 6) + ")").attr("filter", "url(#ie-blur)");
+      for (var e = edge; e > 0; e--) svg.append("path").attr("class", "slab").attr("d", landD).attr("transform", "translate(0," + e + ")");
+      svg.append("g").selectAll("path").data(ni).join("path").attr("class", "ctx").attr("d", path);
+      var nic = bpath.centroid(ni[0]), niq = tiltPt(nic[0], nic[1]);
+      if (!small) svg.append("text").attr("class", "ctxname").attr("x", niq[0]).attr("y", niq[1]).text("Northern Ireland");
+      var regions = svg.append("g").selectAll("path").data(feats).join("path").attr("class", "county").attr("d", path)
+        .on("pointerenter", function (ev, f) { if (ev.pointerType === "mouse") show(f.ri); })
+        .on("pointerleave", function (ev) { if (ev.pointerType === "mouse") clear(); })
+        .on("click", function (ev, f) { ev.stopPropagation(); show(f.ri); });
+      var outline = svg.append("path").attr("class", "outline");
+      svg.append("g").selectAll("circle").data(pts).join("circle").attr("class", "dot").attr("cx", function (p) { return p[0]; }).attr("cy", function (p) { return p[1]; }).attr("r", 1.6);
+      var layer = svg.append("g");
+      var h = function (v) { return maxH * Math.abs(v) / maxAll[metric]; };
+      var COL = { pos: { main: ["#c2410c", "#8a2d08", "#e56a32"], nb: ["#f28c38", "#c4661c", "#f9b277"] },
+        neg: { main: ["#14736b", "#0b4f49", "#2b8f86"], nb: ["#3fa69c", "#2a7d75", "#7fc8c0"] } };
+      var bw = small ? 9 : 12;
+      function show(i) {
+        state.i = i;
+        if (i !== null) panel(i);
+        var set = box.checked ? rows.map(function (r, j) { return j; }) : (i === null ? [] : [i]);
+        regions.classed("on", function (f) { return f.ri === i; });
+        outline.attr("d", i === null ? null : path(feats.filter(function (f) { return f.ri === i; })[0]));
+        layer.interrupt().selectAll("*").interrupt();
+        layer.selectAll("*").remove();
+        var items = set.map(function (j, n) {
+          var r = rows[j], v = val(r), p = pts[j], hh = Math.max(3, h(v));
+          return { k: j, n: n, x: p[0], y: p[1], top: p[1] - hh, hh: hh, main: j === i || i === null, neg: v < 0, sig: sig(r), text: short(r.name) + " " + fmtv(r) };
+        });
+        var dx = bw * 0.5, dy = bw * 0.35;
+        function barPaths(gg, d, hh) {
+          var x0 = d.x - bw / 2, x1 = d.x + bw / 2, y0 = d.y, y1 = d.y - hh;
+          gg.select(".f").attr("d", "M" + x0 + "," + y0 + "H" + x1 + "V" + y1 + "H" + x0 + "Z");
+          gg.select(".s").attr("d", "M" + x1 + "," + y0 + "L" + (x1 + dx) + "," + (y0 - dy) + "V" + (y1 - dy) + "L" + x1 + "," + y1 + "Z");
+          gg.select(".c").attr("d", "M" + x0 + "," + y1 + "H" + x1 + "L" + (x1 + dx) + "," + (y1 - dy) + "H" + (x0 + dx) + "Z");
+        }
+        items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
+          var col = (d.neg ? COL.neg : COL.pos)[d.main ? "main" : "nb"];
+          var gg = layer.append("g").attr("class", "bar");
+          gg.append("path").attr("class", "s").attr("fill", col[1]);
+          gg.append("path").attr("class", "f").attr("fill", col[0]).attr("stroke", d.sig ? "#2a1a10" : "none").attr("stroke-width", 1);
+          gg.append("path").attr("class", "c").attr("fill", d.sig ? "#2a1a10" : col[2]);
+          barPaths(gg, d, 0);
+          gg.transition().duration(400).ease(d3.easeCubicOut).delay(Math.min(d.n, 6) * 25).tween("h", function () {
+            var ip = d3.interpolateNumber(0, d.hh); return function (u) { barPaths(gg, d, ip(u)); };
+          });
+        });
+        var placed = [];
+        var barsBox = items.map(function (d) { return { x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.hh + dy + 2 }; });
+        items.sort(function (a, b) { return a.k === i ? -1 : b.k === i ? 1 : a.top - b.top; }).forEach(function (d) {
+          var tx2 = layer.append("text").attr("class", "lbl" + (d.k === i ? " main" : "")).text(d.text).attr("opacity", 0);
+          var bb = tx2.node().getBBox(), lw = bb.width, lh = bb.height;
+          var obs = placed.concat(barsBox);
+          function free(x, y) {
+            if (x < 2 || x + lw > W - 2 || y - lh < 1 || y > H - 2) return false;
+            return !obs.some(function (q) { return x < q.x + q.w + 3 && x + lw + 3 > q.x && y - lh < q.y + 3 && y + 1 > q.y - q.h - 3; });
+          }
+          var x = null, y = null, bs = d.top - dy - 7;
+          var xs = [d.x - lw / 2, d.x + bw / 2 + dx + 4, d.x - bw / 2 - 4 - lw];
+          outer: for (var s = 0; s < 60; s++) {
+            var dys = s === 0 ? [0] : [-s * 4, s * 4];
+            for (var j = 0; j < dys.length; j++) for (var m = 0; m < xs.length; m++) {
+              var cx = xs[m], cy = bs + dys[j];
+              if (m > 0) cy = Math.max(cy, d.top + lh - 2);
+              cx = Math.max(2, Math.min(W - lw - 2, cx)); cy = Math.max(lh + 2, cy);
+              if (free(cx, cy)) { x = cx; y = cy; break outer; }
+            }
+          }
+          if (x === null) { x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, bs); }
+          placed.push({ x: x, y: y, w: lw, h: lh });
+          if (Math.abs(y - bs) > 2 || Math.abs(x - (d.x - lw / 2)) > 2) {
+            layer.insert("line", ":first-child").attr("class", "lead").attr("x1", d.x + dx / 2).attr("y1", d.top - dy).attr("x2", Math.max(x, Math.min(x + lw, d.x))).attr("y2", y + 2);
+          }
+          tx2.attr("x", x).attr("y", y).transition().duration(200).delay(150).attr("opacity", 1);
+        });
+      }
+      function clear() {
+        state.i = null;
+        if (box.checked) { show(null); return; }
+        regions.classed("on", false); outline.attr("d", null);
+        layer.selectAll("*").interrupt().remove();
+      }
+      if (state.i !== null || box.checked) show(state.i);
+      box.onchange = function () { if (state.i !== null || box.checked) show(state.i); else clear(); };
+      sel.onchange = function () {
+        metric = sel.value; legend(); tables();
+        if (cur !== null) panel(cur);
+        if (state.i !== null || box.checked) show(state.i);
+      };
+      window.__ieShow = function (name) { show(byName[name]); };
+    }
+    panel(top0);
+    draw();
+    var lastW = el.clientWidth;
+    window.addEventListener("resize", function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); if (cur !== null) panel(cur); } });
+  });
+})();
+</script>
+
+</div>
+
+      </main>
+
+      <footer class="page-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </footer>
+    </div>
+  </body>
+</html>
