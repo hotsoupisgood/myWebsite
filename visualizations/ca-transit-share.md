@@ -7,6 +7,7 @@ layout: layouts/post.njk
 
 <figure class="viz" id="ca-transit-viz">
   <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 counties with the highest share</label>
+  <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 counties with the lowest share</label>
   <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the share of workers who commuted by public transportation in that county and its neighbors."></div>
 </figure>
 
@@ -30,7 +31,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 <style>
 .viz { margin: 1rem 0 1.5rem; max-width: 44rem; }
 #ca-map { width: 100%; }
-.viz-toggle { display: inline-flex; align-items: center; gap: .4rem; font-size: .9rem; cursor: pointer; margin-bottom: .5rem; }
+.viz-toggle { display: inline-flex; align-items: center; gap: .4rem; margin-right: 1.25rem; font-size: .9rem; cursor: pointer; margin-bottom: .5rem; }
 .viz-toggle input { accent-color: #c2410c; width: 1rem; height: 1rem; }
 #ca-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 #ca-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.6; stroke-linejoin: round; cursor: pointer; }
@@ -77,8 +78,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     var maxV = d3.max(rows, function (r) { return r.share_pct; });
     var state = { i: null };
     var box = document.getElementById("ca-top5");
-    var top5 = feats.map(function (f, k) { return k; })
-      .sort(function (a, b) { return byFips[feats[b].id].share_pct - byFips[feats[a].id].share_pct; }).slice(0, 5);
+    var box2 = document.getElementById("ca-bottom5");
+    var ranked = feats.map(function (f, k) { return k; })
+      .sort(function (a, b) { return byFips[feats[b].id].share_pct - byFips[feats[a].id].share_pct; });
+    var top5 = ranked.slice(0, 5), bottom5 = ranked.slice(-5);
 
     var TILT = 50 * Math.PI / 180; // camera elevation above the table
     var land = topojson.merge(topo, geoms);
@@ -151,6 +154,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         var hov = i === null ? [] : [i].concat(nbrs[i]);
         var set = hov.slice();
         if (box.checked) top5.forEach(function (k) { if (set.indexOf(k) < 0) set.push(k); });
+        if (box2.checked) bottom5.forEach(function (k) { if (set.indexOf(k) < 0) set.push(k); });
         counties.classed("on", function (f, k) { return k === i; }).classed("nb", function (f, k) { return k !== i && hov.indexOf(k) >= 0; });
         outline.attr("d", i === null ? null : path(feats[i]));
         var had = {};
@@ -225,15 +229,18 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         });
       }
       function clear() {
-        if (box.checked) { show(null); return; }
+        if (box.checked || box2.checked) { show(null); return; }
         state.i = null;
         counties.classed("on", false).classed("nb", false);
         outline.attr("d", null);
         layer.selectAll("text,line").interrupt().remove();
         layer.selectAll("g.bar").interrupt().transition().duration(200).attr("opacity", 0).remove();
       }
-      if (state.i !== null || box.checked) show(state.i);
-      box.onchange = function () { if (state.i !== null) show(state.i); else clear(); };
+      if (state.i !== null || box.checked || box2.checked) show(state.i);
+      box.onchange = box2.onchange = function () {
+        if (state.i !== null || box.checked || box2.checked) show(state.i);
+        else { layer.selectAll("text,line").interrupt().remove(); layer.selectAll("g.bar").interrupt().transition().duration(200).attr("opacity", 0).remove(); }
+      };
       window.__caShow = function (fips) { show(feats.findIndex(function (f) { return f.id === fips; })); };
     }
     draw();
