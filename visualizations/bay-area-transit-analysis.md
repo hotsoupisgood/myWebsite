@@ -98,7 +98,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ca-tables td:first-child { font-size: .85rem; }
 .ca-tables th { font-size: .8rem; }
 .ca-tables tr.sig td:first-child { font-weight: 700; }
-.ca-tables .mk { color: #2a1a10; font-size: .75rem; }
+.ca-tables .mk { color: #c2410c; font-weight: 700; font-size: 1rem; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
@@ -164,7 +164,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     function legend() {
       var m = M[metric], L = document.getElementById("bay-legend");
       L.innerHTML = m.net
-        ? '<span><i class="sw" style="background:#e56a32"></i>More YIMBY</span><span><i class="sw" style="background:#2b8f86"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>Dark top: likely range excludes zero</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: too few speakers</span>'
+        ? '<span><i class="sw" style="background:#e56a32"></i>More YIMBY</span><span><i class="sw" style="background:#2b8f86"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant, likely range excludes zero</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: too few speakers</span>'
         : '<span><i class="sw" style="background:#e56a32"></i>Bar height: ' + m.head.toLowerCase() + '</span>' + (m.few ? '<span><i class="sw" style="background:#cfc6bb"></i>Grey: too few speakers</span>' : '<span><i class="sw" style="background:#cfc6bb"></i>Grey: 0' + m.unit + '</span>');
       document.getElementById("bay-note").textContent = m.note;
     }
@@ -178,7 +178,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         d3.select("#" + id + " thead tr").selectAll("th").data(heads).join("th").text(function (d) { return d; });
         d3.select("#" + id + " caption").text("Ranks " + from + " to " + (from + list.length - 1) + ", " + sel.options[sel.selectedIndex].text.replace(/, [a-z]+$/, "").replace(/, of 100$/, ""));
         d3.select("#" + id + " tbody").selectAll("tr").data(list).join("tr").attr("class", function (r) { return sig(r) ? "sig" : null; }).html(function (r) {
-          if (m.net) { var s = g(r); return "<td>" + label(r) + (s.sig ? ' <span class="mk" title="likely range excludes zero">&#9632;</span>' : "") + "</td><td>" + sign(s.net) + " of 100</td><td>" + sign(s.lo) + " to " + sign(s.hi) + "</td><td>" + s.n + " " + (m.key === "off" ? "officials" : "speakers") + "</td>"; }
+          if (m.net) { var s = g(r); return "<td>" + label(r) + "</td><td>" + sign(s.net) + " of 100" + (s.sig ? ' <span class="mk" title="likely range excludes zero">*</span>' : "") + "</td><td>" + sign(s.lo) + " to " + sign(s.hi) + "</td><td>" + s.n + " " + (m.key === "off" ? "officials" : "speakers") + "</td>"; }
           return "<td>" + label(r) + "</td><td>" + d3.format(",")(val(r)) + m.unit + "</td><td>" + d3.format(",")(m.cv(r)) + m.cu + "</td>";
         });
       }
@@ -186,7 +186,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       fill("bay-t2", ok.slice(half), half + 1);
       var rest = rows.filter(function (r) { return ok.indexOf(r) < 0; }).map(label).sort();
       var why = m.net || m.few ? "Too few speakers with a stance to draw, under 10 speakers: " : (metric === "hours" ? "No hours transcribed: " : "No meetings found: ");
-      document.getElementById("bay-few").textContent = (m.net ? "\u25A0 marks a likely range that excludes zero. " : "") + (rest.length ? why + rest.join(", ") + "." : "");
+      document.getElementById("bay-few").textContent = (m.net ? "* marks a significant result: the likely range excludes zero. " : "") + (rest.length ? why + rest.join(", ") + "." : "");
     }
     legend(); tables();
 
@@ -294,7 +294,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
           var r = rows[j], v = val(r), p = pts[j], grey = v === null || v === 0;
           var hh = grey ? 4 : Math.max(3, h(v));
           return { k: j, n: n, x: p[0], y: p[1], top: p[1] - hh, hh: hh, main: j === i || (i === null && hov.indexOf(j) >= 0), grey: grey, neg: !grey && v < 0, sig: sig(r),
-            lab: lab.indexOf(j) >= 0, text: label(r) + (grey ? ": " : " ") + fmtv(r) };
+            lab: lab.indexOf(j) >= 0, text: label(r) + (grey ? ": " : " ") + fmtv(r) + (M[metric].net && sig(r) ? " *" : "") };
         });
         var dx = bw * 0.5, dy = bw * 0.35;
         function barPaths(gg, d, hh) {
