@@ -25,14 +25,16 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .viz { margin: 1rem 0 1.5rem; max-width: 44rem; }
 #ca-map { width: 100%; }
 #ca-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
-#ca-map .county { fill: #e3e3e0; stroke: #fff; stroke-width: 0.7; cursor: pointer; }
-#ca-map .county.nb { fill: #d6dde4; }
-#ca-map .county.on { fill: #c4d0dc; }
-#ca-map .outline { fill: none; stroke: #082840; stroke-width: 1.6; pointer-events: none; }
+#ca-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.6; stroke-linejoin: round; cursor: pointer; }
+#ca-map .county.nb { fill: #f5d6aa; }
+#ca-map .county.on { fill: #efbe8a; }
+#ca-map .slab { fill: #d4b483; }
+#ca-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#ca-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
 #ca-map .bar { pointer-events: none; }
-#ca-map .lbl { pointer-events: none; font-size: 11px; fill: #222; paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+#ca-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
 #ca-map .lbl.main { font-weight: 700; font-size: 12px; }
-#ca-map .lead { stroke: #888; stroke-width: 0.6; pointer-events: none; }
+#ca-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
@@ -53,35 +55,66 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     var maxV = d3.max(rows, function (r) { return r.share_pct; });
     var state = { i: null };
 
+    var TILT = 50 * Math.PI / 180; // camera elevation above the table
+    var land = topojson.merge(topo, geoms);
     function draw() {
       el.innerHTML = "";
       var W = Math.max(300, el.clientWidth);
-      var H = Math.round(Math.min(W * 1.1, Math.max(460, window.innerHeight * 0.92)));
       var small = W < 480;
-      var proj = d3.geoConicEqualArea().parallels([34, 40.5]).rotate([120, 0])
-        .fitExtent([[6, H * 0.12], [W - 6, H - 6]], { type: "FeatureCollection", features: feats });
+      var fc = { type: "FeatureCollection", features: feats };
+      var B = 1000;
+      var base = d3.geoConicEqualArea().parallels([34, 40.5]).rotate([120, 0]).fitSize([B, B], fc);
+      var bb0 = d3.geoPath(base).bounds(fc), front = bb0[1][1], cx0 = (bb0[0][0] + bb0[1][0]) / 2;
+      var D = 1.4 * B, sinT = Math.sin(TILT), cosT = Math.cos(TILT);
+      function tiltRaw(x, y) {
+        var back = front - y;            // distance from the near edge, on the table
+        var sc = D / (D + back * cosT);  // farther points are smaller
+        return [cx0 + (x - cx0) * sc, front - back * sinT * sc];
+      }
+      var k = 1, tx = 0, ty = 0;
+      function tiltPt(x, y) { var q = tiltRaw(x, y); return [q[0] * k + tx, q[1] * k + ty]; }
+      var tf = d3.geoTransform({ point: function (x, y) { var q = tiltPt(x, y); this.stream.point(q[0], q[1]); } });
+      var proj = { stream: function (st) { return base.stream(tf.stream(st)); } };
       var path = d3.geoPath(proj);
-      var svg = d3.select(el).append("svg").attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H);
-      svg.append("rect").attr("width", W).attr("height", H).attr("fill", "transparent").on("click", function () { clear(); });
+      var rb = path.bounds(fc);
+      var edge = small ? 5 : 7, pad = 6;
+      var maxH = W * (small ? 0.36 : 0.30);
+      k = (W - 2 * pad) / (rb[1][0] - rb[0][0]);
+      tx = pad - rb[0][0] * k;
+      ty = -rb[0][1] * k;
+      var bpath = d3.geoPath(base);
       var pts = feats.map(function (f) {
-        var c = path.centroid(f);
-        if (!d3.geoContains(f, proj.invert(c))) {
-          var b = path.bounds(f), best = null, bd = -1;
+        var c = bpath.centroid(f);
+        if (!d3.geoContains(f, base.invert(c))) {
+          var b = bpath.bounds(f), best = null, bd = -1;
           for (var gx = 0; gx <= 12; gx++) for (var gy = 0; gy <= 12; gy++) {
             var p = [b[0][0] + (b[1][0] - b[0][0]) * gx / 12, b[0][1] + (b[1][1] - b[0][1]) * gy / 12];
-            if (d3.geoContains(f, proj.invert(p))) { var d = -Math.hypot(p[0] - c[0], p[1] - c[1]); if (d > bd || best === null) { bd = d; best = p; } }
+            if (d3.geoContains(f, base.invert(p))) { var d = -Math.hypot(p[0] - c[0], p[1] - c[1]); if (d > bd || best === null) { bd = d; best = p; } }
           }
           if (best) c = best;
         }
-        return c;
+        return tiltPt(c[0], c[1]);
       });
-      var counties = svg.append("g").selectAll("path").data(feats).join("path").attr("class", "county").attr("d", path)
+      // room above the map: enough for the tallest bar plus a label at each county
+      var top = 12;
+      pts.forEach(function (q, i) { top = Math.max(top, maxH * val(i) / maxV + 34 - q[1]); });
+      ty += top;
+      pts.forEach(function (q) { q[1] += top; });
+      var H = Math.ceil(top + (rb[1][1] - rb[0][1]) * k + edge + 10);
+      var svg = d3.select(el).append("svg").attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H);
+      var defs = svg.append("defs");
+      defs.append("filter").attr("id", "ca-blur").attr("x", "-10%").attr("y", "-10%").attr("width", "120%").attr("height", "120%")
+        .append("feGaussianBlur").attr("stdDeviation", 5);
+      svg.append("rect").attr("width", W).attr("height", H).attr("fill", "transparent").on("click", function () { clear(); });
+      var landD = path(land);
+      svg.append("path").attr("class", "shadow").attr("d", landD).attr("transform", "translate(5," + (edge + 6) + ")").attr("filter", "url(#ca-blur)");
+      for (var e = edge; e > 0; e--) svg.append("path").attr("class", "slab").attr("d", landD).attr("transform", "translate(0," + e + ")");
+      var counties = svg.append("g").selectAll("path").data(feats).join("path").attr("class", "county").attr("data-fips", function (f) { return f.id; }).attr("d", path)
         .on("pointerenter", function (ev, f) { if (ev.pointerType === "mouse") show(feats.indexOf(f)); })
         .on("pointerleave", function (ev) { if (ev.pointerType === "mouse") clear(); })
         .on("click", function (ev, f) { ev.stopPropagation(); var i = feats.indexOf(f); if (state.i === i && ev.pointerType !== "mouse") clear(); else show(i); });
       var outline = svg.append("path").attr("class", "outline");
       var layer = svg.append("g");
-      var maxH = H * (small ? 0.24 : 0.27);
       var h = d3.scaleLinear().domain([0, maxV]).range([0, maxH]);
       var bw = small ? 7 : 9;
 
@@ -101,25 +134,41 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
           return { k: k, n: n, x: p[0], y: p[1], top: p[1] - h(val(k)), main: k === i,
             text: name(k) + " " + val(k).toFixed(1) + " of 100" };
         });
-        items.forEach(function (d) {
-          layer.append("rect").attr("class", "bar").attr("x", d.x - bw / 2).attr("width", bw)
-            .attr("y", d.y).attr("height", 0).attr("fill", d.main ? "#082840" : "#7fa3c2")
-            .transition(t).delay(d.n * 40).attr("y", d.top).attr("height", d.y - d.top);
+        var dx = bw * 0.5, dy = bw * 0.35;
+        var COL = { main: ["#c2410c", "#8a2d08", "#e56a32"], nb: ["#f28c38", "#c4661c", "#f9b277"] };
+        function barPaths(g, d, hh) {
+          var x0 = d.x - bw / 2, x1 = d.x + bw / 2, y0 = d.y, y1 = d.y - hh;
+          g.select(".f").attr("d", "M" + x0 + "," + y0 + "H" + x1 + "V" + y1 + "H" + x0 + "Z");
+          g.select(".s").attr("d", "M" + x1 + "," + y0 + "L" + (x1 + dx) + "," + (y0 - dy) + "V" + (y1 - dy) + "L" + x1 + "," + y1 + "Z");
+          g.select(".c").attr("d", "M" + x0 + "," + y1 + "H" + x1 + "L" + (x1 + dx) + "," + (y1 - dy) + "H" + (x0 + dx) + "Z");
+        }
+        items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
+          var col = d.main ? COL.main : COL.nb;
+          var g = layer.append("g").attr("class", "bar").datum(0);
+          g.append("path").attr("class", "s").attr("fill", col[1]);
+          g.append("path").attr("class", "f").attr("fill", col[0]);
+          g.append("path").attr("class", "c").attr("fill", col[2]);
+          barPaths(g, d, 0);
+          var full = d.y - d.top;
+          g.transition(t).delay(d.n * 40).tween("h", function () {
+            return function (u) { g.datum(full * u); barPaths(g, d, full * u); };
+          });
+          d.g = g;
         });
         // labels: place, then push apart and keep inside the SVG
         var placed = [];
-        var barsBox = items.map(function (d) { return { k: d.k, x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + 2, h: d.y - d.top + 2 }; });
+        var barsBox = items.map(function (d) { return { k: d.k, x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.y - d.top + dy + 2 }; });
         items.slice().sort(function (a, b) { return a.main ? -1 : b.main ? 1 : a.top - b.top; }).forEach(function (d) {
           var tx = layer.append("text").attr("class", "lbl" + (d.main ? " main" : "")).text(d.text).attr("opacity", 0);
           var bb = tx.node().getBBox();
           var lw = bb.width, lh = bb.height;
-          var obs = placed.concat(barsBox.filter(function (q) { return q.k !== d.k; }));
+          var obs = placed.concat(barsBox);
           function free(x, y) {
             if (x < 2 || x + lw > W - 2 || y - lh < 1 || y > H - 2) return false;
-            return !obs.some(function (q) { return x < q.x + q.w + 2 && x + lw + 2 > q.x && y - lh < q.y && y > q.y - q.h; });
+            return !obs.some(function (q) { return x < q.x + q.w + 3 && x + lw + 3 > q.x && y - lh < q.y + 3 && y + 1 > q.y - q.h - 3; });
           }
-          var x = null, y = null, base = d.top - 4;
-          var xs = [d.x - lw / 2, d.x + bw / 2 + 3, d.x - bw / 2 - 3 - lw];
+          var x = null, y = null, base = d.top - dy - 7;
+          var xs = [d.x - lw / 2, d.x + bw / 2 + dx + 4, d.x - bw / 2 - 4 - lw];
           outer: for (var s = 0; s < 60; s++) {
             var dys = s === 0 ? [0] : [-s * 4, s * 4];
             for (var j = 0; j < dys.length; j++) for (var m = 0; m < xs.length; m++) {
@@ -129,10 +178,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
               if (free(cx, cy)) { x = cx; y = cy; break outer; }
             }
           }
-          if (x === null) { x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
+          if (x === null) { console.warn('ca-map label fallback', d.text); x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
           placed.push({ x: x, y: y, w: lw, h: lh });
-          if (Math.abs(y - (d.top - 4)) > 2 || Math.abs(x - (d.x - lw / 2)) > 2) {
-            layer.insert("line", ":first-child").attr("class", "lead").attr("x1", d.x).attr("y1", d.top)
+          if (Math.abs(y - base) > 2 || Math.abs(x - (d.x - lw / 2)) > 2) {
+            layer.insert("line", ":first-child").attr("class", "lead").attr("x1", d.x + dx / 2).attr("y1", d.top - dy)
               .attr("x2", Math.max(x, Math.min(x + lw, d.x))).attr("y2", y + 2).attr("opacity", 0)
               .transition(t).delay(d.n * 40 + 250).attr("opacity", 1);
           }
@@ -144,8 +193,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         counties.classed("on", false).classed("nb", false);
         outline.attr("d", null);
         layer.selectAll("text,line").interrupt().remove();
-        layer.selectAll("rect").interrupt().transition().duration(250).ease(d3.easeCubicIn)
-          .attr("y", function () { return +this.getAttribute("y") + +this.getAttribute("height"); }).attr("height", 0).remove();
+        layer.selectAll("g.bar").interrupt().transition().duration(200).attr("opacity", 0).remove();
       }
       if (state.i !== null) show(state.i);
       window.__caShow = function (fips) { show(feats.findIndex(function (f) { return f.id === fips; })); };
