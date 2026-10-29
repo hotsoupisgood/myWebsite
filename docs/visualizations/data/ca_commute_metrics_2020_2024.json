@@ -1,0 +1,1626 @@
+[
+ {
+  "fips": "06001",
+  "county": "Alameda County",
+  "transit": {
+   "value": 7.68,
+   "moe": 0.27,
+   "num": 64325,
+   "den": 837261
+  },
+  "novehicle": {
+   "value": 10.03,
+   "moe": 0.35,
+   "num": 60012,
+   "den": 598246
+  },
+  "commute": {
+   "value": 30.99,
+   "moe": 0.38,
+   "num": 19274105,
+   "den": 621893
+  },
+  "lowwage": {
+   "value": 8.24,
+   "moe": 0.59,
+   "num": 11489,
+   "den": 139438
+  }
+ },
+ {
+  "fips": "06003",
+  "county": "Alpine County",
+  "transit": {
+   "value": 0.25,
+   "moe": 2.25,
+   "num": 2,
+   "den": 800
+  },
+  "novehicle": {
+   "value": 5.75,
+   "moe": 4.73,
+   "num": 25,
+   "den": 435
+  },
+  "commute": {
+   "value": 32.71,
+   "moe": 15.19,
+   "num": 21390,
+   "den": 654
+  },
+  "lowwage": {
+   "value": 0.89,
+   "moe": 11.94,
+   "num": 2,
+   "den": 224
+  }
+ },
+ {
+  "fips": "06005",
+  "county": "Amador County",
+  "transit": {
+   "value": 0.43,
+   "moe": 0.41,
+   "num": 68,
+   "den": 15901
+  },
+  "novehicle": {
+   "value": 4.0,
+   "moe": 1.76,
+   "num": 644,
+   "den": 16091
+  },
+  "commute": {
+   "value": 33.98,
+   "moe": 3.18,
+   "num": 468575,
+   "den": 13791
+  },
+  "lowwage": {
+   "value": 0.88,
+   "moe": 1.52,
+   "num": 32,
+   "den": 3626
+  }
+ },
+ {
+  "fips": "06007",
+  "county": "Butte County",
+  "transit": {
+   "value": 0.55,
+   "moe": 0.2,
+   "num": 499,
+   "den": 90412
+  },
+  "novehicle": {
+   "value": 6.03,
+   "moe": 0.64,
+   "num": 5023,
+   "den": 83312
+  },
+  "commute": {
+   "value": 21.01,
+   "moe": 0.83,
+   "num": 1660520,
+   "den": 79021
+  },
+  "lowwage": {
+   "value": 0.88,
+   "moe": 0.5,
+   "num": 249,
+   "den": 28165
+  }
+ },
+ {
+  "fips": "06009",
+  "county": "Calaveras County",
+  "transit": {
+   "value": 0.5,
+   "moe": 0.43,
+   "num": 92,
+   "den": 18264
+  },
+  "novehicle": {
+   "value": 2.32,
+   "moe": 0.85,
+   "num": 427,
+   "den": 18437
+  },
+  "commute": {
+   "value": 34.15,
+   "moe": 4.02,
+   "num": 524430,
+   "den": 15355
+  },
+  "lowwage": {
+   "value": 1.47,
+   "moe": 1.52,
+   "num": 63,
+   "den": 4294
+  }
+ },
+ {
+  "fips": "06011",
+  "county": "Colusa County",
+  "transit": {
+   "value": 0.83,
+   "moe": 0.81,
+   "num": 76,
+   "den": 9163
+  },
+  "novehicle": {
+   "value": 4.63,
+   "moe": 1.97,
+   "num": 348,
+   "den": 7512
+  },
+  "commute": {
+   "value": 24.21,
+   "moe": 3.18,
+   "num": 210130,
+   "den": 8681
+  },
+  "lowwage": {
+   "value": 0.64,
+   "moe": 1.93,
+   "num": 14,
+   "den": 2176
+  }
+ },
+ {
+  "fips": "06013",
+  "county": "Contra Costa County",
+  "transit": {
+   "value": 5.38,
+   "moe": 0.33,
+   "num": 29697,
+   "den": 551854
+  },
+  "novehicle": {
+   "value": 5.21,
+   "moe": 0.34,
+   "num": 21605,
+   "den": 414417
+  },
+  "commute": {
+   "value": 35.26,
+   "moe": 0.64,
+   "num": 15316910,
+   "den": 434400
+  },
+  "lowwage": {
+   "value": 4.51,
+   "moe": 0.59,
+   "num": 4789,
+   "den": 106268
+  }
+ },
+ {
+  "fips": "06015",
+  "county": "Del Norte County",
+  "transit": {
+   "value": 0.78,
+   "moe": 0.59,
+   "num": 76,
+   "den": 9743
+  },
+  "novehicle": {
+   "value": 8.24,
+   "moe": 2.41,
+   "num": 785,
+   "den": 9522
+  },
+  "commute": {
+   "value": 19.57,
+   "moe": 3.02,
+   "num": 176625,
+   "den": 9024
+  },
+  "lowwage": {
+   "value": 0.11,
+   "moe": 0.9,
+   "num": 3,
+   "den": 2837
+  }
+ },
+ {
+  "fips": "06017",
+  "county": "El Dorado County",
+  "transit": {
+   "value": 0.5,
+   "moe": 0.22,
+   "num": 431,
+   "den": 86589
+  },
+  "novehicle": {
+   "value": 3.63,
+   "moe": 0.52,
+   "num": 2766,
+   "den": 76185
+  },
+  "commute": {
+   "value": 28.63,
+   "moe": 1.44,
+   "num": 1932180,
+   "den": 67479
+  },
+  "lowwage": {
+   "value": 0.89,
+   "moe": 0.61,
+   "num": 176,
+   "den": 19748
+  }
+ },
+ {
+  "fips": "06019",
+  "county": "Fresno County",
+  "transit": {
+   "value": 0.79,
+   "moe": 0.12,
+   "num": 3318,
+   "den": 419664
+  },
+  "novehicle": {
+   "value": 6.98,
+   "moe": 0.36,
+   "num": 22680,
+   "den": 324702
+  },
+  "commute": {
+   "value": 23.48,
+   "moe": 0.51,
+   "num": 8861945,
+   "den": 377470
+  },
+  "lowwage": {
+   "value": 1.44,
+   "moe": 0.37,
+   "num": 1661,
+   "den": 114995
+  }
+ },
+ {
+  "fips": "06021",
+  "county": "Glenn County",
+  "transit": {
+   "value": 0.12,
+   "moe": 0.27,
+   "num": 14,
+   "den": 11965
+  },
+  "novehicle": {
+   "value": 4.26,
+   "moe": 1.18,
+   "num": 418,
+   "den": 9810
+  },
+  "commute": {
+   "value": 22.85,
+   "moe": 2.08,
+   "num": 252010,
+   "den": 11027
+  },
+  "lowwage": {
+   "value": 0.46,
+   "moe": 1.56,
+   "num": 14,
+   "den": 3046
+  }
+ },
+ {
+  "fips": "06023",
+  "county": "Humboldt County",
+  "transit": {
+   "value": 1.02,
+   "moe": 0.34,
+   "num": 572,
+   "den": 56342
+  },
+  "novehicle": {
+   "value": 6.06,
+   "moe": 0.96,
+   "num": 3330,
+   "den": 54922
+  },
+  "commute": {
+   "value": 19.03,
+   "moe": 1.24,
+   "num": 933135,
+   "den": 49024
+  },
+  "lowwage": {
+   "value": 1.24,
+   "moe": 0.69,
+   "num": 218,
+   "den": 17573
+  }
+ },
+ {
+  "fips": "06025",
+  "county": "Imperial County",
+  "transit": {
+   "value": 0.32,
+   "moe": 0.25,
+   "num": 195,
+   "den": 60888
+  },
+  "novehicle": {
+   "value": 6.13,
+   "moe": 0.99,
+   "num": 3045,
+   "den": 49644
+  },
+  "commute": {
+   "value": 22.07,
+   "moe": 1.25,
+   "num": 1247890,
+   "den": 56531
+  },
+  "lowwage": {
+   "value": 0.38,
+   "moe": 0.33,
+   "num": 74,
+   "den": 19677
+  }
+ },
+ {
+  "fips": "06027",
+  "county": "Inyo County",
+  "transit": {
+   "value": 0.66,
+   "moe": 1.21,
+   "num": 55,
+   "den": 8346
+  },
+  "novehicle": {
+   "value": 5.55,
+   "moe": 1.97,
+   "num": 446,
+   "den": 8040
+  },
+  "commute": {
+   "value": 15.97,
+   "moe": 1.81,
+   "num": 117595,
+   "den": 7364
+  },
+  "lowwage": {
+   "value": 2.75,
+   "moe": 4.88,
+   "num": 54,
+   "den": 1967
+  }
+ },
+ {
+  "fips": "06029",
+  "county": "Kern County",
+  "transit": {
+   "value": 0.36,
+   "moe": 0.07,
+   "num": 1299,
+   "den": 356584
+  },
+  "novehicle": {
+   "value": 6.67,
+   "moe": 0.42,
+   "num": 19000,
+   "den": 284931
+  },
+  "commute": {
+   "value": 24.41,
+   "moe": 0.54,
+   "num": 8054075,
+   "den": 329952
+  },
+  "lowwage": {
+   "value": 0.76,
+   "moe": 0.23,
+   "num": 776,
+   "den": 102742
+  }
+ },
+ {
+  "fips": "06031",
+  "county": "Kings County",
+  "transit": {
+   "value": 0.4,
+   "moe": 0.21,
+   "num": 231,
+   "den": 57785
+  },
+  "novehicle": {
+   "value": 5.8,
+   "moe": 0.99,
+   "num": 2553,
+   "den": 44052
+  },
+  "commute": {
+   "value": 23.0,
+   "moe": 1.14,
+   "num": 1259550,
+   "den": 54772
+  },
+  "lowwage": {
+   "value": 0.85,
+   "moe": 0.62,
+   "num": 127,
+   "den": 14908
+  }
+ },
+ {
+  "fips": "06033",
+  "county": "Lake County",
+  "transit": {
+   "value": 0.71,
+   "moe": 0.46,
+   "num": 172,
+   "den": 24224
+  },
+  "novehicle": {
+   "value": 5.56,
+   "moe": 1.17,
+   "num": 1499,
+   "den": 26940
+  },
+  "commute": {
+   "value": 32.36,
+   "moe": 2.92,
+   "num": 672280,
+   "den": 20772
+  },
+  "lowwage": {
+   "value": 1.39,
+   "moe": 1.21,
+   "num": 95,
+   "den": 6836
+  }
+ },
+ {
+  "fips": "06035",
+  "county": "Lassen County",
+  "transit": {
+   "value": 0.34,
+   "moe": 0.43,
+   "num": 32,
+   "den": 9432
+  },
+  "novehicle": {
+   "value": 6.28,
+   "moe": 1.63,
+   "num": 581,
+   "den": 9247
+  },
+  "commute": {
+   "value": 19.55,
+   "moe": 2.47,
+   "num": 171560,
+   "den": 8776
+  },
+  "lowwage": {
+   "value": 0.81,
+   "moe": 1.36,
+   "num": 21,
+   "den": 2603
+  }
+ },
+ {
+  "fips": "06037",
+  "county": "Los Angeles County",
+  "transit": {
+   "value": 3.91,
+   "moe": 0.09,
+   "num": 183355,
+   "den": 4687090
+  },
+  "novehicle": {
+   "value": 8.86,
+   "moe": 0.13,
+   "num": 302694,
+   "den": 3416449
+  },
+  "commute": {
+   "value": 30.43,
+   "moe": 0.17,
+   "num": 118218725,
+   "den": 3885258
+  },
+  "lowwage": {
+   "value": 7.06,
+   "moe": 0.23,
+   "num": 77443,
+   "den": 1097467
+  }
+ },
+ {
+  "fips": "06039",
+  "county": "Madera County",
+  "transit": {
+   "value": 0.29,
+   "moe": 0.16,
+   "num": 172,
+   "den": 60117
+  },
+  "novehicle": {
+   "value": 5.0,
+   "moe": 0.89,
+   "num": 2268,
+   "den": 45379
+  },
+  "commute": {
+   "value": 27.85,
+   "moe": 1.6,
+   "num": 1512555,
+   "den": 54303
+  },
+  "lowwage": {
+   "value": 0.43,
+   "moe": 0.39,
+   "num": 73,
+   "den": 17047
+  }
+ },
+ {
+  "fips": "06041",
+  "county": "Marin County",
+  "transit": {
+   "value": 3.62,
+   "moe": 0.47,
+   "num": 4443,
+   "den": 122873
+  },
+  "novehicle": {
+   "value": 4.91,
+   "moe": 0.57,
+   "num": 5057,
+   "den": 103018
+  },
+  "commute": {
+   "value": 27.37,
+   "moe": 1.09,
+   "num": 2304805,
+   "den": 84212
+  },
+  "lowwage": {
+   "value": 4.56,
+   "moe": 1.09,
+   "num": 1091,
+   "den": 23911
+  }
+ },
+ {
+  "fips": "06043",
+  "county": "Mariposa County",
+  "transit": {
+   "value": 1.98,
+   "moe": 1.54,
+   "num": 147,
+   "den": 7435
+  },
+  "novehicle": {
+   "value": 4.62,
+   "moe": 2.07,
+   "num": 347,
+   "den": 7508
+  },
+  "commute": {
+   "value": 33.95,
+   "moe": 6.16,
+   "num": 220260,
+   "den": 6488
+  },
+  "lowwage": {
+   "value": 2.26,
+   "moe": 3.29,
+   "num": 44,
+   "den": 1950
+  }
+ },
+ {
+  "fips": "06045",
+  "county": "Mendocino County",
+  "transit": {
+   "value": 0.17,
+   "moe": 0.17,
+   "num": 62,
+   "den": 36548
+  },
+  "novehicle": {
+   "value": 7.28,
+   "moe": 1.3,
+   "num": 2536,
+   "den": 34842
+  },
+  "commute": {
+   "value": 21.54,
+   "moe": 1.87,
+   "num": 691525,
+   "den": 32106
+  },
+  "lowwage": {
+   "value": 0.32,
+   "moe": 0.64,
+   "num": 34,
+   "den": 10782
+  }
+ },
+ {
+  "fips": "06047",
+  "county": "Merced County",
+  "transit": {
+   "value": 0.51,
+   "moe": 0.24,
+   "num": 565,
+   "den": 111073
+  },
+  "novehicle": {
+   "value": 7.31,
+   "moe": 0.75,
+   "num": 6289,
+   "den": 86055
+  },
+  "commute": {
+   "value": 31.27,
+   "moe": 1.35,
+   "num": 3243865,
+   "den": 103732
+  },
+  "lowwage": {
+   "value": 0.75,
+   "moe": 0.63,
+   "num": 232,
+   "den": 31089
+  }
+ },
+ {
+  "fips": "06049",
+  "county": "Modoc County",
+  "transit": {
+   "value": 0.0,
+   "moe": 0.61,
+   "num": 0,
+   "den": 3122
+  },
+  "novehicle": {
+   "value": 4.71,
+   "moe": 2.59,
+   "num": 154,
+   "den": 3267
+  },
+  "commute": {
+   "value": 22.46,
+   "moe": 5.07,
+   "num": 61760,
+   "den": 2750
+  },
+  "lowwage": {
+   "value": 0.0,
+   "moe": 3.39,
+   "num": 0,
+   "den": 972
+  }
+ },
+ {
+  "fips": "06051",
+  "county": "Mono County",
+  "transit": {
+   "value": 0.84,
+   "moe": 1.3,
+   "num": 64,
+   "den": 7626
+  },
+  "novehicle": {
+   "value": 4.14,
+   "moe": 2.02,
+   "num": 238,
+   "den": 5744
+  },
+  "commute": {
+   "value": 17.13,
+   "moe": 4.29,
+   "num": 108035,
+   "den": 6306
+  },
+  "lowwage": {
+   "value": 0.0,
+   "moe": 2.59,
+   "num": 0,
+   "den": 1406
+  }
+ },
+ {
+  "fips": "06053",
+  "county": "Monterey County",
+  "transit": {
+   "value": 1.14,
+   "moe": 0.25,
+   "num": 2145,
+   "den": 188150
+  },
+  "novehicle": {
+   "value": 4.73,
+   "moe": 0.46,
+   "num": 6264,
+   "den": 132489
+  },
+  "commute": {
+   "value": 25.37,
+   "moe": 0.64,
+   "num": 4304065,
+   "den": 169622
+  },
+  "lowwage": {
+   "value": 2.22,
+   "moe": 0.68,
+   "num": 1055,
+   "den": 47586
+  }
+ },
+ {
+  "fips": "06055",
+  "county": "Napa County",
+  "transit": {
+   "value": 1.14,
+   "moe": 0.34,
+   "num": 752,
+   "den": 65795
+  },
+  "novehicle": {
+   "value": 4.82,
+   "moe": 1.44,
+   "num": 2399,
+   "den": 49763
+  },
+  "commute": {
+   "value": 24.94,
+   "moe": 1.3,
+   "num": 1402010,
+   "den": 56218
+  },
+  "lowwage": {
+   "value": 1.82,
+   "moe": 0.94,
+   "num": 260,
+   "den": 14288
+  }
+ },
+ {
+  "fips": "06057",
+  "county": "Nevada County",
+  "transit": {
+   "value": 0.4,
+   "moe": 0.26,
+   "num": 174,
+   "den": 43269
+  },
+  "novehicle": {
+   "value": 4.23,
+   "moe": 0.96,
+   "num": 1812,
+   "den": 42865
+  },
+  "commute": {
+   "value": 23.64,
+   "moe": 1.6,
+   "num": 767280,
+   "den": 32458
+  },
+  "lowwage": {
+   "value": 0.28,
+   "moe": 0.63,
+   "num": 29,
+   "den": 10478
+  }
+ },
+ {
+  "fips": "06059",
+  "county": "Orange County",
+  "transit": {
+   "value": 1.15,
+   "moe": 0.1,
+   "num": 18009,
+   "den": 1565842
+  },
+  "novehicle": {
+   "value": 4.76,
+   "moe": 0.17,
+   "num": 51573,
+   "den": 1082960
+  },
+  "commute": {
+   "value": 26.71,
+   "moe": 0.24,
+   "num": 34076880,
+   "den": 1275607
+  },
+  "lowwage": {
+   "value": 2.3,
+   "moe": 0.24,
+   "num": 7691,
+   "den": 334681
+  }
+ },
+ {
+  "fips": "06061",
+  "county": "Placer County",
+  "transit": {
+   "value": 0.55,
+   "moe": 0.16,
+   "num": 1050,
+   "den": 192652
+  },
+  "novehicle": {
+   "value": 4.18,
+   "moe": 0.46,
+   "num": 6602,
+   "den": 157954
+  },
+  "commute": {
+   "value": 27.38,
+   "moe": 0.76,
+   "num": 4078090,
+   "den": 148960
+  },
+  "lowwage": {
+   "value": 0.44,
+   "moe": 0.26,
+   "num": 163,
+   "den": 37179
+  }
+ },
+ {
+  "fips": "06063",
+  "county": "Plumas County",
+  "transit": {
+   "value": 0.0,
+   "moe": 0.31,
+   "num": 0,
+   "den": 6779
+  },
+  "novehicle": {
+   "value": 6.57,
+   "moe": 2.77,
+   "num": 529,
+   "den": 8054
+  },
+  "commute": {
+   "value": 19.76,
+   "moe": 3.48,
+   "num": 124330,
+   "den": 6292
+  },
+  "lowwage": {
+   "value": 0.0,
+   "moe": 2.07,
+   "num": 0,
+   "den": 1754
+  }
+ },
+ {
+  "fips": "06065",
+  "county": "Riverside County",
+  "transit": {
+   "value": 0.72,
+   "moe": 0.08,
+   "num": 7807,
+   "den": 1087103
+  },
+  "novehicle": {
+   "value": 4.3,
+   "moe": 0.19,
+   "num": 33345,
+   "den": 775335
+  },
+  "commute": {
+   "value": 33.78,
+   "moe": 0.38,
+   "num": 32218610,
+   "den": 953772
+  },
+  "lowwage": {
+   "value": 1.25,
+   "moe": 0.21,
+   "num": 3214,
+   "den": 256430
+  }
+ },
+ {
+  "fips": "06067",
+  "county": "Sacramento County",
+  "transit": {
+   "value": 1.34,
+   "moe": 0.13,
+   "num": 9819,
+   "den": 731947
+  },
+  "novehicle": {
+   "value": 6.57,
+   "moe": 0.29,
+   "num": 37536,
+   "den": 571057
+  },
+  "commute": {
+   "value": 27.35,
+   "moe": 0.46,
+   "num": 16192655,
+   "den": 592149
+  },
+  "lowwage": {
+   "value": 1.76,
+   "moe": 0.27,
+   "num": 2858,
+   "den": 162505
+  }
+ },
+ {
+  "fips": "06069",
+  "county": "San Benito County",
+  "transit": {
+   "value": 0.79,
+   "moe": 0.38,
+   "num": 251,
+   "den": 31798
+  },
+  "novehicle": {
+   "value": 3.03,
+   "moe": 0.89,
+   "num": 622,
+   "den": 20561
+  },
+  "commute": {
+   "value": 36.57,
+   "moe": 2.07,
+   "num": 1025140,
+   "den": 28030
+  },
+  "lowwage": {
+   "value": 1.2,
+   "moe": 1.26,
+   "num": 80,
+   "den": 6694
+  }
+ },
+ {
+  "fips": "06071",
+  "county": "San Bernardino County",
+  "transit": {
+   "value": 0.9,
+   "moe": 0.1,
+   "num": 8664,
+   "den": 960759
+  },
+  "novehicle": {
+   "value": 4.63,
+   "moe": 0.23,
+   "num": 31226,
+   "den": 674915
+  },
+  "commute": {
+   "value": 32.56,
+   "moe": 0.38,
+   "num": 27849235,
+   "den": 855412
+  },
+  "lowwage": {
+   "value": 1.27,
+   "moe": 0.22,
+   "num": 2999,
+   "den": 235939
+  }
+ },
+ {
+  "fips": "06073",
+  "county": "San Diego County",
+  "transit": {
+   "value": 1.93,
+   "moe": 0.1,
+   "num": 31598,
+   "den": 1635987
+  },
+  "novehicle": {
+   "value": 5.49,
+   "moe": 0.18,
+   "num": 64308,
+   "den": 1171278
+  },
+  "commute": {
+   "value": 25.53,
+   "moe": 0.28,
+   "num": 33954335,
+   "den": 1329787
+  },
+  "lowwage": {
+   "value": 3.73,
+   "moe": 0.29,
+   "num": 12802,
+   "den": 343556
+  }
+ },
+ {
+  "fips": "06075",
+  "county": "San Francisco County",
+  "transit": {
+   "value": 18.73,
+   "moe": 0.52,
+   "num": 87355,
+   "den": 466388
+  },
+  "novehicle": {
+   "value": 30.16,
+   "moe": 0.65,
+   "num": 109781,
+   "den": 363970
+  },
+  "commute": {
+   "value": 30.37,
+   "moe": 0.58,
+   "num": 9773850,
+   "den": 321804
+  },
+  "lowwage": {
+   "value": 25.72,
+   "moe": 1.61,
+   "num": 16980,
+   "den": 66007
+  }
+ },
+ {
+  "fips": "06077",
+  "county": "San Joaquin County",
+  "transit": {
+   "value": 0.89,
+   "moe": 0.14,
+   "num": 3011,
+   "den": 337508
+  },
+  "novehicle": {
+   "value": 5.11,
+   "moe": 0.32,
+   "num": 12528,
+   "den": 245250
+  },
+  "commute": {
+   "value": 34.13,
+   "moe": 0.85,
+   "num": 10297460,
+   "den": 301691
+  },
+  "lowwage": {
+   "value": 1.14,
+   "moe": 0.4,
+   "num": 880,
+   "den": 76948
+  }
+ },
+ {
+  "fips": "06079",
+  "county": "San Luis Obispo County",
+  "transit": {
+   "value": 0.58,
+   "moe": 0.18,
+   "num": 739,
+   "den": 126611
+  },
+  "novehicle": {
+   "value": 3.79,
+   "moe": 0.4,
+   "num": 4146,
+   "den": 109503
+  },
+  "commute": {
+   "value": 22.28,
+   "moe": 0.9,
+   "num": 2391870,
+   "den": 107355
+  },
+  "lowwage": {
+   "value": 1.3,
+   "moe": 0.54,
+   "num": 442,
+   "den": 34073
+  }
+ },
+ {
+  "fips": "06081",
+  "county": "San Mateo County",
+  "transit": {
+   "value": 5.06,
+   "moe": 0.34,
+   "num": 19475,
+   "den": 384595
+  },
+  "novehicle": {
+   "value": 5.76,
+   "moe": 0.37,
+   "num": 15229,
+   "den": 264419
+  },
+  "commute": {
+   "value": 26.45,
+   "moe": 0.53,
+   "num": 7704320,
+   "den": 291318
+  },
+  "lowwage": {
+   "value": 7.37,
+   "moe": 1.1,
+   "num": 4389,
+   "den": 59591
+  }
+ },
+ {
+  "fips": "06083",
+  "county": "Santa Barbara County",
+  "transit": {
+   "value": 2.2,
+   "moe": 0.29,
+   "num": 4440,
+   "den": 201783
+  },
+  "novehicle": {
+   "value": 5.94,
+   "moe": 0.54,
+   "num": 8881,
+   "den": 149608
+  },
+  "commute": {
+   "value": 20.85,
+   "moe": 0.61,
+   "num": 3641540,
+   "den": 174681
+  },
+  "lowwage": {
+   "value": 3.42,
+   "moe": 0.81,
+   "num": 1858,
+   "den": 54288
+  }
+ },
+ {
+  "fips": "06085",
+  "county": "Santa Clara County",
+  "transit": {
+   "value": 2.33,
+   "moe": 0.13,
+   "num": 22653,
+   "den": 970790
+  },
+  "novehicle": {
+   "value": 5.98,
+   "moe": 0.24,
+   "num": 39450,
+   "den": 659353
+  },
+  "commute": {
+   "value": 26.23,
+   "moe": 0.35,
+   "num": 19383775,
+   "den": 739006
+  },
+  "lowwage": {
+   "value": 3.09,
+   "moe": 0.37,
+   "num": 4672,
+   "den": 151317
+  }
+ },
+ {
+  "fips": "06087",
+  "county": "Santa Cruz County",
+  "transit": {
+   "value": 1.9,
+   "moe": 0.36,
+   "num": 2384,
+   "den": 125770
+  },
+  "novehicle": {
+   "value": 5.19,
+   "moe": 0.59,
+   "num": 5027,
+   "den": 96898
+  },
+  "commute": {
+   "value": 25.68,
+   "moe": 0.94,
+   "num": 2606840,
+   "den": 101503
+  },
+  "lowwage": {
+   "value": 4.08,
+   "moe": 0.86,
+   "num": 1251,
+   "den": 30692
+  }
+ },
+ {
+  "fips": "06089",
+  "county": "Shasta County",
+  "transit": {
+   "value": 0.54,
+   "moe": 0.29,
+   "num": 403,
+   "den": 74793
+  },
+  "novehicle": {
+   "value": 6.34,
+   "moe": 0.75,
+   "num": 4516,
+   "den": 71232
+  },
+  "commute": {
+   "value": 19.8,
+   "moe": 0.93,
+   "num": 1336775,
+   "den": 67508
+  },
+  "lowwage": {
+   "value": 0.96,
+   "moe": 0.86,
+   "num": 174,
+   "den": 18207
+  }
+ },
+ {
+  "fips": "06091",
+  "county": "Sierra County",
+  "transit": {
+   "value": 0.0,
+   "moe": 1.29,
+   "num": 0,
+   "den": 1086
+  },
+  "novehicle": {
+   "value": 6.48,
+   "moe": 5.93,
+   "num": 79,
+   "den": 1219
+  },
+  "commute": {
+   "value": 24.3,
+   "moe": 10.29,
+   "num": 21965,
+   "den": 904
+  },
+  "lowwage": {
+   "value": 0.0,
+   "moe": 8.3,
+   "num": 0,
+   "den": 292
+  }
+ },
+ {
+  "fips": "06093",
+  "county": "Siskiyou County",
+  "transit": {
+   "value": 0.54,
+   "moe": 0.74,
+   "num": 88,
+   "den": 16184
+  },
+  "novehicle": {
+   "value": 6.13,
+   "moe": 1.21,
+   "num": 1169,
+   "den": 19079
+  },
+  "commute": {
+   "value": 21.25,
+   "moe": 1.89,
+   "num": 303185,
+   "den": 14269
+  },
+  "lowwage": {
+   "value": 0.43,
+   "moe": 0.88,
+   "num": 19,
+   "den": 4396
+  }
+ },
+ {
+  "fips": "06095",
+  "county": "Solano County",
+  "transit": {
+   "value": 1.46,
+   "moe": 0.25,
+   "num": 2980,
+   "den": 204574
+  },
+  "novehicle": {
+   "value": 4.95,
+   "moe": 0.45,
+   "num": 7796,
+   "den": 157512
+  },
+  "commute": {
+   "value": 31.0,
+   "moe": 0.75,
+   "num": 5565050,
+   "den": 179516
+  },
+  "lowwage": {
+   "value": 1.99,
+   "moe": 0.59,
+   "num": 892,
+   "den": 44789
+  }
+ },
+ {
+  "fips": "06097",
+  "county": "Sonoma County",
+  "transit": {
+   "value": 1.11,
+   "moe": 0.16,
+   "num": 2622,
+   "den": 237164
+  },
+  "novehicle": {
+   "value": 4.83,
+   "moe": 0.39,
+   "num": 9223,
+   "den": 190998
+  },
+  "commute": {
+   "value": 25.11,
+   "moe": 0.59,
+   "num": 5007295,
+   "den": 199413
+  },
+  "lowwage": {
+   "value": 1.88,
+   "moe": 0.53,
+   "num": 921,
+   "den": 49059
+  }
+ },
+ {
+  "fips": "06099",
+  "county": "Stanislaus County",
+  "transit": {
+   "value": 0.83,
+   "moe": 0.2,
+   "num": 1935,
+   "den": 233227
+  },
+  "novehicle": {
+   "value": 5.56,
+   "moe": 0.48,
+   "num": 9884,
+   "den": 177874
+  },
+  "commute": {
+   "value": 30.78,
+   "moe": 0.75,
+   "num": 6597685,
+   "den": 214320
+  },
+  "lowwage": {
+   "value": 1.51,
+   "moe": 0.53,
+   "num": 884,
+   "den": 58579
+  }
+ },
+ {
+  "fips": "06101",
+  "county": "Sutter County",
+  "transit": {
+   "value": 0.61,
+   "moe": 0.44,
+   "num": 255,
+   "den": 41859
+  },
+  "novehicle": {
+   "value": 5.54,
+   "moe": 1.1,
+   "num": 1843,
+   "den": 33292
+  },
+  "commute": {
+   "value": 27.09,
+   "moe": 1.84,
+   "num": 1047165,
+   "den": 38648
+  },
+  "lowwage": {
+   "value": 0.3,
+   "moe": 0.4,
+   "num": 34,
+   "den": 11274
+  }
+ },
+ {
+  "fips": "06103",
+  "county": "Tehama County",
+  "transit": {
+   "value": 0.13,
+   "moe": 0.2,
+   "num": 32,
+   "den": 25059
+  },
+  "novehicle": {
+   "value": 6.14,
+   "moe": 1.31,
+   "num": 1522,
+   "den": 24788
+  },
+  "commute": {
+   "value": 23.39,
+   "moe": 1.76,
+   "num": 521050,
+   "den": 22274
+  },
+  "lowwage": {
+   "value": 0.26,
+   "moe": 0.6,
+   "num": 17,
+   "den": 6521
+  }
+ },
+ {
+  "fips": "06105",
+  "county": "Trinity County",
+  "transit": {
+   "value": 0.79,
+   "moe": 0.87,
+   "num": 41,
+   "den": 5164
+  },
+  "novehicle": {
+   "value": 5.51,
+   "moe": 2.85,
+   "num": 308,
+   "den": 5585
+  },
+  "commute": {
+   "value": 27.18,
+   "moe": 8.87,
+   "num": 110485,
+   "den": 4065
+  },
+  "lowwage": {
+   "value": 1.59,
+   "moe": 3.14,
+   "num": 25,
+   "den": 1577
+  }
+ },
+ {
+  "fips": "06107",
+  "county": "Tulare County",
+  "transit": {
+   "value": 0.41,
+   "moe": 0.14,
+   "num": 783,
+   "den": 189030
+  },
+  "novehicle": {
+   "value": 4.53,
+   "moe": 0.49,
+   "num": 6487,
+   "den": 143195
+  },
+  "commute": {
+   "value": 23.74,
+   "moe": 0.69,
+   "num": 4212360,
+   "den": 177413
+  },
+  "lowwage": {
+   "value": 0.6,
+   "moe": 0.27,
+   "num": 334,
+   "den": 55461
+  }
+ },
+ {
+  "fips": "06109",
+  "county": "Tuolumne County",
+  "transit": {
+   "value": 0.03,
+   "moe": 0.05,
+   "num": 7,
+   "den": 20077
+  },
+  "novehicle": {
+   "value": 5.18,
+   "moe": 1.54,
+   "num": 1176,
+   "den": 22690
+  },
+  "commute": {
+   "value": 30.05,
+   "moe": 3.1,
+   "num": 532465,
+   "den": 17722
+  },
+  "lowwage": {
+   "value": 0.0,
+   "moe": 1.13,
+   "num": 0,
+   "den": 4895
+  }
+ },
+ {
+  "fips": "06111",
+  "county": "Ventura County",
+  "transit": {
+   "value": 0.61,
+   "moe": 0.1,
+   "num": 2445,
+   "den": 400814
+  },
+  "novehicle": {
+   "value": 4.14,
+   "moe": 0.29,
+   "num": 11599,
+   "den": 280360
+  },
+  "commute": {
+   "value": 25.56,
+   "moe": 0.49,
+   "num": 8629840,
+   "den": 337659
+  },
+  "lowwage": {
+   "value": 1.17,
+   "moe": 0.3,
+   "num": 1037,
+   "den": 88608
+  }
+ },
+ {
+  "fips": "06113",
+  "county": "Yolo County",
+  "transit": {
+   "value": 2.83,
+   "moe": 0.46,
+   "num": 2900,
+   "den": 102474
+  },
+  "novehicle": {
+   "value": 7.62,
+   "moe": 0.8,
+   "num": 5841,
+   "den": 76693
+  },
+  "commute": {
+   "value": 23.98,
+   "moe": 1.0,
+   "num": 2012780,
+   "den": 83921
+  },
+  "lowwage": {
+   "value": 5.66,
+   "moe": 1.25,
+   "num": 1563,
+   "den": 27637
+  }
+ },
+ {
+  "fips": "06115",
+  "county": "Yuba County",
+  "transit": {
+   "value": 0.47,
+   "moe": 0.28,
+   "num": 169,
+   "den": 35801
+  },
+  "novehicle": {
+   "value": 6.36,
+   "moe": 1.08,
+   "num": 1820,
+   "den": 28635
+  },
+  "commute": {
+   "value": 32.42,
+   "moe": 1.83,
+   "num": 1059295,
+   "den": 32671
+  },
+  "lowwage": {
+   "value": 0.82,
+   "moe": 0.84,
+   "num": 67,
+   "den": 8205
+  }
+ }
+]

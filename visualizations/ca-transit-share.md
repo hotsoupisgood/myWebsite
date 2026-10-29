@@ -6,14 +6,27 @@ layout: layouts/post.njk
 ---
 
 <figure class="viz" id="ca-transit-viz">
-  <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 counties with the highest share</label>
-  <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 counties with the lowest share</label>
-  <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the share of workers who commuted by public transportation in that county and its neighbors."></div>
+  <div class="ca-card">
+    <label class="ca-select" for="ca-metric"><span>Statistic</span>
+      <select id="ca-metric">
+        <option value="transit" selected>Transit commuters, of 100 workers</option>
+        <option value="novehicle">Households with no vehicle, of 100 households</option>
+        <option value="commute">One-way commute time, minutes</option>
+        <option value="lowwage">Transit commuters among workers earning under $25,000 a year, of 100</option>
+      </select>
+    </label>
+    <div class="ca-checks">
+      <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 highest counties</label>
+      <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 lowest counties</label>
+    </div>
+  </div>
+  <p class="ca-note" id="ca-note"></p>
+  <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors."></div>
 </figure>
 
 <div class="ca-tables">
-  <table id="ca-top"><caption>Highest 5 counties</caption><thead><tr><th>County</th><th>Of 100 workers</th><th>Workers</th></tr></thead><tbody></tbody></table>
-  <table id="ca-bottom"><caption>Lowest 5 counties</caption><thead><tr><th>County</th><th>Of 100 workers</th><th>Workers</th></tr></thead><tbody></tbody></table>
+  <table id="ca-top"><caption>Highest 5 counties</caption><thead><tr><th>County</th><th class="vh">Of 100 workers</th><th class="nh">Workers</th></tr></thead><tbody></tbody></table>
+  <table id="ca-bottom"><caption>Lowest 5 counties</caption><thead><tr><th>County</th><th class="vh">Of 100 workers</th><th class="nh">Workers</th></tr></thead><tbody></tbody></table>
 </div>
 
 ## References
@@ -21,6 +34,14 @@ layout: layouts/post.njk
 <div class="references">
 
 U.S. Census Bureau. (2025). *Means of transportation to work* (American Community Survey 5-year estimates, 2020 to 2024, Table B08301) [Data set]. https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat
+
+U.S. Census Bureau. (2025). *Household size by vehicles available* (American Community Survey 5-year estimates, 2020 to 2024, Table B08201) [Data set]. https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08201.dat
+
+U.S. Census Bureau. (2025). *Aggregate travel time to work (in minutes) of workers by sex* (American Community Survey 5-year estimates, 2020 to 2024, Table B08013) [Data set]. https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat
+
+U.S. Census Bureau. (2025). *Travel time to work* (American Community Survey 5-year estimates, 2020 to 2024, Table B08303) [Data set]. https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat
+
+U.S. Census Bureau. (2025). *Means of transportation to work by workers' earnings in the past 12 months (in 2024 inflation-adjusted dollars)* (American Community Survey 5-year estimates, 2020 to 2024, Table B08119) [Data set]. https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat
 
 U.S. Census Bureau. (2024). *Cartographic boundary files, counties* [Data set], via Bostock, M. *us-atlas* (Version 3). https://github.com/topojson/us-atlas
 
@@ -31,8 +52,15 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 <style>
 .viz { margin: 1rem 0 1.5rem; max-width: 44rem; }
 #ca-map { width: 100%; }
-.viz-toggle { display: inline-flex; align-items: center; gap: .4rem; margin-right: 1.25rem; font-size: .9rem; cursor: pointer; margin-bottom: .5rem; }
-.viz-toggle input { accent-color: #c2410c; width: 1rem; height: 1rem; }
+.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
+.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b8400e' stroke-width='2'/%3E%3C/svg%3E") no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
+.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .4rem; }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
 #ca-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 #ca-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.6; stroke-linejoin: round; cursor: pointer; }
 #ca-map .county.nb { fill: #f5d6aa; }
@@ -59,29 +87,61 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
   var el = document.getElementById("ca-map");
   Promise.all([
     d3.json("/visualizations/data/ca-counties-10m.json"),
-    d3.json("/visualizations/data/ca_transit_share_2020_2024.json")
+    d3.json("/visualizations/data/ca_commute_metrics_2020_2024.json")
   ]).then(function (res) {
     var topo = res[0], rows = res[1];
     var byFips = {};
     rows.forEach(function (r) { byFips[r.fips] = r; });
-    var sorted = rows.slice().sort(function (a, b) { return b.share_pct - a.share_pct; });
+    var METRICS = {
+      transit: { unit: " of 100", head: "Of 100 workers", count: "Workers", what: "transit commuters",
+        note: "Workers age 16 and over who commuted by public transportation, of every 100 workers. Taxis are not counted." },
+      novehicle: { unit: " of 100", head: "Of 100 households", count: "Households", what: "households with no vehicle",
+        note: "Households with no car, van or truck available, of every 100 households." },
+      commute: { unit: " minutes", head: "Minutes, one way", count: "Workers", what: "one-way commute time",
+        note: "Average one-way travel time to work in minutes, for workers who did not work from home." },
+      lowwage: { unit: " of 100", head: "Of 100 workers", count: "Workers", what: "transit commuters earning under $25,000",
+        note: "Workers who earned under $25,000 in the past 12 months and commuted by public transportation, of every 100 such workers." }
+    };
+    var sel = document.getElementById("ca-metric");
+    var metric = sel.value;
+    function mv(r) { return r[metric].value; }
+    function fmt(v) { return v.toFixed(1) + METRICS[metric].unit; }
     function fill(id, list) {
       d3.select("#" + id + " tbody").selectAll("tr").data(list).join("tr").html(function (r) {
-        return "<td>" + r.county.replace(/ County$/, "") + "</td><td>" + r.share_pct.toFixed(1) + "</td><td>" + d3.format(",")(r.workers) + "</td>";
+        return "<td>" + r.county.replace(/ County$/, "") + "</td><td>" + fmt(mv(r)) + "</td><td>" + d3.format(",")(r[metric].den) + "</td>";
       });
     }
-    fill("ca-top", sorted.slice(0, 5));
-    fill("ca-bottom", sorted.slice(-5).reverse());
+    function tables() {
+      var M = METRICS[metric];
+      var sorted = rows.slice().sort(function (a, b) { return mv(b) - mv(a) || b[metric].den - a[metric].den; });
+      fill("ca-top", sorted.slice(0, 5));
+      fill("ca-bottom", sorted.slice(-5).reverse());
+      d3.select("#ca-top caption").text("Highest 5 counties, " + M.what);
+      d3.select("#ca-bottom caption").text("Lowest 5 counties, " + M.what);
+      d3.selectAll(".ca-tables .vh").text(M.head);
+      d3.selectAll(".ca-tables .nh").text(M.count);
+      document.getElementById("ca-note").textContent = M.note;
+    }
+    tables();
     var geoms = topo.objects.counties.geometries;
     var feats = topojson.feature(topo, topo.objects.counties).features;
     var nbrs = topojson.neighbors(geoms);
-    var maxV = d3.max(rows, function (r) { return r.share_pct; });
+    var maxV;
     var state = { i: null };
     var box = document.getElementById("ca-top5");
     var box2 = document.getElementById("ca-bottom5");
-    var ranked = feats.map(function (f, k) { return k; })
-      .sort(function (a, b) { return byFips[feats[b].id].share_pct - byFips[feats[a].id].share_pct; });
-    var top5 = ranked.slice(0, 5), bottom5 = ranked.slice(-5);
+    var top5, bottom5;
+    function rank() {
+      maxV = d3.max(rows, mv);
+      var ranked = feats.map(function (f, k) { return k; })
+        .sort(function (a, b) { var A = byFips[feats[a].id], Bq = byFips[feats[b].id]; return mv(Bq) - mv(A) || Bq[metric].den - A[metric].den; });
+      top5 = ranked.slice(0, 5); bottom5 = ranked.slice(-5);
+    }
+    rank();
+    // vertical room is sized for the tallest bar of any statistic, so the map does not move on a switch
+    var maxAll = {};
+    Object.keys(METRICS).forEach(function (m) { maxAll[m] = d3.max(rows, function (r) { return r[m].value; }); });
+    function relMax(f) { var r = byFips[f.id]; return d3.max(Object.keys(METRICS), function (m) { return r[m].value / maxAll[m]; }); }
 
     var TILT = 50 * Math.PI / 180; // camera elevation above the table
     var land = topojson.merge(topo, geoms);
@@ -125,7 +185,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       });
       // room above the map: enough for the tallest bar plus a label at each county
       var top = 12;
-      pts.forEach(function (q, i) { top = Math.max(top, maxH * val(i) / maxV + 34 - q[1]); });
+      pts.forEach(function (q, i) { top = Math.max(top, maxH * relMax(feats[i]) + 34 - q[1]); });
       ty += top;
       pts.forEach(function (q) { q[1] += top; });
       var H = Math.ceil(top + (rb[1][1] - rb[0][1]) * k + edge + 10);
@@ -143,11 +203,11 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         .on("click", function (ev, f) { ev.stopPropagation(); var i = feats.indexOf(f); if (state.i === i && ev.pointerType !== "mouse") clear(); else show(i); });
       var outline = svg.append("path").attr("class", "outline");
       var layer = svg.append("g");
-      var h = d3.scaleLinear().domain([0, maxV]).range([0, maxH]);
+      var h = function (v) { return maxH * v / maxV; };
       var bw = small ? 7 : 9;
 
       function name(i) { return byFips[feats[i].id].county.replace(/ County$/, ""); }
-      function val(i) { return byFips[feats[i].id].share_pct; }
+      function val(i) { return mv(byFips[feats[i].id]); }
 
       function show(i) {
         state.i = i;
@@ -158,14 +218,15 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         counties.classed("on", function (f, k) { return k === i; }).classed("nb", function (f, k) { return k !== i && hov.indexOf(k) >= 0; });
         outline.attr("d", i === null ? null : path(feats[i]));
         var had = {};
-        layer.selectAll("g.bar").each(function () { if (this.__done) had[this.__k] = 1; });
+        // current height of every bar on screen, so standing or rising bars resize from where they are
+        layer.selectAll("g.bar").each(function () { if (this.__k !== undefined && +d3.select(this).datum() > 0) had[this.__k] = +d3.select(this).datum(); });
         layer.interrupt().selectAll("*").interrupt();
         layer.selectAll("*").remove();
         var t = d3.transition().duration(400).ease(d3.easeCubicOut);
         var items = set.map(function (k, n) {
           var p = pts[k];
           return { k: k, n: n, x: p[0], y: p[1], top: p[1] - h(val(k)), main: k === i,
-            text: name(k) + " " + val(k).toFixed(1) + " of 100" };
+            text: name(k) + " " + fmt(val(k)) };
         });
         var dx = bw * 0.5, dy = bw * 0.35;
         var COL = { main: ["#c2410c", "#8a2d08", "#e56a32"], nb: ["#f28c38", "#c4661c", "#f9b277"] };
@@ -183,12 +244,15 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
           g.append("path").attr("class", "c").attr("fill", col[2]);
           var full = d.y - d.top, node = g.node();
           node.__k = d.k;
-          d.keep = !!had[d.k];
-          if (d.keep) { barPaths(g, d, full); node.__done = true; }
+          var start = had[d.k] || 0;
+          d.keep = start > 0;
+          d.grow = d.keep && Math.abs(start - full) > 0.5;
+          if (d.keep && !d.grow) { g.datum(full); barPaths(g, d, full); node.__done = true; }
           else {
-            barPaths(g, d, 0);
-            g.transition(t).delay(d.n * 40).tween("h", function () {
-              return function (u) { g.datum(full * u); barPaths(g, d, full * u); };
+            g.datum(start); barPaths(g, d, start);
+            g.transition(t).duration(d.keep ? 300 : 400).delay(d.keep ? 0 : d.n * 40).tween("h", function () {
+              var ip = d3.interpolateNumber(start, full);
+              return function (u) { var v = ip(u); g.datum(v); barPaths(g, d, v); };
             }).on("end", function () { node.__done = true; });
           }
           d.g = g;
@@ -216,16 +280,24 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
               if (free(cx, cy)) { x = cx; y = cy; break outer; }
             }
           }
+          if (x === null) {
+            // no spot near the bar: take the nearest free spot anywhere, joined by a leader line
+            var bd2 = Infinity;
+            for (var gy2 = lh + 2; gy2 <= H - 2; gy2 += 4) for (var gx2 = 2; gx2 <= W - lw - 2; gx2 += 6) {
+              var dd = Math.hypot(gx2 + lw / 2 - d.x, gy2 - base);
+              if (dd < bd2 && free(gx2, gy2)) { bd2 = dd; x = gx2; y = gy2; }
+            }
+          }
           if (x === null) { console.warn('ca-map label fallback', d.text); x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
           placed.push({ x: x, y: y, w: lw, h: lh });
           if (Math.abs(y - base) > 2 || Math.abs(x - (d.x - lw / 2)) > 2) {
             var ln = layer.insert("line", ":first-child").attr("class", "lead").attr("x1", d.x + dx / 2).attr("y1", d.top - dy)
-              .attr("x2", Math.max(x, Math.min(x + lw, d.x))).attr("y2", y + 2).attr("opacity", d.keep ? 1 : 0);
-            if (!d.keep) ln.transition().duration(200).delay(d.n * 40 + 80).attr("opacity", 1);
+              .attr("x2", Math.max(x, Math.min(x + lw, d.x))).attr("y2", y + 2).attr("opacity", d.keep && !d.grow ? 1 : 0);
+            if (!d.keep || d.grow) ln.transition().duration(200).delay(d.grow ? 220 : d.n * 40 + 80).attr("opacity", 1);
           }
           tx.attr("x", x).attr("y", y);
-          if (d.keep) tx.attr("opacity", 1);
-          else tx.transition().duration(200).delay(d.n * 40 + 80).attr("opacity", 1);
+          if (d.keep && !d.grow) tx.attr("opacity", 1);
+          else tx.transition().duration(200).delay(d.grow ? 220 : d.n * 40 + 80).attr("opacity", 1);
         });
       }
       function clear() {
@@ -240,6 +312,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       box.onchange = box2.onchange = function () {
         if (state.i !== null || box.checked || box2.checked) show(state.i);
         else { layer.selectAll("text,line").interrupt().remove(); layer.selectAll("g.bar").interrupt().transition().duration(200).attr("opacity", 0).remove(); }
+      };
+      sel.onchange = function () {
+        metric = sel.value; rank(); tables();
+        if (state.i !== null || box.checked || box2.checked) show(state.i);
       };
       window.__caShow = function (fips) { show(feats.findIndex(function (f) { return f.id === fips; })); };
     }
