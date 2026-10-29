@@ -181,6 +181,8 @@
         if (box.checked) top5.forEach(function (k) { if (set.indexOf(k) < 0) set.push(k); });
         counties.classed("on", function (f, k) { return k === i; }).classed("nb", function (f, k) { return k !== i && hov.indexOf(k) >= 0; });
         outline.attr("d", i === null ? null : path(feats[i]));
+        var had = {};
+        layer.selectAll("g.bar").each(function () { if (this.__done) had[this.__k] = 1; });
         layer.interrupt().selectAll("*").interrupt();
         layer.selectAll("*").remove();
         var t = d3.transition().duration(400).ease(d3.easeCubicOut);
@@ -203,11 +205,16 @@
           g.append("path").attr("class", "s").attr("fill", col[1]);
           g.append("path").attr("class", "f").attr("fill", col[0]);
           g.append("path").attr("class", "c").attr("fill", col[2]);
-          barPaths(g, d, 0);
-          var full = d.y - d.top;
-          g.transition(t).delay(d.n * 40).tween("h", function () {
-            return function (u) { g.datum(full * u); barPaths(g, d, full * u); };
-          });
+          var full = d.y - d.top, node = g.node();
+          node.__k = d.k;
+          d.keep = !!had[d.k];
+          if (d.keep) { barPaths(g, d, full); node.__done = true; }
+          else {
+            barPaths(g, d, 0);
+            g.transition(t).delay(d.n * 40).tween("h", function () {
+              return function (u) { g.datum(full * u); barPaths(g, d, full * u); };
+            }).on("end", function () { node.__done = true; });
+          }
           d.g = g;
         });
         // labels: place, then push apart and keep inside the SVG
@@ -236,11 +243,13 @@
           if (x === null) { console.warn('ca-map label fallback', d.text); x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
           placed.push({ x: x, y: y, w: lw, h: lh });
           if (Math.abs(y - base) > 2 || Math.abs(x - (d.x - lw / 2)) > 2) {
-            layer.insert("line", ":first-child").attr("class", "lead").attr("x1", d.x + dx / 2).attr("y1", d.top - dy)
-              .attr("x2", Math.max(x, Math.min(x + lw, d.x))).attr("y2", y + 2).attr("opacity", 0)
-              .transition().duration(200).delay(d.n * 40 + 80).attr("opacity", 1);
+            var ln = layer.insert("line", ":first-child").attr("class", "lead").attr("x1", d.x + dx / 2).attr("y1", d.top - dy)
+              .attr("x2", Math.max(x, Math.min(x + lw, d.x))).attr("y2", y + 2).attr("opacity", d.keep ? 1 : 0);
+            if (!d.keep) ln.transition().duration(200).delay(d.n * 40 + 80).attr("opacity", 1);
           }
-          tx.attr("x", x).attr("y", y).transition().duration(200).delay(d.n * 40 + 80).attr("opacity", 1);
+          tx.attr("x", x).attr("y", y);
+          if (d.keep) tx.attr("opacity", 1);
+          else tx.transition().duration(200).delay(d.n * 40 + 80).attr("opacity", 1);
         });
       }
       function clear() {
