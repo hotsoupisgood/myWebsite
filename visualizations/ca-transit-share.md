@@ -183,9 +183,9 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
           if (Math.abs(y - base) > 2 || Math.abs(x - (d.x - lw / 2)) > 2) {
             layer.insert("line", ":first-child").attr("class", "lead").attr("x1", d.x + dx / 2).attr("y1", d.top - dy)
               .attr("x2", Math.max(x, Math.min(x + lw, d.x))).attr("y2", y + 2).attr("opacity", 0)
-              .transition(t).delay(d.n * 40 + 250).attr("opacity", 1);
+              .transition().duration(200).delay(d.n * 40 + 80).attr("opacity", 1);
           }
-          tx.attr("x", x).attr("y", y).transition(t).delay(d.n * 40 + 250).attr("opacity", 1);
+          tx.attr("x", x).attr("y", y).transition().duration(200).delay(d.n * 40 + 80).attr("opacity", 1);
         });
       }
       function clear() {
