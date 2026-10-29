@@ -13,31 +13,181 @@
 	</author>
 	
 	<entry>
+		<title>Rail stations opened in the 1990s carried 56 of every 100 LA Metro rail boardings in fiscal year 2026</title>
+		<link href="https://lucashenry.xyz/visualizations/la-metro-rail-stations/"/>
+		<updated>2026-10-29T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/visualizations/la-metro-rail-stations/</id>
+		<content type="html">&lt;p&gt;LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to 1999 had 127,389 of the 226,114 average weekday boardings counted by station in fiscal year 2026. The 18 stations opened since 2020 had 24,302.&lt;/p&gt;
+&lt;figure class=&quot;viz lam-wide&quot; id=&quot;lam-viz&quot;&gt;
+  &lt;div class=&quot;ca-card&quot;&gt;
+    &lt;label class=&quot;ca-select&quot; for=&quot;lam-metric&quot;&gt;&lt;span&gt;Statistic&lt;/span&gt;
+      &lt;select id=&quot;lam-metric&quot;&gt;
+        &lt;option value=&quot;b&quot; selected=&quot;&quot;&gt;Average weekday boardings&lt;/option&gt;
+        &lt;option value=&quot;age&quot;&gt;Station age (years open)&lt;/option&gt;
+        &lt;option value=&quot;chg&quot;&gt;Change since fiscal year 2024, boardings&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;ca-checks&quot;&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;lam-colors&quot; checked=&quot;&quot; /&gt; Show line colors&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;lam-year&quot;&gt;
+      &lt;button type=&quot;button&quot; id=&quot;lam-play&quot; aria-label=&quot;Play the years from 1990&quot;&gt;Play&lt;/button&gt;
+      &lt;label for=&quot;lam-slider&quot; class=&quot;lam-ylab&quot;&gt;Year &lt;b id=&quot;lam-yv&quot;&gt;2026&lt;/b&gt;&lt;/label&gt;
+      &lt;input type=&quot;range&quot; id=&quot;lam-slider&quot; min=&quot;1990&quot; max=&quot;2026&quot; step=&quot;1&quot; value=&quot;2026&quot; /&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;ca-note&quot; id=&quot;lam-note&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;bay-legend&quot; id=&quot;lam-legend&quot;&gt;&lt;/p&gt;
+  &lt;div class=&quot;lam-body&quot;&gt;
+    &lt;div id=&quot;lam-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of the LA Metro rail network. Each station that is open in the selected year has a bar for the selected statistic. Hover or tap a station for its numbers.&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;lam-panel&quot; id=&quot;lam-panel&quot; aria-live=&quot;polite&quot;&gt;&lt;p class=&quot;lam-hint&quot;&gt;Hover or tap a station for its numbers.&lt;/p&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/figure&gt;
+&lt;div class=&quot;ca-tables&quot;&gt;
+  &lt;table id=&quot;lam-t1&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+  &lt;table id=&quot;lam-t2&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. Boardings are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file.&lt;/p&gt;
+&lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/la-metro-rail-stations/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;references&quot;&gt;
+&lt;p&gt;Los Angeles County Metropolitan Transportation Authority. (2026). &lt;em&gt;gtfs_rail: LA Metro rail GTFS feed&lt;/em&gt; [Data set]. GitLab. &lt;a href=&quot;https://gitlab.com/LACMTA/gtfs_rail&quot;&gt;https://gitlab.com/LACMTA/gtfs_rail&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Los Angeles County Metropolitan Transportation Authority. (2026). &lt;em&gt;Metro ridership&lt;/em&gt; [Data set]. &lt;a href=&quot;https://opa.metro.net/MetroRidership/&quot;&gt;https://opa.metro.net/MetroRidership/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wikipedia contributors. (2026, October). &lt;em&gt;List of Los Angeles Metro Rail stations&lt;/em&gt;. In &lt;em&gt;Wikipedia&lt;/em&gt;. &lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_Los_Angeles_Metro_Rail_stations&quot;&gt;https://en.wikipedia.org/wiki/List_of_Los_Angeles_Metro_Rail_stations&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wikipedia contributors. (2024, December 9). &lt;em&gt;Template:LAMetro Ridership&lt;/em&gt; (Revision 1262036138, fiscal year 2024). In &lt;em&gt;Wikipedia&lt;/em&gt;. &lt;a href=&quot;https://en.wikipedia.org/w/index.php?oldid=1262036138&quot;&gt;https://en.wikipedia.org/w/index.php?oldid=1262036138&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wikipedia contributors. (2025, September 20). &lt;em&gt;Template:LAMetro Ridership&lt;/em&gt; (Revision 1312349673, fiscal year 2025). In &lt;em&gt;Wikipedia&lt;/em&gt;. &lt;a href=&quot;https://en.wikipedia.org/w/index.php?oldid=1312349673&quot;&gt;https://en.wikipedia.org/w/index.php?oldid=1312349673&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Wikipedia contributors. (2026, August 27). &lt;em&gt;Template:LAMetro Ridership&lt;/em&gt; (Revision 1371527400, fiscal year 2026). In &lt;em&gt;Wikipedia&lt;/em&gt;. &lt;a href=&quot;https://en.wikipedia.org/w/index.php?oldid=1371527400&quot;&gt;https://en.wikipedia.org/w/index.php?oldid=1371527400&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;misken67. (2024, 2025, 2026). &lt;em&gt;Metro ridership by station, fiscal years 2024, 2025 and 2026&lt;/em&gt; [Online posts of LA Metro public records]. Reddit. &lt;a href=&quot;https://www.reddit.com/r/LAMetro/comments/1vz95u9/fy2026_metro_ridership_by_station/&quot;&gt;https://www.reddit.com/r/LAMetro/comments/1vz95u9/fy2026_metro_ridership_by_station/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2024). &lt;em&gt;Cartographic boundary files, counties&lt;/em&gt; [Data set], via Bostock, M. &lt;em&gt;us-atlas&lt;/em&gt; (Version 3). &lt;a href=&quot;https://github.com/topojson/us-atlas&quot;&gt;https://github.com/topojson/us-atlas&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
+@media (min-width: 1000px) { .lam-wide { width: min(64rem, calc(100vw - 3rem)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); } }
+.lam-body { display: flex; flex-direction: column; gap: .6rem; }
+@media (min-width: 1000px) { .lam-body { flex-direction: row; align-items: flex-start; } #lam-map { flex: 1 1 auto; min-width: 0; } .lam-panel { flex: 0 0 15.5rem; position: sticky; top: 1rem; } }
+#lam-map { width: 100%; }
+.lam-panel { background: #fffaf3; border-left: 3px solid #c2410c; padding: .55rem .75rem; font-size: .88rem; color: #2a1a10; min-height: 4em; }
+.lam-panel h3 { font-size: 1rem; margin: 0 0 .25rem; }
+.lam-panel p { margin: .15rem 0; }
+.lam-hint { color: #6b5440; }
+.lam-chip { display: inline-block; min-width: 1.25rem; text-align: center; font-weight: 700; font-size: .75rem; border-radius: 50%; color: #fff; margin-right: .2rem; line-height: 1.25rem; }
+.lam-panel svg { display: block; width: 100%; max-width: 260px; height: auto; margin-top: .3rem; }
+.lam-panel .ax { font-size: 10px; fill: #6b5440; }
+.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
+.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 16rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
+.ca-select select:focus-visible, #lam-play:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.lam-year { display: flex; align-items: center; gap: .7rem; flex: 1 1 100%; }
+#lam-play { font: inherit; font-size: .9rem; font-weight: 600; min-height: 40px; min-width: 4.5rem; border: 1px solid #c2410c; background: #c2410c; color: #fff; border-radius: 8px; cursor: pointer; }
+.lam-ylab { font-size: .8rem; font-weight: 600; color: #6b5440; white-space: nowrap; }
+.lam-ylab b { font-size: 1.1rem; color: #2a1a10; font-variant-numeric: tabular-nums; }
+#lam-slider { flex: 1 1 auto; accent-color: #c2410c; min-height: 40px; min-width: 0; }
+.ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .3rem; }
+.bay-legend { font-size: .8rem; color: #6b5440; margin: 0 0 .3rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+.bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+#lam-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+#lam-map .land { fill: #f1e3c8; stroke: none; }
+#lam-map .lac { fill: none; stroke: #c9ad85; stroke-width: 0.9; stroke-dasharray: 3 3; pointer-events: none; }
+#lam-map .slab { fill: #d4b483; }
+#lam-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#lam-map .rail { fill: none; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
+#lam-map .dot { fill: #fffaf3; stroke: #6b5440; stroke-width: 0.9; pointer-events: none; }
+#lam-map .dot.on { fill: #c2410c; stroke: #2a1a10; }
+#lam-map .pin { stroke: #2a1a10; stroke-width: 0.9; pointer-events: none; }
+#lam-map .pinhead { fill: #2a1a10; pointer-events: none; }
+#lam-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
+#lam-map .lbl.main { font-weight: 700; font-size: 12px; }
+#lam-map .lbl.yr { font-size: 9.5px; font-weight: 700; fill: #8a2d08; }
+#lam-map .place { font-size: 10px; fill: #9a7b5a; font-style: italic; pointer-events: none; text-anchor: middle; }
+#lam-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1rem; max-width: 46rem; margin: 0 auto 2rem; }
+.ca-tables table { flex: 1 1 19rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
+.ca-tables th, .ca-tables td { padding: .3rem .25rem; border-bottom: 1px solid #ead9bd; text-align: left; }
+.ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; font-size: .8rem; }
+.ca-tables td:nth-child(n+2), .ca-tables th:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ca-tables td:nth-child(n+2) { font-size: .8rem; }
+.ca-tables td:first-child { font-size: .85rem; }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
+&lt;/style&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/la_metro_viz.js&quot;&gt;&lt;/script&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>California transit commuting</title>
 		<link href="https://lucashenry.xyz/visualizations/ca-transit-share/"/>
 		<updated>2026-10-29T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/ca-transit-share/</id>
 		<content type="html">&lt;figure class=&quot;viz&quot; id=&quot;ca-transit-viz&quot;&gt;
-  &lt;div id=&quot;ca-map&quot; role=&quot;img&quot; aria-label=&quot;Map of California counties. Hover or tap a county to show bars for the share of workers who commuted by public transportation in that county and its neighbors.&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;ca-card&quot;&gt;
+    &lt;label class=&quot;ca-select&quot; for=&quot;ca-metric&quot;&gt;&lt;span&gt;Statistic&lt;/span&gt;
+      &lt;select id=&quot;ca-metric&quot;&gt;
+        &lt;option value=&quot;transit&quot; selected=&quot;&quot;&gt;Transit commuters, of 100 workers&lt;/option&gt;
+        &lt;option value=&quot;novehicle&quot;&gt;Households with no vehicle, of 100 households&lt;/option&gt;
+        &lt;option value=&quot;commute&quot;&gt;One-way commute time, minutes&lt;/option&gt;
+        &lt;option value=&quot;lowwage&quot;&gt;Transit commuters among workers earning under $25,000 a year, of 100&lt;/option&gt;
+        &lt;option value=&quot;renter&quot;&gt;Households that rent their home, of 100 households&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;ca-checks&quot;&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-top5&quot; checked=&quot;&quot; /&gt; Always show the 5 highest counties&lt;/label&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-bottom5&quot; checked=&quot;&quot; /&gt; Always show the 5 lowest counties&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;ca-note&quot; id=&quot;ca-note&quot;&gt;&lt;/p&gt;
+  &lt;div id=&quot;ca-map&quot; role=&quot;img&quot; aria-label=&quot;Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors.&quot;&gt;&lt;/div&gt;
 &lt;/figure&gt;
+&lt;div class=&quot;ca-tables&quot;&gt;
+  &lt;table id=&quot;ca-top&quot;&gt;&lt;caption&gt;Highest 5 counties&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;County&lt;/th&gt;&lt;th class=&quot;vh&quot;&gt;Of 100 workers&lt;/th&gt;&lt;th class=&quot;nh&quot;&gt;Workers&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+  &lt;table id=&quot;ca-bottom&quot;&gt;&lt;caption&gt;Lowest 5 counties&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;County&lt;/th&gt;&lt;th class=&quot;vh&quot;&gt;Of 100 workers&lt;/th&gt;&lt;th class=&quot;nh&quot;&gt;Workers&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/ca-transit-share/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08301) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Household size by vehicles available&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08201) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08201.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08201.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Aggregate travel time to work (in minutes) of workers by sex&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08013) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Travel time to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08303) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work by workers&#39; earnings in the past 12 months (in 2024 inflation-adjusted dollars)&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08119) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Tenure&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B25003) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;U.S. Census Bureau. (2024). &lt;em&gt;Cartographic boundary files, counties&lt;/em&gt; [Data set], via Bostock, M. &lt;em&gt;us-atlas&lt;/em&gt; (Version 3). &lt;a href=&quot;https://github.com/topojson/us-atlas&quot;&gt;https://github.com/topojson/us-atlas&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;style&gt;
-.viz { margin: 1rem 0 1.5rem; max-width: 44rem; }
+.viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #ca-map { width: 100%; }
+.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
+.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
+.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .4rem; }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
 #ca-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
-#ca-map .county { fill: #e3e3e0; stroke: #fff; stroke-width: 0.7; cursor: pointer; }
-#ca-map .county.nb { fill: #d6dde4; }
-#ca-map .county.on { fill: #c4d0dc; }
-#ca-map .outline { fill: none; stroke: #082840; stroke-width: 1.6; pointer-events: none; }
+#ca-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.6; stroke-linejoin: round; cursor: pointer; }
+#ca-map .county.nb { fill: #f5d6aa; }
+#ca-map .county.on { fill: #efbe8a; }
+#ca-map .slab { fill: #d4b483; }
+#ca-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#ca-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
 #ca-map .bar { pointer-events: none; }
-#ca-map .lbl { pointer-events: none; font-size: 11px; fill: #222; paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+#ca-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
 #ca-map .lbl.main { font-weight: 700; font-size: 12px; }
-#ca-map .lead { stroke: #888; stroke-width: 0.6; pointer-events: none; }
+#ca-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1.5rem; max-width: 44rem; margin: 0 auto 2rem; }
+.ca-tables table { flex: 1 1 16rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
+.ca-tables th, .ca-tables td { padding: .3rem .5rem; border-bottom: 1px solid #ead9bd; text-align: left; }
+.ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; }
+.ca-tables td:nth-child(n+2), .ca-tables th:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
@@ -47,84 +197,192 @@
   var el = document.getElementById(&quot;ca-map&quot;);
   Promise.all([
     d3.json(&quot;/visualizations/data/ca-counties-10m.json&quot;),
-    d3.json(&quot;/visualizations/data/ca_transit_share_2020_2024.json&quot;)
+    d3.json(&quot;/visualizations/data/ca_commute_metrics_2020_2024.json&quot;)
   ]).then(function (res) {
     var topo = res[0], rows = res[1];
     var byFips = {};
     rows.forEach(function (r) { byFips[r.fips] = r; });
+    var METRICS = {
+      transit: { unit: &quot; of 100&quot;, head: &quot;Of 100 workers&quot;, count: &quot;Workers&quot;, what: &quot;transit commuters&quot;,
+        note: &quot;Workers age 16 and over who commuted by public transportation, of every 100 workers. Taxis are not counted.&quot; },
+      novehicle: { unit: &quot; of 100&quot;, head: &quot;Of 100 households&quot;, count: &quot;Households&quot;, what: &quot;households with no vehicle&quot;,
+        note: &quot;Households with no car, van or truck available, of every 100 households.&quot; },
+      commute: { unit: &quot; minutes&quot;, head: &quot;Minutes, one way&quot;, count: &quot;Workers&quot;, what: &quot;one-way commute time&quot;,
+        note: &quot;Average one-way travel time to work in minutes, for workers who did not work from home.&quot; },
+      lowwage: { unit: &quot; of 100&quot;, head: &quot;Of 100 workers&quot;, count: &quot;Workers&quot;, what: &quot;transit commuters earning under $25,000&quot;,
+        note: &quot;Workers who earned under $25,000 in the past 12 months and commuted by public transportation, of every 100 such workers.&quot; },
+      renter: { unit: &quot; of 100&quot;, head: &quot;Of 100 households&quot;, count: &quot;Households&quot;, what: &quot;households that rent&quot;,
+        note: &quot;Occupied homes where the household rents rather than owns, of every 100 occupied homes.&quot; }
+    };
+    var sel = document.getElementById(&quot;ca-metric&quot;);
+    var metric = sel.value;
+    function mv(r) { return r[metric].value; }
+    function fmt(v) { return v.toFixed(1) + METRICS[metric].unit; }
+    function fill(id, list) {
+      d3.select(&quot;#&quot; + id + &quot; tbody&quot;).selectAll(&quot;tr&quot;).data(list).join(&quot;tr&quot;).html(function (r) {
+        return &quot;&lt;td&gt;&quot; + r.county.replace(/ County$/, &quot;&quot;) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + fmt(mv(r)) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + d3.format(&quot;,&quot;)(r[metric].den) + &quot;&lt;/td&gt;&quot;;
+      });
+    }
+    function tables() {
+      var M = METRICS[metric];
+      var sorted = rows.slice().sort(function (a, b) { return mv(b) - mv(a) || b[metric].den - a[metric].den; });
+      fill(&quot;ca-top&quot;, sorted.slice(0, 5));
+      fill(&quot;ca-bottom&quot;, sorted.slice(-5).reverse());
+      d3.select(&quot;#ca-top caption&quot;).text(&quot;Highest 5 counties, &quot; + M.what);
+      d3.select(&quot;#ca-bottom caption&quot;).text(&quot;Lowest 5 counties, &quot; + M.what);
+      d3.selectAll(&quot;.ca-tables .vh&quot;).text(M.head);
+      d3.selectAll(&quot;.ca-tables .nh&quot;).text(M.count);
+      document.getElementById(&quot;ca-note&quot;).textContent = M.note;
+    }
+    tables();
     var geoms = topo.objects.counties.geometries;
     var feats = topojson.feature(topo, topo.objects.counties).features;
     var nbrs = topojson.neighbors(geoms);
-    var maxV = d3.max(rows, function (r) { return r.share_pct; });
+    var maxV;
     var state = { i: null };
+    var box = document.getElementById(&quot;ca-top5&quot;);
+    var box2 = document.getElementById(&quot;ca-bottom5&quot;);
+    var top5, bottom5;
+    function rank() {
+      maxV = d3.max(rows, mv);
+      var ranked = feats.map(function (f, k) { return k; })
+        .sort(function (a, b) { var A = byFips[feats[a].id], Bq = byFips[feats[b].id]; return mv(Bq) - mv(A) || Bq[metric].den - A[metric].den; });
+      top5 = ranked.slice(0, 5); bottom5 = ranked.slice(-5);
+    }
+    rank();
+    // vertical room is sized for the tallest bar of any statistic, so the map does not move on a switch
+    var maxAll = {};
+    Object.keys(METRICS).forEach(function (m) { maxAll[m] = d3.max(rows, function (r) { return r[m].value; }); });
+    function relMax(f) { var r = byFips[f.id]; return d3.max(Object.keys(METRICS), function (m) { return r[m].value / maxAll[m]; }); }
 
+    var TILT = 50 * Math.PI / 180; // camera elevation above the table
+    var land = topojson.merge(topo, geoms);
     function draw() {
       el.innerHTML = &quot;&quot;;
       var W = Math.max(300, el.clientWidth);
-      var H = Math.round(Math.min(W * 1.1, Math.max(460, window.innerHeight * 0.92)));
       var small = W &lt; 480;
-      var proj = d3.geoConicEqualArea().parallels([34, 40.5]).rotate([120, 0])
-        .fitExtent([[6, H * 0.12], [W - 6, H - 6]], { type: &quot;FeatureCollection&quot;, features: feats });
+      var fc = { type: &quot;FeatureCollection&quot;, features: feats };
+      var B = 1000;
+      var base = d3.geoConicEqualArea().parallels([34, 40.5]).rotate([120, 0]).fitSize([B, B], fc);
+      var bb0 = d3.geoPath(base).bounds(fc), front = bb0[1][1], cx0 = (bb0[0][0] + bb0[1][0]) / 2;
+      var D = 1.4 * B, sinT = Math.sin(TILT), cosT = Math.cos(TILT);
+      function tiltRaw(x, y) {
+        var back = front - y;            // distance from the near edge, on the table
+        var sc = D / (D + back * cosT);  // farther points are smaller
+        return [cx0 + (x - cx0) * sc, front - back * sinT * sc];
+      }
+      var k = 1, tx = 0, ty = 0;
+      function tiltPt(x, y) { var q = tiltRaw(x, y); return [q[0] * k + tx, q[1] * k + ty]; }
+      var tf = d3.geoTransform({ point: function (x, y) { var q = tiltPt(x, y); this.stream.point(q[0], q[1]); } });
+      var proj = { stream: function (st) { return base.stream(tf.stream(st)); } };
       var path = d3.geoPath(proj);
-      var svg = d3.select(el).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
-      svg.append(&quot;rect&quot;).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H).attr(&quot;fill&quot;, &quot;transparent&quot;).on(&quot;click&quot;, function () { clear(); });
+      var rb = path.bounds(fc);
+      var edge = small ? 5 : 7, pad = 6;
+      var maxH = W * (small ? 0.36 : 0.30);
+      k = (W - 2 * pad) / (rb[1][0] - rb[0][0]);
+      tx = pad - rb[0][0] * k;
+      ty = -rb[0][1] * k;
+      var bpath = d3.geoPath(base);
       var pts = feats.map(function (f) {
-        var c = path.centroid(f);
-        if (!d3.geoContains(f, proj.invert(c))) {
-          var b = path.bounds(f), best = null, bd = -1;
+        var c = bpath.centroid(f);
+        if (!d3.geoContains(f, base.invert(c))) {
+          var b = bpath.bounds(f), best = null, bd = -1;
           for (var gx = 0; gx &lt;= 12; gx++) for (var gy = 0; gy &lt;= 12; gy++) {
             var p = [b[0][0] + (b[1][0] - b[0][0]) * gx / 12, b[0][1] + (b[1][1] - b[0][1]) * gy / 12];
-            if (d3.geoContains(f, proj.invert(p))) { var d = -Math.hypot(p[0] - c[0], p[1] - c[1]); if (d &gt; bd || best === null) { bd = d; best = p; } }
+            if (d3.geoContains(f, base.invert(p))) { var d = -Math.hypot(p[0] - c[0], p[1] - c[1]); if (d &gt; bd || best === null) { bd = d; best = p; } }
           }
           if (best) c = best;
         }
-        return c;
+        return tiltPt(c[0], c[1]);
       });
-      var counties = svg.append(&quot;g&quot;).selectAll(&quot;path&quot;).data(feats).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;county&quot;).attr(&quot;d&quot;, path)
+      // room above the map: enough for the tallest bar plus a label at each county
+      var top = 12;
+      pts.forEach(function (q, i) { top = Math.max(top, maxH * relMax(feats[i]) + 34 - q[1]); });
+      ty += top;
+      pts.forEach(function (q) { q[1] += top; });
+      var H = Math.ceil(top + (rb[1][1] - rb[0][1]) * k + edge + 10);
+      var svg = d3.select(el).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
+      var defs = svg.append(&quot;defs&quot;);
+      defs.append(&quot;filter&quot;).attr(&quot;id&quot;, &quot;ca-blur&quot;).attr(&quot;x&quot;, &quot;-10%&quot;).attr(&quot;y&quot;, &quot;-10%&quot;).attr(&quot;width&quot;, &quot;120%&quot;).attr(&quot;height&quot;, &quot;120%&quot;)
+        .append(&quot;feGaussianBlur&quot;).attr(&quot;stdDeviation&quot;, 5);
+      svg.append(&quot;rect&quot;).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H).attr(&quot;fill&quot;, &quot;transparent&quot;).on(&quot;click&quot;, function () { clear(); });
+      var landD = path(land);
+      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;shadow&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(5,&quot; + (edge + 6) + &quot;)&quot;).attr(&quot;filter&quot;, &quot;url(#ca-blur)&quot;);
+      for (var e = edge; e &gt; 0; e--) svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;slab&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(0,&quot; + e + &quot;)&quot;);
+      var counties = svg.append(&quot;g&quot;).selectAll(&quot;path&quot;).data(feats).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;county&quot;).attr(&quot;data-fips&quot;, function (f) { return f.id; }).attr(&quot;d&quot;, path)
         .on(&quot;pointerenter&quot;, function (ev, f) { if (ev.pointerType === &quot;mouse&quot;) show(feats.indexOf(f)); })
         .on(&quot;pointerleave&quot;, function (ev) { if (ev.pointerType === &quot;mouse&quot;) clear(); })
         .on(&quot;click&quot;, function (ev, f) { ev.stopPropagation(); var i = feats.indexOf(f); if (state.i === i &amp;&amp; ev.pointerType !== &quot;mouse&quot;) clear(); else show(i); });
       var outline = svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;outline&quot;);
       var layer = svg.append(&quot;g&quot;);
-      var maxH = H * (small ? 0.24 : 0.27);
-      var h = d3.scaleLinear().domain([0, maxV]).range([0, maxH]);
+      var h = function (v) { return maxH * v / maxV; };
       var bw = small ? 7 : 9;
 
       function name(i) { return byFips[feats[i].id].county.replace(/ County$/, &quot;&quot;); }
-      function val(i) { return byFips[feats[i].id].share_pct; }
+      function val(i) { return mv(byFips[feats[i].id]); }
 
       function show(i) {
         state.i = i;
-        var set = [i].concat(nbrs[i]);
-        counties.classed(&quot;on&quot;, function (f, k) { return k === i; }).classed(&quot;nb&quot;, function (f, k) { return k !== i &amp;&amp; set.indexOf(k) &gt;= 0; });
-        outline.attr(&quot;d&quot;, path(feats[i]));
+        var hov = i === null ? [] : [i].concat(nbrs[i]);
+        var set = hov.slice();
+        if (box.checked) top5.forEach(function (k) { if (set.indexOf(k) &lt; 0) set.push(k); });
+        if (box2.checked) bottom5.forEach(function (k) { if (set.indexOf(k) &lt; 0) set.push(k); });
+        counties.classed(&quot;on&quot;, function (f, k) { return k === i; }).classed(&quot;nb&quot;, function (f, k) { return k !== i &amp;&amp; hov.indexOf(k) &gt;= 0; });
+        outline.attr(&quot;d&quot;, i === null ? null : path(feats[i]));
+        var had = {};
+        // current height of every bar on screen, so standing or rising bars resize from where they are
+        layer.selectAll(&quot;g.bar&quot;).each(function () { if (this.__k !== undefined &amp;&amp; +d3.select(this).datum() &gt; 0) had[this.__k] = +d3.select(this).datum(); });
         layer.interrupt().selectAll(&quot;*&quot;).interrupt();
         layer.selectAll(&quot;*&quot;).remove();
         var t = d3.transition().duration(400).ease(d3.easeCubicOut);
         var items = set.map(function (k, n) {
           var p = pts[k];
           return { k: k, n: n, x: p[0], y: p[1], top: p[1] - h(val(k)), main: k === i,
-            text: name(k) + &quot; &quot; + val(k).toFixed(1) + &quot; of 100&quot; };
+            text: name(k) + &quot; &quot; + fmt(val(k)) };
         });
-        items.forEach(function (d) {
-          layer.append(&quot;rect&quot;).attr(&quot;class&quot;, &quot;bar&quot;).attr(&quot;x&quot;, d.x - bw / 2).attr(&quot;width&quot;, bw)
-            .attr(&quot;y&quot;, d.y).attr(&quot;height&quot;, 0).attr(&quot;fill&quot;, d.main ? &quot;#082840&quot; : &quot;#7fa3c2&quot;)
-            .transition(t).delay(d.n * 40).attr(&quot;y&quot;, d.top).attr(&quot;height&quot;, d.y - d.top);
+        var dx = bw * 0.5, dy = bw * 0.35;
+        var COL = { main: [&quot;#c2410c&quot;, &quot;#8a2d08&quot;, &quot;#e56a32&quot;], nb: [&quot;#f28c38&quot;, &quot;#c4661c&quot;, &quot;#f9b277&quot;] };
+        function barPaths(g, d, hh) {
+          var x0 = d.x - bw / 2, x1 = d.x + bw / 2, y0 = d.y, y1 = d.y - hh;
+          g.select(&quot;.f&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y0 + &quot;H&quot; + x1 + &quot;V&quot; + y1 + &quot;H&quot; + x0 + &quot;Z&quot;);
+          g.select(&quot;.s&quot;).attr(&quot;d&quot;, &quot;M&quot; + x1 + &quot;,&quot; + y0 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y0 - dy) + &quot;V&quot; + (y1 - dy) + &quot;L&quot; + x1 + &quot;,&quot; + y1 + &quot;Z&quot;);
+          g.select(&quot;.c&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y1 + &quot;H&quot; + x1 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y1 - dy) + &quot;H&quot; + (x0 + dx) + &quot;Z&quot;);
+        }
+        items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
+          var col = d.main ? COL.main : COL.nb;
+          var g = layer.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;bar&quot;).datum(0);
+          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;s&quot;).attr(&quot;fill&quot;, col[1]);
+          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;f&quot;).attr(&quot;fill&quot;, col[0]);
+          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;c&quot;).attr(&quot;fill&quot;, col[2]);
+          var full = d.y - d.top, node = g.node();
+          node.__k = d.k;
+          var start = had[d.k] || 0;
+          d.keep = start &gt; 0;
+          d.grow = d.keep &amp;&amp; Math.abs(start - full) &gt; 0.5;
+          if (d.keep &amp;&amp; !d.grow) { g.datum(full); barPaths(g, d, full); node.__done = true; }
+          else {
+            g.datum(start); barPaths(g, d, start);
+            g.transition(t).duration(d.keep ? 300 : 400).delay(d.keep ? 0 : d.n * 40).tween(&quot;h&quot;, function () {
+              var ip = d3.interpolateNumber(start, full);
+              return function (u) { var v = ip(u); g.datum(v); barPaths(g, d, v); };
+            }).on(&quot;end&quot;, function () { node.__done = true; });
+          }
+          d.g = g;
         });
         // labels: place, then push apart and keep inside the SVG
         var placed = [];
-        var barsBox = items.map(function (d) { return { k: d.k, x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + 2, h: d.y - d.top + 2 }; });
+        var barsBox = items.map(function (d) { return { k: d.k, x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.y - d.top + dy + 2 }; });
         items.slice().sort(function (a, b) { return a.main ? -1 : b.main ? 1 : a.top - b.top; }).forEach(function (d) {
           var tx = layer.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;lbl&quot; + (d.main ? &quot; main&quot; : &quot;&quot;)).text(d.text).attr(&quot;opacity&quot;, 0);
           var bb = tx.node().getBBox();
           var lw = bb.width, lh = bb.height;
-          var obs = placed.concat(barsBox.filter(function (q) { return q.k !== d.k; }));
+          var obs = placed.concat(barsBox);
           function free(x, y) {
             if (x &lt; 2 || x + lw &gt; W - 2 || y - lh &lt; 1 || y &gt; H - 2) return false;
-            return !obs.some(function (q) { return x &lt; q.x + q.w + 2 &amp;&amp; x + lw + 2 &gt; q.x &amp;&amp; y - lh &lt; q.y &amp;&amp; y &gt; q.y - q.h; });
+            return !obs.some(function (q) { return x &lt; q.x + q.w + 3 &amp;&amp; x + lw + 3 &gt; q.x &amp;&amp; y - lh &lt; q.y + 3 &amp;&amp; y + 1 &gt; q.y - q.h - 3; });
           }
-          var x = null, y = null, base = d.top - 4;
-          var xs = [d.x - lw / 2, d.x + bw / 2 + 3, d.x - bw / 2 - 3 - lw];
+          var x = null, y = null, base = d.top - dy - 7;
+          var xs = [d.x - lw / 2, d.x + bw / 2 + dx + 4, d.x - bw / 2 - 4 - lw];
           outer: for (var s = 0; s &lt; 60; s++) {
             var dys = s === 0 ? [0] : [-s * 4, s * 4];
             for (var j = 0; j &lt; dys.length; j++) for (var m = 0; m &lt; xs.length; m++) {
@@ -134,25 +392,43 @@
               if (free(cx, cy)) { x = cx; y = cy; break outer; }
             }
           }
-          if (x === null) { x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
-          placed.push({ x: x, y: y, w: lw, h: lh });
-          if (Math.abs(y - (d.top - 4)) &gt; 2 || Math.abs(x - (d.x - lw / 2)) &gt; 2) {
-            layer.insert(&quot;line&quot;, &quot;:first-child&quot;).attr(&quot;class&quot;, &quot;lead&quot;).attr(&quot;x1&quot;, d.x).attr(&quot;y1&quot;, d.top)
-              .attr(&quot;x2&quot;, Math.max(x, Math.min(x + lw, d.x))).attr(&quot;y2&quot;, y + 2).attr(&quot;opacity&quot;, 0)
-              .transition(t).delay(d.n * 40 + 250).attr(&quot;opacity&quot;, 1);
+          if (x === null) {
+            // no spot near the bar: take the nearest free spot anywhere, joined by a leader line
+            var bd2 = Infinity;
+            for (var gy2 = lh + 2; gy2 &lt;= H - 2; gy2 += 4) for (var gx2 = 2; gx2 &lt;= W - lw - 2; gx2 += 6) {
+              var dd = Math.hypot(gx2 + lw / 2 - d.x, gy2 - base);
+              if (dd &lt; bd2 &amp;&amp; free(gx2, gy2)) { bd2 = dd; x = gx2; y = gy2; }
+            }
           }
-          tx.attr(&quot;x&quot;, x).attr(&quot;y&quot;, y).transition(t).delay(d.n * 40 + 250).attr(&quot;opacity&quot;, 1);
+          if (x === null) { console.warn(&#39;ca-map label fallback&#39;, d.text); x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
+          placed.push({ x: x, y: y, w: lw, h: lh });
+          if (Math.abs(y - base) &gt; 2 || Math.abs(x - (d.x - lw / 2)) &gt; 2) {
+            var ln = layer.insert(&quot;line&quot;, &quot;:first-child&quot;).attr(&quot;class&quot;, &quot;lead&quot;).attr(&quot;x1&quot;, d.x + dx / 2).attr(&quot;y1&quot;, d.top - dy)
+              .attr(&quot;x2&quot;, Math.max(x, Math.min(x + lw, d.x))).attr(&quot;y2&quot;, y + 2).attr(&quot;opacity&quot;, d.keep &amp;&amp; !d.grow ? 1 : 0);
+            if (!d.keep || d.grow) ln.transition().duration(200).delay(d.grow ? 220 : d.n * 40 + 80).attr(&quot;opacity&quot;, 1);
+          }
+          tx.attr(&quot;x&quot;, x).attr(&quot;y&quot;, y);
+          if (d.keep &amp;&amp; !d.grow) tx.attr(&quot;opacity&quot;, 1);
+          else tx.transition().duration(200).delay(d.grow ? 220 : d.n * 40 + 80).attr(&quot;opacity&quot;, 1);
         });
       }
       function clear() {
+        if (box.checked || box2.checked) { show(null); return; }
         state.i = null;
         counties.classed(&quot;on&quot;, false).classed(&quot;nb&quot;, false);
         outline.attr(&quot;d&quot;, null);
         layer.selectAll(&quot;text,line&quot;).interrupt().remove();
-        layer.selectAll(&quot;rect&quot;).interrupt().transition().duration(250).ease(d3.easeCubicIn)
-          .attr(&quot;y&quot;, function () { return +this.getAttribute(&quot;y&quot;) + +this.getAttribute(&quot;height&quot;); }).attr(&quot;height&quot;, 0).remove();
+        layer.selectAll(&quot;g.bar&quot;).interrupt().transition().duration(200).attr(&quot;opacity&quot;, 0).remove();
       }
-      if (state.i !== null) show(state.i);
+      if (state.i !== null || box.checked || box2.checked) show(state.i);
+      box.onchange = box2.onchange = function () {
+        if (state.i !== null || box.checked || box2.checked) show(state.i);
+        else { layer.selectAll(&quot;text,line&quot;).interrupt().remove(); layer.selectAll(&quot;g.bar&quot;).interrupt().transition().duration(200).attr(&quot;opacity&quot;, 0).remove(); }
+      };
+      sel.onchange = function () {
+        metric = sel.value; rank(); tables();
+        if (state.i !== null || box.checked || box2.checked) show(state.i);
+      };
       window.__caShow = function (fips) { show(feats.findIndex(function (f) { return f.id === fips; })); };
     }
     draw();
@@ -161,6 +437,836 @@
   });
 })();
 &lt;/script&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>HSE Mid West had significantly more patients on trolleys than any other region, 8.1 per 10,000 people a week</title>
+		<link href="https://lucashenry.xyz/visualizations/hse-trolley-regions/"/>
+		<updated>2026-10-29T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/visualizations/hse-trolley-regions/</id>
+		<content type="html">&lt;p&gt;HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (likely range 7.4 to 8.8). That is 1.6 more than HSE West and North West, the next highest (likely range 0.7 to 2.5 more). Every region dropped in the week that contains 25 December. The drop ran from 2.3 per 10,000 in HSE Dublin and North East to 5.4 per 10,000 in HSE Mid West.&lt;/p&gt;
+&lt;figure class=&quot;viz ie-wide&quot; id=&quot;ie-viz&quot;&gt;
+  &lt;div class=&quot;ca-card&quot;&gt;
+    &lt;label class=&quot;ca-select&quot; for=&quot;ie-metric&quot;&gt;&lt;span&gt;Estimate&lt;/span&gt;
+      &lt;select id=&quot;ie-metric&quot;&gt;
+        &lt;option value=&quot;alpha&quot; selected=&quot;&quot;&gt;Level, patients per 10,000 people a week&lt;/option&gt;
+        &lt;option value=&quot;amp&quot;&gt;Seasonal swing, per 10,000 people a week&lt;/option&gt;
+        &lt;option value=&quot;pwin&quot;&gt;Chance higher in winter, in 100&lt;/option&gt;
+        &lt;option value=&quot;pm1&quot;&gt;Two weeks before New Year week, change per 10,000&lt;/option&gt;
+        &lt;option value=&quot;pre&quot;&gt;Christmas week, change per 10,000&lt;/option&gt;
+        &lt;option value=&quot;mid&quot;&gt;New Year week, change per 10,000&lt;/option&gt;
+        &lt;option value=&quot;post&quot;&gt;Week after New Year week, change per 10,000&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;ca-checks&quot;&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ie-all&quot; checked=&quot;&quot; /&gt; Always show all regions&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;ca-note&quot; id=&quot;ie-note&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;bay-legend&quot; id=&quot;ie-legend&quot;&gt;&lt;/p&gt;
+  &lt;div class=&quot;ie-grid&quot;&gt;
+    &lt;div id=&quot;ie-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of Ireland split into the six HSE health regions. A bar rises from each region. Hover or tap a region to show its estimates and its calendar of winters and New Year weeks.&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;ie-panel&quot; id=&quot;ie-panel&quot; aria-live=&quot;polite&quot;&gt;
+      &lt;p class=&quot;ie-info&quot; id=&quot;ie-info&quot;&gt;&lt;/p&gt;
+      &lt;p class=&quot;bay-legend ie-tlleg&quot;&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#dde5e8&quot;&gt;&lt;/i&gt;Winter (Met Éireann: December to February)&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e9915a&quot;&gt;&lt;/i&gt;New Year phases&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#6b5440;height:2px;vertical-align:3px&quot;&gt;&lt;/i&gt;Weekly count&lt;/span&gt;&lt;/p&gt;
+      &lt;div id=&quot;ie-tl&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/figure&gt;
+&lt;div class=&quot;ca-tables&quot;&gt;
+  &lt;table id=&quot;ie-t1&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+  &lt;table id=&quot;ie-t2&quot;&gt;&lt;caption&gt;The four New Year phases, weeks starting Monday&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Phase&lt;/th&gt;&lt;th&gt;Weeks&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Data are daily counts of patients on emergency department and ward trolleys from the HSE Urgent and Emergency Care daily report, 1 January 2023 to 5 April 2026, summed into Monday-start weeks for each region and divided by regional population per 10,000 people. The estimates come from model v4.6 of Henry and Bergin (2026): each region has its own level, a yearly cycle, four New Year phase effects, a Mid West operational reset in August 2024, and dependence on the previous two weeks. It was fitted in JAGS with 4 chains of 30,000 iterations, the first 10,000 dropped, giving 80,000 draws. Values are posterior medians. The likely range (95 in 100 credible interval) runs from the 2.5th to the 97.5th percentile of the draws. Significantly means the likely range of a difference between two regions excludes zero. A chance is the share of the 80,000 draws in which the statement holds. The seasonal swing is how far the yearly cycle rises above the level at its peak. Winter follows Met Éireann (2026) and the thesis: 1 December to the end of February. The winter excess is the region&#39;s yearly cycle averaged over study weeks starting in December to February, minus its average over the other study weeks, computed in every draw. It uses the yearly cycle only, not the New Year phases. The four phases are the week two weeks before the week containing 1 January, the week before it, which contains 25 December, the week containing 1 January, and the week after it. Each phase effect is the change from the expected value in that week, and the same effect applies every winter. Region boundaries were simplified for display.&lt;/p&gt;
+&lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/hse-trolley-regions/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;references&quot;&gt;
+&lt;p&gt;Henry, L., &amp;amp; Bergin, E. (2026). &lt;em&gt;A Bayesian time series framework for comparing on trolley counts across Irish HSE health regions&lt;/em&gt; [Master&#39;s thesis, University of Galway].&lt;/p&gt;
+&lt;p&gt;Henry, L., &amp;amp; Bergin, E. (2026). &lt;em&gt;HSE urgent care report Bayesian analysis&lt;/em&gt; [Computer software]. GitHub. &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis&quot;&gt;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Health Service Executive. (2026). &lt;em&gt;Urgent and emergency care report&lt;/em&gt; [Data set]. &lt;a href=&quot;https://www2.hse.ie/services/urgent-emergency-care-report/&quot;&gt;https://www2.hse.ie/services/urgent-emergency-care-report/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Met Éireann. (2026). &lt;em&gt;Climate of Ireland&lt;/em&gt;. The Irish Meteorological Service. &lt;a href=&quot;https://www.met.ie/climate/climate-of-ireland&quot;&gt;https://www.met.ie/climate/climate-of-ireland&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
+@media (min-width: 66rem) {
+  .viz.ie-wide { max-width: none; width: 62rem; position: relative; left: 50%; transform: translateX(-50%); }
+  .ie-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
+}
+#ie-map { width: 100%; }
+.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
+.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
+.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .3rem; }
+.bay-legend { font-size: .8rem; color: #6b5440; margin: 0 0 .3rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+.bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
+.ie-panel { box-sizing: border-box; background: #fffaf3; border-left: 3px solid #c2410c; padding: .5rem .7rem .3rem; margin: .4rem 0 0; }
+.ie-info { font-size: .85rem; color: #2a1a10; margin: 0 0 .35rem; line-height: 1.45; }
+.ie-info b { font-size: .95rem; }
+.ie-tlleg { font-size: .75rem; }
+#ie-tl svg { display: block; width: 100%; height: auto; font-family: inherit; }
+#ie-tl .ax text { font-size: 10px; fill: #6b5440; }
+#ie-tl .ax line, #ie-tl .ax path { stroke: #b49a78; }
+#ie-tl .ttl { font-size: 10px; fill: #6b5440; font-weight: 600; }
+#ie-tl .ser { fill: none; stroke: #6b5440; stroke-width: 1.1; }
+#ie-tl .zero { stroke: #8a7a6a; stroke-dasharray: 3 3; }
+#ie-tl .ci { stroke: #2a1a10; stroke-width: 2; stroke-linecap: round; }
+#ie-tl .vl { font-size: 10.5px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3px; stroke-linejoin: round; text-anchor: middle; }
+#ie-tl .col.on { stroke: #c2410c; stroke-width: 2; }
+#ie-tl .zoom { stroke: #b49a78; stroke-width: .8; fill: #f1e3c8; opacity: .45; }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+#ie-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+#ie-map .ctx { fill: #ece6dc; stroke: #fffaf0; stroke-width: 0.6; pointer-events: none; }
+#ie-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 1; stroke-linejoin: round; cursor: pointer; }
+#ie-map .county.on { fill: #efbe8a; }
+#ie-map .slab { fill: #d4b483; }
+#ie-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#ie-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
+#ie-map .ctxname { font-size: 9px; fill: #b5a088; font-style: italic; pointer-events: none; text-anchor: middle; }
+#ie-map .bar { pointer-events: none; }
+#ie-map .dot { fill: #6b5440; pointer-events: none; }
+#ie-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
+#ie-map .lbl.main { font-weight: 700; font-size: 12px; }
+#ie-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1rem; max-width: 46rem; margin: 0 auto 2rem; }
+.ca-tables table { flex: 1 1 19rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
+.ca-tables th, .ca-tables td { padding: .3rem .25rem; border-bottom: 1px solid #ead9bd; text-align: left; }
+.ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; font-size: .8rem; }
+#ie-t1 td:nth-child(n+3), #ie-t1 th:nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ca-tables td { font-size: .85rem; }
+#ie-t2 td:nth-child(2) { font-size: .8rem; }
+.ca-tables tr.sig td:nth-child(2) { font-weight: 700; }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
+&lt;/style&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(function () {
+  var el = document.getElementById(&quot;ie-map&quot;);
+  Promise.all([
+    d3.json(&quot;/visualizations/data/ireland_hse_regions.json&quot;),
+    d3.json(&quot;/visualizations/data/hse_trolley_v46_per10k.json&quot;)
+  ]).then(function (res) {
+    var topo = res[0], D = res[1], rows = D.regions;
+    var PH = [&quot;pm1&quot;, &quot;pre&quot;, &quot;mid&quot;, &quot;post&quot;];
+    var PHL = { pm1: &quot;Two weeks before New Year week&quot;, pre: &quot;Christmas week, contains 25 December&quot;, mid: &quot;New Year week, contains 1 January&quot;, post: &quot;Week after New Year week&quot; };
+    var PHS = { pm1: &quot;2 weeks before&quot;, pre: &quot;Christmas week&quot;, mid: &quot;New Year week&quot;, post: &quot;Week after&quot; };
+    var PHC = { pm1: &quot;#f6c79a&quot;, pre: &quot;#e9915a&quot;, mid: &quot;#d0652a&quot;, post: &quot;#f3d3a8&quot; };
+    var M = {
+      alpha: { head: &quot;Level&quot;, note: &quot;Level: the expected weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed.&quot; },
+      amp: { head: &quot;Seasonal swing&quot;, note: &quot;Seasonal swing: how far the yearly cycle rises above the level at its winter peak, per 10,000 people a week.&quot; },
+      pwin: { head: &quot;Chance&quot;, prob: true, note: &quot;Chance that the yearly cycle puts more patients on trolleys in winter, December to February, than in the rest of the year, of 100.&quot; },
+      pm1: { head: &quot;Change&quot;, phase: true, note: &quot;Change from the expected weekly count, per 10,000 people, in the week two weeks before the week that contains 1 January.&quot; },
+      pre: { head: &quot;Change&quot;, phase: true, note: &quot;Change from the expected weekly count, per 10,000 people, in the week that contains 25 December.&quot; },
+      mid: { head: &quot;Change&quot;, phase: true, note: &quot;Change from the expected weekly count, per 10,000 people, in the week that contains 1 January.&quot; },
+      post: { head: &quot;Change&quot;, phase: true, note: &quot;Change from the expected weekly count, per 10,000 people, in the week after the week that contains 1 January.&quot; }
+    };
+    var sel = document.getElementById(&quot;ie-metric&quot;), box = document.getElementById(&quot;ie-all&quot;);
+    var metric = sel.value;
+    function short(n) { return n.replace(/^HSE /, &quot;&quot;); }
+    function f1(v) { var s = Math.abs(v) &lt; 1 ? d3.format(&quot;.2f&quot;)(v) : d3.format(&quot;.1f&quot;)(v); return s.replace(&quot;&#92;u2212&quot;, &quot;-&quot;); }
+    function sp(v) { return (v &gt; 0 ? &quot;+&quot; : &quot;&quot;) + f1(v); }
+    function pc(p) { var n = Math.round(p * 100); return n &gt;= 100 ? &quot;over 99 in 100&quot; : n &lt;= 0 ? &quot;under 1 in 100&quot; : n + &quot; in 100&quot;; }
+    function val(r, m) { m = m || metric; return M[m].prob ? r.pwin[0] * 100 : r[m][0]; }
+    function fmtv(r, m) { m = m || metric; return M[m].prob ? pc(r.pwin[0]) : M[m].phase ? sp(r[m][0]) : f1(r[m][0]); }
+    function rng(q) { return f1(q[1]) + &quot; to &quot; + f1(q[2]); }
+    function sig(r) { var q = r[metric]; return !!M[metric].phase &amp;&amp; (q[1] &gt; 0 || q[2] &lt; 0); }
+    var fmtD = d3.timeFormat(&quot;%-d %b %Y&quot;), parse = d3.timeParse(&quot;%Y-%m-%d&quot;);
+
+    function legend() {
+      var m = M[metric], L = document.getElementById(&quot;ie-legend&quot;);
+      L.innerHTML = m.phase
+        ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#14736b&quot;&gt;&lt;/i&gt;Fewer patients than expected&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/i&gt;More patients than expected&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#2a1a10&quot;&gt;&lt;/i&gt;Dark top: likely range excludes zero&lt;/span&gt;&#39;
+        : m.prob ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/i&gt;Bar height: chance higher in winter, of 100&lt;/span&gt;&#39;
+        : &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/i&gt;Bar height: &#39; + m.head.toLowerCase() + &#39; per 10,000 people a week&lt;/span&gt;&#39;;
+      document.getElementById(&quot;ie-note&quot;).textContent = m.note;
+    }
+    function tables() {
+      var m = M[metric];
+      var ok = rows.slice().sort(function (a, b) { return val(b) - val(a); });
+      var heads = m.prob ? [&quot;Rank&quot;, &quot;Region&quot;, &quot;Chance higher in winter&quot;, &quot;Winter excess per 10,000&quot;] : [&quot;Rank&quot;, &quot;Region&quot;, m.head + &quot; per 10,000&quot;, &quot;Likely range&quot;];
+      d3.select(&quot;#ie-t1 thead tr&quot;).selectAll(&quot;th&quot;).data(heads).join(&quot;th&quot;).text(function (d) { return d; });
+      d3.select(&quot;#ie-t1 caption&quot;).text(&quot;Regions ranked by &quot; + sel.options[sel.selectedIndex].text.replace(/, (change )?(per 10,000|in 100).*$/, &quot;&quot;).toLowerCase().replace(&quot;new year&quot;, &quot;New Year&quot;).replace(&quot;christmas&quot;, &quot;Christmas&quot;));
+      d3.select(&quot;#ie-t1 tbody&quot;).selectAll(&quot;tr&quot;).data(ok).join(&quot;tr&quot;).attr(&quot;class&quot;, function (r) { return sig(r) ? &quot;sig&quot; : null; }).html(function (r, i) {
+        if (m.prob) return &quot;&lt;td&gt;&quot; + (i + 1) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + r.name + &quot;&lt;/td&gt;&lt;td&gt;&quot; + pc(r.pwin[0]) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sp(r.wex[0]) + &quot;, likely range &quot; + rng(r.wex) + &quot;&lt;/td&gt;&quot;;
+        return &quot;&lt;td&gt;&quot; + (i + 1) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + r.name + &quot;&lt;/td&gt;&lt;td&gt;&quot; + fmtv(r) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + rng(r[metric]) + &quot;&lt;/td&gt;&quot;;
+      });
+      d3.select(&quot;#ie-t2 tbody&quot;).selectAll(&quot;tr&quot;).data(PH).join(&quot;tr&quot;).html(function (k) {
+        var w = D.phases.filter(function (p) { return p.key === k; })[0].weeks.map(function (s) { return fmtD(parse(s)); });
+        return &quot;&lt;td&gt;&quot; + PHL[k] + &quot;&lt;/td&gt;&lt;td&gt;&quot; + w.join(&quot;, &quot;) + &quot;&lt;/td&gt;&quot;;
+      });
+    }
+    legend(); tables();
+
+    var info = document.getElementById(&quot;ie-info&quot;), tl = document.getElementById(&quot;ie-tl&quot;);
+    var serMax = d3.max(rows, function (r) { return d3.max(r.series); });
+    var phLo = d3.min(rows, function (r) { return d3.min(PH, function (k) { return r[k][1]; }); });
+    var phHi = d3.max(rows, function (r) { return d3.max(PH, function (k) { return r[k][2]; }); });
+    var dates = D.dates.map(parse), d0 = dates[0], d1 = d3.timeDay.offset(dates[dates.length - 1], 7);
+    var cur = null;
+    function panel(i) {
+      cur = i;
+      var r = rows[i];
+      info.innerHTML = &quot;&lt;b&gt;&quot; + r.name + &quot;&lt;/b&gt;&lt;br&gt;Level &quot; + f1(r.alpha[0]) + &quot; patients on trolleys per 10,000 people a week, likely range &quot; + rng(r.alpha) + &quot;. &quot;
+        + &quot;Seasonal swing &quot; + f1(r.amp[0]) + &quot; per 10,000, likely range &quot; + rng(r.amp) + &quot;. &quot;
+        + &quot;Winter, December to February, averages &quot; + sp(r.wex[0]) + &quot; per 10,000 against the rest of the year, likely range &quot; + rng(r.wex) + &quot;. Chance trolleys were higher in winter: &quot; + pc(r.pwin[0]) + &quot;. &quot;
+        + &quot;Yearly peak in &quot; + r.peak_month + (r.peak_width_weeks &gt; 20 ? &quot;, poorly pinned: its likely range is &quot; + Math.round(r.peak_width_weeks) + &quot; weeks wide&quot; : &quot;, likely range &quot; + Math.round(r.peak_width_weeks) + &quot; weeks wide&quot;) + &quot;. &quot;
+        + r.weeks + &quot; weeks of data, &quot; + fmtD(d0) + &quot; to &quot; + fmtD(d3.timeDay.offset(d1, -1)) + &quot;.&quot;;
+      tl.innerHTML = &quot;&quot;;
+      var W = Math.max(280, tl.clientWidth), small = W &lt; 400;
+      var L = 34, R = 8, sT = 16, sH = 58, gap = 34, iH = small ? 128 : 140, colLab = small ? 56 : 44;
+      var H = sT + sH + 18 + gap + iH + colLab + 4;
+      var svg = d3.select(tl).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
+      var x = d3.scaleTime().domain([d0, d1]).range([L, W - R]);
+      var ys = d3.scaleLinear().domain([0, serMax]).nice().range([sT + sH, sT]);
+      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;ttl&quot;).attr(&quot;x&quot;, 0).attr(&quot;y&quot;, 10).text(small ? &quot;Weekly patients on trolleys per 10,000 people&quot; : &quot;Weekly patients on trolleys per 10,000 people, winters and New Year phases shaded&quot;);
+      // winter bands behind everything
+      for (var yr = d0.getFullYear() - 1; yr &lt;= d1.getFullYear(); yr++) {
+        var wa = new Date(yr, 11, 1), wb = new Date(yr + 1, 2, 1);
+        var xa = x(wa &lt; d0 ? d0 : wa), xb = x(wb &gt; d1 ? d1 : wb);
+        if (xb &gt; xa) svg.append(&quot;rect&quot;).attr(&quot;x&quot;, xa).attr(&quot;width&quot;, xb - xa).attr(&quot;y&quot;, sT).attr(&quot;height&quot;, sH).attr(&quot;fill&quot;, &quot;#dde5e8&quot;).append(&quot;title&quot;).text(&quot;Winter, Met Éireann: December to February&quot;);
+      }
+      D.phases.forEach(function (p) {
+        p.weeks.forEach(function (s) {
+          var a = parse(s);
+          svg.append(&quot;rect&quot;).attr(&quot;x&quot;, x(a)).attr(&quot;width&quot;, Math.max(1.5, x(d3.timeDay.offset(a, 7)) - x(a))).attr(&quot;y&quot;, sT + 8).attr(&quot;height&quot;, sH - 8).attr(&quot;fill&quot;, PHC[p.key]).attr(&quot;opacity&quot;, metric === p.key ? 1 : .8)
+            .append(&quot;title&quot;).text(PHL[p.key] + &quot;, week of &quot; + fmtD(a));
+        });
+      });
+      var line = d3.line().defined(function (v) { return v !== null; }).x(function (v, j) { return x(d3.timeDay.offset(dates[j], 3.5)); }).y(function (v) { return ys(v); });
+      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;ser&quot;).attr(&quot;d&quot;, line(r.series));
+      var ya = svg.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;ax&quot;).attr(&quot;transform&quot;, &quot;translate(&quot; + L + &quot;,0)&quot;).call(d3.axisLeft(ys).ticks(3).tickSize(3));
+      ya.select(&quot;.domain&quot;).remove();
+      var months = d3.timeMonth.range(d3.timeMonth.ceil(d0), d1);
+      var ax = svg.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;ax&quot;).attr(&quot;transform&quot;, &quot;translate(0,&quot; + (sT + sH) + &quot;)&quot;);
+      ax.append(&quot;line&quot;).attr(&quot;x1&quot;, L).attr(&quot;x2&quot;, W - R);
+      months.forEach(function (m) {
+        var q = m.getMonth() % 3 === 0, yr0 = m.getMonth() === 0;
+        ax.append(&quot;line&quot;).attr(&quot;x1&quot;, x(m)).attr(&quot;x2&quot;, x(m)).attr(&quot;y2&quot;, yr0 ? 9 : q ? 6 : 3);
+        if (yr0) ax.append(&quot;text&quot;).attr(&quot;x&quot;, x(m)).attr(&quot;y&quot;, 18).attr(&quot;text-anchor&quot;, &quot;middle&quot;).attr(&quot;font-weight&quot;, 600).text(m.getFullYear());
+        else if (q &amp;&amp; !small) ax.append(&quot;text&quot;).attr(&quot;x&quot;, x(m)).attr(&quot;y&quot;, 16).attr(&quot;text-anchor&quot;, &quot;middle&quot;).attr(&quot;font-size&quot;, &quot;9px&quot;).text(d3.timeFormat(&quot;%b&quot;)(m));
+      });
+      var blk = PH.map(function (k) { var w = D.phases.filter(function (p) { return p.key === k; })[0].weeks; return parse(w[w.length - 1]); });
+      var bx0 = x(blk[0]), bx1 = x(d3.timeDay.offset(blk[3], 7));
+      var iT = sT + sH + 18 + gap, cL = L, cR = W - R;
+      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;zoom&quot;).attr(&quot;d&quot;, &quot;M&quot; + bx0 + &quot;,&quot; + (sT + sH + 20) + &quot;L&quot; + bx1 + &quot;,&quot; + (sT + sH + 20) + &quot;L&quot; + cR + &quot;,&quot; + (iT - 14) + &quot;L&quot; + cL + &quot;,&quot; + (iT - 14) + &quot;Z&quot;);
+      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;ttl&quot;).attr(&quot;x&quot;, cL).attr(&quot;y&quot;, iT - 4).text(small ? &quot;Change per 10,000 a week, likely range, chance higher&quot; : &quot;Change per 10,000 people a week, likely range, and chance higher&quot;);
+      var yi = d3.scaleLinear().domain([phLo, phHi]).nice().range([iT + iH, iT + 8]);
+      var cw = (cR - cL) / 4;
+      PH.forEach(function (k, j) {
+        var q = r[k], cx = cL + cw * j + cw / 2;
+        svg.append(&quot;rect&quot;).attr(&quot;class&quot;, &quot;col&quot; + (metric === k ? &quot; on&quot; : &quot;&quot;)).attr(&quot;x&quot;, cL + cw * j + 1).attr(&quot;width&quot;, cw - 2).attr(&quot;y&quot;, iT + 2).attr(&quot;height&quot;, iH - 2).attr(&quot;fill&quot;, PHC[k]).attr(&quot;fill-opacity&quot;, .35);
+        var w = D.phases.filter(function (p) { return p.key === k; })[0].weeks, lw = parse(w[w.length - 1]);
+        var wd = PHS[k].split(&quot; &quot;), l1 = small ? wd.slice(0, wd.length &gt; 2 ? 2 : 1).join(&quot; &quot;) : PHS[k], l2 = small ? wd.slice(wd.length &gt; 2 ? 2 : 1).join(&quot; &quot;) : &quot;&quot;, o = small ? 11 : 0;
+        svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;ttl&quot;).attr(&quot;x&quot;, cx).attr(&quot;y&quot;, iT + iH + 12).attr(&quot;text-anchor&quot;, &quot;middle&quot;).text(l1);
+        if (l2) svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;ttl&quot;).attr(&quot;x&quot;, cx).attr(&quot;y&quot;, iT + iH + 23).attr(&quot;text-anchor&quot;, &quot;middle&quot;).text(l2);
+        var e6 = d3.timeDay.offset(lw, 6), sameM = e6.getMonth() === lw.getMonth();
+        svg.append(&quot;text&quot;).attr(&quot;x&quot;, cx).attr(&quot;y&quot;, iT + iH + 24 + o).attr(&quot;text-anchor&quot;, &quot;middle&quot;).attr(&quot;font-size&quot;, &quot;9.5px&quot;).attr(&quot;fill&quot;, &quot;#6b5440&quot;).text(small ? (sameM ? lw.getDate() + &quot; to &quot; + d3.timeFormat(&quot;%-d %b&quot;)(e6) : d3.timeFormat(&quot;%-d %b&quot;)(lw) + &quot; to &quot; + d3.timeFormat(&quot;%-d %b&quot;)(e6)) : d3.timeFormat(&quot;%-d %b&quot;)(lw) + &quot; to &quot; + d3.timeFormat(&quot;%-d %b&quot;)(e6));
+        svg.append(&quot;text&quot;).attr(&quot;x&quot;, cx).attr(&quot;y&quot;, iT + iH + 37 + o).attr(&quot;text-anchor&quot;, &quot;middle&quot;).attr(&quot;font-size&quot;, &quot;9.5px&quot;).attr(&quot;fill&quot;, &quot;#2a1a10&quot;).text(pc(q[3]).replace(&quot;over &quot;, &quot;&gt;&quot;).replace(&quot;under &quot;, &quot;&lt;&quot;));
+      });
+      svg.append(&quot;line&quot;).attr(&quot;class&quot;, &quot;zero&quot;).attr(&quot;x1&quot;, cL).attr(&quot;x2&quot;, cR).attr(&quot;y1&quot;, yi(0)).attr(&quot;y2&quot;, yi(0));
+      var yia = svg.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;ax&quot;).attr(&quot;transform&quot;, &quot;translate(&quot; + L + &quot;,0)&quot;).call(d3.axisLeft(yi).ticks(5).tickSize(3).tickFormat(function (v) { return (v &gt; 0 ? &quot;+&quot; : &quot;&quot;) + v; }));
+      yia.select(&quot;.domain&quot;).remove();
+      PH.forEach(function (k, j) {
+        var q = r[k], cx = cL + cw * j + cw / 2;
+        svg.append(&quot;line&quot;).attr(&quot;class&quot;, &quot;ci&quot;).attr(&quot;x1&quot;, cx).attr(&quot;x2&quot;, cx).attr(&quot;y1&quot;, yi(q[1])).attr(&quot;y2&quot;, yi(q[2]));
+        [q[1], q[2]].forEach(function (v) { svg.append(&quot;line&quot;).attr(&quot;class&quot;, &quot;ci&quot;).attr(&quot;x1&quot;, cx - 5).attr(&quot;x2&quot;, cx + 5).attr(&quot;y1&quot;, yi(v)).attr(&quot;y2&quot;, yi(v)).attr(&quot;stroke-width&quot;, 1.4); });
+        svg.append(&quot;circle&quot;).attr(&quot;cx&quot;, cx).attr(&quot;cy&quot;, yi(q[0])).attr(&quot;r&quot;, 4.5).attr(&quot;fill&quot;, (q[1] &gt; 0 || q[2] &lt; 0) ? (q[0] &lt; 0 ? &quot;#14736b&quot; : &quot;#c2410c&quot;) : &quot;#fffaf3&quot;).attr(&quot;stroke&quot;, &quot;#2a1a10&quot;).attr(&quot;stroke-width&quot;, 1.4)
+          .append(&quot;title&quot;).text(PHL[k] + &quot;: &quot; + sp(q[0]) + &quot; per 10,000, likely range &quot; + rng(q) + &quot;, &quot; + pc(q[3]) + &quot; chance trolleys were higher&quot;);
+        svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;vl&quot;).attr(&quot;x&quot;, cx).attr(&quot;y&quot;, q[0] &lt; 0 ? yi(q[2]) - 6 : yi(q[1]) + 13).text(sp(q[0]));
+      });
+    }
+
+    var feats = topojson.feature(topo, topo.objects.regions).features;
+    var ni = topojson.feature(topo, topo.objects.ni).features;
+    var byName = {}; rows.forEach(function (r, i) { byName[r.name] = i; });
+    feats.forEach(function (f) { f.ri = byName[f.properties.Region]; });
+    var maxAll = {};
+    Object.keys(M).forEach(function (k) { maxAll[k] = d3.max(rows, function (r) { return Math.abs(val(r, k)); }); });
+    var TILT = 50 * Math.PI / 180;
+    var land = topojson.merge(topo, topo.objects.regions.geometries);
+    var state = { i: null };
+    var top0 = rows.map(function (r, i) { return i; }).sort(function (a, b) { return val(rows[b]) - val(rows[a]); })[0];
+    function draw() {
+      el.innerHTML = &quot;&quot;;
+      var W = Math.max(300, el.clientWidth), small = W &lt; 480;
+      var fc = { type: &quot;FeatureCollection&quot;, features: feats.concat(ni) };
+      var B = 1000;
+      var base = d3.geoTransverseMercator().rotate([8, -53.5]).fitSize([B, B], fc);
+      var bb0 = d3.geoPath(base).bounds(fc), front = bb0[1][1], cx0 = (bb0[0][0] + bb0[1][0]) / 2;
+      var DD = 1.4 * B, sinT = Math.sin(TILT), cosT = Math.cos(TILT);
+      function tiltRaw(x, y) { var back = front - y; var sc = DD / (DD + back * cosT); return [cx0 + (x - cx0) * sc, front - back * sinT * sc]; }
+      var k = 1, tx = 0, ty = 0;
+      function tiltPt(x, y) { var q = tiltRaw(x, y); return [q[0] * k + tx, q[1] * k + ty]; }
+      var tf = d3.geoTransform({ point: function (x, y) { var q = tiltPt(x, y); this.stream.point(q[0], q[1]); } });
+      var proj = { stream: function (st) { return base.stream(tf.stream(st)); } };
+      var path = d3.geoPath(proj);
+      var rb = path.bounds(fc);
+      var edge = small ? 5 : 7, pad = 6;
+      var maxH = W * (small ? 0.26 : 0.22);
+      k = (W - 2 * pad) / (rb[1][0] - rb[0][0]);
+      tx = pad - rb[0][0] * k; ty = -rb[0][1] * k;
+      var bpath = d3.geoPath(base);
+      var NUDGE = { &quot;HSE Dublin and North East&quot;: [0, 25], &quot;HSE Dublin and South East&quot;: [10, -15], &quot;HSE Dublin and Midlands&quot;: [-20, 0] };
+      var pts = rows.map(function (r) {
+        var f = feats.filter(function (g) { return g.ri === byName[r.name]; })[0];
+        var c = bpath.centroid(f), n = NUDGE[r.name] || [0, 0];
+        return tiltPt(c[0] + n[0], c[1] + n[1]);
+      });
+      var top = 12;
+      pts.forEach(function (q) { top = Math.max(top, maxH + 34 - q[1]); });
+      ty += top;
+      pts.forEach(function (q) { q[1] += top; });
+      var H = Math.ceil(top + (rb[1][1] - rb[0][1]) * k + edge + 10);
+      var svg = d3.select(el).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
+      svg.append(&quot;defs&quot;).append(&quot;filter&quot;).attr(&quot;id&quot;, &quot;ie-blur&quot;).attr(&quot;x&quot;, &quot;-10%&quot;).attr(&quot;y&quot;, &quot;-10%&quot;).attr(&quot;width&quot;, &quot;120%&quot;).attr(&quot;height&quot;, &quot;120%&quot;).append(&quot;feGaussianBlur&quot;).attr(&quot;stdDeviation&quot;, 5);
+      svg.append(&quot;rect&quot;).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H).attr(&quot;fill&quot;, &quot;transparent&quot;).on(&quot;click&quot;, function () { clear(); });
+      var landD = path(land);
+      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;shadow&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(5,&quot; + (edge + 6) + &quot;)&quot;).attr(&quot;filter&quot;, &quot;url(#ie-blur)&quot;);
+      for (var e = edge; e &gt; 0; e--) svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;slab&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(0,&quot; + e + &quot;)&quot;);
+      svg.append(&quot;g&quot;).selectAll(&quot;path&quot;).data(ni).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;ctx&quot;).attr(&quot;d&quot;, path);
+      var nic = bpath.centroid(ni[0]), niq = tiltPt(nic[0], nic[1]);
+      if (!small) svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;ctxname&quot;).attr(&quot;x&quot;, niq[0]).attr(&quot;y&quot;, niq[1]).text(&quot;Northern Ireland&quot;);
+      var regions = svg.append(&quot;g&quot;).selectAll(&quot;path&quot;).data(feats).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;county&quot;).attr(&quot;d&quot;, path)
+        .on(&quot;pointerenter&quot;, function (ev, f) { if (ev.pointerType === &quot;mouse&quot;) show(f.ri); })
+        .on(&quot;pointerleave&quot;, function (ev) { if (ev.pointerType === &quot;mouse&quot;) clear(); })
+        .on(&quot;click&quot;, function (ev, f) { ev.stopPropagation(); show(f.ri); });
+      var outline = svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;outline&quot;);
+      svg.append(&quot;g&quot;).selectAll(&quot;circle&quot;).data(pts).join(&quot;circle&quot;).attr(&quot;class&quot;, &quot;dot&quot;).attr(&quot;cx&quot;, function (p) { return p[0]; }).attr(&quot;cy&quot;, function (p) { return p[1]; }).attr(&quot;r&quot;, 1.6);
+      var layer = svg.append(&quot;g&quot;);
+      var h = function (v) { return maxH * Math.abs(v) / maxAll[metric]; };
+      var COL = { pos: { main: [&quot;#c2410c&quot;, &quot;#8a2d08&quot;, &quot;#e56a32&quot;], nb: [&quot;#f28c38&quot;, &quot;#c4661c&quot;, &quot;#f9b277&quot;] },
+        neg: { main: [&quot;#14736b&quot;, &quot;#0b4f49&quot;, &quot;#2b8f86&quot;], nb: [&quot;#3fa69c&quot;, &quot;#2a7d75&quot;, &quot;#7fc8c0&quot;] } };
+      var bw = small ? 9 : 12;
+      function show(i) {
+        state.i = i;
+        if (i !== null) panel(i);
+        var set = box.checked ? rows.map(function (r, j) { return j; }) : (i === null ? [] : [i]);
+        regions.classed(&quot;on&quot;, function (f) { return f.ri === i; });
+        outline.attr(&quot;d&quot;, i === null ? null : path(feats.filter(function (f) { return f.ri === i; })[0]));
+        var had = {};
+        layer.selectAll(&quot;g.bar&quot;).each(function () { had[this.__k] = this.__h; });
+        layer.interrupt().selectAll(&quot;*&quot;).interrupt();
+        layer.selectAll(&quot;*&quot;).remove();
+        var items = set.map(function (j, n) {
+          var r = rows[j], v = val(r), p = pts[j], hh = Math.max(3, h(v));
+          return { k: j, n: n, x: p[0], y: p[1], top: p[1] - hh, hh: hh, main: j === i || i === null, neg: v &lt; 0, sig: sig(r), text: short(r.name) + &quot; &quot; + fmtv(r) };
+        });
+        var dx = bw * 0.5, dy = bw * 0.35;
+        function barPaths(gg, d, hh) {
+          var x0 = d.x - bw / 2, x1 = d.x + bw / 2, y0 = d.y, y1 = d.y - hh;
+          gg.select(&quot;.f&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y0 + &quot;H&quot; + x1 + &quot;V&quot; + y1 + &quot;H&quot; + x0 + &quot;Z&quot;);
+          gg.select(&quot;.s&quot;).attr(&quot;d&quot;, &quot;M&quot; + x1 + &quot;,&quot; + y0 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y0 - dy) + &quot;V&quot; + (y1 - dy) + &quot;L&quot; + x1 + &quot;,&quot; + y1 + &quot;Z&quot;);
+          gg.select(&quot;.c&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y1 + &quot;H&quot; + x1 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y1 - dy) + &quot;H&quot; + (x0 + dx) + &quot;Z&quot;);
+        }
+        items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
+          var col = (d.neg ? COL.neg : COL.pos)[d.main ? &quot;main&quot; : &quot;nb&quot;];
+          var gg = layer.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;bar&quot;);
+          gg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;s&quot;).attr(&quot;fill&quot;, col[1]);
+          gg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;f&quot;).attr(&quot;fill&quot;, col[0]).attr(&quot;stroke&quot;, d.sig ? &quot;#2a1a10&quot; : &quot;none&quot;).attr(&quot;stroke-width&quot;, 1);
+          gg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;c&quot;).attr(&quot;fill&quot;, d.sig ? &quot;#2a1a10&quot; : col[2]);
+          var node = gg.node(), start = had[d.k] || 0;
+          node.__k = d.k; d.keep = start &gt; 0;
+          if (Math.abs(start - d.hh) &lt; 0.5) { barPaths(gg, d, d.hh); node.__h = d.hh; }
+          else {
+            barPaths(gg, d, start); node.__h = start;
+            gg.transition().duration(400).ease(d3.easeCubicOut).delay(d.keep ? 0 : Math.min(d.n, 6) * 25).tween(&quot;h&quot;, function () {
+              var ip = d3.interpolateNumber(start, d.hh); return function (u) { var v = ip(u); node.__h = v; barPaths(gg, d, v); };
+            });
+          }
+        });
+        var placed = [];
+        var barsBox = items.map(function (d) { return { x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.hh + dy + 2 }; });
+        items.sort(function (a, b) { return a.k === i ? -1 : b.k === i ? 1 : a.top - b.top; }).forEach(function (d) {
+          var tx2 = layer.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;lbl&quot; + (d.k === i ? &quot; main&quot; : &quot;&quot;)).text(d.text).attr(&quot;opacity&quot;, 0);
+          var bb = tx2.node().getBBox(), lw = bb.width, lh = bb.height;
+          var obs = placed.concat(barsBox);
+          function free(x, y) {
+            if (x &lt; 2 || x + lw &gt; W - 2 || y - lh &lt; 1 || y &gt; H - 2) return false;
+            return !obs.some(function (q) { return x &lt; q.x + q.w + 3 &amp;&amp; x + lw + 3 &gt; q.x &amp;&amp; y - lh &lt; q.y + 3 &amp;&amp; y + 1 &gt; q.y - q.h - 3; });
+          }
+          var x = null, y = null, bs = d.top - dy - 7;
+          var xs = [d.x - lw / 2, d.x + bw / 2 + dx + 4, d.x - bw / 2 - 4 - lw];
+          outer: for (var s = 0; s &lt; 60; s++) {
+            var dys = s === 0 ? [0] : [-s * 4, s * 4];
+            for (var j = 0; j &lt; dys.length; j++) for (var m = 0; m &lt; xs.length; m++) {
+              var cx = xs[m], cy = bs + dys[j];
+              if (m &gt; 0) cy = Math.max(cy, d.top + lh - 2);
+              cx = Math.max(2, Math.min(W - lw - 2, cx)); cy = Math.max(lh + 2, cy);
+              if (free(cx, cy)) { x = cx; y = cy; break outer; }
+            }
+          }
+          if (x === null) { x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, bs); }
+          placed.push({ x: x, y: y, w: lw, h: lh });
+          if (Math.abs(y - bs) &gt; 2 || Math.abs(x - (d.x - lw / 2)) &gt; 2) {
+            layer.insert(&quot;line&quot;, &quot;:first-child&quot;).attr(&quot;class&quot;, &quot;lead&quot;).attr(&quot;x1&quot;, d.x + dx / 2).attr(&quot;y1&quot;, d.top - dy).attr(&quot;x2&quot;, Math.max(x, Math.min(x + lw, d.x))).attr(&quot;y2&quot;, y + 2);
+          }
+          tx2.attr(&quot;x&quot;, x).attr(&quot;y&quot;, y);
+          if (d.keep) tx2.attr(&quot;opacity&quot;, 1); else tx2.transition().duration(200).delay(150).attr(&quot;opacity&quot;, 1);
+        });
+      }
+      function clear() {
+        state.i = null;
+        if (box.checked) { show(null); return; }
+        regions.classed(&quot;on&quot;, false); outline.attr(&quot;d&quot;, null);
+        layer.selectAll(&quot;*&quot;).interrupt().remove();
+      }
+      if (state.i !== null || box.checked) show(state.i);
+      box.onchange = function () { if (state.i !== null || box.checked) show(state.i); else clear(); };
+      sel.onchange = function () {
+        metric = sel.value; legend(); tables();
+        fixPanel();
+        if (state.i !== null || box.checked) show(state.i);
+      };
+      window.__ieShow = function (name) { show(byName[name]); };
+    }
+    var pnl = document.getElementById(&quot;ie-panel&quot;);
+    function fixPanel() {
+      var keep = cur, mx = 0;
+      pnl.style.minHeight = &quot;&quot;;
+      rows.forEach(function (r, j) { panel(j); mx = Math.max(mx, pnl.offsetHeight); });
+      pnl.style.minHeight = mx + &quot;px&quot;;
+      panel(keep === null || keep === undefined ? top0 : keep);
+    }
+    panel(top0);
+    draw();
+    fixPanel();
+    var lastW = el.clientWidth;
+    window.addEventListener(&quot;resize&quot;, function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); fixPanel(); } });
+  });
+})();
+&lt;/script&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>San Mateo was the one Bay Area body with significantly more YIMBY than NIMBY public speakers</title>
+		<link href="https://lucashenry.xyz/visualizations/bay-area-transit-analysis/"/>
+		<updated>2026-10-29T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/visualizations/bay-area-transit-analysis/</id>
+		<content type="html">&lt;p&gt;San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 100 coded NIMBY. In the other 14 bodies drawn, public speakers showed no significant difference. Officials had significantly more YIMBY than NIMBY speakers in 11 of the 24 bodies drawn.&lt;/p&gt;
+&lt;figure class=&quot;viz&quot; id=&quot;bay-viz&quot;&gt;
+  &lt;div class=&quot;ca-card&quot;&gt;
+    &lt;label class=&quot;ca-select&quot; for=&quot;bay-metric&quot;&gt;&lt;span&gt;Statistic&lt;/span&gt;
+      &lt;select id=&quot;bay-metric&quot;&gt;
+        &lt;option value=&quot;pub&quot; selected=&quot;&quot;&gt;Public speakers, YIMBY minus NIMBY, of 100&lt;/option&gt;
+        &lt;option value=&quot;off&quot;&gt;Officials, YIMBY minus NIMBY, of 100&lt;/option&gt;
+        &lt;option value=&quot;npub&quot;&gt;Public speakers with a stance, speakers&lt;/option&gt;
+        &lt;option value=&quot;noff&quot;&gt;Officials with a stance, speakers&lt;/option&gt;
+        &lt;option value=&quot;meetings&quot;&gt;Meetings found, meetings&lt;/option&gt;
+        &lt;option value=&quot;hours&quot;&gt;Video transcribed, hours&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;ca-checks&quot;&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;bay-all&quot; checked=&quot;&quot; /&gt; Always show all bodies&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;ca-note&quot; id=&quot;bay-note&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;bay-legend&quot; id=&quot;bay-legend&quot;&gt;&lt;/p&gt;
+  &lt;div id=&quot;bay-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of the nine Bay Area counties. A bar rises from the place each public body represents. Hover or tap a county or a bar to show its numbers.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;bay-detail&quot; id=&quot;bay-detail&quot; aria-live=&quot;polite&quot;&gt;Hover or tap a county or a bar for its numbers.&lt;/p&gt;
+&lt;/figure&gt;
+&lt;div class=&quot;ca-tables&quot;&gt;
+  &lt;table id=&quot;bay-t1&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+  &lt;table id=&quot;bay-t2&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;p class=&quot;bay-few&quot; id=&quot;bay-few&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significantly means the likely range excludes zero. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county&#39;s center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project&#39;s published data of 2026-10-25.&lt;/p&gt;
+&lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/bay-area-transit-analysis/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;references&quot;&gt;
+&lt;p&gt;Henry, L. (2026). &lt;em&gt;Bay Area Transit Analysis&lt;/em&gt; [Data set and dashboard]. &lt;a href=&quot;https://hotsoupisgood.github.io/baytransitanalysis/&quot;&gt;https://hotsoupisgood.github.io/baytransitanalysis/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Henry, L. (2026). &lt;em&gt;baytransitanalysis&lt;/em&gt; [Computer software]. GitHub. &lt;a href=&quot;https://github.com/hotsoupisgood/baytransitanalysis&quot;&gt;https://github.com/hotsoupisgood/baytransitanalysis&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Granicus. (2026). &lt;em&gt;Public meeting video archives of Bay Area city councils and boards&lt;/em&gt; [Video archive]. &lt;a href=&quot;https://granicus.com/&quot;&gt;https://granicus.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Swagit. (2026). &lt;em&gt;Public meeting video archives of Bay Area city councils&lt;/em&gt; [Video archive]. &lt;a href=&quot;https://www.swagit.com/&quot;&gt;https://www.swagit.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;YouTube. (2026). &lt;em&gt;Public meeting video channels of Bay Area city councils, county boards and transit boards&lt;/em&gt; [Video archive]. &lt;a href=&quot;https://www.youtube.com/&quot;&gt;https://www.youtube.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2024). &lt;em&gt;Cartographic boundary files, counties&lt;/em&gt; [Data set], via Bostock, M. &lt;em&gt;us-atlas&lt;/em&gt; (Version 3). &lt;a href=&quot;https://github.com/topojson/us-atlas&quot;&gt;https://github.com/topojson/us-atlas&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
+#bay-map { width: 100%; }
+.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
+.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
+.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .3rem; }
+.bay-legend { font-size: .8rem; color: #6b5440; margin: 0 0 .3rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
+.bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
+.bay-detail { font-size: .9rem; color: #2a1a10; background: #fffaf3; border-left: 3px solid #c2410c; padding: .45rem .7rem; margin: .4rem 0 0; min-height: 2.6em; }
+.bay-few { font-size: .85rem; color: #6b5440; max-width: 44rem; margin: -1rem auto 1.5rem; }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+#bay-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+#bay-map .ctx { fill: #f6ecdb; stroke: #fffaf0; stroke-width: 0.6; opacity: .55; pointer-events: none; }
+#bay-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.8; stroke-linejoin: round; cursor: pointer; }
+#bay-map .county.on { fill: #efbe8a; }
+#bay-map .slab { fill: #d4b483; }
+#bay-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#bay-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
+#bay-map .cname { font-size: 10px; fill: #9a7b5a; font-style: italic; pointer-events: none; text-anchor: middle; }
+#bay-map .bar { pointer-events: none; }
+#bay-map .hit { fill: transparent; cursor: pointer; }
+#bay-map .dot { fill: #6b5440; pointer-events: none; }
+#bay-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
+#bay-map .lbl.main { font-weight: 700; font-size: 12px; }
+#bay-map .lbl.grey { fill: #8a7a6a; }
+#bay-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1rem; max-width: 46rem; margin: 0 auto 2rem; }
+.ca-tables table { flex: 1 1 19rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
+.ca-tables th, .ca-tables td { padding: .3rem .25rem; border-bottom: 1px solid #ead9bd; text-align: left; }
+.ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; }
+.ca-tables td:nth-child(n+2), .ca-tables th:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.ca-tables td:nth-child(n+2) { font-size: .8rem; }
+.ca-tables td:first-child { font-size: .85rem; }
+.ca-tables th { font-size: .8rem; }
+.ca-tables tr.sig td:first-child { font-weight: 700; }
+.ca-tables .mk { color: #c2410c; font-weight: 700; font-size: 1rem; }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
+&lt;/style&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(function () {
+  var el = document.getElementById(&quot;bay-map&quot;);
+  var BAY = [&quot;06001&quot;, &quot;06013&quot;, &quot;06041&quot;, &quot;06055&quot;, &quot;06075&quot;, &quot;06081&quot;, &quot;06085&quot;, &quot;06095&quot;, &quot;06097&quot;];
+  Promise.all([
+    d3.json(&quot;/visualizations/data/ca-counties-10m.json&quot;),
+    d3.json(&quot;/visualizations/data/bay_area_bodies.json&quot;)
+  ]).then(function (res) {
+    var topo = res[0], rows = res[1].bodies;
+    var COUNTY_FIPS = { &quot;Alameda&quot;: &quot;06001&quot;, &quot;Contra Costa&quot;: &quot;06013&quot;, &quot;Marin&quot;: &quot;06041&quot;, &quot;Napa&quot;: &quot;06055&quot;, &quot;San Francisco&quot;: &quot;06075&quot;, &quot;San Mateo&quot;: &quot;06081&quot;, &quot;Santa Clara&quot;: &quot;06085&quot;, &quot;Solano&quot;: &quot;06095&quot;, &quot;Sonoma&quot;: &quot;06097&quot; };
+    function sign(v) { var r = Math.round(v); return (r &gt; 0 ? &quot;+&quot; : &quot;&quot;) + r; }
+    function label(r) { return r.kind === &quot;transit&quot; ? r.short + &quot; (HQ &quot; + r.site.replace(/^HQ &#92;(|&#92;)$/g, &quot;&quot;) + &quot;)&quot; : r.kind === &quot;county&quot; ? r.short + &quot; (county board)&quot; : r.short; }
+    var M = {
+      pub: { net: true, key: &quot;pub&quot;, who: &quot;public speakers&quot;, head: &quot;Of 100&quot;, cnt: &quot;Speakers&quot;,
+        note: &quot;Public speakers coded YIMBY minus those coded NIMBY, of every 100 public speakers with a stance.&quot; },
+      off: { net: true, key: &quot;off&quot;, who: &quot;officials&quot;, head: &quot;Of 100&quot;, cnt: &quot;Officials&quot;,
+        note: &quot;Officials coded YIMBY minus those coded NIMBY, of every 100 officials with a stance. Officials are council and board members and staff.&quot; },
+      npub: { net: false, unit: &quot; speakers&quot;, head: &quot;Speakers&quot;, cnt: &quot;Meetings&quot;, cv: function (r) { return r.meetings; }, cu: &quot; meetings&quot;,
+        v: function (r) { return r.pub ? r.pub.n : null; }, few: true,
+        note: &quot;Public speakers with a stance, counted once per stretch of meeting.&quot; },
+      noff: { net: false, unit: &quot; officials&quot;, head: &quot;Officials&quot;, cnt: &quot;Meetings&quot;, cv: function (r) { return r.meetings; }, cu: &quot; meetings&quot;,
+        v: function (r) { return r.off ? r.off.n : null; }, few: true,
+        note: &quot;Officials with a stance, counted once per stretch of meeting.&quot; },
+      meetings: { net: false, unit: &quot; meetings&quot;, head: &quot;Meetings&quot;, cnt: &quot;Hours transcribed&quot;, cv: function (r) { return r.hours_transcribed; }, cu: &quot; hours&quot;,
+        v: function (r) { return r.meetings; },
+        note: &quot;Meetings with video found online for each body.&quot; },
+      hours: { net: false, unit: &quot; hours&quot;, head: &quot;Hours&quot;, cnt: &quot;Meetings&quot;, cv: function (r) { return r.meetings; }, cu: &quot; meetings&quot;,
+        v: function (r) { return r.hours_transcribed; },
+        note: &quot;Hours of meeting video transcribed for each body.&quot; }
+    };
+    var sel = document.getElementById(&quot;bay-metric&quot;), box = document.getElementById(&quot;bay-all&quot;);
+    var metric = sel.value;
+    function g(r) { var m = M[metric]; return m.net ? r[m.key] : null; }
+    function val(r) { var m = M[metric]; if (m.net) return r[m.key] ? r[m.key].net : null; return m.v(r); }
+    function drawn(r) { var v = val(r); return v !== null &amp;&amp; v !== undefined &amp;&amp; v &gt; 0 || (M[metric].net &amp;&amp; v !== null); }
+    function sig(r) { var s = g(r); return !!(s &amp;&amp; s.sig); }
+    function fmtv(r) {
+      var m = M[metric], v = val(r);
+      if (m.net) return v === null ? &quot;too few speakers&quot; : sign(v) + &quot; of 100&quot;;
+      if (v === null) return &quot;too few speakers&quot;;
+      return d3.format(&quot;,&quot;)(v) + m.unit;
+    }
+    function detail(r) {
+      var m = M[metric], s = g(r), t = &quot;&lt;b&gt;&quot; + r.name + &quot;&lt;/b&gt;&quot;;
+      if (r.kind === &quot;transit&quot;) t += &quot;, placed at its headquarters in &quot; + r.site.replace(/^HQ &#92;(|&#92;)$/g, &quot;&quot;);
+      if (r.kind === &quot;county&quot;) t += &quot;, placed at the county&#39;s center&quot;;
+      t += &quot;. &quot;;
+      if (m.net) {
+        if (!s) return t + &quot;Too few &quot; + m.who + &quot; with a stance to draw, under 10 speakers.&quot;;
+        return t + &quot;YIMBY minus NIMBY &quot; + sign(s.net) + &quot; of 100 &quot; + m.who + &quot;, likely range &quot; + sign(s.lo) + &quot; to &quot; + sign(s.hi) + &quot;. &quot;
+          + &quot;YIMBY &quot; + Math.round(s.yimby) + &quot; of 100, NIMBY &quot; + Math.round(s.nimby) + &quot; of 100, of &quot; + s.n + &quot; &quot; + m.who + &quot; with a stance. &quot;
+          + (s.sig ? &quot;The likely range excludes zero: significant.&quot; : &quot;The likely range includes zero: not significant.&quot;);
+      }
+      var v = val(r);
+      if (v === null) return t + &quot;Too few speakers with a stance to draw, under 10 speakers.&quot;;
+      return t + d3.format(&quot;,&quot;)(v) + m.unit + &quot;, &quot; + d3.format(&quot;,&quot;)(m.cv(r)) + m.cu + &quot;.&quot;;
+    }
+    var det = document.getElementById(&quot;bay-detail&quot;);
+    function legend() {
+      var m = M[metric], L = document.getElementById(&quot;bay-legend&quot;);
+      L.innerHTML = m.net
+        ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e56a32&quot;&gt;&lt;/i&gt;More YIMBY&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#2b8f86&quot;&gt;&lt;/i&gt;More NIMBY&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#2a1a10&quot;&gt;&lt;/i&gt;* and dark top: significant, likely range excludes zero&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: too few speakers&lt;/span&gt;&#39;
+        : &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e56a32&quot;&gt;&lt;/i&gt;Bar height: &#39; + m.head.toLowerCase() + &#39;&lt;/span&gt;&#39; + (m.few ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: too few speakers&lt;/span&gt;&#39; : &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: 0&#39; + m.unit + &#39;&lt;/span&gt;&#39;);
+      document.getElementById(&quot;bay-note&quot;).textContent = m.note;
+    }
+    function tables() {
+      var m = M[metric];
+      var ok = rows.filter(function (r) { var v = val(r); return v !== null &amp;&amp; (m.net || v &gt; 0); });
+      ok.sort(function (a, b) { return val(b) - val(a) || a.short.localeCompare(b.short); });
+      var half = Math.ceil(ok.length / 2);
+      var heads = m.net ? [&quot;Body&quot;, m.head, &quot;Likely range&quot;, m.cnt] : [&quot;Body&quot;, m.head, m.cnt];
+      function fill(id, list, from) {
+        d3.select(&quot;#&quot; + id + &quot; thead tr&quot;).selectAll(&quot;th&quot;).data(heads).join(&quot;th&quot;).text(function (d) { return d; });
+        d3.select(&quot;#&quot; + id + &quot; caption&quot;).text(&quot;Ranks &quot; + from + &quot; to &quot; + (from + list.length - 1) + &quot;, &quot; + sel.options[sel.selectedIndex].text.replace(/, [a-z]+$/, &quot;&quot;).replace(/, of 100$/, &quot;&quot;));
+        d3.select(&quot;#&quot; + id + &quot; tbody&quot;).selectAll(&quot;tr&quot;).data(list).join(&quot;tr&quot;).attr(&quot;class&quot;, function (r) { return sig(r) ? &quot;sig&quot; : null; }).html(function (r) {
+          if (m.net) { var s = g(r); return &quot;&lt;td&gt;&quot; + label(r) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sign(s.net) + &quot; of 100&quot; + (s.sig ? &#39; &lt;span class=&quot;mk&quot; title=&quot;likely range excludes zero&quot;&gt;*&lt;/span&gt;&#39; : &quot;&quot;) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sign(s.lo) + &quot; to &quot; + sign(s.hi) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + s.n + &quot; &quot; + (m.key === &quot;off&quot; ? &quot;officials&quot; : &quot;speakers&quot;) + &quot;&lt;/td&gt;&quot;; }
+          return &quot;&lt;td&gt;&quot; + label(r) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + d3.format(&quot;,&quot;)(val(r)) + m.unit + &quot;&lt;/td&gt;&lt;td&gt;&quot; + d3.format(&quot;,&quot;)(m.cv(r)) + m.cu + &quot;&lt;/td&gt;&quot;;
+        });
+      }
+      fill(&quot;bay-t1&quot;, ok.slice(0, half), 1);
+      fill(&quot;bay-t2&quot;, ok.slice(half), half + 1);
+      var rest = rows.filter(function (r) { return ok.indexOf(r) &lt; 0; }).map(label).sort();
+      var why = m.net || m.few ? &quot;Too few speakers with a stance to draw, under 10 speakers: &quot; : (metric === &quot;hours&quot; ? &quot;No hours transcribed: &quot; : &quot;No meetings found: &quot;);
+      document.getElementById(&quot;bay-few&quot;).textContent = (m.net ? &quot;* marks a significant result: the likely range excludes zero. &quot; : &quot;&quot;) + (rest.length ? why + rest.join(&quot;, &quot;) + &quot;.&quot; : &quot;&quot;);
+    }
+    legend(); tables();
+
+    var all = topojson.feature(topo, topo.objects.counties).features;
+    var feats = all.filter(function (f) { return BAY.indexOf(f.id) &gt;= 0; });
+    var ctx = all.filter(function (f) { return BAY.indexOf(f.id) &lt; 0; });
+    var cname = { &quot;06001&quot;: &quot;Alameda&quot;, &quot;06013&quot;: &quot;Contra Costa&quot;, &quot;06041&quot;: &quot;Marin&quot;, &quot;06055&quot;: &quot;Napa&quot;, &quot;06075&quot;: &quot;San Francisco&quot;, &quot;06081&quot;: &quot;San Mateo&quot;, &quot;06085&quot;: &quot;Santa Clara&quot;, &quot;06095&quot;: &quot;Solano&quot;, &quot;06097&quot;: &quot;Sonoma&quot; };
+    var maxAll = {};
+    Object.keys(M).forEach(function (k) { var o = metric; metric = k; maxAll[k] = d3.max(rows, function (r) { var v = val(r); return v === null ? 0 : Math.abs(v); }); metric = o; });
+    var TILT = 50 * Math.PI / 180;
+    var land = topojson.merge(topo, topo.objects.counties.geometries.filter(function (g) { return BAY.indexOf(g.id) &gt;= 0; }));
+    var state = { i: null, c: null };
+    function draw() {
+      el.innerHTML = &quot;&quot;;
+      var W = Math.max(300, el.clientWidth), small = W &lt; 480;
+      var fc = { type: &quot;FeatureCollection&quot;, features: feats };
+      var B = 1000;
+      var base = d3.geoConicEqualArea().parallels([37, 38.5]).rotate([122.2, 0]).fitSize([B, B], fc);
+      var bb0 = d3.geoPath(base).bounds(fc), front = bb0[1][1], cx0 = (bb0[0][0] + bb0[1][0]) / 2;
+      var D = 1.4 * B, sinT = Math.sin(TILT), cosT = Math.cos(TILT);
+      function tiltRaw(x, y) { var back = front - y; var sc = D / (D + back * cosT); return [cx0 + (x - cx0) * sc, front - back * sinT * sc]; }
+      var k = 1, tx = 0, ty = 0;
+      function tiltPt(x, y) { var q = tiltRaw(x, y); return [q[0] * k + tx, q[1] * k + ty]; }
+      var tf = d3.geoTransform({ point: function (x, y) { var q = tiltPt(x, y); this.stream.point(q[0], q[1]); } });
+      var proj = { stream: function (st) { return base.stream(tf.stream(st)); } };
+      var path = d3.geoPath(proj);
+      var rb = path.bounds(fc);
+      var edge = small ? 5 : 7, pad = 6;
+      var maxH = W * (small ? 0.30 : 0.24);
+      k = (W - 2 * pad) / (rb[1][0] - rb[0][0]);
+      tx = pad - rb[0][0] * k; ty = -rb[0][1] * k;
+      var bpath = d3.geoPath(base);
+      var pts = rows.map(function (r) {
+        var c;
+        if (r.kind === &quot;county&quot;) c = bpath.centroid(feats.filter(function (f) { return f.id === COUNTY_FIPS[r.county]; })[0]);
+        else c = base([r.lon, r.lat]);
+        return tiltPt(c[0], c[1]);
+      });
+      var bw = small ? 6 : 8;
+      // bodies that share a spot (BART and Oakland, SFMTA and San Francisco) stand side by side
+      var order = pts.map(function (p, i) { return i; }).sort(function (a, b) { return pts[a][0] - pts[b][0]; });
+      for (var a = 0; a &lt; order.length; a++) for (var b2 = 0; b2 &lt; a; b2++) {
+        var P = pts[order[a]], Q = pts[order[b2]];
+        if (Math.abs(P[0] - Q[0]) &lt; bw + 3 &amp;&amp; Math.abs(P[1] - Q[1]) &lt; bw) P[0] = Q[0] + bw + 3;
+      }
+      function relMax(i) { return d3.max(Object.keys(M), function (m) { var o = metric; metric = m; var v = val(rows[i]); metric = o; return v === null ? 0 : Math.abs(v) / maxAll[m]; }); }
+      var top = 12;
+      pts.forEach(function (q, i) { top = Math.max(top, maxH * relMax(i) + 34 - q[1]); });
+      ty += top;
+      pts.forEach(function (q) { q[1] += top; });
+      var H = Math.ceil(top + (rb[1][1] - rb[0][1]) * k + edge + 10);
+      var svg = d3.select(el).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
+      var defs = svg.append(&quot;defs&quot;);
+      defs.append(&quot;filter&quot;).attr(&quot;id&quot;, &quot;bay-blur&quot;).attr(&quot;x&quot;, &quot;-10%&quot;).attr(&quot;y&quot;, &quot;-10%&quot;).attr(&quot;width&quot;, &quot;120%&quot;).attr(&quot;height&quot;, &quot;120%&quot;).append(&quot;feGaussianBlur&quot;).attr(&quot;stdDeviation&quot;, 5);
+      defs.append(&quot;clipPath&quot;).attr(&quot;id&quot;, &quot;bay-clip&quot;).append(&quot;rect&quot;).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
+      svg.append(&quot;rect&quot;).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H).attr(&quot;fill&quot;, &quot;transparent&quot;).on(&quot;click&quot;, function () { clear(); });
+      svg.append(&quot;g&quot;).attr(&quot;clip-path&quot;, &quot;url(#bay-clip)&quot;).selectAll(&quot;path&quot;).data(ctx).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;ctx&quot;).attr(&quot;d&quot;, path);
+      var landD = path(land);
+      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;shadow&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(5,&quot; + (edge + 6) + &quot;)&quot;).attr(&quot;filter&quot;, &quot;url(#bay-blur)&quot;);
+      for (var e = edge; e &gt; 0; e--) svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;slab&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(0,&quot; + e + &quot;)&quot;);
+      var counties = svg.append(&quot;g&quot;).selectAll(&quot;path&quot;).data(feats).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;county&quot;).attr(&quot;d&quot;, path)
+        .on(&quot;pointerenter&quot;, function (ev, f) { if (ev.pointerType === &quot;mouse&quot;) showCounty(f.id); })
+        .on(&quot;pointerleave&quot;, function (ev) { if (ev.pointerType === &quot;mouse&quot;) clear(); })
+        .on(&quot;click&quot;, function (ev, f) { ev.stopPropagation(); if (state.c === f.id &amp;&amp; state.i === null &amp;&amp; ev.pointerType !== &quot;mouse&quot;) clear(); else showCounty(f.id); });
+      var cnames = svg.append(&quot;g&quot;).selectAll(&quot;text&quot;).data(feats).join(&quot;text&quot;).attr(&quot;class&quot;, &quot;cname&quot;).each(function (f) {
+        var c = bpath.centroid(f), q = tiltPt(c[0], c[1]);
+        if (f.id === &quot;06075&quot;) q = tiltPt(c[0] - 40, c[1] + 10);
+        d3.select(this).attr(&quot;x&quot;, q[0]).attr(&quot;y&quot;, q[1] + 14);
+      }).text(function (f) { return small &amp;&amp; f.id === &quot;06075&quot; ? &quot;SF&quot; : cname[f.id]; });
+      var outline = svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;outline&quot;);
+      svg.append(&quot;g&quot;).selectAll(&quot;circle&quot;).data(pts).join(&quot;circle&quot;).attr(&quot;class&quot;, &quot;dot&quot;).attr(&quot;cx&quot;, function (p) { return p[0]; }).attr(&quot;cy&quot;, function (p) { return p[1]; }).attr(&quot;r&quot;, 1.6);
+      var layer = svg.append(&quot;g&quot;);
+      var hits = svg.append(&quot;g&quot;);
+      var h = function (v) { return maxH * Math.abs(v) / maxAll[metric]; };
+      var COL = { pos: { main: [&quot;#c2410c&quot;, &quot;#8a2d08&quot;, &quot;#e56a32&quot;], nb: [&quot;#f28c38&quot;, &quot;#c4661c&quot;, &quot;#f9b277&quot;] },
+        neg: { main: [&quot;#14736b&quot;, &quot;#0b4f49&quot;, &quot;#2b8f86&quot;], nb: [&quot;#3fa69c&quot;, &quot;#2a7d75&quot;, &quot;#7fc8c0&quot;] },
+        grey: [&quot;#cfc6bb&quot;, &quot;#aea398&quot;, &quot;#e2dbd2&quot;] };
+
+      function show(i, c) {
+        state.i = i; state.c = c === undefined ? (i === null ? null : null) : c;
+        var hov = [];
+        if (state.c) rows.forEach(function (r, j) { if (COUNTY_FIPS[r.county] === state.c &amp;&amp; pts[j]) hov.push(j); });
+        if (i !== null &amp;&amp; hov.indexOf(i) &lt; 0) hov.push(i);
+        var set = box.checked ? rows.map(function (r, j) { return j; }) : hov.slice();
+        var lab = hov.slice();
+        if (!hov.length) {
+          // with nothing hovered, name the bodies the takeaway rests on
+          var cand = rows.map(function (r, j) { return j; }).filter(function (j) { var v = val(rows[j]); return v !== null &amp;&amp; v !== 0; });
+          if (M[metric].net) lab = cand.filter(function (j) { return sig(rows[j]); });
+          else lab = cand.sort(function (a, b) { return val(rows[b]) - val(rows[a]); }).slice(0, 3);
+        }
+        counties.classed(&quot;on&quot;, function (f) { return f.id === state.c; });
+        outline.attr(&quot;d&quot;, state.c ? path(feats.filter(function (f) { return f.id === state.c; })[0]) : null);
+        if (i !== null) det.innerHTML = detail(rows[i]);
+        else if (state.c) {
+          var inC = hov.map(function (j) { return rows[j]; });
+          det.innerHTML = &quot;&lt;b&gt;&quot; + cname[state.c] + &quot; County&lt;/b&gt;: &quot; + (inC.length ? inC.map(function (r) { return label(r) + &quot; &quot; + fmtv(r); }).join(&quot;; &quot;) + &quot;.&quot; : &quot;no body in this project.&quot;) + &quot; Tap a bar for its likely range.&quot;;
+        }
+        var had = {};
+        layer.selectAll(&quot;g.bar&quot;).each(function () { if (this.__k !== undefined &amp;&amp; +d3.select(this).datum() &gt; 0) had[this.__k] = +d3.select(this).datum(); });
+        layer.interrupt().selectAll(&quot;*&quot;).interrupt();
+        layer.selectAll(&quot;*&quot;).remove();
+        var t = d3.transition().duration(400).ease(d3.easeCubicOut);
+        var items = set.map(function (j, n) {
+          var r = rows[j], v = val(r), p = pts[j], grey = v === null || v === 0;
+          var hh = grey ? 4 : Math.max(3, h(v));
+          return { k: j, n: n, x: p[0], y: p[1], top: p[1] - hh, hh: hh, main: j === i || (i === null &amp;&amp; hov.indexOf(j) &gt;= 0), grey: grey, neg: !grey &amp;&amp; v &lt; 0, sig: sig(r),
+            lab: lab.indexOf(j) &gt;= 0, text: label(r) + (grey ? &quot;: &quot; : &quot; &quot;) + fmtv(r) + (M[metric].net &amp;&amp; sig(r) ? &quot; *&quot; : &quot;&quot;) };
+        });
+        var dx = bw * 0.5, dy = bw * 0.35;
+        function barPaths(gg, d, hh) {
+          var x0 = d.x - bw / 2, x1 = d.x + bw / 2, y0 = d.y, y1 = d.y - hh;
+          gg.select(&quot;.f&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y0 + &quot;H&quot; + x1 + &quot;V&quot; + y1 + &quot;H&quot; + x0 + &quot;Z&quot;);
+          gg.select(&quot;.s&quot;).attr(&quot;d&quot;, &quot;M&quot; + x1 + &quot;,&quot; + y0 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y0 - dy) + &quot;V&quot; + (y1 - dy) + &quot;L&quot; + x1 + &quot;,&quot; + y1 + &quot;Z&quot;);
+          gg.select(&quot;.c&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y1 + &quot;H&quot; + x1 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y1 - dy) + &quot;H&quot; + (x0 + dx) + &quot;Z&quot;);
+        }
+        items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
+          var col = d.grey ? COL.grey : (d.neg ? COL.neg : COL.pos)[d.main ? &quot;main&quot; : &quot;nb&quot;];
+          var gg = layer.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;bar&quot;).datum(0);
+          gg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;s&quot;).attr(&quot;fill&quot;, col[1]);
+          gg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;f&quot;).attr(&quot;fill&quot;, col[0]).attr(&quot;stroke&quot;, d.sig ? &quot;#2a1a10&quot; : &quot;none&quot;).attr(&quot;stroke-width&quot;, 1);
+          gg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;c&quot;).attr(&quot;fill&quot;, d.sig ? &quot;#2a1a10&quot; : col[2]);
+          var full = d.hh, node = gg.node();
+          node.__k = d.k;
+          var start = had[d.k] || 0;
+          d.keep = start &gt; 0; d.grow = d.keep &amp;&amp; Math.abs(start - full) &gt; 0.5;
+          if (d.keep &amp;&amp; !d.grow) { gg.datum(full); barPaths(gg, d, full); }
+          else {
+            gg.datum(start); barPaths(gg, d, start);
+            gg.transition(t).duration(d.keep ? 300 : 400).delay(d.keep ? 0 : Math.min(d.n, 20) * 20).tween(&quot;h&quot;, function () {
+              var ip = d3.interpolateNumber(start, full);
+              return function (u) { var v = ip(u); gg.datum(v); barPaths(gg, d, v); };
+            });
+          }
+        });
+        var placed = [];
+        var barsBox = items.map(function (d) { return { x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.hh + dy + 2 }; });
+        cnames.each(function () { var b = this.getBBox(); barsBox.push({ x: b.x, y: b.y + b.height, w: b.width, h: b.height }); });
+        items.filter(function (d) { return d.lab; }).sort(function (a, b) { return a.main &amp;&amp; !b.main ? -1 : b.main &amp;&amp; !a.main ? 1 : a.top - b.top; }).forEach(function (d) {
+          var tx2 = layer.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;lbl&quot; + (d.k === i ? &quot; main&quot; : &quot;&quot;) + (d.grey ? &quot; grey&quot; : &quot;&quot;)).text(d.text).attr(&quot;opacity&quot;, 0);
+          var bb = tx2.node().getBBox(), lw = bb.width, lh = bb.height;
+          var obs = placed.concat(barsBox);
+          function free(x, y) {
+            if (x &lt; 2 || x + lw &gt; W - 2 || y - lh &lt; 1 || y &gt; H - 2) return false;
+            return !obs.some(function (q) { return x &lt; q.x + q.w + 3 &amp;&amp; x + lw + 3 &gt; q.x &amp;&amp; y - lh &lt; q.y + 3 &amp;&amp; y + 1 &gt; q.y - q.h - 3; });
+          }
+          var x = null, y = null, bs = d.top - dy - 7;
+          var xs = [d.x - lw / 2, d.x + bw / 2 + dx + 4, d.x - bw / 2 - 4 - lw];
+          outer: for (var s = 0; s &lt; 60; s++) {
+            var dys = s === 0 ? [0] : [-s * 4, s * 4];
+            for (var j = 0; j &lt; dys.length; j++) for (var m = 0; m &lt; xs.length; m++) {
+              var cx = xs[m], cy = bs + dys[j];
+              if (m &gt; 0) cy = Math.max(cy, d.top + lh - 2);
+              cx = Math.max(2, Math.min(W - lw - 2, cx)); cy = Math.max(lh + 2, cy);
+              if (free(cx, cy)) { x = cx; y = cy; break outer; }
+            }
+          }
+          if (x === null) { x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, bs); }
+          placed.push({ x: x, y: y, w: lw, h: lh });
+          if (Math.abs(y - bs) &gt; 2 || Math.abs(x - (d.x - lw / 2)) &gt; 2) {
+            layer.insert(&quot;line&quot;, &quot;:first-child&quot;).attr(&quot;class&quot;, &quot;lead&quot;).attr(&quot;x1&quot;, d.x + dx / 2).attr(&quot;y1&quot;, d.top - dy)
+              .attr(&quot;x2&quot;, Math.max(x, Math.min(x + lw, d.x))).attr(&quot;y2&quot;, y + 2);
+          }
+          tx2.attr(&quot;x&quot;, x).attr(&quot;y&quot;, y);
+          if (d.keep &amp;&amp; !d.grow) tx2.attr(&quot;opacity&quot;, 1); else tx2.transition().duration(200).delay(d.grow ? 220 : 120).attr(&quot;opacity&quot;, 1);
+        });
+      }
+      function showCounty(fips) { show(null, fips); }
+      function clear() {
+        state.i = null; state.c = null;
+        det.textContent = &quot;Hover or tap a county or a bar for its numbers.&quot;;
+        if (box.checked) { show(null, null); return; }
+        counties.classed(&quot;on&quot;, false); outline.attr(&quot;d&quot;, null);
+        layer.selectAll(&quot;text,line&quot;).interrupt().remove();
+        layer.selectAll(&quot;g.bar&quot;).interrupt().transition().duration(200).attr(&quot;opacity&quot;, 0).remove();
+      }
+      hits.selectAll(&quot;rect&quot;).data(pts).join(&quot;rect&quot;).attr(&quot;class&quot;, &quot;hit&quot;).attr(&quot;data-body&quot;, function (p, j) { return rows[j].body; })
+        .attr(&quot;x&quot;, function (p) { return p[0] - bw / 2 - 2; }).attr(&quot;width&quot;, bw + 6)
+        .attr(&quot;y&quot;, function (p, j) { var v = val(rows[j]); return p[1] - (v ? h(v) : 4) - 6; })
+        .attr(&quot;height&quot;, function (p, j) { var v = val(rows[j]); return (v ? h(v) : 4) + 12; })
+        .on(&quot;pointerenter&quot;, function (ev, p) { if (ev.pointerType === &quot;mouse&quot;) { var j = pts.indexOf(p); show(j, COUNTY_FIPS[rows[j].county]); } })
+        .on(&quot;pointerleave&quot;, function (ev) { if (ev.pointerType === &quot;mouse&quot;) clear(); })
+        .on(&quot;click&quot;, function (ev, p) { ev.stopPropagation(); var j = pts.indexOf(p); show(j, COUNTY_FIPS[rows[j].county]); });
+      function resizeHits() {
+        hits.selectAll(&quot;rect&quot;).attr(&quot;y&quot;, function (p, j) { var v = val(rows[j]); return p[1] - (v ? h(v) : 4) - 6; })
+          .attr(&quot;height&quot;, function (p, j) { var v = val(rows[j]); return (v ? h(v) : 4) + 12; })
+          .style(&quot;display&quot;, function (p, j) { return box.checked || state.c === COUNTY_FIPS[rows[j].county] ? null : &quot;none&quot;; });
+      }
+      var origShow = show;
+      show = function (i, c) { origShow(i, c); resizeHits(); };
+      if (state.i !== null || state.c || box.checked) show(state.i, state.c); else resizeHits();
+      box.onchange = function () {
+        if (state.i !== null || state.c || box.checked) show(state.i, state.c);
+        else { clear(); resizeHits(); }
+      };
+      sel.onchange = function () {
+        metric = sel.value; legend(); tables();
+        if (state.i !== null) det.innerHTML = detail(rows[state.i]);
+        if (state.i !== null || state.c || box.checked) show(state.i, state.c); else resizeHits();
+      };
+      window.__bayShow = function (body) { var j = rows.findIndex(function (r) { return r.body === body; }); show(j, COUNTY_FIPS[rows[j].county]); };
+    }
+    draw();
+    var lastW = el.clientWidth;
+    window.addEventListener(&quot;resize&quot;, function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); } });
+  });
+})();
+&lt;/script&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
+		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
+&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
+&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
+&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
+&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
+&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
+		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
+&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
+&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -188,48 +1294,6 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
 &lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
-		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
-&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
-&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
-		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
-&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
-&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
-&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
-&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
-&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
 </content>
 	</entry>
 	
