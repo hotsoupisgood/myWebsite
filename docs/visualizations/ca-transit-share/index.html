@@ -49,6 +49,7 @@
         <option value="novehicle">Households with no vehicle, of 100 households</option>
         <option value="commute">One-way commute time, minutes</option>
         <option value="lowwage">Transit commuters among workers earning under $25,000 a year, of 100</option>
+        <option value="renter">Households that rent their home, of 100 households</option>
       </select>
     </label>
     <div class="ca-checks">
@@ -70,6 +71,7 @@
 <p>U.S. Census Bureau. (2025). <em>Aggregate travel time to work (in minutes) of workers by sex</em> (American Community Survey 5-year estimates, 2020 to 2024, Table B08013) [Data set]. <a href="https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat">https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat</a></p>
 <p>U.S. Census Bureau. (2025). <em>Travel time to work</em> (American Community Survey 5-year estimates, 2020 to 2024, Table B08303) [Data set]. <a href="https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat">https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat</a></p>
 <p>U.S. Census Bureau. (2025). <em>Means of transportation to work by workers' earnings in the past 12 months (in 2024 inflation-adjusted dollars)</em> (American Community Survey 5-year estimates, 2020 to 2024, Table B08119) [Data set]. <a href="https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat">https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat</a></p>
+<p>U.S. Census Bureau. (2025). <em>Tenure</em> (American Community Survey 5-year estimates, 2020 to 2024, Table B25003) [Data set]. <a href="https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat">https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat</a></p>
 <p>U.S. Census Bureau. (2024). <em>Cartographic boundary files, counties</em> [Data set], via Bostock, M. <em>us-atlas</em> (Version 3). <a href="https://github.com/topojson/us-atlas">https://github.com/topojson/us-atlas</a></p>
 <p>Bostock, M. (2023). <em>D3.js</em> (Version 7) [Computer software]. <a href="https://d3js.org/">https://d3js.org/</a></p>
 </div>
@@ -124,7 +126,9 @@
       commute: { unit: " minutes", head: "Minutes, one way", count: "Workers", what: "one-way commute time",
         note: "Average one-way travel time to work in minutes, for workers who did not work from home." },
       lowwage: { unit: " of 100", head: "Of 100 workers", count: "Workers", what: "transit commuters earning under $25,000",
-        note: "Workers who earned under $25,000 in the past 12 months and commuted by public transportation, of every 100 such workers." }
+        note: "Workers who earned under $25,000 in the past 12 months and commuted by public transportation, of every 100 such workers." },
+      renter: { unit: " of 100", head: "Of 100 households", count: "Households", what: "households that rent",
+        note: "Occupied homes where the household rents rather than owns, of every 100 occupied homes." }
     };
     var sel = document.getElementById("ca-metric");
     var metric = sel.value;

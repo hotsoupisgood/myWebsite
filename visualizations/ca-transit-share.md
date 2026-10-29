@@ -13,6 +13,7 @@ layout: layouts/post.njk
         <option value="novehicle">Households with no vehicle, of 100 households</option>
         <option value="commute">One-way commute time, minutes</option>
         <option value="lowwage">Transit commuters among workers earning under $25,000 a year, of 100</option>
+        <option value="renter">Households that rent their home, of 100 households</option>
       </select>
     </label>
     <div class="ca-checks">
@@ -42,6 +43,8 @@ U.S. Census Bureau. (2025). *Aggregate travel time to work (in minutes) of worke
 U.S. Census Bureau. (2025). *Travel time to work* (American Community Survey 5-year estimates, 2020 to 2024, Table B08303) [Data set]. https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat
 
 U.S. Census Bureau. (2025). *Means of transportation to work by workers' earnings in the past 12 months (in 2024 inflation-adjusted dollars)* (American Community Survey 5-year estimates, 2020 to 2024, Table B08119) [Data set]. https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat
+
+U.S. Census Bureau. (2025). *Tenure* (American Community Survey 5-year estimates, 2020 to 2024, Table B25003) [Data set]. https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat
 
 U.S. Census Bureau. (2024). *Cartographic boundary files, counties* [Data set], via Bostock, M. *us-atlas* (Version 3). https://github.com/topojson/us-atlas
 
@@ -100,7 +103,9 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       commute: { unit: " minutes", head: "Minutes, one way", count: "Workers", what: "one-way commute time",
         note: "Average one-way travel time to work in minutes, for workers who did not work from home." },
       lowwage: { unit: " of 100", head: "Of 100 workers", count: "Workers", what: "transit commuters earning under $25,000",
-        note: "Workers who earned under $25,000 in the past 12 months and commuted by public transportation, of every 100 such workers." }
+        note: "Workers who earned under $25,000 in the past 12 months and commuted by public transportation, of every 100 such workers." },
+      renter: { unit: " of 100", head: "Of 100 households", count: "Households", what: "households that rent",
+        note: "Occupied homes where the household rents rather than owns, of every 100 occupied homes." }
     };
     var sel = document.getElementById("ca-metric");
     var metric = sel.value;
