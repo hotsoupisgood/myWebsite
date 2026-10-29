@@ -5,7 +5,7 @@ date: 2026-10-29
 layout: layouts/post.njk
 ---
 
-LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to 1999 had 127,389 of the 226,114 average weekday boardings counted by station in fiscal year 2026. The 18 stations opened since 2020 had 24,302.
+LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to 1999 had 127,389 of the 226,114 average weekday boardings counted by station in fiscal year 2026. The 18 stations opened since 2020 had 24,302. Line width shows average weekday boardings on each line, from LA Metro ridership figures. The B and D Lines carried 63,077 average weekday boardings in fiscal year 2026, down from 159,362 in fiscal year 2014.
 
 <figure class="viz lam-wide" id="lam-viz">
   <div class="ca-card">
@@ -18,6 +18,7 @@ LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to
     </label>
     <div class="ca-checks">
       <label class="viz-toggle"><input type="checkbox" id="lam-colors" checked> Show line colors</label>
+      <label class="viz-toggle"><input type="checkbox" id="lam-terrain" checked> Show terrain</label>
     </div>
     <div class="lam-year">
       <button type="button" id="lam-play" aria-label="Play the years from 1990">Play</button>
@@ -31,6 +32,7 @@ LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to
     <div id="lam-map" role="img" aria-label="Tilted map of the LA Metro rail network. Each station that is open in the selected year has a bar for the selected statistic. Hover or tap a station for its numbers."></div>
     <div class="lam-panel" id="lam-panel" aria-live="polite"><p class="lam-hint">Hover or tap a station for its numbers.</p></div>
   </div>
+  <p class="ca-note lam-src">Station boardings: LA Metro figures released through public records requests, compiled on Wikipedia; not published by LA Metro. Line boardings: LA Metro Interactive Estimated Ridership Stats, fiscal years 2009 to 2026.</p>
 </figure>
 
 <div class="ca-tables">
@@ -38,7 +40,7 @@ LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to
   <table id="lam-t2"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
 </div>
 
-**Methods.** Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. Boardings are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file.
+**Methods.** Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. Line widths and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro's Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. Station boardings are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.
 
 ## References
 
@@ -46,7 +48,7 @@ LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to
 
 Los Angeles County Metropolitan Transportation Authority. (2026). *gtfs_rail: LA Metro rail GTFS feed* [Data set]. GitLab. https://gitlab.com/LACMTA/gtfs_rail
 
-Los Angeles County Metropolitan Transportation Authority. (2026). *Metro ridership* [Data set]. https://opa.metro.net/MetroRidership/
+Los Angeles County Metropolitan Transportation Authority. (2026). *Interactive estimated ridership stats: Rail, fiscal years 2009 to 2026* [Data set]. Retrieved October 29, 2026, from https://opa.metro.net/MetroRidership/IndexRail.aspx
 
 Wikipedia contributors. (2026, October). *List of Los Angeles Metro Rail stations*. In *Wikipedia*. https://en.wikipedia.org/wiki/List_of_Los_Angeles_Metro_Rail_stations
 
@@ -57,6 +59,10 @@ Wikipedia contributors. (2025, September 20). *Template:LAMetro Ridership* (Revi
 Wikipedia contributors. (2026, August 27). *Template:LAMetro Ridership* (Revision 1371527400, fiscal year 2026). In *Wikipedia*. https://en.wikipedia.org/w/index.php?oldid=1371527400
 
 misken67. (2024, 2025, 2026). *Metro ridership by station, fiscal years 2024, 2025 and 2026* [Online posts of LA Metro public records]. Reddit. https://www.reddit.com/r/LAMetro/comments/1vz95u9/fy2026_metro_ridership_by_station/
+
+Mapzen, & Amazon Web Services. (2026). *Terrain Tiles* [Data set]. Registry of Open Data on AWS. Retrieved October 29, 2026, from https://registry.opendata.aws/terrain-tiles/
+
+U.S. Geological Survey. (2026). *3D Elevation Program (3DEP)* [Data set]. Retrieved October 29, 2026, from https://www.usgs.gov/3d-elevation-program
 
 U.S. Census Bureau. (2024). *Cartographic boundary files, counties* [Data set], via Bostock, M. *us-atlas* (Version 3). https://github.com/topojson/us-atlas
 
@@ -74,6 +80,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .lam-panel h3 { font-size: 1rem; margin: 0 0 .25rem; }
 .lam-panel p { margin: .15rem 0; }
 .lam-hint { color: #6b5440; }
+.lam-sub { margin-top: .5rem !important; font-weight: 600; }
+.lam-src { margin-top: .4rem; font-size: .78rem; }
 .lam-chip { display: inline-block; min-width: 1.25rem; text-align: center; font-weight: 700; font-size: .75rem; border-radius: 50%; color: #fff; margin-right: .2rem; line-height: 1.25rem; }
 .lam-panel svg { display: block; width: 100%; max-width: 260px; height: auto; margin-top: .3rem; }
 .lam-panel .ax { font-size: 10px; fill: #6b5440; }
@@ -98,6 +106,9 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 #lam-map .lac { fill: none; stroke: #c9ad85; stroke-width: 0.9; stroke-dasharray: 3 3; pointer-events: none; }
 #lam-map .slab { fill: #d4b483; }
 #lam-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#lam-map .topo { fill: none; stroke: #c9a77a; stroke-width: 0.6; opacity: 0.55; pointer-events: none; }
+#lam-map .topo.major { stroke: #a9824f; stroke-width: 0.9; opacity: 0.7; }
+#lam-map .topo-lbl { font-size: 9px; fill: #a9824f; pointer-events: none; paint-order: stroke; stroke: #f1e3c8; stroke-width: 3px; }
 #lam-map .rail { fill: none; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
 #lam-map .dot { fill: #fffaf3; stroke: #6b5440; stroke-width: 0.9; pointer-events: none; }
 #lam-map .dot.on { fill: #c2410c; stroke: #2a1a10; }
