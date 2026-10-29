@@ -76,7 +76,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .3rem; }
 .bay-legend { font-size: .8rem; color: #6b5440; margin: 0 0 .3rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
 .bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
-.ie-panel { background: #fffaf3; border-left: 3px solid #c2410c; padding: .5rem .7rem .3rem; margin: .4rem 0 0; }
+.ie-panel { box-sizing: border-box; background: #fffaf3; border-left: 3px solid #c2410c; padding: .5rem .7rem .3rem; margin: .4rem 0 0; }
 .ie-info { font-size: .85rem; color: #2a1a10; margin: 0 0 .35rem; line-height: 1.45; }
 .ie-info b { font-size: .95rem; }
 .ie-tlleg { font-size: .75rem; }
@@ -321,6 +321,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         var set = box.checked ? rows.map(function (r, j) { return j; }) : (i === null ? [] : [i]);
         regions.classed("on", function (f) { return f.ri === i; });
         outline.attr("d", i === null ? null : path(feats.filter(function (f) { return f.ri === i; })[0]));
+        var had = {};
+        layer.selectAll("g.bar").each(function () { had[this.__k] = this.__h; });
         layer.interrupt().selectAll("*").interrupt();
         layer.selectAll("*").remove();
         var items = set.map(function (j, n) {
@@ -340,10 +342,15 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
           gg.append("path").attr("class", "s").attr("fill", col[1]);
           gg.append("path").attr("class", "f").attr("fill", col[0]).attr("stroke", d.sig ? "#2a1a10" : "none").attr("stroke-width", 1);
           gg.append("path").attr("class", "c").attr("fill", d.sig ? "#2a1a10" : col[2]);
-          barPaths(gg, d, 0);
-          gg.transition().duration(400).ease(d3.easeCubicOut).delay(Math.min(d.n, 6) * 25).tween("h", function () {
-            var ip = d3.interpolateNumber(0, d.hh); return function (u) { barPaths(gg, d, ip(u)); };
-          });
+          var node = gg.node(), start = had[d.k] || 0;
+          node.__k = d.k; d.keep = start > 0;
+          if (Math.abs(start - d.hh) < 0.5) { barPaths(gg, d, d.hh); node.__h = d.hh; }
+          else {
+            barPaths(gg, d, start); node.__h = start;
+            gg.transition().duration(400).ease(d3.easeCubicOut).delay(d.keep ? 0 : Math.min(d.n, 6) * 25).tween("h", function () {
+              var ip = d3.interpolateNumber(start, d.hh); return function (u) { var v = ip(u); node.__h = v; barPaths(gg, d, v); };
+            });
+          }
         });
         var placed = [];
         var barsBox = items.map(function (d) { return { x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.hh + dy + 2 }; });
@@ -371,7 +378,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
           if (Math.abs(y - bs) > 2 || Math.abs(x - (d.x - lw / 2)) > 2) {
             layer.insert("line", ":first-child").attr("class", "lead").attr("x1", d.x + dx / 2).attr("y1", d.top - dy).attr("x2", Math.max(x, Math.min(x + lw, d.x))).attr("y2", y + 2);
           }
-          tx2.attr("x", x).attr("y", y).transition().duration(200).delay(150).attr("opacity", 1);
+          tx2.attr("x", x).attr("y", y);
+          if (d.keep) tx2.attr("opacity", 1); else tx2.transition().duration(200).delay(150).attr("opacity", 1);
         });
       }
       function clear() {
@@ -384,15 +392,24 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       box.onchange = function () { if (state.i !== null || box.checked) show(state.i); else clear(); };
       sel.onchange = function () {
         metric = sel.value; legend(); tables();
-        if (cur !== null) panel(cur);
+        fixPanel();
         if (state.i !== null || box.checked) show(state.i);
       };
       window.__ieShow = function (name) { show(byName[name]); };
     }
+    var pnl = document.getElementById("ie-panel");
+    function fixPanel() {
+      var keep = cur, mx = 0;
+      pnl.style.minHeight = "";
+      rows.forEach(function (r, j) { panel(j); mx = Math.max(mx, pnl.offsetHeight); });
+      pnl.style.minHeight = mx + "px";
+      panel(keep === null || keep === undefined ? top0 : keep);
+    }
     panel(top0);
     draw();
+    fixPanel();
     var lastW = el.clientWidth;
-    window.addEventListener("resize", function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); if (cur !== null) panel(cur); } });
+    window.addEventListener("resize", function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); fixPanel(); } });
   });
 })();
 </script>
