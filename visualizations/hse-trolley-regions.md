@@ -76,6 +76,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .3rem; }
 .bay-legend { font-size: .8rem; color: #6b5440; margin: 0 0 .3rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
 .bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
+.ie-info { box-sizing: border-box; }
 .ie-panel { box-sizing: border-box; background: #fffaf3; border-left: 3px solid #c2410c; padding: .5rem .7rem .3rem; margin: .4rem 0 0; }
 .ie-info { font-size: .85rem; color: #2a1a10; margin: 0 0 .35rem; line-height: 1.45; }
 .ie-info b { font-size: .95rem; }
@@ -399,8 +400,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     }
     var pnl = document.getElementById("ie-panel");
     function fixPanel() {
-      var keep = cur, mx = 0;
-      pnl.style.minHeight = "";
+      var keep = cur, mx = 0, mi = 0;
+      pnl.style.minHeight = ""; info.style.minHeight = "";
+      rows.forEach(function (r, j) { panel(j); mi = Math.max(mi, info.offsetHeight); });
+      info.style.minHeight = mi + "px";
       rows.forEach(function (r, j) { panel(j); mx = Math.max(mx, pnl.offsetHeight); });
       pnl.style.minHeight = mx + "px";
       panel(keep === null || keep === undefined ? top0 : keep);

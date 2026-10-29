@@ -80,11 +80,12 @@
     function chip(k) { return '<span class="lam-chip" style="background:' + LINES[k].color + ';color:' + (k === "E" || k === "K" ? "#2a1a10" : "#fff") + '">' + k + "</span>"; }
     function showPanel(r) {
       if (!r) { panel.innerHTML = '<p class="lam-hint">Hover or tap a station for its numbers.</p>'; return; }
-      var h = "<h3>" + r.name + "</h3><p>" + r.lines.map(chip).join("") + " " + r.lines.map(function (k) { return k + " Line"; }).join(", ") + "</p>";
+      var h = '<div class="lam-a"><h3>' + r.name + "</h3><p>" + r.lines.map(chip).join("") + " " + r.lines.map(function (k) { return k + " Line"; }).join(", ") + "</p>";
       h += "<p>Opened " + odate(r) + ". " + (open(r) ? yrs(Y - oy(r)) + " open in " + Y + "." : "Not yet open in " + Y + ".") + "</p>";
       var dy = dataYear();
       if (r.b[dy] !== undefined) h += "<p>" + fmt(r.b[dy]) + " average weekday boardings in fiscal year " + dy + (partial(r, dy) ? ", opened during that fiscal year" : "") + ".</p>";
       if (metric === "chg" && val(r) !== null && val(r) !== undefined) h += "<p>" + sgn(val(r)) + " boardings since fiscal year 2024.</p>";
+      h += '</div><div class="lam-b">';
       var lks = []; r.lines.forEach(function (k) { var q = lkey(k); if (LFY[q] && lks.indexOf(q) < 0) lks.push(q); });
       if (lks.length) {
         var w2 = 240, h2 = 130, m2 = { l: 44, r: 30, t: 16, b: 30 };
@@ -93,7 +94,7 @@
         var x2 = d3.scaleLinear().domain(d3.extent(xs2)).range([m2.l, w2 - m2.r]);
         var nT = d3.max(xs2) - d3.min(xs2) < 5 ? d3.max(xs2) - d3.min(xs2) : 4;
         var y2 = d3.scaleLinear().domain([0, d3.max(series, function (s) { return d3.max(s.p, function (p) { return p[1]; }); }) * 1.1]).nice(3).range([h2 - m2.b, m2.t]);
-        var s2 = '<p class="lam-sub">' + lks.map(lname).join(", ") + ': average weekday boardings on the whole line, LA Metro figures.</p><svg viewBox="0 0 ' + w2 + " " + h2 + '" role="img" aria-label="Average weekday boardings by fiscal year on ' + lks.map(lname).join(", ") + '">';
+        var s2 = '<p class="lam-sub">Average weekday boardings on the whole line, LA Metro figures.</p><svg viewBox="0 0 ' + w2 + " " + h2 + '" role="img" aria-label="Average weekday boardings by fiscal year on ' + lks.map(lname).join(", ") + '">';
         y2.ticks(3).forEach(function (t) { s2 += '<line x1="' + m2.l + '" x2="' + (w2 - m2.r) + '" y1="' + y2(t) + '" y2="' + y2(t) + '" stroke="#ead9bd"/><text class="ax" x="' + (m2.l - 4) + '" y="' + (y2(t) + 3) + '" text-anchor="end">' + fmt(t) + "</text>"; });
         x2.ticks(nT).map(Math.round).filter(function (t, i, a) { return a.indexOf(t) === i; }).forEach(function (t) { s2 += '<line x1="' + x2(t) + '" x2="' + x2(t) + '" y1="' + (h2 - m2.b) + '" y2="' + (h2 - m2.b + 3) + '" stroke="#6b5440"/><text class="ax" x="' + x2(t) + '" y="' + (h2 - m2.b + 13) + '" text-anchor="middle">' + t + "</text>"; });
         s2 += '<text class="ax" x="' + m2.l + '" y="10">Average weekday boardings</text><text class="ax" x="' + ((m2.l + w2 - m2.r) / 2) + '" y="' + (h2 - 2) + '" text-anchor="middle">Fiscal year, ending in June</text>';
@@ -110,9 +111,10 @@
         lks.forEach(function (q) { var v = LFY[q][Y]; s2 += "<p>" + lname(q) + ": " + (v !== undefined && Y >= (LFROM[q] || 0) ? fmt(v) + " average weekday boardings in fiscal year " + Y : "no line data for fiscal year " + Y) + ".</p>"; });
         h += s2;
       }
+      h += '</div><div class="lam-c">';
       var pts = FY.filter(function (y) { return r.b[y] !== undefined; }).map(function (y) { return [+y, r.b[y]]; });
       if (pts.length) {
-        h += '<p class="lam-sub">' + r.name + ': average weekday boardings at this station.</p>';
+        h += '<p class="lam-sub">Average weekday boardings at this station.</p>';
         var w = 240, hh = 120, m = { l: 44, r: 12, t: 16, b: 30 };
         var x = d3.scalePoint().domain(FY.map(Number)).range([m.l, w - m.r]).padding(0.3);
         var ymax = d3.max(pts, function (p) { return p[1]; }) * 1.15;
@@ -127,7 +129,17 @@
         s += "</svg>";
         h += s;
       }
-      panel.innerHTML = h;
+      panel.innerHTML = h + "</div>";
+      ["a", "b", "c"].forEach(function (k) { var d = panel.querySelector(".lam-" + k); if (d && MH[k]) d.style.minHeight = MH[k] + "px"; });
+    }
+    var MH = {};
+    function fixPanel() {
+      if (!panel.offsetWidth) return;
+      var keep = state.i, mh = { a: 0, b: 0, c: 0 };
+      MH = {};
+      rows.forEach(function (r) { showPanel(r); ["a", "b", "c"].forEach(function (k) { var d = panel.querySelector(".lam-" + k); if (d) mh[k] = Math.max(mh[k], d.offsetHeight); }); });
+      MH = mh;
+      showPanel(keep === null ? null : rows[keep]);
     }
     var state = { i: null, pinned: false };
     var api = {};
@@ -276,7 +288,7 @@
       api.pick = function (name) { var i = rows.findIndex(function (r) { return r.name === name; }); state.i = i; state.pinned = true; showPanel(rows[i]); update(false); };
       update(true);
     }
-    function refresh(animate) { yv.textContent = Y; note(); tables(); if (api.update) api.update(animate); if (state.i !== null) showPanel(rows[state.i]); }
+    function refresh(animate) { yv.textContent = Y; note(); tables(); if (api.update) api.update(animate); fixPanel(); }
     var timer = null;
     function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = "Play"; }
     play.onclick = function () {
@@ -289,9 +301,9 @@
     sel.onchange = function () { metric = sel.value; refresh(true); };
     box.onchange = function () { refresh(false); };
     terr.onchange = function () { d3.select("#lam-map .topo-g").attr("display", terr.checked ? null : "none"); note(); };
-    note(); tables(); draw();
+    note(); tables(); draw(); fixPanel();
     window.__lam = api;
     var lastW = el.clientWidth;
-    window.addEventListener("resize", function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); } });
+    window.addEventListener("resize", function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); fixPanel(); } });
   });
 })();
