@@ -10,6 +10,11 @@ layout: layouts/post.njk
   <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the share of workers who commuted by public transportation in that county and its neighbors."></div>
 </figure>
 
+<div class="ca-tables">
+  <table id="ca-top"><caption>Highest 5 counties</caption><thead><tr><th>County</th><th>Of 100 workers</th><th>Workers</th></tr></thead><tbody></tbody></table>
+  <table id="ca-bottom"><caption>Lowest 5 counties</caption><thead><tr><th>County</th><th>Of 100 workers</th><th>Workers</th></tr></thead><tbody></tbody></table>
+</div>
+
 ## References
 
 <div class="references">
@@ -38,6 +43,12 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 #ca-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
 #ca-map .lbl.main { font-weight: 700; font-size: 12px; }
 #ca-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-tables { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 1.5rem; max-width: 44rem; margin: 0 0 2rem; }
+.ca-tables table { flex: 1 1 16rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
+.ca-tables th, .ca-tables td { padding: .3rem .5rem; border-bottom: 1px solid #ead9bd; text-align: left; }
+.ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; }
+.ca-tables td:nth-child(n+2), .ca-tables th:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
@@ -52,6 +63,14 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     var topo = res[0], rows = res[1];
     var byFips = {};
     rows.forEach(function (r) { byFips[r.fips] = r; });
+    var sorted = rows.slice().sort(function (a, b) { return b.share_pct - a.share_pct; });
+    function fill(id, list) {
+      d3.select("#" + id + " tbody").selectAll("tr").data(list).join("tr").html(function (r) {
+        return "<td>" + r.county.replace(/ County$/, "") + "</td><td>" + r.share_pct.toFixed(1) + "</td><td>" + d3.format(",")(r.workers) + "</td>";
+      });
+    }
+    fill("ca-top", sorted.slice(0, 5));
+    fill("ca-bottom", sorted.slice(-5).reverse());
     var geoms = topo.objects.counties.geometries;
     var feats = topojson.feature(topo, topo.objects.counties).features;
     var nbrs = topojson.neighbors(geoms);
