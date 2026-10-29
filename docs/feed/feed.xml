@@ -17,7 +17,7 @@
 		<link href="https://lucashenry.xyz/visualizations/la-metro-rail-stations/"/>
 		<updated>2026-10-29T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/la-metro-rail-stations/</id>
-		<content type="html">&lt;p&gt;LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to 1999 had 127,389 of the 226,114 average weekday boardings counted by station in fiscal year 2026. The 18 stations opened since 2020 had 24,302.&lt;/p&gt;
+		<content type="html">&lt;p&gt;LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to 1999 had 127,389 of the 226,114 average weekday boardings counted by station in fiscal year 2026. The 18 stations opened since 2020 had 24,302. Line width shows average weekday boardings on each line, from LA Metro ridership figures. The B and D Lines carried 63,077 average weekday boardings in fiscal year 2026, down from 159,362 in fiscal year 2014.&lt;/p&gt;
 &lt;figure class=&quot;viz lam-wide&quot; id=&quot;lam-viz&quot;&gt;
   &lt;div class=&quot;ca-card&quot;&gt;
     &lt;label class=&quot;ca-select&quot; for=&quot;lam-metric&quot;&gt;&lt;span&gt;Statistic&lt;/span&gt;
@@ -29,6 +29,7 @@
     &lt;/label&gt;
     &lt;div class=&quot;ca-checks&quot;&gt;
       &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;lam-colors&quot; checked=&quot;&quot; /&gt; Show line colors&lt;/label&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;lam-terrain&quot; checked=&quot;&quot; /&gt; Show terrain&lt;/label&gt;
     &lt;/div&gt;
     &lt;div class=&quot;lam-year&quot;&gt;
       &lt;button type=&quot;button&quot; id=&quot;lam-play&quot; aria-label=&quot;Play the years from 1990&quot;&gt;Play&lt;/button&gt;
@@ -42,21 +43,24 @@
     &lt;div id=&quot;lam-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of the LA Metro rail network. Each station that is open in the selected year has a bar for the selected statistic. Hover or tap a station for its numbers.&quot;&gt;&lt;/div&gt;
     &lt;div class=&quot;lam-panel&quot; id=&quot;lam-panel&quot; aria-live=&quot;polite&quot;&gt;&lt;p class=&quot;lam-hint&quot;&gt;Hover or tap a station for its numbers.&lt;/p&gt;&lt;/div&gt;
   &lt;/div&gt;
+  &lt;p class=&quot;ca-note lam-src&quot;&gt;Station boardings: LA Metro figures released through public records requests, compiled on Wikipedia; not published by LA Metro. Line boardings: LA Metro Interactive Estimated Ridership Stats, fiscal years 2009 to 2026.&lt;/p&gt;
 &lt;/figure&gt;
 &lt;div class=&quot;ca-tables&quot;&gt;
   &lt;table id=&quot;lam-t1&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
   &lt;table id=&quot;lam-t2&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. Boardings are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. Line widths and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro&#39;s Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. Station boardings are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/la-metro-rail-stations/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;Los Angeles County Metropolitan Transportation Authority. (2026). &lt;em&gt;gtfs_rail: LA Metro rail GTFS feed&lt;/em&gt; [Data set]. GitLab. &lt;a href=&quot;https://gitlab.com/LACMTA/gtfs_rail&quot;&gt;https://gitlab.com/LACMTA/gtfs_rail&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Los Angeles County Metropolitan Transportation Authority. (2026). &lt;em&gt;Metro ridership&lt;/em&gt; [Data set]. &lt;a href=&quot;https://opa.metro.net/MetroRidership/&quot;&gt;https://opa.metro.net/MetroRidership/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Los Angeles County Metropolitan Transportation Authority. (2026). &lt;em&gt;Interactive estimated ridership stats: Rail, fiscal years 2009 to 2026&lt;/em&gt; [Data set]. Retrieved October 29, 2026, from &lt;a href=&quot;https://opa.metro.net/MetroRidership/IndexRail.aspx&quot;&gt;https://opa.metro.net/MetroRidership/IndexRail.aspx&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Wikipedia contributors. (2026, October). &lt;em&gt;List of Los Angeles Metro Rail stations&lt;/em&gt;. In &lt;em&gt;Wikipedia&lt;/em&gt;. &lt;a href=&quot;https://en.wikipedia.org/wiki/List_of_Los_Angeles_Metro_Rail_stations&quot;&gt;https://en.wikipedia.org/wiki/List_of_Los_Angeles_Metro_Rail_stations&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Wikipedia contributors. (2024, December 9). &lt;em&gt;Template:LAMetro Ridership&lt;/em&gt; (Revision 1262036138, fiscal year 2024). In &lt;em&gt;Wikipedia&lt;/em&gt;. &lt;a href=&quot;https://en.wikipedia.org/w/index.php?oldid=1262036138&quot;&gt;https://en.wikipedia.org/w/index.php?oldid=1262036138&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Wikipedia contributors. (2025, September 20). &lt;em&gt;Template:LAMetro Ridership&lt;/em&gt; (Revision 1312349673, fiscal year 2025). In &lt;em&gt;Wikipedia&lt;/em&gt;. &lt;a href=&quot;https://en.wikipedia.org/w/index.php?oldid=1312349673&quot;&gt;https://en.wikipedia.org/w/index.php?oldid=1312349673&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Wikipedia contributors. (2026, August 27). &lt;em&gt;Template:LAMetro Ridership&lt;/em&gt; (Revision 1371527400, fiscal year 2026). In &lt;em&gt;Wikipedia&lt;/em&gt;. &lt;a href=&quot;https://en.wikipedia.org/w/index.php?oldid=1371527400&quot;&gt;https://en.wikipedia.org/w/index.php?oldid=1371527400&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;misken67. (2024, 2025, 2026). &lt;em&gt;Metro ridership by station, fiscal years 2024, 2025 and 2026&lt;/em&gt; [Online posts of LA Metro public records]. Reddit. &lt;a href=&quot;https://www.reddit.com/r/LAMetro/comments/1vz95u9/fy2026_metro_ridership_by_station/&quot;&gt;https://www.reddit.com/r/LAMetro/comments/1vz95u9/fy2026_metro_ridership_by_station/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mapzen, &amp;amp; Amazon Web Services. (2026). &lt;em&gt;Terrain Tiles&lt;/em&gt; [Data set]. Registry of Open Data on AWS. Retrieved October 29, 2026, from &lt;a href=&quot;https://registry.opendata.aws/terrain-tiles/&quot;&gt;https://registry.opendata.aws/terrain-tiles/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Geological Survey. (2026). &lt;em&gt;3D Elevation Program (3DEP)&lt;/em&gt; [Data set]. Retrieved October 29, 2026, from &lt;a href=&quot;https://www.usgs.gov/3d-elevation-program&quot;&gt;https://www.usgs.gov/3d-elevation-program&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;U.S. Census Bureau. (2024). &lt;em&gt;Cartographic boundary files, counties&lt;/em&gt; [Data set], via Bostock, M. &lt;em&gt;us-atlas&lt;/em&gt; (Version 3). &lt;a href=&quot;https://github.com/topojson/us-atlas&quot;&gt;https://github.com/topojson/us-atlas&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
@@ -70,6 +74,8 @@
 .lam-panel h3 { font-size: 1rem; margin: 0 0 .25rem; }
 .lam-panel p { margin: .15rem 0; }
 .lam-hint { color: #6b5440; }
+.lam-sub { margin-top: .5rem !important; font-weight: 600; }
+.lam-src { margin-top: .4rem; font-size: .78rem; }
 .lam-chip { display: inline-block; min-width: 1.25rem; text-align: center; font-weight: 700; font-size: .75rem; border-radius: 50%; color: #fff; margin-right: .2rem; line-height: 1.25rem; }
 .lam-panel svg { display: block; width: 100%; max-width: 260px; height: auto; margin-top: .3rem; }
 .lam-panel .ax { font-size: 10px; fill: #6b5440; }
@@ -94,6 +100,9 @@
 #lam-map .lac { fill: none; stroke: #c9ad85; stroke-width: 0.9; stroke-dasharray: 3 3; pointer-events: none; }
 #lam-map .slab { fill: #d4b483; }
 #lam-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#lam-map .topo { fill: none; stroke: #c9a77a; stroke-width: 0.6; opacity: 0.55; pointer-events: none; }
+#lam-map .topo.major { stroke: #a9824f; stroke-width: 0.9; opacity: 0.7; }
+#lam-map .topo-lbl { font-size: 9px; fill: #a9824f; pointer-events: none; paint-order: stroke; stroke: #f1e3c8; stroke-width: 3px; }
 #lam-map .rail { fill: none; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
 #lam-map .dot { fill: #fffaf3; stroke: #6b5440; stroke-width: 0.9; pointer-events: none; }
 #lam-map .dot.on { fill: #c2410c; stroke: #2a1a10; }
@@ -117,326 +126,6 @@
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/la_metro_viz.js&quot;&gt;&lt;/script&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>California transit commuting</title>
-		<link href="https://lucashenry.xyz/visualizations/ca-transit-share/"/>
-		<updated>2026-10-29T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/visualizations/ca-transit-share/</id>
-		<content type="html">&lt;figure class=&quot;viz&quot; id=&quot;ca-transit-viz&quot;&gt;
-  &lt;div class=&quot;ca-card&quot;&gt;
-    &lt;label class=&quot;ca-select&quot; for=&quot;ca-metric&quot;&gt;&lt;span&gt;Statistic&lt;/span&gt;
-      &lt;select id=&quot;ca-metric&quot;&gt;
-        &lt;option value=&quot;transit&quot; selected=&quot;&quot;&gt;Transit commuters, of 100 workers&lt;/option&gt;
-        &lt;option value=&quot;novehicle&quot;&gt;Households with no vehicle, of 100 households&lt;/option&gt;
-        &lt;option value=&quot;commute&quot;&gt;One-way commute time, minutes&lt;/option&gt;
-        &lt;option value=&quot;lowwage&quot;&gt;Transit commuters among workers earning under $25,000 a year, of 100&lt;/option&gt;
-        &lt;option value=&quot;renter&quot;&gt;Households that rent their home, of 100 households&lt;/option&gt;
-      &lt;/select&gt;
-    &lt;/label&gt;
-    &lt;div class=&quot;ca-checks&quot;&gt;
-      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-top5&quot; checked=&quot;&quot; /&gt; Always show the 5 highest counties&lt;/label&gt;
-      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-bottom5&quot; checked=&quot;&quot; /&gt; Always show the 5 lowest counties&lt;/label&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;p class=&quot;ca-note&quot; id=&quot;ca-note&quot;&gt;&lt;/p&gt;
-  &lt;div id=&quot;ca-map&quot; role=&quot;img&quot; aria-label=&quot;Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors.&quot;&gt;&lt;/div&gt;
-&lt;/figure&gt;
-&lt;div class=&quot;ca-tables&quot;&gt;
-  &lt;table id=&quot;ca-top&quot;&gt;&lt;caption&gt;Highest 5 counties&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;County&lt;/th&gt;&lt;th class=&quot;vh&quot;&gt;Of 100 workers&lt;/th&gt;&lt;th class=&quot;nh&quot;&gt;Workers&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
-  &lt;table id=&quot;ca-bottom&quot;&gt;&lt;caption&gt;Lowest 5 counties&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;County&lt;/th&gt;&lt;th class=&quot;vh&quot;&gt;Of 100 workers&lt;/th&gt;&lt;th class=&quot;nh&quot;&gt;Workers&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/ca-transit-share/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
-&lt;div class=&quot;references&quot;&gt;
-&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08301) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Household size by vehicles available&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08201) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08201.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08201.dat&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Aggregate travel time to work (in minutes) of workers by sex&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08013) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Travel time to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08303) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work by workers&#39; earnings in the past 12 months (in 2024 inflation-adjusted dollars)&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08119) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Tenure&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B25003) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;U.S. Census Bureau. (2024). &lt;em&gt;Cartographic boundary files, counties&lt;/em&gt; [Data set], via Bostock, M. &lt;em&gt;us-atlas&lt;/em&gt; (Version 3). &lt;a href=&quot;https://github.com/topojson/us-atlas&quot;&gt;https://github.com/topojson/us-atlas&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
-&lt;/div&gt;
-&lt;style&gt;
-.viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
-#ca-map { width: 100%; }
-.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
-.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
-.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
-.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
-.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
-.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
-.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
-.ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .4rem; }
-@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
-#ca-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
-#ca-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.6; stroke-linejoin: round; cursor: pointer; }
-#ca-map .county.nb { fill: #f5d6aa; }
-#ca-map .county.on { fill: #efbe8a; }
-#ca-map .slab { fill: #d4b483; }
-#ca-map .shadow { fill: #5a3a1a; opacity: 0.18; }
-#ca-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
-#ca-map .bar { pointer-events: none; }
-#ca-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
-#ca-map .lbl.main { font-weight: 700; font-size: 12px; }
-#ca-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
-.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1.5rem; max-width: 44rem; margin: 0 auto 2rem; }
-.ca-tables table { flex: 1 1 16rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
-.ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
-.ca-tables th, .ca-tables td { padding: .3rem .5rem; border-bottom: 1px solid #ead9bd; text-align: left; }
-.ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; }
-.ca-tables td:nth-child(n+2), .ca-tables th:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; }
-.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
-&lt;/style&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
-&lt;script&gt;
-(function () {
-  var el = document.getElementById(&quot;ca-map&quot;);
-  Promise.all([
-    d3.json(&quot;/visualizations/data/ca-counties-10m.json&quot;),
-    d3.json(&quot;/visualizations/data/ca_commute_metrics_2020_2024.json&quot;)
-  ]).then(function (res) {
-    var topo = res[0], rows = res[1];
-    var byFips = {};
-    rows.forEach(function (r) { byFips[r.fips] = r; });
-    var METRICS = {
-      transit: { unit: &quot; of 100&quot;, head: &quot;Of 100 workers&quot;, count: &quot;Workers&quot;, what: &quot;transit commuters&quot;,
-        note: &quot;Workers age 16 and over who commuted by public transportation, of every 100 workers. Taxis are not counted.&quot; },
-      novehicle: { unit: &quot; of 100&quot;, head: &quot;Of 100 households&quot;, count: &quot;Households&quot;, what: &quot;households with no vehicle&quot;,
-        note: &quot;Households with no car, van or truck available, of every 100 households.&quot; },
-      commute: { unit: &quot; minutes&quot;, head: &quot;Minutes, one way&quot;, count: &quot;Workers&quot;, what: &quot;one-way commute time&quot;,
-        note: &quot;Average one-way travel time to work in minutes, for workers who did not work from home.&quot; },
-      lowwage: { unit: &quot; of 100&quot;, head: &quot;Of 100 workers&quot;, count: &quot;Workers&quot;, what: &quot;transit commuters earning under $25,000&quot;,
-        note: &quot;Workers who earned under $25,000 in the past 12 months and commuted by public transportation, of every 100 such workers.&quot; },
-      renter: { unit: &quot; of 100&quot;, head: &quot;Of 100 households&quot;, count: &quot;Households&quot;, what: &quot;households that rent&quot;,
-        note: &quot;Occupied homes where the household rents rather than owns, of every 100 occupied homes.&quot; }
-    };
-    var sel = document.getElementById(&quot;ca-metric&quot;);
-    var metric = sel.value;
-    function mv(r) { return r[metric].value; }
-    function fmt(v) { return v.toFixed(1) + METRICS[metric].unit; }
-    function fill(id, list) {
-      d3.select(&quot;#&quot; + id + &quot; tbody&quot;).selectAll(&quot;tr&quot;).data(list).join(&quot;tr&quot;).html(function (r) {
-        return &quot;&lt;td&gt;&quot; + r.county.replace(/ County$/, &quot;&quot;) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + fmt(mv(r)) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + d3.format(&quot;,&quot;)(r[metric].den) + &quot;&lt;/td&gt;&quot;;
-      });
-    }
-    function tables() {
-      var M = METRICS[metric];
-      var sorted = rows.slice().sort(function (a, b) { return mv(b) - mv(a) || b[metric].den - a[metric].den; });
-      fill(&quot;ca-top&quot;, sorted.slice(0, 5));
-      fill(&quot;ca-bottom&quot;, sorted.slice(-5).reverse());
-      d3.select(&quot;#ca-top caption&quot;).text(&quot;Highest 5 counties, &quot; + M.what);
-      d3.select(&quot;#ca-bottom caption&quot;).text(&quot;Lowest 5 counties, &quot; + M.what);
-      d3.selectAll(&quot;.ca-tables .vh&quot;).text(M.head);
-      d3.selectAll(&quot;.ca-tables .nh&quot;).text(M.count);
-      document.getElementById(&quot;ca-note&quot;).textContent = M.note;
-    }
-    tables();
-    var geoms = topo.objects.counties.geometries;
-    var feats = topojson.feature(topo, topo.objects.counties).features;
-    var nbrs = topojson.neighbors(geoms);
-    var maxV;
-    var state = { i: null };
-    var box = document.getElementById(&quot;ca-top5&quot;);
-    var box2 = document.getElementById(&quot;ca-bottom5&quot;);
-    var top5, bottom5;
-    function rank() {
-      maxV = d3.max(rows, mv);
-      var ranked = feats.map(function (f, k) { return k; })
-        .sort(function (a, b) { var A = byFips[feats[a].id], Bq = byFips[feats[b].id]; return mv(Bq) - mv(A) || Bq[metric].den - A[metric].den; });
-      top5 = ranked.slice(0, 5); bottom5 = ranked.slice(-5);
-    }
-    rank();
-    // vertical room is sized for the tallest bar of any statistic, so the map does not move on a switch
-    var maxAll = {};
-    Object.keys(METRICS).forEach(function (m) { maxAll[m] = d3.max(rows, function (r) { return r[m].value; }); });
-    function relMax(f) { var r = byFips[f.id]; return d3.max(Object.keys(METRICS), function (m) { return r[m].value / maxAll[m]; }); }
-
-    var TILT = 50 * Math.PI / 180; // camera elevation above the table
-    var land = topojson.merge(topo, geoms);
-    function draw() {
-      el.innerHTML = &quot;&quot;;
-      var W = Math.max(300, el.clientWidth);
-      var small = W &lt; 480;
-      var fc = { type: &quot;FeatureCollection&quot;, features: feats };
-      var B = 1000;
-      var base = d3.geoConicEqualArea().parallels([34, 40.5]).rotate([120, 0]).fitSize([B, B], fc);
-      var bb0 = d3.geoPath(base).bounds(fc), front = bb0[1][1], cx0 = (bb0[0][0] + bb0[1][0]) / 2;
-      var D = 1.4 * B, sinT = Math.sin(TILT), cosT = Math.cos(TILT);
-      function tiltRaw(x, y) {
-        var back = front - y;            // distance from the near edge, on the table
-        var sc = D / (D + back * cosT);  // farther points are smaller
-        return [cx0 + (x - cx0) * sc, front - back * sinT * sc];
-      }
-      var k = 1, tx = 0, ty = 0;
-      function tiltPt(x, y) { var q = tiltRaw(x, y); return [q[0] * k + tx, q[1] * k + ty]; }
-      var tf = d3.geoTransform({ point: function (x, y) { var q = tiltPt(x, y); this.stream.point(q[0], q[1]); } });
-      var proj = { stream: function (st) { return base.stream(tf.stream(st)); } };
-      var path = d3.geoPath(proj);
-      var rb = path.bounds(fc);
-      var edge = small ? 5 : 7, pad = 6;
-      var maxH = W * (small ? 0.36 : 0.30);
-      k = (W - 2 * pad) / (rb[1][0] - rb[0][0]);
-      tx = pad - rb[0][0] * k;
-      ty = -rb[0][1] * k;
-      var bpath = d3.geoPath(base);
-      var pts = feats.map(function (f) {
-        var c = bpath.centroid(f);
-        if (!d3.geoContains(f, base.invert(c))) {
-          var b = bpath.bounds(f), best = null, bd = -1;
-          for (var gx = 0; gx &lt;= 12; gx++) for (var gy = 0; gy &lt;= 12; gy++) {
-            var p = [b[0][0] + (b[1][0] - b[0][0]) * gx / 12, b[0][1] + (b[1][1] - b[0][1]) * gy / 12];
-            if (d3.geoContains(f, base.invert(p))) { var d = -Math.hypot(p[0] - c[0], p[1] - c[1]); if (d &gt; bd || best === null) { bd = d; best = p; } }
-          }
-          if (best) c = best;
-        }
-        return tiltPt(c[0], c[1]);
-      });
-      // room above the map: enough for the tallest bar plus a label at each county
-      var top = 12;
-      pts.forEach(function (q, i) { top = Math.max(top, maxH * relMax(feats[i]) + 34 - q[1]); });
-      ty += top;
-      pts.forEach(function (q) { q[1] += top; });
-      var H = Math.ceil(top + (rb[1][1] - rb[0][1]) * k + edge + 10);
-      var svg = d3.select(el).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
-      var defs = svg.append(&quot;defs&quot;);
-      defs.append(&quot;filter&quot;).attr(&quot;id&quot;, &quot;ca-blur&quot;).attr(&quot;x&quot;, &quot;-10%&quot;).attr(&quot;y&quot;, &quot;-10%&quot;).attr(&quot;width&quot;, &quot;120%&quot;).attr(&quot;height&quot;, &quot;120%&quot;)
-        .append(&quot;feGaussianBlur&quot;).attr(&quot;stdDeviation&quot;, 5);
-      svg.append(&quot;rect&quot;).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H).attr(&quot;fill&quot;, &quot;transparent&quot;).on(&quot;click&quot;, function () { clear(); });
-      var landD = path(land);
-      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;shadow&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(5,&quot; + (edge + 6) + &quot;)&quot;).attr(&quot;filter&quot;, &quot;url(#ca-blur)&quot;);
-      for (var e = edge; e &gt; 0; e--) svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;slab&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(0,&quot; + e + &quot;)&quot;);
-      var counties = svg.append(&quot;g&quot;).selectAll(&quot;path&quot;).data(feats).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;county&quot;).attr(&quot;data-fips&quot;, function (f) { return f.id; }).attr(&quot;d&quot;, path)
-        .on(&quot;pointerenter&quot;, function (ev, f) { if (ev.pointerType === &quot;mouse&quot;) show(feats.indexOf(f)); })
-        .on(&quot;pointerleave&quot;, function (ev) { if (ev.pointerType === &quot;mouse&quot;) clear(); })
-        .on(&quot;click&quot;, function (ev, f) { ev.stopPropagation(); var i = feats.indexOf(f); if (state.i === i &amp;&amp; ev.pointerType !== &quot;mouse&quot;) clear(); else show(i); });
-      var outline = svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;outline&quot;);
-      var layer = svg.append(&quot;g&quot;);
-      var h = function (v) { return maxH * v / maxV; };
-      var bw = small ? 7 : 9;
-
-      function name(i) { return byFips[feats[i].id].county.replace(/ County$/, &quot;&quot;); }
-      function val(i) { return mv(byFips[feats[i].id]); }
-
-      function show(i) {
-        state.i = i;
-        var hov = i === null ? [] : [i].concat(nbrs[i]);
-        var set = hov.slice();
-        if (box.checked) top5.forEach(function (k) { if (set.indexOf(k) &lt; 0) set.push(k); });
-        if (box2.checked) bottom5.forEach(function (k) { if (set.indexOf(k) &lt; 0) set.push(k); });
-        counties.classed(&quot;on&quot;, function (f, k) { return k === i; }).classed(&quot;nb&quot;, function (f, k) { return k !== i &amp;&amp; hov.indexOf(k) &gt;= 0; });
-        outline.attr(&quot;d&quot;, i === null ? null : path(feats[i]));
-        var had = {};
-        // current height of every bar on screen, so standing or rising bars resize from where they are
-        layer.selectAll(&quot;g.bar&quot;).each(function () { if (this.__k !== undefined &amp;&amp; +d3.select(this).datum() &gt; 0) had[this.__k] = +d3.select(this).datum(); });
-        layer.interrupt().selectAll(&quot;*&quot;).interrupt();
-        layer.selectAll(&quot;*&quot;).remove();
-        var t = d3.transition().duration(400).ease(d3.easeCubicOut);
-        var items = set.map(function (k, n) {
-          var p = pts[k];
-          return { k: k, n: n, x: p[0], y: p[1], top: p[1] - h(val(k)), main: k === i,
-            text: name(k) + &quot; &quot; + fmt(val(k)) };
-        });
-        var dx = bw * 0.5, dy = bw * 0.35;
-        var COL = { main: [&quot;#c2410c&quot;, &quot;#8a2d08&quot;, &quot;#e56a32&quot;], nb: [&quot;#f28c38&quot;, &quot;#c4661c&quot;, &quot;#f9b277&quot;] };
-        function barPaths(g, d, hh) {
-          var x0 = d.x - bw / 2, x1 = d.x + bw / 2, y0 = d.y, y1 = d.y - hh;
-          g.select(&quot;.f&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y0 + &quot;H&quot; + x1 + &quot;V&quot; + y1 + &quot;H&quot; + x0 + &quot;Z&quot;);
-          g.select(&quot;.s&quot;).attr(&quot;d&quot;, &quot;M&quot; + x1 + &quot;,&quot; + y0 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y0 - dy) + &quot;V&quot; + (y1 - dy) + &quot;L&quot; + x1 + &quot;,&quot; + y1 + &quot;Z&quot;);
-          g.select(&quot;.c&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y1 + &quot;H&quot; + x1 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y1 - dy) + &quot;H&quot; + (x0 + dx) + &quot;Z&quot;);
-        }
-        items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
-          var col = d.main ? COL.main : COL.nb;
-          var g = layer.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;bar&quot;).datum(0);
-          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;s&quot;).attr(&quot;fill&quot;, col[1]);
-          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;f&quot;).attr(&quot;fill&quot;, col[0]);
-          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;c&quot;).attr(&quot;fill&quot;, col[2]);
-          var full = d.y - d.top, node = g.node();
-          node.__k = d.k;
-          var start = had[d.k] || 0;
-          d.keep = start &gt; 0;
-          d.grow = d.keep &amp;&amp; Math.abs(start - full) &gt; 0.5;
-          if (d.keep &amp;&amp; !d.grow) { g.datum(full); barPaths(g, d, full); node.__done = true; }
-          else {
-            g.datum(start); barPaths(g, d, start);
-            g.transition(t).duration(d.keep ? 300 : 400).delay(d.keep ? 0 : d.n * 40).tween(&quot;h&quot;, function () {
-              var ip = d3.interpolateNumber(start, full);
-              return function (u) { var v = ip(u); g.datum(v); barPaths(g, d, v); };
-            }).on(&quot;end&quot;, function () { node.__done = true; });
-          }
-          d.g = g;
-        });
-        // labels: place, then push apart and keep inside the SVG
-        var placed = [];
-        var barsBox = items.map(function (d) { return { k: d.k, x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.y - d.top + dy + 2 }; });
-        items.slice().sort(function (a, b) { return a.main ? -1 : b.main ? 1 : a.top - b.top; }).forEach(function (d) {
-          var tx = layer.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;lbl&quot; + (d.main ? &quot; main&quot; : &quot;&quot;)).text(d.text).attr(&quot;opacity&quot;, 0);
-          var bb = tx.node().getBBox();
-          var lw = bb.width, lh = bb.height;
-          var obs = placed.concat(barsBox);
-          function free(x, y) {
-            if (x &lt; 2 || x + lw &gt; W - 2 || y - lh &lt; 1 || y &gt; H - 2) return false;
-            return !obs.some(function (q) { return x &lt; q.x + q.w + 3 &amp;&amp; x + lw + 3 &gt; q.x &amp;&amp; y - lh &lt; q.y + 3 &amp;&amp; y + 1 &gt; q.y - q.h - 3; });
-          }
-          var x = null, y = null, base = d.top - dy - 7;
-          var xs = [d.x - lw / 2, d.x + bw / 2 + dx + 4, d.x - bw / 2 - 4 - lw];
-          outer: for (var s = 0; s &lt; 60; s++) {
-            var dys = s === 0 ? [0] : [-s * 4, s * 4];
-            for (var j = 0; j &lt; dys.length; j++) for (var m = 0; m &lt; xs.length; m++) {
-              var cx = xs[m], cy = base + dys[j];
-              if (m &gt; 0) cy = Math.max(cy, d.top + lh - 2);
-              cx = Math.max(2, Math.min(W - lw - 2, cx)); cy = Math.max(lh + 2, cy);
-              if (free(cx, cy)) { x = cx; y = cy; break outer; }
-            }
-          }
-          if (x === null) {
-            // no spot near the bar: take the nearest free spot anywhere, joined by a leader line
-            var bd2 = Infinity;
-            for (var gy2 = lh + 2; gy2 &lt;= H - 2; gy2 += 4) for (var gx2 = 2; gx2 &lt;= W - lw - 2; gx2 += 6) {
-              var dd = Math.hypot(gx2 + lw / 2 - d.x, gy2 - base);
-              if (dd &lt; bd2 &amp;&amp; free(gx2, gy2)) { bd2 = dd; x = gx2; y = gy2; }
-            }
-          }
-          if (x === null) { console.warn(&#39;ca-map label fallback&#39;, d.text); x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
-          placed.push({ x: x, y: y, w: lw, h: lh });
-          if (Math.abs(y - base) &gt; 2 || Math.abs(x - (d.x - lw / 2)) &gt; 2) {
-            var ln = layer.insert(&quot;line&quot;, &quot;:first-child&quot;).attr(&quot;class&quot;, &quot;lead&quot;).attr(&quot;x1&quot;, d.x + dx / 2).attr(&quot;y1&quot;, d.top - dy)
-              .attr(&quot;x2&quot;, Math.max(x, Math.min(x + lw, d.x))).attr(&quot;y2&quot;, y + 2).attr(&quot;opacity&quot;, d.keep &amp;&amp; !d.grow ? 1 : 0);
-            if (!d.keep || d.grow) ln.transition().duration(200).delay(d.grow ? 220 : d.n * 40 + 80).attr(&quot;opacity&quot;, 1);
-          }
-          tx.attr(&quot;x&quot;, x).attr(&quot;y&quot;, y);
-          if (d.keep &amp;&amp; !d.grow) tx.attr(&quot;opacity&quot;, 1);
-          else tx.transition().duration(200).delay(d.grow ? 220 : d.n * 40 + 80).attr(&quot;opacity&quot;, 1);
-        });
-      }
-      function clear() {
-        if (box.checked || box2.checked) { show(null); return; }
-        state.i = null;
-        counties.classed(&quot;on&quot;, false).classed(&quot;nb&quot;, false);
-        outline.attr(&quot;d&quot;, null);
-        layer.selectAll(&quot;text,line&quot;).interrupt().remove();
-        layer.selectAll(&quot;g.bar&quot;).interrupt().transition().duration(200).attr(&quot;opacity&quot;, 0).remove();
-      }
-      if (state.i !== null || box.checked || box2.checked) show(state.i);
-      box.onchange = box2.onchange = function () {
-        if (state.i !== null || box.checked || box2.checked) show(state.i);
-        else { layer.selectAll(&quot;text,line&quot;).interrupt().remove(); layer.selectAll(&quot;g.bar&quot;).interrupt().transition().duration(200).attr(&quot;opacity&quot;, 0).remove(); }
-      };
-      sel.onchange = function () {
-        metric = sel.value; rank(); tables();
-        if (state.i !== null || box.checked || box2.checked) show(state.i);
-      };
-      window.__caShow = function (fips) { show(feats.findIndex(function (f) { return f.id === fips; })); };
-    }
-    draw();
-    var lastW = el.clientWidth;
-    window.addEventListener(&quot;resize&quot;, function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); } });
-  });
-})();
-&lt;/script&gt;
 </content>
 	</entry>
 	
@@ -1229,25 +918,322 @@
 	</entry>
 	
 	<entry>
-		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
-		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
-&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
-&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
-&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
-&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
-&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
+		<title>California transit commuting</title>
+		<link href="https://lucashenry.xyz/visualizations/ca-transit-share/"/>
+		<updated>2026-10-29T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/visualizations/ca-transit-share/</id>
+		<content type="html">&lt;figure class=&quot;viz&quot; id=&quot;ca-transit-viz&quot;&gt;
+  &lt;div class=&quot;ca-card&quot;&gt;
+    &lt;label class=&quot;ca-select&quot; for=&quot;ca-metric&quot;&gt;&lt;span&gt;Statistic&lt;/span&gt;
+      &lt;select id=&quot;ca-metric&quot;&gt;
+        &lt;option value=&quot;transit&quot; selected=&quot;&quot;&gt;Transit commuters, of 100 workers&lt;/option&gt;
+        &lt;option value=&quot;novehicle&quot;&gt;Households with no vehicle, of 100 households&lt;/option&gt;
+        &lt;option value=&quot;commute&quot;&gt;One-way commute time, minutes&lt;/option&gt;
+        &lt;option value=&quot;lowwage&quot;&gt;Transit commuters among workers earning under $25,000 a year, of 100&lt;/option&gt;
+        &lt;option value=&quot;renter&quot;&gt;Households that rent their home, of 100 households&lt;/option&gt;
+      &lt;/select&gt;
+    &lt;/label&gt;
+    &lt;div class=&quot;ca-checks&quot;&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-top5&quot; checked=&quot;&quot; /&gt; Always show the 5 highest counties&lt;/label&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-bottom5&quot; checked=&quot;&quot; /&gt; Always show the 5 lowest counties&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;ca-note&quot; id=&quot;ca-note&quot;&gt;&lt;/p&gt;
+  &lt;div id=&quot;ca-map&quot; role=&quot;img&quot; aria-label=&quot;Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors.&quot;&gt;&lt;/div&gt;
+&lt;/figure&gt;
+&lt;div class=&quot;ca-tables&quot;&gt;
+  &lt;table id=&quot;ca-top&quot;&gt;&lt;caption&gt;Highest 5 counties&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;County&lt;/th&gt;&lt;th class=&quot;vh&quot;&gt;Of 100 workers&lt;/th&gt;&lt;th class=&quot;nh&quot;&gt;Workers&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+  &lt;table id=&quot;ca-bottom&quot;&gt;&lt;caption&gt;Lowest 5 counties&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;County&lt;/th&gt;&lt;th class=&quot;vh&quot;&gt;Of 100 workers&lt;/th&gt;&lt;th class=&quot;nh&quot;&gt;Workers&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/ca-transit-share/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;references&quot;&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08301) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Household size by vehicles available&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08201) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08201.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08201.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Aggregate travel time to work (in minutes) of workers by sex&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08013) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08013.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Travel time to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08303) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08303.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work by workers&#39; earnings in the past 12 months (in 2024 inflation-adjusted dollars)&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08119) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08119.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Tenure&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B25003) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b25003.dat&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2024). &lt;em&gt;Cartographic boundary files, counties&lt;/em&gt; [Data set], via Bostock, M. &lt;em&gt;us-atlas&lt;/em&gt; (Version 3). &lt;a href=&quot;https://github.com/topojson/us-atlas&quot;&gt;https://github.com/topojson/us-atlas&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
+#ca-map { width: 100%; }
+.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
+.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
+.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .4rem; }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+#ca-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+#ca-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.6; stroke-linejoin: round; cursor: pointer; }
+#ca-map .county.nb { fill: #f5d6aa; }
+#ca-map .county.on { fill: #efbe8a; }
+#ca-map .slab { fill: #d4b483; }
+#ca-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#ca-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
+#ca-map .bar { pointer-events: none; }
+#ca-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
+#ca-map .lbl.main { font-weight: 700; font-size: 12px; }
+#ca-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1.5rem; max-width: 44rem; margin: 0 auto 2rem; }
+.ca-tables table { flex: 1 1 16rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
+.ca-tables th, .ca-tables td { padding: .3rem .5rem; border-bottom: 1px solid #ead9bd; text-align: left; }
+.ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; }
+.ca-tables td:nth-child(n+2), .ca-tables th:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
+&lt;/style&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+(function () {
+  var el = document.getElementById(&quot;ca-map&quot;);
+  Promise.all([
+    d3.json(&quot;/visualizations/data/ca-counties-10m.json&quot;),
+    d3.json(&quot;/visualizations/data/ca_commute_metrics_2020_2024.json&quot;)
+  ]).then(function (res) {
+    var topo = res[0], rows = res[1];
+    var byFips = {};
+    rows.forEach(function (r) { byFips[r.fips] = r; });
+    var METRICS = {
+      transit: { unit: &quot; of 100&quot;, head: &quot;Of 100 workers&quot;, count: &quot;Workers&quot;, what: &quot;transit commuters&quot;,
+        note: &quot;Workers age 16 and over who commuted by public transportation, of every 100 workers. Taxis are not counted.&quot; },
+      novehicle: { unit: &quot; of 100&quot;, head: &quot;Of 100 households&quot;, count: &quot;Households&quot;, what: &quot;households with no vehicle&quot;,
+        note: &quot;Households with no car, van or truck available, of every 100 households.&quot; },
+      commute: { unit: &quot; minutes&quot;, head: &quot;Minutes, one way&quot;, count: &quot;Workers&quot;, what: &quot;one-way commute time&quot;,
+        note: &quot;Average one-way travel time to work in minutes, for workers who did not work from home.&quot; },
+      lowwage: { unit: &quot; of 100&quot;, head: &quot;Of 100 workers&quot;, count: &quot;Workers&quot;, what: &quot;transit commuters earning under $25,000&quot;,
+        note: &quot;Workers who earned under $25,000 in the past 12 months and commuted by public transportation, of every 100 such workers.&quot; },
+      renter: { unit: &quot; of 100&quot;, head: &quot;Of 100 households&quot;, count: &quot;Households&quot;, what: &quot;households that rent&quot;,
+        note: &quot;Occupied homes where the household rents rather than owns, of every 100 occupied homes.&quot; }
+    };
+    var sel = document.getElementById(&quot;ca-metric&quot;);
+    var metric = sel.value;
+    function mv(r) { return r[metric].value; }
+    function fmt(v) { return v.toFixed(1) + METRICS[metric].unit; }
+    function fill(id, list) {
+      d3.select(&quot;#&quot; + id + &quot; tbody&quot;).selectAll(&quot;tr&quot;).data(list).join(&quot;tr&quot;).html(function (r) {
+        return &quot;&lt;td&gt;&quot; + r.county.replace(/ County$/, &quot;&quot;) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + fmt(mv(r)) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + d3.format(&quot;,&quot;)(r[metric].den) + &quot;&lt;/td&gt;&quot;;
+      });
+    }
+    function tables() {
+      var M = METRICS[metric];
+      var sorted = rows.slice().sort(function (a, b) { return mv(b) - mv(a) || b[metric].den - a[metric].den; });
+      fill(&quot;ca-top&quot;, sorted.slice(0, 5));
+      fill(&quot;ca-bottom&quot;, sorted.slice(-5).reverse());
+      d3.select(&quot;#ca-top caption&quot;).text(&quot;Highest 5 counties, &quot; + M.what);
+      d3.select(&quot;#ca-bottom caption&quot;).text(&quot;Lowest 5 counties, &quot; + M.what);
+      d3.selectAll(&quot;.ca-tables .vh&quot;).text(M.head);
+      d3.selectAll(&quot;.ca-tables .nh&quot;).text(M.count);
+      document.getElementById(&quot;ca-note&quot;).textContent = M.note;
+    }
+    tables();
+    var geoms = topo.objects.counties.geometries;
+    var feats = topojson.feature(topo, topo.objects.counties).features;
+    var nbrs = topojson.neighbors(geoms);
+    var maxV;
+    var state = { i: null };
+    var box = document.getElementById(&quot;ca-top5&quot;);
+    var box2 = document.getElementById(&quot;ca-bottom5&quot;);
+    var top5, bottom5;
+    function rank() {
+      maxV = d3.max(rows, mv);
+      var ranked = feats.map(function (f, k) { return k; })
+        .sort(function (a, b) { var A = byFips[feats[a].id], Bq = byFips[feats[b].id]; return mv(Bq) - mv(A) || Bq[metric].den - A[metric].den; });
+      top5 = ranked.slice(0, 5); bottom5 = ranked.slice(-5);
+    }
+    rank();
+    // vertical room is sized for the tallest bar of any statistic, so the map does not move on a switch
+    var maxAll = {};
+    Object.keys(METRICS).forEach(function (m) { maxAll[m] = d3.max(rows, function (r) { return r[m].value; }); });
+    function relMax(f) { var r = byFips[f.id]; return d3.max(Object.keys(METRICS), function (m) { return r[m].value / maxAll[m]; }); }
+
+    var TILT = 50 * Math.PI / 180; // camera elevation above the table
+    var land = topojson.merge(topo, geoms);
+    function draw() {
+      el.innerHTML = &quot;&quot;;
+      var W = Math.max(300, el.clientWidth);
+      var small = W &lt; 480;
+      var fc = { type: &quot;FeatureCollection&quot;, features: feats };
+      var B = 1000;
+      var base = d3.geoConicEqualArea().parallels([34, 40.5]).rotate([120, 0]).fitSize([B, B], fc);
+      var bb0 = d3.geoPath(base).bounds(fc), front = bb0[1][1], cx0 = (bb0[0][0] + bb0[1][0]) / 2;
+      var D = 1.4 * B, sinT = Math.sin(TILT), cosT = Math.cos(TILT);
+      function tiltRaw(x, y) {
+        var back = front - y;            // distance from the near edge, on the table
+        var sc = D / (D + back * cosT);  // farther points are smaller
+        return [cx0 + (x - cx0) * sc, front - back * sinT * sc];
+      }
+      var k = 1, tx = 0, ty = 0;
+      function tiltPt(x, y) { var q = tiltRaw(x, y); return [q[0] * k + tx, q[1] * k + ty]; }
+      var tf = d3.geoTransform({ point: function (x, y) { var q = tiltPt(x, y); this.stream.point(q[0], q[1]); } });
+      var proj = { stream: function (st) { return base.stream(tf.stream(st)); } };
+      var path = d3.geoPath(proj);
+      var rb = path.bounds(fc);
+      var edge = small ? 5 : 7, pad = 6;
+      var maxH = W * (small ? 0.36 : 0.30);
+      k = (W - 2 * pad) / (rb[1][0] - rb[0][0]);
+      tx = pad - rb[0][0] * k;
+      ty = -rb[0][1] * k;
+      var bpath = d3.geoPath(base);
+      var pts = feats.map(function (f) {
+        var c = bpath.centroid(f);
+        if (!d3.geoContains(f, base.invert(c))) {
+          var b = bpath.bounds(f), best = null, bd = -1;
+          for (var gx = 0; gx &lt;= 12; gx++) for (var gy = 0; gy &lt;= 12; gy++) {
+            var p = [b[0][0] + (b[1][0] - b[0][0]) * gx / 12, b[0][1] + (b[1][1] - b[0][1]) * gy / 12];
+            if (d3.geoContains(f, base.invert(p))) { var d = -Math.hypot(p[0] - c[0], p[1] - c[1]); if (d &gt; bd || best === null) { bd = d; best = p; } }
+          }
+          if (best) c = best;
+        }
+        return tiltPt(c[0], c[1]);
+      });
+      // room above the map: enough for the tallest bar plus a label at each county
+      var top = 12;
+      pts.forEach(function (q, i) { top = Math.max(top, maxH * relMax(feats[i]) + 34 - q[1]); });
+      ty += top;
+      pts.forEach(function (q) { q[1] += top; });
+      var H = Math.ceil(top + (rb[1][1] - rb[0][1]) * k + edge + 10);
+      var svg = d3.select(el).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
+      var defs = svg.append(&quot;defs&quot;);
+      defs.append(&quot;filter&quot;).attr(&quot;id&quot;, &quot;ca-blur&quot;).attr(&quot;x&quot;, &quot;-10%&quot;).attr(&quot;y&quot;, &quot;-10%&quot;).attr(&quot;width&quot;, &quot;120%&quot;).attr(&quot;height&quot;, &quot;120%&quot;)
+        .append(&quot;feGaussianBlur&quot;).attr(&quot;stdDeviation&quot;, 5);
+      svg.append(&quot;rect&quot;).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H).attr(&quot;fill&quot;, &quot;transparent&quot;).on(&quot;click&quot;, function () { clear(); });
+      var landD = path(land);
+      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;shadow&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(5,&quot; + (edge + 6) + &quot;)&quot;).attr(&quot;filter&quot;, &quot;url(#ca-blur)&quot;);
+      for (var e = edge; e &gt; 0; e--) svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;slab&quot;).attr(&quot;d&quot;, landD).attr(&quot;transform&quot;, &quot;translate(0,&quot; + e + &quot;)&quot;);
+      var counties = svg.append(&quot;g&quot;).selectAll(&quot;path&quot;).data(feats).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;county&quot;).attr(&quot;data-fips&quot;, function (f) { return f.id; }).attr(&quot;d&quot;, path)
+        .on(&quot;pointerenter&quot;, function (ev, f) { if (ev.pointerType === &quot;mouse&quot;) show(feats.indexOf(f)); })
+        .on(&quot;pointerleave&quot;, function (ev) { if (ev.pointerType === &quot;mouse&quot;) clear(); })
+        .on(&quot;click&quot;, function (ev, f) { ev.stopPropagation(); var i = feats.indexOf(f); if (state.i === i &amp;&amp; ev.pointerType !== &quot;mouse&quot;) clear(); else show(i); });
+      var outline = svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;outline&quot;);
+      var layer = svg.append(&quot;g&quot;);
+      var h = function (v) { return maxH * v / maxV; };
+      var bw = small ? 7 : 9;
+
+      function name(i) { return byFips[feats[i].id].county.replace(/ County$/, &quot;&quot;); }
+      function val(i) { return mv(byFips[feats[i].id]); }
+
+      function show(i) {
+        state.i = i;
+        var hov = i === null ? [] : [i].concat(nbrs[i]);
+        var set = hov.slice();
+        if (box.checked) top5.forEach(function (k) { if (set.indexOf(k) &lt; 0) set.push(k); });
+        if (box2.checked) bottom5.forEach(function (k) { if (set.indexOf(k) &lt; 0) set.push(k); });
+        counties.classed(&quot;on&quot;, function (f, k) { return k === i; }).classed(&quot;nb&quot;, function (f, k) { return k !== i &amp;&amp; hov.indexOf(k) &gt;= 0; });
+        outline.attr(&quot;d&quot;, i === null ? null : path(feats[i]));
+        var had = {};
+        // current height of every bar on screen, so standing or rising bars resize from where they are
+        layer.selectAll(&quot;g.bar&quot;).each(function () { if (this.__k !== undefined &amp;&amp; +d3.select(this).datum() &gt; 0) had[this.__k] = +d3.select(this).datum(); });
+        layer.interrupt().selectAll(&quot;*&quot;).interrupt();
+        layer.selectAll(&quot;*&quot;).remove();
+        var t = d3.transition().duration(400).ease(d3.easeCubicOut);
+        var items = set.map(function (k, n) {
+          var p = pts[k];
+          return { k: k, n: n, x: p[0], y: p[1], top: p[1] - h(val(k)), main: k === i,
+            text: name(k) + &quot; &quot; + fmt(val(k)) };
+        });
+        var dx = bw * 0.5, dy = bw * 0.35;
+        var COL = { main: [&quot;#c2410c&quot;, &quot;#8a2d08&quot;, &quot;#e56a32&quot;], nb: [&quot;#f28c38&quot;, &quot;#c4661c&quot;, &quot;#f9b277&quot;] };
+        function barPaths(g, d, hh) {
+          var x0 = d.x - bw / 2, x1 = d.x + bw / 2, y0 = d.y, y1 = d.y - hh;
+          g.select(&quot;.f&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y0 + &quot;H&quot; + x1 + &quot;V&quot; + y1 + &quot;H&quot; + x0 + &quot;Z&quot;);
+          g.select(&quot;.s&quot;).attr(&quot;d&quot;, &quot;M&quot; + x1 + &quot;,&quot; + y0 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y0 - dy) + &quot;V&quot; + (y1 - dy) + &quot;L&quot; + x1 + &quot;,&quot; + y1 + &quot;Z&quot;);
+          g.select(&quot;.c&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y1 + &quot;H&quot; + x1 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y1 - dy) + &quot;H&quot; + (x0 + dx) + &quot;Z&quot;);
+        }
+        items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
+          var col = d.main ? COL.main : COL.nb;
+          var g = layer.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;bar&quot;).datum(0);
+          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;s&quot;).attr(&quot;fill&quot;, col[1]);
+          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;f&quot;).attr(&quot;fill&quot;, col[0]);
+          g.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;c&quot;).attr(&quot;fill&quot;, col[2]);
+          var full = d.y - d.top, node = g.node();
+          node.__k = d.k;
+          var start = had[d.k] || 0;
+          d.keep = start &gt; 0;
+          d.grow = d.keep &amp;&amp; Math.abs(start - full) &gt; 0.5;
+          if (d.keep &amp;&amp; !d.grow) { g.datum(full); barPaths(g, d, full); node.__done = true; }
+          else {
+            g.datum(start); barPaths(g, d, start);
+            g.transition(t).duration(d.keep ? 300 : 400).delay(d.keep ? 0 : d.n * 40).tween(&quot;h&quot;, function () {
+              var ip = d3.interpolateNumber(start, full);
+              return function (u) { var v = ip(u); g.datum(v); barPaths(g, d, v); };
+            }).on(&quot;end&quot;, function () { node.__done = true; });
+          }
+          d.g = g;
+        });
+        // labels: place, then push apart and keep inside the SVG
+        var placed = [];
+        var barsBox = items.map(function (d) { return { k: d.k, x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.y - d.top + dy + 2 }; });
+        items.slice().sort(function (a, b) { return a.main ? -1 : b.main ? 1 : a.top - b.top; }).forEach(function (d) {
+          var tx = layer.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;lbl&quot; + (d.main ? &quot; main&quot; : &quot;&quot;)).text(d.text).attr(&quot;opacity&quot;, 0);
+          var bb = tx.node().getBBox();
+          var lw = bb.width, lh = bb.height;
+          var obs = placed.concat(barsBox);
+          function free(x, y) {
+            if (x &lt; 2 || x + lw &gt; W - 2 || y - lh &lt; 1 || y &gt; H - 2) return false;
+            return !obs.some(function (q) { return x &lt; q.x + q.w + 3 &amp;&amp; x + lw + 3 &gt; q.x &amp;&amp; y - lh &lt; q.y + 3 &amp;&amp; y + 1 &gt; q.y - q.h - 3; });
+          }
+          var x = null, y = null, base = d.top - dy - 7;
+          var xs = [d.x - lw / 2, d.x + bw / 2 + dx + 4, d.x - bw / 2 - 4 - lw];
+          outer: for (var s = 0; s &lt; 60; s++) {
+            var dys = s === 0 ? [0] : [-s * 4, s * 4];
+            for (var j = 0; j &lt; dys.length; j++) for (var m = 0; m &lt; xs.length; m++) {
+              var cx = xs[m], cy = base + dys[j];
+              if (m &gt; 0) cy = Math.max(cy, d.top + lh - 2);
+              cx = Math.max(2, Math.min(W - lw - 2, cx)); cy = Math.max(lh + 2, cy);
+              if (free(cx, cy)) { x = cx; y = cy; break outer; }
+            }
+          }
+          if (x === null) {
+            // no spot near the bar: take the nearest free spot anywhere, joined by a leader line
+            var bd2 = Infinity;
+            for (var gy2 = lh + 2; gy2 &lt;= H - 2; gy2 += 4) for (var gx2 = 2; gx2 &lt;= W - lw - 2; gx2 += 6) {
+              var dd = Math.hypot(gx2 + lw / 2 - d.x, gy2 - base);
+              if (dd &lt; bd2 &amp;&amp; free(gx2, gy2)) { bd2 = dd; x = gx2; y = gy2; }
+            }
+          }
+          if (x === null) { console.warn(&#39;ca-map label fallback&#39;, d.text); x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
+          placed.push({ x: x, y: y, w: lw, h: lh });
+          if (Math.abs(y - base) &gt; 2 || Math.abs(x - (d.x - lw / 2)) &gt; 2) {
+            var ln = layer.insert(&quot;line&quot;, &quot;:first-child&quot;).attr(&quot;class&quot;, &quot;lead&quot;).attr(&quot;x1&quot;, d.x + dx / 2).attr(&quot;y1&quot;, d.top - dy)
+              .attr(&quot;x2&quot;, Math.max(x, Math.min(x + lw, d.x))).attr(&quot;y2&quot;, y + 2).attr(&quot;opacity&quot;, d.keep &amp;&amp; !d.grow ? 1 : 0);
+            if (!d.keep || d.grow) ln.transition().duration(200).delay(d.grow ? 220 : d.n * 40 + 80).attr(&quot;opacity&quot;, 1);
+          }
+          tx.attr(&quot;x&quot;, x).attr(&quot;y&quot;, y);
+          if (d.keep &amp;&amp; !d.grow) tx.attr(&quot;opacity&quot;, 1);
+          else tx.transition().duration(200).delay(d.grow ? 220 : d.n * 40 + 80).attr(&quot;opacity&quot;, 1);
+        });
+      }
+      function clear() {
+        if (box.checked || box2.checked) { show(null); return; }
+        state.i = null;
+        counties.classed(&quot;on&quot;, false).classed(&quot;nb&quot;, false);
+        outline.attr(&quot;d&quot;, null);
+        layer.selectAll(&quot;text,line&quot;).interrupt().remove();
+        layer.selectAll(&quot;g.bar&quot;).interrupt().transition().duration(200).attr(&quot;opacity&quot;, 0).remove();
+      }
+      if (state.i !== null || box.checked || box2.checked) show(state.i);
+      box.onchange = box2.onchange = function () {
+        if (state.i !== null || box.checked || box2.checked) show(state.i);
+        else { layer.selectAll(&quot;text,line&quot;).interrupt().remove(); layer.selectAll(&quot;g.bar&quot;).interrupt().transition().duration(200).attr(&quot;opacity&quot;, 0).remove(); }
+      };
+      sel.onchange = function () {
+        metric = sel.value; rank(); tables();
+        if (state.i !== null || box.checked || box2.checked) show(state.i);
+      };
+      window.__caShow = function (fips) { show(feats.findIndex(function (f) { return f.id === fips; })); };
+    }
+    draw();
+    var lastW = el.clientWidth;
+    window.addEventListener(&quot;resize&quot;, function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); } });
+  });
+})();
+&lt;/script&gt;
 </content>
 	</entry>
 	
@@ -1294,6 +1280,29 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
 &lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
+		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
+&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
+&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
+&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
+&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
+&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
 </content>
 	</entry>
 	
