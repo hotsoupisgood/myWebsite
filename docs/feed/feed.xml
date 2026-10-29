@@ -13,97 +13,154 @@
 	</author>
 	
 	<entry>
-		<title>San Francisco County had the highest share of workers commuting by public transportation in California, 18.7 of 100 workers</title>
+		<title>California transit commuting</title>
 		<link href="https://lucashenry.xyz/visualizations/ca-transit-share/"/>
 		<updated>2026-10-29T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/ca-transit-share/</id>
-		<content type="html">&lt;p&gt;Public transportation here means bus, subway, light rail, commuter rail, streetcar and ferry. Taxicabs are not counted. Across California, 2.9 of every 100 workers commuted by public transportation. In 39 of the 58 counties, fewer than 1 of every 100 workers did.&lt;/p&gt;
-&lt;figure class=&quot;viz&quot; id=&quot;ca-transit-viz&quot;&gt;
-  &lt;div id=&quot;ca-transit-chart&quot; role=&quot;img&quot; aria-label=&quot;Horizontal bar chart of the percent of workers who commuted by public transportation in each of the 58 California counties, sorted from highest to lowest&quot;&gt;&lt;/div&gt;
-  &lt;figcaption&gt;Each bar is one county. The value is the percent of workers age 16 and over who usually commuted by public transportation. Hover or tap a bar for the worker count.&lt;/figcaption&gt;
+		<content type="html">&lt;figure class=&quot;viz&quot; id=&quot;ca-transit-viz&quot;&gt;
+  &lt;div id=&quot;ca-map&quot; role=&quot;img&quot; aria-label=&quot;Map of California counties. Hover or tap a county to show bars for the share of workers who commuted by public transportation in that county and its neighbors.&quot;&gt;&lt;/div&gt;
 &lt;/figure&gt;
-&lt;p class=&quot;viz-note&quot;&gt;Bars show the survey estimate only. Margins of error are in the &lt;a href=&quot;https://lucashenry.xyz/visualizations/data/ca_transit_share_2020_2024.csv&quot;&gt;data file (CSV)&lt;/a&gt;. The estimates pool survey responses collected from 2020 to 2024.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/ca-transit-share/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08301) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;American Community Survey 5-year estimates summary file geography, 2020 to 2024&lt;/em&gt; [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/documentation/Geos20245YR.txt&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/documentation/Geos20245YR.txt&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;U.S. Census Bureau. (2024). &lt;em&gt;Cartographic boundary files, counties&lt;/em&gt; [Data set], via Bostock, M. &lt;em&gt;us-atlas&lt;/em&gt; (Version 3). &lt;a href=&quot;https://github.com/topojson/us-atlas&quot;&gt;https://github.com/topojson/us-atlas&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;style&gt;
-.viz { margin: 1.5rem 0; max-width: 44rem; }
-#ca-transit-chart { width: 100%; position: relative; }
-#ca-transit-chart svg { display: block; width: 100%; height: auto; font-family: inherit; }
-#ca-transit-chart .bar { fill: #082840; }
-#ca-transit-chart .bar:hover, #ca-transit-chart .bar.active { fill: #3a6d96; }
-#ca-transit-chart text { font-size: 12px; fill: #333; }
-#ca-transit-chart .axis-title { font-size: 12px; font-weight: 600; }
-.viz-tip { position: absolute; pointer-events: none; background: #fff; border: 1px solid #c0c0c0; padding: .4rem .55rem; font-size: 13px; line-height: 1.35; box-shadow: 0 2px 6px rgba(0,0,0,.12); display: none; max-width: 15rem; }
-.viz figcaption, .viz-note { font-size: .9rem; color: #555; }
-.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; }
+.viz { margin: 1rem 0 1.5rem; max-width: 44rem; }
+#ca-map { width: 100%; }
+#ca-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+#ca-map .county { fill: #e3e3e0; stroke: #fff; stroke-width: 0.7; cursor: pointer; }
+#ca-map .county.nb { fill: #d6dde4; }
+#ca-map .county.on { fill: #c4d0dc; }
+#ca-map .outline { fill: none; stroke: #082840; stroke-width: 1.6; pointer-events: none; }
+#ca-map .bar { pointer-events: none; }
+#ca-map .lbl { pointer-events: none; font-size: 11px; fill: #222; paint-order: stroke; stroke: #fff; stroke-width: 3px; stroke-linejoin: round; }
+#ca-map .lbl.main { font-weight: 700; font-size: 12px; }
+#ca-map .lead { stroke: #888; stroke-width: 0.6; pointer-events: none; }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/npm/d3@7&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 (function () {
-  var el = document.getElementById(&quot;ca-transit-chart&quot;);
-  var tip = document.createElement(&quot;div&quot;);
-  tip.className = &quot;viz-tip&quot;;
-  el.appendChild(tip);
-  var fmt = d3.format(&quot;,&quot;);
-  d3.json(&quot;/visualizations/data/ca_transit_share_2020_2024.json&quot;).then(function (data) {
-    data.sort(function (a, b) { return b.share_pct - a.share_pct; });
+  var el = document.getElementById(&quot;ca-map&quot;);
+  Promise.all([
+    d3.json(&quot;/visualizations/data/ca-counties-10m.json&quot;),
+    d3.json(&quot;/visualizations/data/ca_transit_share_2020_2024.json&quot;)
+  ]).then(function (res) {
+    var topo = res[0], rows = res[1];
+    var byFips = {};
+    rows.forEach(function (r) { byFips[r.fips] = r; });
+    var geoms = topo.objects.counties.geometries;
+    var feats = topojson.feature(topo, topo.objects.counties).features;
+    var nbrs = topojson.neighbors(geoms);
+    var maxV = d3.max(rows, function (r) { return r.share_pct; });
+    var state = { i: null };
+
     function draw() {
-      d3.select(el).select(&quot;svg&quot;).remove();
+      el.innerHTML = &quot;&quot;;
       var W = Math.max(300, el.clientWidth);
+      var H = Math.round(Math.min(W * 1.1, Math.max(460, window.innerHeight * 0.92)));
       var small = W &lt; 480;
-      var rowH = small ? 15 : 16;
-      var m = { top: 34, right: 44, bottom: 8, left: small ? 104 : 124 };
-      var H = m.top + m.bottom + rowH * data.length;
-      var x = d3.scaleLinear().domain([0, d3.max(data, function (d) { return d.share_pct; })]).range([0, W - m.left - m.right]);
-      var y = d3.scaleBand().domain(data.map(function (d) { return d.county; })).range([m.top, H - m.bottom]).padding(0.18);
-      var svg = d3.select(el).insert(&quot;svg&quot;, &quot;:first-child&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
-      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;axis-title&quot;).attr(&quot;x&quot;, small ? 0 : m.left).attr(&quot;y&quot;, 14).style(&quot;font-size&quot;, small ? &quot;11px&quot; : &quot;12px&quot;).text(&quot;Workers commuting by public transportation (percent)&quot;);
-      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;axis-title&quot;).attr(&quot;x&quot;, 0).attr(&quot;y&quot;, 28).text(&quot;County&quot;);
-      var g = svg.append(&quot;g&quot;).selectAll(&quot;g&quot;).data(data).join(&quot;g&quot;);
-      g.append(&quot;text&quot;).attr(&quot;x&quot;, m.left - 6).attr(&quot;y&quot;, function (d) { return y(d.county) + y.bandwidth() / 2; }).attr(&quot;dy&quot;, &quot;0.35em&quot;).attr(&quot;text-anchor&quot;, &quot;end&quot;)
-        .style(&quot;font-size&quot;, small ? &quot;11px&quot; : &quot;12px&quot;).text(function (d) { return d.county.replace(/ County$/, &quot;&quot;); });
-      g.append(&quot;rect&quot;).attr(&quot;class&quot;, &quot;bar&quot;).attr(&quot;x&quot;, m.left).attr(&quot;y&quot;, function (d) { return y(d.county); })
-        .attr(&quot;width&quot;, function (d) { return Math.max(0.5, x(d.share_pct)); }).attr(&quot;height&quot;, y.bandwidth())
-        .append(&quot;title&quot;).text(function (d) { return d.county + &quot;: &quot; + d.share_pct.toFixed(1) + &quot;% of &quot; + fmt(d.workers) + &quot; workers commuted by public transportation&quot;; });
-      g.append(&quot;text&quot;).attr(&quot;x&quot;, function (d) { return m.left + x(d.share_pct) + 4; }).attr(&quot;y&quot;, function (d) { return y(d.county) + y.bandwidth() / 2; }).attr(&quot;dy&quot;, &quot;0.35em&quot;)
-        .style(&quot;font-size&quot;, small ? &quot;11px&quot; : &quot;12px&quot;).text(function (d) { return d.share_pct.toFixed(1) + &quot;%&quot;; });
-      g.on(&quot;mousemove&quot;, function (ev, d) {
-        var p = d3.pointer(ev, el);
-        tip.innerHTML = &quot;&lt;strong&gt;&quot; + d.county + &quot;&lt;/strong&gt;&lt;br&gt;&quot; + d.share_pct.toFixed(1) + &quot;% commuted by public transportation&lt;br&gt;&quot; + fmt(d.transit) + &quot; of &quot; + fmt(d.workers) + &quot; workers&quot;;
-        tip.style.display = &quot;block&quot;;
-        var left = Math.min(p[0] + 12, el.clientWidth - tip.offsetWidth - 4);
-        tip.style.left = Math.max(0, left) + &quot;px&quot;;
-        tip.style.top = (p[1] + 14) + &quot;px&quot;;
-      }).on(&quot;mouseleave&quot;, function () { tip.style.display = &quot;none&quot;; });
+      var proj = d3.geoConicEqualArea().parallels([34, 40.5]).rotate([120, 0])
+        .fitExtent([[6, H * 0.12], [W - 6, H - 6]], { type: &quot;FeatureCollection&quot;, features: feats });
+      var path = d3.geoPath(proj);
+      var svg = d3.select(el).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
+      svg.append(&quot;rect&quot;).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H).attr(&quot;fill&quot;, &quot;transparent&quot;).on(&quot;click&quot;, function () { clear(); });
+      var pts = feats.map(function (f) {
+        var c = path.centroid(f);
+        if (!d3.geoContains(f, proj.invert(c))) {
+          var b = path.bounds(f), best = null, bd = -1;
+          for (var gx = 0; gx &lt;= 12; gx++) for (var gy = 0; gy &lt;= 12; gy++) {
+            var p = [b[0][0] + (b[1][0] - b[0][0]) * gx / 12, b[0][1] + (b[1][1] - b[0][1]) * gy / 12];
+            if (d3.geoContains(f, proj.invert(p))) { var d = -Math.hypot(p[0] - c[0], p[1] - c[1]); if (d &gt; bd || best === null) { bd = d; best = p; } }
+          }
+          if (best) c = best;
+        }
+        return c;
+      });
+      var counties = svg.append(&quot;g&quot;).selectAll(&quot;path&quot;).data(feats).join(&quot;path&quot;).attr(&quot;class&quot;, &quot;county&quot;).attr(&quot;d&quot;, path)
+        .on(&quot;pointerenter&quot;, function (ev, f) { if (ev.pointerType === &quot;mouse&quot;) show(feats.indexOf(f)); })
+        .on(&quot;pointerleave&quot;, function (ev) { if (ev.pointerType === &quot;mouse&quot;) clear(); })
+        .on(&quot;click&quot;, function (ev, f) { ev.stopPropagation(); var i = feats.indexOf(f); if (state.i === i &amp;&amp; ev.pointerType !== &quot;mouse&quot;) clear(); else show(i); });
+      var outline = svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;outline&quot;);
+      var layer = svg.append(&quot;g&quot;);
+      var maxH = H * (small ? 0.24 : 0.27);
+      var h = d3.scaleLinear().domain([0, maxV]).range([0, maxH]);
+      var bw = small ? 7 : 9;
+
+      function name(i) { return byFips[feats[i].id].county.replace(/ County$/, &quot;&quot;); }
+      function val(i) { return byFips[feats[i].id].share_pct; }
+
+      function show(i) {
+        state.i = i;
+        var set = [i].concat(nbrs[i]);
+        counties.classed(&quot;on&quot;, function (f, k) { return k === i; }).classed(&quot;nb&quot;, function (f, k) { return k !== i &amp;&amp; set.indexOf(k) &gt;= 0; });
+        outline.attr(&quot;d&quot;, path(feats[i]));
+        layer.interrupt().selectAll(&quot;*&quot;).interrupt();
+        layer.selectAll(&quot;*&quot;).remove();
+        var t = d3.transition().duration(400).ease(d3.easeCubicOut);
+        var items = set.map(function (k, n) {
+          var p = pts[k];
+          return { k: k, n: n, x: p[0], y: p[1], top: p[1] - h(val(k)), main: k === i,
+            text: name(k) + &quot; &quot; + val(k).toFixed(1) + &quot; of 100&quot; };
+        });
+        items.forEach(function (d) {
+          layer.append(&quot;rect&quot;).attr(&quot;class&quot;, &quot;bar&quot;).attr(&quot;x&quot;, d.x - bw / 2).attr(&quot;width&quot;, bw)
+            .attr(&quot;y&quot;, d.y).attr(&quot;height&quot;, 0).attr(&quot;fill&quot;, d.main ? &quot;#082840&quot; : &quot;#7fa3c2&quot;)
+            .transition(t).delay(d.n * 40).attr(&quot;y&quot;, d.top).attr(&quot;height&quot;, d.y - d.top);
+        });
+        // labels: place, then push apart and keep inside the SVG
+        var placed = [];
+        var barsBox = items.map(function (d) { return { k: d.k, x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + 2, h: d.y - d.top + 2 }; });
+        items.slice().sort(function (a, b) { return a.main ? -1 : b.main ? 1 : a.top - b.top; }).forEach(function (d) {
+          var tx = layer.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;lbl&quot; + (d.main ? &quot; main&quot; : &quot;&quot;)).text(d.text).attr(&quot;opacity&quot;, 0);
+          var bb = tx.node().getBBox();
+          var lw = bb.width, lh = bb.height;
+          var obs = placed.concat(barsBox.filter(function (q) { return q.k !== d.k; }));
+          function free(x, y) {
+            if (x &lt; 2 || x + lw &gt; W - 2 || y - lh &lt; 1 || y &gt; H - 2) return false;
+            return !obs.some(function (q) { return x &lt; q.x + q.w + 2 &amp;&amp; x + lw + 2 &gt; q.x &amp;&amp; y - lh &lt; q.y &amp;&amp; y &gt; q.y - q.h; });
+          }
+          var x = null, y = null, base = d.top - 4;
+          var xs = [d.x - lw / 2, d.x + bw / 2 + 3, d.x - bw / 2 - 3 - lw];
+          outer: for (var s = 0; s &lt; 60; s++) {
+            var dys = s === 0 ? [0] : [-s * 4, s * 4];
+            for (var j = 0; j &lt; dys.length; j++) for (var m = 0; m &lt; xs.length; m++) {
+              var cx = xs[m], cy = base + dys[j];
+              if (m &gt; 0) cy = Math.max(cy, d.top + lh - 2);
+              cx = Math.max(2, Math.min(W - lw - 2, cx)); cy = Math.max(lh + 2, cy);
+              if (free(cx, cy)) { x = cx; y = cy; break outer; }
+            }
+          }
+          if (x === null) { x = Math.max(2, Math.min(W - lw - 2, xs[0])); y = Math.max(lh + 2, base); }
+          placed.push({ x: x, y: y, w: lw, h: lh });
+          if (Math.abs(y - (d.top - 4)) &gt; 2 || Math.abs(x - (d.x - lw / 2)) &gt; 2) {
+            layer.insert(&quot;line&quot;, &quot;:first-child&quot;).attr(&quot;class&quot;, &quot;lead&quot;).attr(&quot;x1&quot;, d.x).attr(&quot;y1&quot;, d.top)
+              .attr(&quot;x2&quot;, Math.max(x, Math.min(x + lw, d.x))).attr(&quot;y2&quot;, y + 2).attr(&quot;opacity&quot;, 0)
+              .transition(t).delay(d.n * 40 + 250).attr(&quot;opacity&quot;, 1);
+          }
+          tx.attr(&quot;x&quot;, x).attr(&quot;y&quot;, y).transition(t).delay(d.n * 40 + 250).attr(&quot;opacity&quot;, 1);
+        });
+      }
+      function clear() {
+        state.i = null;
+        counties.classed(&quot;on&quot;, false).classed(&quot;nb&quot;, false);
+        outline.attr(&quot;d&quot;, null);
+        layer.selectAll(&quot;text,line&quot;).interrupt().remove();
+        layer.selectAll(&quot;rect&quot;).interrupt().transition().duration(250).ease(d3.easeCubicIn)
+          .attr(&quot;y&quot;, function () { return +this.getAttribute(&quot;y&quot;) + +this.getAttribute(&quot;height&quot;); }).attr(&quot;height&quot;, 0).remove();
+      }
+      if (state.i !== null) show(state.i);
+      window.__caShow = function (fips) { show(feats.findIndex(function (f) { return f.id === fips; })); };
     }
     draw();
-    var t; window.addEventListener(&quot;resize&quot;, function () { clearTimeout(t); t = setTimeout(draw, 150); });
+    var lastW = el.clientWidth;
+    window.addEventListener(&quot;resize&quot;, function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); } });
   });
 })();
 &lt;/script&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
-		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
-&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
-&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -131,6 +188,25 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
 &lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
+		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
+&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
+&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
 </content>
 	</entry>
 	
