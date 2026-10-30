@@ -119,6 +119,7 @@
 .ie-info { font-size: .85rem; color: #2a1a10; margin: 0 0 .35rem; line-height: 1.45; }
 .ie-info b { font-size: .95rem; }
 .ie-tlleg { font-size: .75rem; }
+#ie-tl .sub { font-size: 13px; font-weight: 700; fill: #2a1a10; }
 .ie-pk { box-sizing: border-box; margin: 0 0 .5rem; }
 .ie-pkh { font-size: 1.15rem; font-weight: 700; color: #2a1a10; margin: 0 0 .1rem; line-height: 1.25; }
 .ie-pks { font-size: .8rem; color: #6b5440; margin: 0 0 .2rem; }
@@ -235,7 +236,7 @@
     function tables() {
       var m = M[metric];
       var ok = rows.slice().sort(function (a, b) { return val(b) - val(a); });
-      var heads = m.pk ? ["Rank", "Region", "Probability the peak falls in winter", "Median peak date, 95% credible interval"] : m.prob ? ["Rank", "Region", "Probability higher in winter", "Winter excess per 10,000"] : ["Rank", "Region", m.head + " per 10,000", "Likely range"];
+      var heads = m.pk ? ["Rank", "Region", "Probability the peak falls in winter", "Median peak date, 95% credible interval"] : m.prob ? ["Rank", "Region", "Probability higher in winter", "Winter excess per 10,000"] : ["Rank", "Region", m.head + " per 10,000", "95% credible interval"];
       d3.select("#ie-t1").classed("pk", !!m.prob);
       d3.select("#ie-t1 thead tr").selectAll("th").data(heads).join("th").text(function (d) { return d; });
       d3.select("#ie-t1 caption").text("Regions ranked by " + sel.options[sel.selectedIndex].text.replace(/, (change )?(per 10,000|percent).*$/, "").toLowerCase().replace("new year", "New Year").replace("christmas", "Christmas"));
@@ -323,7 +324,7 @@
       peakChart(r);
       tl.innerHTML = "";
       var W = Math.max(280, tl.clientWidth), small = W < 400;
-      var L = 34, R = 8, sT = 16, sH = 58, gap = 34, iH = small ? 128 : 140, colLab = small ? 56 : 44;
+      var L = 34, R = 8, sT = 16, sH = 58, gap = 52, iH = small ? 128 : 140, colLab = small ? 56 : 44;
       var H = sT + sH + 18 + gap + iH + colLab + 4;
       var svg = d3.select(tl).append("svg").attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H);
       var x = d3.scaleTime().domain([d0, d1]).range([L, W - R]);
@@ -358,7 +359,8 @@
       var blk = PH.map(function (k) { var w = D.phases.filter(function (p) { return p.key === k; })[0].weeks; return parse(w[w.length - 1]); });
       var bx0 = x(blk[0]), bx1 = x(d3.timeDay.offset(blk[3], 7));
       var iT = sT + sH + 18 + gap, cL = L, cR = W - R;
-      svg.append("path").attr("class", "zoom").attr("d", "M" + bx0 + "," + (sT + sH + 20) + "L" + bx1 + "," + (sT + sH + 20) + "L" + cR + "," + (iT - 14) + "L" + cL + "," + (iT - 14) + "Z");
+      svg.append("path").attr("class", "zoom").attr("d", "M" + bx0 + "," + (sT + sH + 20) + "L" + bx1 + "," + (sT + sH + 20) + "L" + cR + "," + (iT - 34) + "L" + cL + "," + (iT - 34) + "Z");
+      svg.append("text").attr("class", "sub").attr("x", cL).attr("y", iT - 18).text("New Year dip");
       svg.append("text").attr("class", "ttl").attr("x", cL).attr("y", iT - 4).text(small ? "Change per 10,000 a week, 95% credible interval" : "Change per 10,000 people a week, 95% credible interval, and probability higher");
       var yi = d3.scaleLinear().domain([phLo, phHi]).nice().range([iT + iH, iT + 8]);
       var cw = (cR - cL) / 4;
