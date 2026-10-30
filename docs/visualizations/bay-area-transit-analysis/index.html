@@ -44,16 +44,16 @@
   <p>San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 100 coded NIMBY. In the other 14 bodies drawn, public speakers showed no significant difference. Officials had significantly more YIMBY than NIMBY speakers in 11 of the 24 bodies drawn.</p>
 <figure class="viz" id="bay-viz">
   <div class="ca-card">
-    <label class="ca-select" for="bay-metric"><span>Statistic</span>
-      <select id="bay-metric">
-        <option value="pub" selected>Public speakers, YIMBY minus NIMBY, of 100</option>
-        <option value="off">Officials, YIMBY minus NIMBY, of 100</option>
-        <option value="npub">Public speakers with a stance, speakers</option>
-        <option value="noff">Officials with a stance, speakers</option>
-        <option value="meetings">Meetings found, meetings</option>
-        <option value="hours">Video transcribed, hours</option>
-      </select>
-    </label>
+    <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="bay-tabs-label">Statistic</span>
+      <div class="ca-tabs" id="bay-metric" role="tablist" aria-labelledby="bay-tabs-label">
+        <button type="button" role="tab" data-v="pub" data-full="Public speakers, YIMBY minus NIMBY, of 100" aria-selected="true" tabindex="0">Public</button>
+        <button type="button" role="tab" data-v="off" data-full="Officials, YIMBY minus NIMBY, of 100" aria-selected="false" tabindex="-1">Officials</button>
+        <button type="button" role="tab" data-v="npub" data-full="Public speakers with a stance, speakers" aria-selected="false" tabindex="-1">Public count</button>
+        <button type="button" role="tab" data-v="noff" data-full="Officials with a stance, speakers" aria-selected="false" tabindex="-1">Officials count</button>
+        <button type="button" role="tab" data-v="meetings" data-full="Meetings found, meetings" aria-selected="false" tabindex="-1">Meetings</button>
+        <button type="button" role="tab" data-v="hours" data-full="Video transcribed, hours" aria-selected="false" tabindex="-1">Hours</button>
+      </div>
+    </div>
     <div class="ca-checks">
       <label class="viz-toggle"><input type="checkbox" id="bay-all" checked> Always show all bodies</label>
     </div>
@@ -83,9 +83,16 @@
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #bay-map { width: 100%; }
 .ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
-.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
-.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b8400e' stroke-width='2'/%3E%3C/svg%3E") no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
-.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; flex: 1 1 100%; min-width: 0; max-width: 100%; }
+.ca-card { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.ca-card > * { min-width: 0; }
+.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-tabs { display: flex; justify-content: space-between; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
+.ca-tabs::-webkit-scrollbar { display: none; }
+.ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .9rem; border: 1px solid #d4b483; border-radius: 999px; background: #fffaf3; color: #2a1a10; cursor: pointer; white-space: nowrap; }
+.ca-tabs button:hover { background: #f8e6cc; }
+.ca-tabs button[aria-selected="true"] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
+.ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
 .ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
 .viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
 .viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
@@ -94,7 +101,7 @@
 .bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
 .bay-detail { font-size: .9rem; color: #2a1a10; background: #fffaf3; border-left: 3px solid #c2410c; padding: .45rem .7rem; margin: .4rem 0 0; min-height: 2.6em; }
 .bay-few { font-size: .85rem; color: #6b5440; max-width: 44rem; margin: -1rem auto 1.5rem; }
-@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } }
 #bay-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 #bay-map .ctx { fill: #f6ecdb; stroke: #fffaf0; stroke-width: 0.6; opacity: .55; pointer-events: none; }
 #bay-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.8; stroke-linejoin: round; cursor: pointer; }
@@ -155,7 +162,26 @@
         v: function (r) { return r.hours_transcribed; },
         note: "Hours of meeting video transcribed for each body." }
     };
-    var sel = document.getElementById("bay-metric"), box = document.getElementById("bay-all");
+    var tabsEl = document.getElementById("bay-metric"), box = document.getElementById("bay-all");
+    var tabBtns = Array.prototype.slice.call(tabsEl.querySelectorAll("button"));
+    var sel = { value: tabBtns[0].dataset.v, selectedIndex: 0, onchange: null, options: tabBtns.map(function (b) { return { text: b.dataset.full }; }) };
+    function pickTab(b, focus) {
+      tabBtns.forEach(function (x) { var on = x === b; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; });
+      if (focus) b.focus();
+      var l = b.offsetLeft - tabsEl.offsetLeft, r = l + b.offsetWidth;
+      if (l < tabsEl.scrollLeft) tabsEl.scrollLeft = l - 8; else if (r > tabsEl.scrollLeft + tabsEl.clientWidth) tabsEl.scrollLeft = r - tabsEl.clientWidth + 8;
+      if (sel.value === b.dataset.v) return;
+      sel.value = b.dataset.v; sel.selectedIndex = tabBtns.indexOf(b);
+      if (sel.onchange) sel.onchange();
+    }
+    tabBtns.forEach(function (b, k) {
+      b.addEventListener("click", function () { pickTab(b, false); });
+      b.addEventListener("keydown", function (ev) {
+        var n = ev.key === "ArrowRight" ? k + 1 : ev.key === "ArrowLeft" ? k - 1 : ev.key === "Home" ? 0 : ev.key === "End" ? tabBtns.length - 1 : null;
+        if (n === null) return;
+        ev.preventDefault(); pickTab(tabBtns[(n + tabBtns.length) % tabBtns.length], true);
+      });
+    });
     var metric = sel.value;
     function g(r) { var m = M[metric]; return m.net ? r[m.key] : null; }
     function val(r) { var m = M[metric]; if (m.net) return r[m.key] ? r[m.key].net : null; return m.v(r); }
