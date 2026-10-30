@@ -4,7 +4,7 @@
   var Y0 = 1990, Y1 = 2026;
   var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var fmt = d3.format(",");
-  var DEC = [1990, 2000, 2010, 2020], DCOL = ["#fcd9a0", "#f4a259", "#d9541e", "#8a2d08"];
+  var DEC = [1990, 2000, 2010, 2020], DCOL = ["#8a2d08", "#d9541e", "#f4a259", "#fcd9a0"];
   function oy(r) { return +r.opened.slice(0, 4); }
   function dcol(r) { return DCOL[Math.min(3, Math.max(0, Math.floor((oy(r) - 1990) / 10)))]; }
   function odate(r) { var p = r.opened.split("-"); return +p[2] + " " + MONTHS[+p[1] - 1] + " " + p[0]; }
