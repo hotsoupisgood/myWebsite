@@ -32,6 +32,25 @@ layout: layouts/post.njk
   <table id="ca-bottom"><caption>Lowest 5 counties</caption><thead><tr><th>County</th><th class="vh">Of 100 workers</th><th class="nh">Workers</th></tr></thead><tbody></tbody></table>
 </div>
 
+<section class="ca-sc" id="ca-sc" aria-labelledby="ca-sc-h">
+  <h2 id="ca-sc-h">Compare two statistics</h2>
+  <div class="ca-card ca-sc-card">
+    <div class="ca-tabs-wrap"><span class="ca-tabs-label">Pick two statistics</span>
+      <div class="ca-tabs ca-sc-pick" id="ca-sc-pick" role="group" aria-label="Statistics to compare">
+        <button type="button" data-v="transit" aria-pressed="true">Transit</button>
+        <button type="button" data-v="novehicle" aria-pressed="true">No car</button>
+        <button type="button" data-v="commute" aria-pressed="false">Commute</button>
+        <button type="button" data-v="lowwage" aria-pressed="false">Low earners</button>
+        <button type="button" data-v="renter" aria-pressed="false">Renters</button>
+      </div>
+    </div>
+  </div>
+  <p class="ca-sc-r" id="ca-sc-r"></p>
+  <div id="ca-sc-plot"></div>
+  <p class="ca-note" id="ca-sc-pt">Hover or tap a dot for the county.</p>
+  <p class="ca-note">Each dot is one county, 58 in all. The correlation (r) runs from -1 to +1. Near +1, counties that are high on one statistic are also high on the other. Near 0, the two are unrelated. Near -1, one is high where the other is low. A correlation does not show that one causes the other. The faint line is the straight line that fits the dots best.</p>
+</section>
+
 ## References
 
 <div class="references">
@@ -91,6 +110,20 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 #ca-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
 #ca-map .lbl.main { font-weight: 700; font-size: 12px; }
 #ca-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-sc { max-width: 44rem; margin: 0 auto 2rem; }
+.ca-sc h2 { margin-bottom: .5rem; }
+.ca-sc-card { margin-top: 0; }
+.ca-sc-pick button[aria-pressed="true"] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
+.ca-sc-r { font-size: 1.05rem; font-weight: 600; color: #2a1a10; margin: .6rem 0 .2rem; }
+#ca-sc-plot svg { display: block; width: 100%; height: auto; }
+#ca-sc-plot .dot { fill: #f28c38; stroke: #fffaf3; stroke-width: 1; cursor: pointer; }
+#ca-sc-plot .dot.on { fill: #c2410c; stroke: #2a1a10; }
+#ca-sc-plot .ax text { font-size: 11px; fill: #6b5440; }
+#ca-sc-plot .ax line, #ca-sc-plot .ax path { stroke: #d4b483; }
+#ca-sc-plot .grid line { stroke: #f1e3c8; }
+#ca-sc-plot .fit { stroke: #8a2d08; stroke-width: 1.5; stroke-dasharray: 4 3; opacity: .55; fill: none; }
+#ca-sc-plot .alab { font-size: 12px; fill: #2a1a10; font-weight: 600; }
+#ca-sc-plot .plab { font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3px; pointer-events: none; }
 .ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1.5rem; max-width: 44rem; margin: 0 auto 2rem; }
 .ca-tables table { flex: 1 1 16rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
 .ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
@@ -362,6 +395,94 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     draw();
     var lastW = el.clientWidth;
     window.addEventListener("resize", function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); } });
+  });
+})();
+</script>
+<script>
+(function () {
+  var LAB = {
+    transit: { name: "Transit", axis: "Transit commuters, of 100 workers", u: " of 100 workers" },
+    novehicle: { name: "No car", axis: "Households with no vehicle, of 100 households", u: " of 100 households" },
+    commute: { name: "Commute", axis: "One-way commute time, minutes", u: " minutes" },
+    lowwage: { name: "Low earners", axis: "Transit commuters earning under $25,000, of 100 such workers", u: " of 100 such workers" },
+    renter: { name: "Renters", axis: "Households that rent, of 100 households", u: " of 100 households" }
+  };
+  var pick = document.getElementById("ca-sc-pick"), btns = Array.prototype.slice.call(pick.querySelectorAll("button"));
+  var plot = document.getElementById("ca-sc-plot"), rOut = document.getElementById("ca-sc-r"), ptOut = document.getElementById("ca-sc-pt");
+  var order = ["transit", "novehicle"], rows = null, hot = null;
+  function pearson(a, b) {
+    var n = a.length, ma = d3.mean(a), mb = d3.mean(b), sab = 0, saa = 0, sbb = 0;
+    for (var i = 0; i < n; i++) { var x = a[i] - ma, y = b[i] - mb; sab += x * y; saa += x * x; sbb += y * y; }
+    return { r: sab / Math.sqrt(saa * sbb), slope: sab / saa, icpt: mb - (sab / saa) * ma };
+  }
+  function nm(r) { return r.county.replace(/ County$/, ""); }
+  function fmt(k, v) { return (k === "commute" ? v.toFixed(1) : v.toFixed(1)) + LAB[k].u; }
+  function draw() {
+    plot.innerHTML = "";
+    if (order.length < 2) { rOut.textContent = "Pick a second statistic to compare."; ptOut.textContent = ""; return; }
+    var kx = order[0], ky = order[1];
+    var xs = rows.map(function (r) { return r[kx].value; }), ys = rows.map(function (r) { return r[ky].value; });
+    var all = pearson(xs, ys);
+    var noSF = rows.filter(function (r) { return r.fips !== "06075"; });
+    var rs = pearson(noSF.map(function (r) { return r[kx].value; }), noSF.map(function (r) { return r[ky].value; }));
+    rOut.textContent = "Correlation (r) between " + LAB[kx].name.toLowerCase() + " and " + LAB[ky].name.toLowerCase() + ": " + all.r.toFixed(2) + " across 58 counties. Without San Francisco: " + rs.r.toFixed(2) + ".";
+    var W = Math.max(300, plot.clientWidth), small = W < 480, H = Math.round(W * (small ? 0.85 : 0.62));
+    var m = { l: small ? 44 : 52, r: 14, t: 12, b: small ? 52 : 48 };
+    var x = d3.scaleLinear().domain([0, d3.max(xs) * 1.05]).nice().range([m.l, W - m.r]);
+    var y = d3.scaleLinear().domain([0, d3.max(ys) * 1.05]).nice().range([H - m.b, m.t]);
+    var svg = d3.select(plot).append("svg").attr("viewBox", "0 0 " + W + " " + H).attr("role", "img")
+      .attr("aria-label", "Scatter plot of " + LAB[kx].axis + " against " + LAB[ky].axis + " for 58 California counties");
+    svg.append("g").attr("class", "grid").selectAll("line").data(y.ticks(5)).join("line").attr("x1", m.l).attr("x2", W - m.r).attr("y1", y).attr("y2", y);
+    svg.append("g").attr("class", "ax").attr("transform", "translate(0," + (H - m.b) + ")").call(d3.axisBottom(x).ticks(small ? 4 : 6).tickSizeOuter(0));
+    svg.append("g").attr("class", "ax").attr("transform", "translate(" + m.l + ",0)").call(d3.axisLeft(y).ticks(5).tickSizeOuter(0));
+    svg.append("text").attr("class", "alab").attr("x", (m.l + W - m.r) / 2).attr("y", H - 8).attr("text-anchor", "middle").text(LAB[kx].axis);
+    svg.append("text").attr("class", "alab").attr("transform", "translate(12," + ((m.t + H - m.b) / 2) + ") rotate(-90)").attr("text-anchor", "middle").text(LAB[ky].axis);
+    svg.append("clipPath").attr("id", "ca-sc-clip").append("rect").attr("x", m.l).attr("y", m.t).attr("width", W - m.l - m.r).attr("height", H - m.t - m.b);
+    var xa = d3.min(xs), xb = d3.max(xs);
+    svg.append("line").attr("class", "fit").attr("clip-path", "url(#ca-sc-clip)").attr("x1", x(xa)).attr("x2", x(xb))
+      .attr("y1", y(all.icpt + all.slope * xa)).attr("y2", y(all.icpt + all.slope * xb));
+    var mx = d3.mean(xs), my = d3.mean(ys), sx = d3.deviation(xs), sy = d3.deviation(ys);
+    var lab = rows.slice().sort(function (a, b) {
+      var da = Math.hypot((a[kx].value - mx) / sx, (a[ky].value - my) / sy), db = Math.hypot((b[kx].value - mx) / sx, (b[ky].value - my) / sy);
+      return db - da; }).slice(0, small ? 3 : 5).map(function (r) { return r.fips; });
+    var dots = svg.append("g").selectAll("circle").data(rows).join("circle").attr("class", "dot")
+      .attr("cx", function (r) { return x(r[kx].value); }).attr("cy", function (r) { return y(r[ky].value); }).attr("r", small ? 4 : 5)
+      .on("pointerenter", function (ev, r) { show(r); }).on("click", function (ev, r) { show(r); });
+    var pl = svg.append("g");
+    function labels(extra) {
+      pl.selectAll("*").remove();
+      var placed = [];
+      rows.filter(function (r) { return lab.indexOf(r.fips) >= 0 || r === extra; }).forEach(function (r) {
+        var px = x(r[kx].value), py = y(r[ky].value), right = px < W * 0.7;
+        var t = pl.append("text").attr("class", "plab").attr("x", px + (right ? 8 : -8)).attr("text-anchor", right ? "start" : "end").text(nm(r));
+        var w = t.node().getComputedTextLength(), x0 = right ? px + 8 : px - 8 - w, ty = py - 6;
+        for (var k = 0; k < 12 && placed.some(function (q) { return x0 < q.x + q.w && x0 + w > q.x && Math.abs(ty - q.y) < 12; }); k++) ty += (k % 2 ? -1 : 1) * 12 * (k + 1);
+        placed.push({ x: x0, y: ty, w: w });
+        t.attr("y", ty);
+      });
+    }
+    function show(r) {
+      hot = r.fips;
+      dots.classed("on", function (d) { return d.fips === hot; }).filter(function (d) { return d.fips === hot; }).raise();
+      labels(r);
+      ptOut.textContent = nm(r) + ": " + fmt(kx, r[kx].value) + "; " + fmt(ky, r[ky].value) + ".";
+    }
+    labels(null);
+    var keep = rows.filter(function (r) { return r.fips === hot; })[0];
+    if (keep) show(keep); else ptOut.textContent = "Hover or tap a dot for the county.";
+  }
+  btns.forEach(function (b) {
+    b.addEventListener("click", function () {
+      var v = b.dataset.v, i = order.indexOf(v);
+      if (i >= 0) order.splice(i, 1); else { order.push(v); if (order.length > 2) order.shift(); }
+      btns.forEach(function (x) { x.setAttribute("aria-pressed", order.indexOf(x.dataset.v) >= 0); });
+      if (rows) draw();
+    });
+  });
+  d3.json("/visualizations/data/ca_commute_metrics_2020_2024.json").then(function (d) {
+    rows = d; draw();
+    var lw = plot.clientWidth;
+    window.addEventListener("resize", function () { if (plot.clientWidth !== lw) { lw = plot.clientWidth; draw(); } });
   });
 })();
 </script>
