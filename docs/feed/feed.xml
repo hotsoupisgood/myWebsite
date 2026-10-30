@@ -130,9 +130,78 @@
 	</entry>
 	
 	<entry>
+		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
+		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
+&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
+&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
+		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
+&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
+&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
+&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
+&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
+&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>A Queue Model of an Emergency Department, to Size an Intervention</title>
+		<link href="https://lucashenry.xyz/projects/hse-ed-simulation/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-ed-simulation/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I had assumed a treatment effect in an earlier decision analysis, and could not say whether the number was modest or absurd.&lt;/li&gt;
+&lt;li&gt;I read how emergency departments are usually simulated, then built a discrete-event model of a boarding queue and tuned it until its morning trolley count tracked one real hospital.&lt;/li&gt;
+&lt;li&gt;Found that the queue is the overflow from a small shortfall in beds, which makes every intervention I tested larger than the problem it is aimed at.&lt;/li&gt;
+&lt;li&gt;The executed notebook, the model code and the figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/tree/main/simulation&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Earlier this month I added a &lt;a href=&quot;https://lucashenry.xyz/projects/hse-decision-analysis/&quot;&gt;decision analysis&lt;/a&gt; to my &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley forecast&lt;/a&gt;. The weakest part of it was the treatment effect. I had assumed a patient flow intervention would cut the growth in pressure by 15 of 100, and the whole recommendation depended on that number. A forecast cannot say whether the number is plausible, so I built a model of the process that produces the trolley count.&lt;/p&gt;
+&lt;p&gt;Discrete-event simulation is the standard tool for this. I followed &lt;a href=&quot;https://des.hsma.co.uk/&quot;&gt;the Little Book of DES&lt;/a&gt;, a free guide to building health service simulations in SimPy, for the model structure: patients arrive at a time varying rate, compete for resources, and the model runs through a warm-up period before anything is recorded.&lt;/p&gt;
+&lt;p&gt;The model is written in SimPy. Patients arrive on a Poisson process whose rate varies by hour and by day of week, wait for an assessment space, and a share of them are admitted. Admitted patients join a first in, first out queue for an inpatient bed. The length of that queue at 8 am is the trolley count, that is the number of admitted patients waiting on trolleys, or gurneys, for a bed. Beds are released in discharge windows that cluster in the late morning and thin out at the weekend, which is why the queue is longest first thing and shortest on a Saturday.&lt;/p&gt;
+&lt;p&gt;I calibrated it to University Hospital Limerick, which has a complete daily record since January 2023 and the largest counts in the series. Two inputs came from data. The bed count is in my own supplementary data: 553 open inpatient beds in 2025. The daily report also records surge capacity in use, the extra spaces a hospital opens under pressure, and at this hospital that rises with the trolley count. I fitted that relationship and used it as the model&#39;s escalation rule. Without it the ward runs at full occupancy, the queue has no stable average, and the simulated count drifts for months at a time.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_calibration.png&quot; alt=&quot;Observed daily trolley count at University Hospital Limerick from September 2025 to April 2026, with the simulated average of 39 trolleys drawn across it&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Everything else is assumed and tuned: the arrival rate, the share admitted, the average stay. I searched a grid of 108 combinations, scoring each on how closely its day of week averages matched the real ones. The best set reproduces the window average, 39 trolleys against 40 observed, and on the eight weeks I held back it is wrong by 12.7 trolleys on an average day. In the plot above the simulated average is the flat blue line. What it misses is the swing from month to month, from about 22 trolleys in November 2025 to about 56 in January 2026.&lt;/p&gt;
+&lt;p&gt;The grid also shows the limit of the method. Ten of the 108 combinations fit within 1 trolley per day of the best one, because a single observed count cannot separate the arrival rate from the admission share from the length of stay. What it does identify is the gap between the bed days emergency admissions demand and the beds available to meet them. Every well fitting combination is between 2 and 14 beds short.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_scenarios.png&quot; alt=&quot;Average 8 am trolley count under the baseline and three changes, falling from 39 trolleys to 13, 3 and near zero&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Then the three scenarios, each run 60 times with different seeds. Opening 20 more beds takes the average morning count from 39 trolleys to 13, with a likely range of 9 to 17. Half a day off the average stay brings it to 3, likely range 2 to 5. Removing 15 of 100 admitted patients from the queue, the effect I assumed in the decision analysis, brings it to roughly zero. The high days also disappear. The hospital went above 56 trolleys on one day in four over the window. In the scenarios that falls to 2 days in 100 or fewer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
+&lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>HSE Mid West had significantly more patients on trolleys than any other region, 8.1 per 10,000 people a week</title>
 		<link href="https://lucashenry.xyz/visualizations/hse-trolley-regions/"/>
-		<updated>2026-10-28T00:00:00Z</updated>
+		<updated>2026-10-24T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/hse-trolley-regions/</id>
 		<content type="html">&lt;p&gt;HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (likely range 7.4 to 8.8). That is 1.6 more than HSE West and North West, the next highest (likely range 0.7 to 2.5 more). Every region dropped in the week that contains 25 December. The drop ran from 2.3 per 10,000 in HSE Dublin and North East to 5.4 per 10,000 in HSE Mid West.&lt;/p&gt;
 &lt;figure class=&quot;viz ie-wide&quot; id=&quot;ie-viz&quot;&gt;
@@ -537,9 +606,87 @@
 	</entry>
 	
 	<entry>
+		<title>How I Learn With LLMs</title>
+		<link href="https://lucashenry.xyz/projects/learning-with-llms/"/>
+		<updated>2026-10-17T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/learning-with-llms/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I made a flowchart of how I usually learn things with LLMs.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Studying with LLMs has taken some getting used to, but I have settled into a pattern when I use them to learn or build something technical. The flowchart below has the steps I roughly follow. I almost always begin with Wikipedia. The first couple of paragraphs are usually a good initial summary. Then I hit some friction, usually because Wikipedia is not always written in a gentle way. At that point I go to the best LLM at the time and ask it for the best sources on the subject. For something biological or novel I ask for a scientific review. For something more technical or standard I ask for textbook recommendations. I find these types of sources make the best learning paths.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/learning-with-llms/learning-flowchart.svg&quot; alt=&quot;Flowchart of how I start a technical project. Start with Wikipedia, ask an LLM for reviews or textbooks, follow the source, ask an LLM at roadblocks, switch sources if one is not helping, gather notes, then create a final learning document.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;I then work through the source, asking an LLM for help when needed, either for worked examples or to fill gaps. If a source does not work out, I move on to another one. I am a visual person and the gif below shows how I think about this loop. You fill in the gaps with back and forths. This works even better with an actual subject matter expert instead of an LLM, but that is rarely possible. Once I am satisfied with my understanding I put all my notes together and do a final write up. That could be a presentation, a digital document, or pen and paper.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/learning-with-llms/understanding-growth.gif&quot; alt=&quot;Animation of a circle filling in over time. Green areas are understanding that came from sources and working on paper, orange areas came from LLM explanations and examples.&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Everyone does this a little differently, but this is what works best for me so far.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Do LLMs Frame the Same Chart Differently?</title>
+		<link href="https://lucashenry.xyz/projects/llm-chart-sentiment/"/>
+		<updated>2026-10-15T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/llm-chart-sentiment/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I asked three LLMs to interpret four controversial plots 250 times each, then compared the sentiment of their responses.&lt;/li&gt;
+&lt;li&gt;Most comparisons were significantly different. Grok was the usual outlier, lowest on the climate and COVID plots and highest on the pay gap plot.&lt;/li&gt;
+&lt;li&gt;The differences seem to come down to word choice. Auditing a handful of Grok responses did not show an obvious polarized opinion, but in the word drivers plot Grok&#39;s word choices looked the most different from the other two. All of this can be seen in the &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/&quot;&gt;dashboard&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In the zeitgeist of the internet there are memes about Grok being &lt;a href=&quot;https://gizmodo.com/enter-grok-elon-musks-anti-woke-chatbot-1850994584&quot;&gt;anti woke&lt;/a&gt; and hyperbolic, and it has &lt;a href=&quot;https://www.scientificamerican.com/article/elon-musks-ai-chatbot-grok-is-reciting-climate-denial-talking-points/&quot;&gt;recited climate denial talking points&lt;/a&gt;, brought up &lt;a href=&quot;https://www.nbcnews.com/tech/tech-news/elon-musks-ai-chatbot-grok-brings-south-african-white-genocide-claims-rcna206838&quot;&gt;South African &amp;quot;white genocide&amp;quot;&lt;/a&gt; in unrelated replies, and &lt;a href=&quot;https://techcrunch.com/2025/07/15/xai-says-it-has-fixed-grok-4s-problematic-responses/&quot;&gt;posted antisemitic content&lt;/a&gt;. If that&#39;s real, it should read certain plots differently from other models. So my hypothesis was that Grok&#39;s interpretations of a race and IQ plot, a climate plot, a COVID deaths and masks plot, and a gender pay gap plot would lean racist, anti climate change, critical of COVID related government actions, and dismissive of the pay gap, and that this would show up as more negative sentiment on all four. All four were picked to be potentially misleading, with political connotations. The prompt was the same every time, &amp;quot;Interpret this plot.&amp;quot;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/llm-chart-sentiment/co2.png&quot; alt=&quot;Global average temperature in Fahrenheit, 1880 to 2015, on an axis that makes it look flat&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Power calculation.&lt;/strong&gt; Running LLMs on images is relatively expensive, so I wanted to know how many replies I actually needed before spending anything. Earlier runs with the previous model generation had an SD of 0.39 in sentiment within a model and plot pair. To detect a 0.10 difference between two models at 80% power, with a small penalty for using a rank test, that gives about 250 replies per model per plot.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Pilot.&lt;/strong&gt; A pilot of 50 per cell with the current models, Claude Opus 5, GPT-5.5 and Grok 4.7, came out at SD 0.52. They write longer and more varied replies than the last generation. Detecting 0.10, after correcting for three comparisons per plot, would now need about 600 per cell. I kept n at 250, which means the smallest detectable difference is about 0.15, and froze that before collecting any more data. Changing n after seeing p values is optional stopping, so I also removed a &amp;quot;show to panel and loop back&amp;quot; step from the plan and &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/flow_iterate.html&quot;&gt;kept the old version&lt;/a&gt; for the record.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Scoring.&lt;/strong&gt; Each of the 3,000 replies was scored with VADER, which gives a sentiment from −1 to +1. VADER scores based on a corpus of rated words, not a model, which matters below.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tests.&lt;/strong&gt; For each plot, three pairwise Mann-Whitney U tests, Bonferroni corrected, with Cliff&#39;s delta and a bootstrap 95% CI on the mean difference.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/llm-chart-sentiment/means-ci.png&quot; alt=&quot;Mean VADER compound per model per chart, with 95% confidence intervals&quot; /&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Chart&lt;/th&gt;
+&lt;th&gt;Claude&lt;/th&gt;
+&lt;th&gt;ChatGPT&lt;/th&gt;
+&lt;th&gt;Grok&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;CO2 / climate&lt;/td&gt;
+&lt;td&gt;+0.65&lt;/td&gt;
+&lt;td&gt;+0.63&lt;/td&gt;
+&lt;td&gt;+0.36&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;COVID &amp;amp; masks&lt;/td&gt;
+&lt;td&gt;+0.24&lt;/td&gt;
+&lt;td&gt;+0.09&lt;/td&gt;
+&lt;td&gt;−0.34&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Gender pay gap&lt;/td&gt;
+&lt;td&gt;+0.28&lt;/td&gt;
+&lt;td&gt;+0.24&lt;/td&gt;
+&lt;td&gt;+0.69&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Race &amp;amp; IQ&lt;/td&gt;
+&lt;td&gt;+0.32&lt;/td&gt;
+&lt;td&gt;−0.12&lt;/td&gt;
+&lt;td&gt;+0.18&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;Results.&lt;/strong&gt; 11 of 12 pairwise comparisons are significant. Grok has the lowest sentiment on climate and COVID and the highest on the pay gap. On race and IQ it sits in the middle, and ChatGPT is the only model that goes negative.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Which words drove it.&lt;/strong&gt; On the climate plot the top positive words are &amp;quot;warming&amp;quot;, &amp;quot;perfectly&amp;quot; and &amp;quot;increase&amp;quot;, and the top negative word is &amp;quot;misleading&amp;quot;. &amp;quot;Perfectly&amp;quot; is almost always &amp;quot;perfectly flat&amp;quot; and &amp;quot;misleading&amp;quot; is about the axis, so neither is about climate at all, and VADER rates &amp;quot;warming&amp;quot; and &amp;quot;increase&amp;quot; as pleasant words, which they aren&#39;t here. All three models say the same thing about that plot, that the wide axis hides a real rise, and Claude says &amp;quot;misleading&amp;quot; in 244 of its 250 replies yet scores highest because its long replies pick up more positive words. Grok&#39;s low score comes from shorter replies with fewer of those words, not from a different view of climate change.&lt;/p&gt;
+&lt;p&gt;So the differences between models are real, but the sentiment is misleading once you look at the words behind it. VADER measured vocabulary and reply length, not stance, and the hypothesis about Grok is neither supported nor refuted by it. Every reply is readable on the &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/&quot;&gt;results page&lt;/a&gt;, and the code is on &lt;a href=&quot;https://github.com/hotsoupisgood/AI-Graph-Response-Compare&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;A future direction would be to use a human or an LLM as a judge to rate whether each reply treats the pay gap as real, which would test the original hypothesis directly.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>San Mateo was the one Bay Area body with significantly more YIMBY than NIMBY public speakers</title>
 		<link href="https://lucashenry.xyz/visualizations/bay-area-transit-analysis/"/>
-		<updated>2026-10-27T00:00:00Z</updated>
+		<updated>2026-10-12T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/bay-area-transit-analysis/</id>
 		<content type="html">&lt;p&gt;San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 100 coded NIMBY. In the other 14 bodies drawn, public speakers showed no significant difference. Officials had significantly more YIMBY than NIMBY speakers in 11 of the 24 bodies drawn.&lt;/p&gt;
 &lt;figure class=&quot;viz&quot; id=&quot;bay-viz&quot;&gt;
@@ -921,78 +1068,9 @@
 	</entry>
 	
 	<entry>
-		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
-		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
-&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
-&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>A Queue Model of an Emergency Department, to Size an Intervention</title>
-		<link href="https://lucashenry.xyz/projects/hse-ed-simulation/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/hse-ed-simulation/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I had assumed a treatment effect in an earlier decision analysis, and could not say whether the number was modest or absurd.&lt;/li&gt;
-&lt;li&gt;I read how emergency departments are usually simulated, then built a discrete-event model of a boarding queue and tuned it until its morning trolley count tracked one real hospital.&lt;/li&gt;
-&lt;li&gt;Found that the queue is the overflow from a small shortfall in beds, which makes every intervention I tested larger than the problem it is aimed at.&lt;/li&gt;
-&lt;li&gt;The executed notebook, the model code and the figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/tree/main/simulation&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Earlier this month I added a &lt;a href=&quot;https://lucashenry.xyz/projects/hse-decision-analysis/&quot;&gt;decision analysis&lt;/a&gt; to my &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley forecast&lt;/a&gt;. The weakest part of it was the treatment effect. I had assumed a patient flow intervention would cut the growth in pressure by 15 of 100, and the whole recommendation depended on that number. A forecast cannot say whether the number is plausible, so I built a model of the process that produces the trolley count.&lt;/p&gt;
-&lt;p&gt;Discrete-event simulation is the standard tool for this. I followed &lt;a href=&quot;https://des.hsma.co.uk/&quot;&gt;the Little Book of DES&lt;/a&gt;, a free guide to building health service simulations in SimPy, for the model structure: patients arrive at a time varying rate, compete for resources, and the model runs through a warm-up period before anything is recorded.&lt;/p&gt;
-&lt;p&gt;The model is written in SimPy. Patients arrive on a Poisson process whose rate varies by hour and by day of week, wait for an assessment space, and a share of them are admitted. Admitted patients join a first in, first out queue for an inpatient bed. The length of that queue at 8 am is the trolley count, that is the number of admitted patients waiting on trolleys, or gurneys, for a bed. Beds are released in discharge windows that cluster in the late morning and thin out at the weekend, which is why the queue is longest first thing and shortest on a Saturday.&lt;/p&gt;
-&lt;p&gt;I calibrated it to University Hospital Limerick, which has a complete daily record since January 2023 and the largest counts in the series. Two inputs came from data. The bed count is in my own supplementary data: 553 open inpatient beds in 2025. The daily report also records surge capacity in use, the extra spaces a hospital opens under pressure, and at this hospital that rises with the trolley count. I fitted that relationship and used it as the model&#39;s escalation rule. Without it the ward runs at full occupancy, the queue has no stable average, and the simulated count drifts for months at a time.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_calibration.png&quot; alt=&quot;Observed daily trolley count at University Hospital Limerick from September 2025 to April 2026, with the simulated average of 39 trolleys drawn across it&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Everything else is assumed and tuned: the arrival rate, the share admitted, the average stay. I searched a grid of 108 combinations, scoring each on how closely its day of week averages matched the real ones. The best set reproduces the window average, 39 trolleys against 40 observed, and on the eight weeks I held back it is wrong by 12.7 trolleys on an average day. In the plot above the simulated average is the flat blue line. What it misses is the swing from month to month, from about 22 trolleys in November 2025 to about 56 in January 2026.&lt;/p&gt;
-&lt;p&gt;The grid also shows the limit of the method. Ten of the 108 combinations fit within 1 trolley per day of the best one, because a single observed count cannot separate the arrival rate from the admission share from the length of stay. What it does identify is the gap between the bed days emergency admissions demand and the beds available to meet them. Every well fitting combination is between 2 and 14 beds short.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_scenarios.png&quot; alt=&quot;Average 8 am trolley count under the baseline and three changes, falling from 39 trolleys to 13, 3 and near zero&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Then the three scenarios, each run 60 times with different seeds. Opening 20 more beds takes the average morning count from 39 trolleys to 13, with a likely range of 9 to 17. Half a day off the average stay brings it to 3, likely range 2 to 5. Removing 15 of 100 admitted patients from the queue, the effect I assumed in the decision analysis, brings it to roughly zero. The high days also disappear. The hospital went above 56 trolleys on one day in four over the window. In the scenarios that falls to 2 days in 100 or fewer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
-&lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
-		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
-&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
-&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
-&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
-&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
-&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
 		<title>California transit commuting</title>
 		<link href="https://lucashenry.xyz/visualizations/ca-transit-share/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
+		<updated>2026-10-03T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/ca-transit-share/</id>
 		<content type="html">&lt;figure class=&quot;viz&quot; id=&quot;ca-transit-viz&quot;&gt;
   &lt;div class=&quot;ca-card&quot;&gt;
@@ -1341,84 +1419,6 @@
   });
 })();
 &lt;/script&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>How I Learn With LLMs</title>
-		<link href="https://lucashenry.xyz/projects/learning-with-llms/"/>
-		<updated>2026-10-17T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/learning-with-llms/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I made a flowchart of how I usually learn things with LLMs.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;Studying with LLMs has taken some getting used to, but I have settled into a pattern when I use them to learn or build something technical. The flowchart below has the steps I roughly follow. I almost always begin with Wikipedia. The first couple of paragraphs are usually a good initial summary. Then I hit some friction, usually because Wikipedia is not always written in a gentle way. At that point I go to the best LLM at the time and ask it for the best sources on the subject. For something biological or novel I ask for a scientific review. For something more technical or standard I ask for textbook recommendations. I find these types of sources make the best learning paths.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/learning-with-llms/learning-flowchart.svg&quot; alt=&quot;Flowchart of how I start a technical project. Start with Wikipedia, ask an LLM for reviews or textbooks, follow the source, ask an LLM at roadblocks, switch sources if one is not helping, gather notes, then create a final learning document.&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;I then work through the source, asking an LLM for help when needed, either for worked examples or to fill gaps. If a source does not work out, I move on to another one. I am a visual person and the gif below shows how I think about this loop. You fill in the gaps with back and forths. This works even better with an actual subject matter expert instead of an LLM, but that is rarely possible. Once I am satisfied with my understanding I put all my notes together and do a final write up. That could be a presentation, a digital document, or pen and paper.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/learning-with-llms/understanding-growth.gif&quot; alt=&quot;Animation of a circle filling in over time. Green areas are understanding that came from sources and working on paper, orange areas came from LLM explanations and examples.&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Everyone does this a little differently, but this is what works best for me so far.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Do LLMs Frame the Same Chart Differently?</title>
-		<link href="https://lucashenry.xyz/projects/llm-chart-sentiment/"/>
-		<updated>2026-10-15T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/llm-chart-sentiment/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I asked three LLMs to interpret four controversial plots 250 times each, then compared the sentiment of their responses.&lt;/li&gt;
-&lt;li&gt;Most comparisons were significantly different. Grok was the usual outlier, lowest on the climate and COVID plots and highest on the pay gap plot.&lt;/li&gt;
-&lt;li&gt;The differences seem to come down to word choice. Auditing a handful of Grok responses did not show an obvious polarized opinion, but in the word drivers plot Grok&#39;s word choices looked the most different from the other two. All of this can be seen in the &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/&quot;&gt;dashboard&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;In the zeitgeist of the internet there are memes about Grok being &lt;a href=&quot;https://gizmodo.com/enter-grok-elon-musks-anti-woke-chatbot-1850994584&quot;&gt;anti woke&lt;/a&gt; and hyperbolic, and it has &lt;a href=&quot;https://www.scientificamerican.com/article/elon-musks-ai-chatbot-grok-is-reciting-climate-denial-talking-points/&quot;&gt;recited climate denial talking points&lt;/a&gt;, brought up &lt;a href=&quot;https://www.nbcnews.com/tech/tech-news/elon-musks-ai-chatbot-grok-brings-south-african-white-genocide-claims-rcna206838&quot;&gt;South African &amp;quot;white genocide&amp;quot;&lt;/a&gt; in unrelated replies, and &lt;a href=&quot;https://techcrunch.com/2025/07/15/xai-says-it-has-fixed-grok-4s-problematic-responses/&quot;&gt;posted antisemitic content&lt;/a&gt;. If that&#39;s real, it should read certain plots differently from other models. So my hypothesis was that Grok&#39;s interpretations of a race and IQ plot, a climate plot, a COVID deaths and masks plot, and a gender pay gap plot would lean racist, anti climate change, critical of COVID related government actions, and dismissive of the pay gap, and that this would show up as more negative sentiment on all four. All four were picked to be potentially misleading, with political connotations. The prompt was the same every time, &amp;quot;Interpret this plot.&amp;quot;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/llm-chart-sentiment/co2.png&quot; alt=&quot;Global average temperature in Fahrenheit, 1880 to 2015, on an axis that makes it look flat&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Power calculation.&lt;/strong&gt; Running LLMs on images is relatively expensive, so I wanted to know how many replies I actually needed before spending anything. Earlier runs with the previous model generation had an SD of 0.39 in sentiment within a model and plot pair. To detect a 0.10 difference between two models at 80% power, with a small penalty for using a rank test, that gives about 250 replies per model per plot.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Pilot.&lt;/strong&gt; A pilot of 50 per cell with the current models, Claude Opus 5, GPT-5.5 and Grok 4.7, came out at SD 0.52. They write longer and more varied replies than the last generation. Detecting 0.10, after correcting for three comparisons per plot, would now need about 600 per cell. I kept n at 250, which means the smallest detectable difference is about 0.15, and froze that before collecting any more data. Changing n after seeing p values is optional stopping, so I also removed a &amp;quot;show to panel and loop back&amp;quot; step from the plan and &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/flow_iterate.html&quot;&gt;kept the old version&lt;/a&gt; for the record.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Scoring.&lt;/strong&gt; Each of the 3,000 replies was scored with VADER, which gives a sentiment from −1 to +1. VADER scores based on a corpus of rated words, not a model, which matters below.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Tests.&lt;/strong&gt; For each plot, three pairwise Mann-Whitney U tests, Bonferroni corrected, with Cliff&#39;s delta and a bootstrap 95% CI on the mean difference.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/llm-chart-sentiment/means-ci.png&quot; alt=&quot;Mean VADER compound per model per chart, with 95% confidence intervals&quot; /&gt;&lt;/p&gt;
-&lt;table&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th&gt;Chart&lt;/th&gt;
-&lt;th&gt;Claude&lt;/th&gt;
-&lt;th&gt;ChatGPT&lt;/th&gt;
-&lt;th&gt;Grok&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td&gt;CO2 / climate&lt;/td&gt;
-&lt;td&gt;+0.65&lt;/td&gt;
-&lt;td&gt;+0.63&lt;/td&gt;
-&lt;td&gt;+0.36&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;COVID &amp;amp; masks&lt;/td&gt;
-&lt;td&gt;+0.24&lt;/td&gt;
-&lt;td&gt;+0.09&lt;/td&gt;
-&lt;td&gt;−0.34&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Gender pay gap&lt;/td&gt;
-&lt;td&gt;+0.28&lt;/td&gt;
-&lt;td&gt;+0.24&lt;/td&gt;
-&lt;td&gt;+0.69&lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-&lt;td&gt;Race &amp;amp; IQ&lt;/td&gt;
-&lt;td&gt;+0.32&lt;/td&gt;
-&lt;td&gt;−0.12&lt;/td&gt;
-&lt;td&gt;+0.18&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-&lt;p&gt;&lt;strong&gt;Results.&lt;/strong&gt; 11 of 12 pairwise comparisons are significant. Grok has the lowest sentiment on climate and COVID and the highest on the pay gap. On race and IQ it sits in the middle, and ChatGPT is the only model that goes negative.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Which words drove it.&lt;/strong&gt; On the climate plot the top positive words are &amp;quot;warming&amp;quot;, &amp;quot;perfectly&amp;quot; and &amp;quot;increase&amp;quot;, and the top negative word is &amp;quot;misleading&amp;quot;. &amp;quot;Perfectly&amp;quot; is almost always &amp;quot;perfectly flat&amp;quot; and &amp;quot;misleading&amp;quot; is about the axis, so neither is about climate at all, and VADER rates &amp;quot;warming&amp;quot; and &amp;quot;increase&amp;quot; as pleasant words, which they aren&#39;t here. All three models say the same thing about that plot, that the wide axis hides a real rise, and Claude says &amp;quot;misleading&amp;quot; in 244 of its 250 replies yet scores highest because its long replies pick up more positive words. Grok&#39;s low score comes from shorter replies with fewer of those words, not from a different view of climate change.&lt;/p&gt;
-&lt;p&gt;So the differences between models are real, but the sentiment is misleading once you look at the words behind it. VADER measured vocabulary and reply length, not stance, and the hypothesis about Grok is neither supported nor refuted by it. Every reply is readable on the &lt;a href=&quot;https://hotsoupisgood.github.io/AI-Graph-Response-Compare/&quot;&gt;results page&lt;/a&gt;, and the code is on &lt;a href=&quot;https://github.com/hotsoupisgood/AI-Graph-Response-Compare&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;A future direction would be to use a human or an LLM as a judge to rate whether each reply treats the pay gap as real, which would test the original hypothesis directly.&lt;/p&gt;
 </content>
 	</entry>
 	

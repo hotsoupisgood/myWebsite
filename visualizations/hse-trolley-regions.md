@@ -1,7 +1,7 @@
 ---
 title: HSE Mid West had significantly more patients on trolleys than any other region, 8.1 per 10,000 people a week
 description: Bayesian time series estimates of patients on hospital trolleys per 10,000 people in Ireland's six HSE health regions, with winter and the Christmas and New Year weeks, January 2023 to April 2026.
-date: 2026-10-28
+date: 2026-10-24
 layout: layouts/post.njk
 ---
 
