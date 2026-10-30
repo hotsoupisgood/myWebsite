@@ -67,7 +67,7 @@
     <div class="ie-panel" id="ie-panel" aria-live="polite">
       <p class="ie-info" id="ie-info"></p>
       <div class="ie-pk" id="ie-pk"></div>
-      <p class="bay-legend ie-tlleg"><span><i class="sw" style="background:#dde5e8"></i>Winter (Met Éireann: December to February)</span><span><i class="sw" style="background:#e9915a"></i>New Year phases</span><span><i class="sw" style="background:#6b5440;height:2px;vertical-align:3px"></i>Weekly count</span></p>
+      <p class="bay-legend ie-tlleg"><span><i class="sw" style="background:#e2f0e2"></i>Winter (Met Éireann: December to February)</span><span><i class="sw" style="background:#e9915a"></i>New Year phases</span><span><i class="sw" style="background:#6b5440;height:2px;vertical-align:3px"></i>Weekly count</span></p>
       <div id="ie-tl"></div>
     </div>
   </div>
@@ -172,7 +172,7 @@
   var el = document.getElementById("ie-map");
   Promise.all([
     d3.json("/visualizations/data/ireland_hse_regions.json"),
-    d3.json("/visualizations/data/hse_trolley_v46_per10k.json?v=2")
+    d3.json("/visualizations/data/hse_trolley_v46_per10k.json?v=3")
   ]).then(function (res) {
     var topo = res[0], D = res[1], rows = D.regions;
     var PH = ["pm1", "pre", "mid", "post"];
@@ -272,14 +272,14 @@
       var x = d3.scaleLinear().domain([0, PA.days]).range([L, W - R]);
       var y = d3.scaleLinear().domain([0, pkMax]).range([T + Hc, T + 8]);
       var wa = x(PA.winter[0]), wb = x(PA.winter[1]);
-      svg.append("rect").attr("x", wa).attr("width", wb - wa).attr("y", T).attr("height", Hc).attr("fill", "#dde5e8");
+      svg.append("rect").attr("x", wa).attr("width", wb - wa).attr("y", T).attr("height", Hc).attr("fill", "#e2f0e2");
       svg.append("text").attr("class", "pkw").attr("x", (wa + wb) / 2).attr("y", T - 3).text("Winter");
       var dd = r.peak_density, step = PA.days / dd.length, edge = (dd[0] + dd[dd.length - 1]) / 2;
       var pts = [[0, edge]].concat(dd.map(function (v, j) { return [(j + 0.5) * step, v]; }), [[PA.days, edge]]);
       var cid = "pkclip" + Math.round(W);
       svg.append("clipPath").attr("id", cid).append("rect").attr("x", wa).attr("width", wb - wa).attr("y", 0).attr("height", H);
       svg.append("path").attr("d", d3.area().curve(d3.curveBasis).x(function (p) { return x(p[0]); }).y0(T + Hc).y1(function (p) { return y(p[1]); })(pts))
-        .attr("fill", "#f28c38").attr("opacity", 0.55).attr("clip-path", "url(#" + cid + ")");
+        .attr("fill", "#3f9a5a").attr("opacity", 0.6).attr("clip-path", "url(#" + cid + ")");
       svg.append("path").attr("d", d3.line().curve(d3.curveBasis).x(function (p) { return x(p[0]); }).y(function (p) { return y(p[1]); })(pts))
         .attr("fill", "none").attr("stroke", "#2a1a10").attr("stroke-width", 1.6);
       // median marker
@@ -331,7 +331,7 @@
       for (var yr = d0.getFullYear() - 1; yr <= d1.getFullYear(); yr++) {
         var wa = new Date(yr, 11, 1), wb = new Date(yr + 1, 2, 1);
         var xa = x(wa < d0 ? d0 : wa), xb = x(wb > d1 ? d1 : wb);
-        if (xb > xa) svg.append("rect").attr("x", xa).attr("width", xb - xa).attr("y", sT).attr("height", sH).attr("fill", "#dde5e8").append("title").text("Winter, Met Éireann: December to February");
+        if (xb > xa) svg.append("rect").attr("x", xa).attr("width", xb - xa).attr("y", sT).attr("height", sH).attr("fill", "#e2f0e2").append("title").text("Winter, Met Éireann: December to February");
       }
       D.phases.forEach(function (p) {
         p.weeks.forEach(function (s) {
