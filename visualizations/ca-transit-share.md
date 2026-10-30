@@ -1,7 +1,7 @@
 ---
 title: California transit commuting
 description: Share of workers who commuted by public transportation, by California county, 2020 to 2024.
-date: 2026-10-29
+date: 2026-10-26
 layout: layouts/post.njk
 ---
 
