@@ -23,13 +23,13 @@
     function wScale(small) { return d3.scaleLinear().domain([0, LMAX]).range([0, small ? 17 : 30]); }
     function lineW(k, small) { var thin = small ? 1.4 : 1.8; if (metric === "age") return thin; var v = lineB(k, Y); if (v === null) return thin; return Math.max(thin, wScale(small)(v)); }
     var Y = +slider.value, metric = "b";
-    var busyCb = document.getElementById("lam-busy"), busyNote = document.getElementById("lam-busy-na");
+    var busyCb = document.getElementById("lam-busy");
     var BMAX = 0; rows.forEach(function (r) { FY.forEach(function (f) { if (r.b && r.b[f] !== undefined) BMAX = Math.max(BMAX, r.b[f]); }); });
     function busyOn() { return busyCb.checked && Y >= 2024 && Y <= 2026; }
     function top10() { var f = String(Y); return rows.filter(function (r) { return open(r) && r.b && r.b[f] !== undefined; }).sort(function (a, b) { return b.b[f] - a.b[f]; }).slice(0, 10); }
     function busyUi() {
       var dis = Y < 2024;
-      busyCb.disabled = dis; busyCb.parentNode.classList.toggle("off", dis); busyNote.hidden = !dis;
+      busyCb.disabled = dis; busyCb.parentNode.classList.toggle("off", dis); busyCb.parentNode.title = dis ? "No station data before fiscal year 2024" : "";
       var on = busyOn();
       document.getElementById("lam-t1").hidden = !on;
       document.getElementById("lam-src-on").hidden = !on; document.getElementById("lam-src-off").hidden = on;
