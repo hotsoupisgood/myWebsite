@@ -6,6 +6,13 @@ layout: layouts/post.njk
 ---
 
 <figure class="viz" id="ca-transit-viz">
+  <div class="ca-mapwrap">
+  <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors."></div>
+    <div class="ca-checks ca-checks-below ca-checks-in">
+      <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 highest counties</label>
+      <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 lowest counties</label>
+    </div>
+  </div>
   <div class="ca-card">
     <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="ca-tabs-label">Statistic</span>
       <div class="ca-tabs" id="ca-metric" role="tablist" aria-labelledby="ca-tabs-label">
@@ -18,13 +25,6 @@ layout: layouts/post.njk
     </div>
   </div>
   <p class="ca-note" id="ca-note"></p>
-  <div class="ca-mapwrap">
-  <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors."></div>
-    <div class="ca-checks ca-checks-below ca-checks-in">
-      <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 highest counties</label>
-      <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 lowest counties</label>
-    </div>
-  </div>
 </figure>
 
 <div class="ca-tables">
@@ -59,7 +59,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 #ca-map { width: 100%; }
 .ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
 .ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; flex: 1 1 100%; min-width: 0; max-width: 100%; }
-.ca-card { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.ca-card { min-width: 0; max-width: 100%; box-sizing: border-box; margin-top: .6rem; }
 .ca-card > * { min-width: 0; }
 .ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
 .ca-tabs { display: flex; justify-content: space-between; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
