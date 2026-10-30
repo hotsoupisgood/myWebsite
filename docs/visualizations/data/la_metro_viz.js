@@ -4,8 +4,6 @@
   var Y0 = 1990, Y1 = 2026;
   var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
   var fmt = d3.format(",");
-  var WALLS = true; // false: the older version, where line width shows boardings
-  var hf = {}; // current wall height per line, as a share of the tallest wall
   var DEC = [1990, 2000, 2010, 2020], DCOL = ["#fcd9a0", "#f4a259", "#d9541e", "#8a2d08"];
   function oy(r) { return +r.opened.slice(0, 4); }
   function dcol(r) { return DCOL[Math.min(3, Math.max(0, Math.floor((oy(r) - 1990) / 10)))]; }
@@ -23,7 +21,7 @@
     var LMAX = 0; Object.keys(LFY).forEach(function (q) { Object.keys(LFY[q]).forEach(function (y) { if (+y >= (LFROM[q] || 0)) LMAX = Math.max(LMAX, LFY[q][y]); }); });
     var LY = []; Object.keys(LFY).forEach(function (q) { Object.keys(LFY[q]).forEach(function (y) { if (LY.indexOf(+y) < 0) LY.push(+y); }); }); LY.sort();
     function wScale(small) { return d3.scaleSqrt().domain([0, LMAX]).range([0, small ? 7 : 10]); }
-    function lineW(k, small) { if (WALLS) return small ? 1.6 : 2.2; var thin = small ? 1.4 : 1.8; if (metric === "age") return thin; var v = lineB(k, Y); if (v === null) return thin; return Math.max(thin, wScale(small)(v)); }
+    function lineW(k, small) { var thin = small ? 1.4 : 1.8; if (metric === "age") return thin; var v = lineB(k, Y); if (v === null) return thin; return Math.max(thin, wScale(small)(v)); }
     var Y = +slider.value, metric = "b";
     var busyCb = document.getElementById("lam-busy"), busyNote = document.getElementById("lam-busy-na");
     var BMAX = 0; rows.forEach(function (r) { FY.forEach(function (f) { if (r.b && r.b[f] !== undefined) BMAX = Math.max(BMAX, r.b[f]); }); });
@@ -65,7 +63,7 @@
     });
     function legend() {
       var L = document.getElementById("lam-legend"), cnt = rows.filter(open).length, h;
-      if (metric === "b") h = cnt + " stations open in " + Y + (WALLS ? ". Wall height: average weekday boardings on the line in fiscal year " : ". Line width: average weekday boardings on the line in fiscal year ") + Y + ", shown at each line's end." + (Y < 2009 ? (WALLS ? " Line figures start in fiscal year 2009, so walls are low before then." : " Line figures start in fiscal year 2009, so lines are thin before then.") : "") + " Pins: stations opened in " + (Y - 1) + " or " + Y + ".";
+      if (metric === "b") h = cnt + " stations open in " + Y + ". Line width: average weekday boardings on the line in fiscal year " + Y + ", shown at each line's end." + (Y < 2009 ? " Line figures start in fiscal year 2009, so lines are thin before then." : "") + " Pins: stations opened in " + (Y - 1) + " or " + Y + ".";
       else { h = cnt + " stations open in " + Y + ". Dot color: decade the station opened:"; DEC.forEach(function (d, i) { h += '<i class="sw" style="background:' + DCOL[i] + '"></i>' + d + "s"; }); h += ". Pins: stations opened in " + (Y - 1) + " or " + Y + "."; }
       if (busyOn()) h += " Bars: the 10 stations with the most average weekday boardings in fiscal year " + Y + ", on one height scale for fiscal years 2024 to 2026.";
       L.innerHTML = h;
@@ -147,8 +145,6 @@
       function P(lon, lat) { var q = base([lon, lat]); return tiltPt(q[0], q[1]); }
       var pts = rows.map(function (r) { return P(r.lon, r.lat); });
       var topRoom = 4; pts.forEach(function (q) { topRoom = Math.max(topRoom, 34 - q[1]); });
-      var WMAX = small ? 40 : 70, WLOW = small ? 3 : 5;
-      if (WALLS) Object.keys(LINES).forEach(function (lk) { LINES[lk].path.forEach(function (c) { topRoom = Math.max(topRoom, WMAX + 24 - P(c[0], c[1])[1]); }); });
       ty += topRoom; pts.forEach(function (q) { q[1] += topRoom; });
       var H = Math.ceil(ty + ry1 * k + edge + 10);
       var svg = d3.select(el).append("svg").attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H);
@@ -163,40 +159,7 @@
       topoG.selectAll("path").data(contours.features).join("path").attr("class", function (f) { return f.properties.elev % 500 === 0 ? "topo major" : "topo"; }).attr("d", path);
       var places = [["Santa Monica", -118.47, 33.985], ["Pomona", -117.77, 34.035], ["Norwalk", -118.08, 33.895]];
       if (!small) svg.append("g").selectAll("text").data(places).join("text").attr("class", "place").attr("x", function (d) { return P(d[1], d[2])[0]; }).attr("y", function (d) { return P(d[1], d[2])[1] + 14; }).text(function (d) { return d[0]; });
-      var railG = svg.append("g"), wallG = svg.append("g").attr("class", "walls"), wallY = null, quads = [];
-      var wS = d3.scaleLinear().domain([0, LMAX]).range([0, WMAX]);
-      function wallT(lk) { if (metric === "age") return WLOW; var v = lineB(lk, Y); return v === null ? WLOW : wS(v); }
-      function buildWalls() {
-        wallG.selectAll("*").remove(); quads = [];
-        Object.keys(segInfo).forEach(function (lk) {
-          var s = segInfo[lk];
-          for (var j = 1; j < s.cs.length; j++) if (Math.max(s.vy[j - 1], s.vy[j]) <= Y) quads.push({ k: lk, q: lkey(lk), a: P(s.cs[j - 1][0], s.cs[j - 1][1]), b: P(s.cs[j][0], s.cs[j][1]) });
-        });
-        quads.sort(function (u, v) { return (u.a[1] + u.b[1]) - (v.a[1] + v.b[1]); });
-        quads.forEach(function (d) {
-          var c = LINES[d.k].color;
-          d.f = wallG.append("path").attr("class", "wall").attr("fill", c).node();
-          d.t = wallG.append("path").attr("class", "wtop").attr("stroke", d3.color(c).darker(0.7)).node();
-        });
-        wallY = Y;
-      }
-      function renderWalls() {
-        quads.forEach(function (d) {
-          var h = (hf[d.q] || 0) * WMAX, a = d.a, b = d.b;
-          d.f.setAttribute("d", "M" + a[0] + "," + a[1] + "L" + b[0] + "," + b[1] + "L" + b[0] + "," + (b[1] - h) + "L" + a[0] + "," + (a[1] - h) + "Z");
-          d.t.setAttribute("d", "M" + a[0] + "," + (a[1] - h) + "L" + b[0] + "," + (b[1] - h));
-        });
-      }
-      function walls(animate) {
-        if (!WALLS) return;
-        if (wallY !== Y) buildWalls();
-        wallG.interrupt().transition().duration(300).attr("opacity", busyOn() ? 0.3 : 1);
-        var from = {}, to = {}, moved = false;
-        ["A", "BD", "C", "E", "K"].forEach(function (q) { from[q] = hf[q] || 0; to[q] = wallT(q === "BD" ? "B" : q) / WMAX; if (Math.abs(from[q] - to[q]) > 0.002) moved = true; });
-        wallG.interrupt("h");
-        if (!animate || !moved) { Object.keys(to).forEach(function (q) { hf[q] = to[q]; }); renderWalls(); return; }
-        wallG.transition("h").duration(450).ease(d3.easeCubicOut).tween("h", function () { return function (u) { Object.keys(to).forEach(function (q) { hf[q] = from[q] + (to[q] - from[q]) * u; }); renderWalls(); }; });
-      }
+      var railG = svg.append("g");
       var segInfo = {};
       ["E", "C", "K", "A", "D", "B"].forEach(function (lk) {
         var ls = LINES[lk]; if (!ls) return;
@@ -251,8 +214,7 @@
         var on = []; for (var j = 0; j < s.cs.length; j++) if (s.vy[j] <= Y) on.push(j);
         if (on.length < 2) return [];
         var a = on[0], b = on[on.length - 1];
-        var lift = WALLS ? wallT(lk) : 0;
-        function pt(j, j2) { var p = P(s.cs[j][0], s.cs[j][1]), q = P(s.cs[j2][0], s.cs[j2][1]); p[1] -= lift; q[1] -= lift; var dx = p[0] - q[0], dy = p[1] - q[1], n = Math.sqrt(dx * dx + dy * dy) || 1; return { x: p[0], y: p[1], ux: dx / n, uy: dy / n }; }
+        function pt(j, j2) { var p = P(s.cs[j][0], s.cs[j][1]), q = P(s.cs[j2][0], s.cs[j2][1]); var dx = p[0] - q[0], dy = p[1] - q[1], n = Math.sqrt(dx * dx + dy * dy) || 1; return { x: p[0], y: p[1], ux: dx / n, uy: dy / n }; }
         return [pt(b, Math.max(a, b - 3)), pt(a, Math.min(b, a + 3))];
       }
       function update(animate) {
@@ -264,7 +226,6 @@
           .classed("on", function (r, i) { return i === state.i; });
         dots.filter(function (r, i) { return i === state.i; }).raise();
         layer.selectAll("*").remove();
-        walls(animate);
         var bset = bars(animate), bf = String(Y);
         var placed = [];
         var obs = rows.map(function (r, i) { return open(r) ? { x: pts[i][0] - R, y: pts[i][1] + R, w: 2 * R, h: 2 * R } : null; }).filter(Boolean);
