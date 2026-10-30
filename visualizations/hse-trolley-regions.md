@@ -5,18 +5,19 @@ date: 2026-10-24
 layout: layouts/post.njk
 ---
 
-HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (likely range 7.4 to 8.8). That is 1.6 more than HSE West and North West, the next highest (likely range 0.7 to 2.5 more). Every region dropped in the week that contains 25 December. The drop ran from 2.3 per 10,000 in HSE Dublin and North East to 5.4 per 10,000 in HSE Mid West.
+HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (95% credible interval 7.4 to 8.8). That is 1.6 more than HSE West and North West, the next highest (95% credible interval 0.7 to 2.5 more). Every region dropped in the week that contains 25 December. The drop ran from 2.3 per 10,000 in HSE Dublin and North East to 5.4 per 10,000 in HSE Mid West.
 
 <figure class="viz ie-wide" id="ie-viz">
   <div class="ca-card">
     <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="ie-tabs-label">Estimate</span>
       <div class="ca-tabs" id="ie-metric" role="tablist" aria-labelledby="ie-tabs-label">
         <button type="button" role="tab" data-v="alpha" data-full="Level, patients per 10,000 people a week" aria-selected="true" tabindex="0">Level</button>
-        <button type="button" role="tab" data-v="amp" data-full="Seasonal swing, per 10,000 people a week" aria-selected="false" tabindex="-1">Seasonal swing</button>
-        <button type="button" role="tab" data-v="pwin" data-full="Chance higher in winter, in 100" aria-selected="false" tabindex="-1">Winter</button>
+        <button type="button" role="tab" data-v="amp" data-full="Seasonal swing, per 10,000 people a week" aria-selected="false" tabindex="-1">Swing</button>
+        <button type="button" role="tab" data-v="pwin" data-full="Probability higher in winter, percent" aria-selected="false" tabindex="-1">Winter</button>
+        <button type="button" role="tab" data-v="ppk" data-full="Probability the yearly peak falls in winter, percent" aria-selected="false" tabindex="-1">Peak in winter</button>
         <button type="button" role="tab" data-v="pm1" data-full="Two weeks before New Year week, change per 10,000" aria-selected="false" tabindex="-1">2 weeks before</button>
-        <button type="button" role="tab" data-v="pre" data-full="Christmas week, change per 10,000" aria-selected="false" tabindex="-1">Christmas week</button>
-        <button type="button" role="tab" data-v="mid" data-full="New Year week, change per 10,000" aria-selected="false" tabindex="-1">New Year week</button>
+        <button type="button" role="tab" data-v="pre" data-full="Christmas week, change per 10,000" aria-selected="false" tabindex="-1">Christmas</button>
+        <button type="button" role="tab" data-v="mid" data-full="New Year week, change per 10,000" aria-selected="false" tabindex="-1">New Year</button>
         <button type="button" role="tab" data-v="post" data-full="Week after New Year week, change per 10,000" aria-selected="false" tabindex="-1">Week after</button>
       </div>
     </div>
@@ -30,6 +31,7 @@ HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (l
     <div id="ie-map" role="img" aria-label="Tilted map of Ireland split into the six HSE health regions. A bar rises from each region. Hover or tap a region to show its estimates and its calendar of winters and New Year weeks."></div>
     <div class="ie-panel" id="ie-panel" aria-live="polite">
       <p class="ie-info" id="ie-info"></p>
+      <div class="ie-pk" id="ie-pk"></div>
       <p class="bay-legend ie-tlleg"><span><i class="sw" style="background:#dde5e8"></i>Winter (Met Éireann: December to February)</span><span><i class="sw" style="background:#e9915a"></i>New Year phases</span><span><i class="sw" style="background:#6b5440;height:2px;vertical-align:3px"></i>Weekly count</span></p>
       <div id="ie-tl"></div>
     </div>
@@ -41,7 +43,7 @@ HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (l
   <table id="ie-t2"><caption>The four New Year phases, weeks starting Monday</caption><thead><tr><th>Phase</th><th>Weeks</th></tr></thead><tbody></tbody></table>
 </div>
 
-**Methods.** Data are daily counts of patients on emergency department and ward trolleys from the HSE Urgent and Emergency Care daily report, 1 January 2023 to 5 April 2026, summed into Monday-start weeks for each region and divided by regional population per 10,000 people. The estimates come from model v4.6 of Henry and Bergin (2026): each region has its own level, a yearly cycle, four New Year phase effects, a Mid West operational reset in August 2024, and dependence on the previous two weeks. It was fitted in JAGS with 4 chains of 30,000 iterations, the first 10,000 dropped, giving 80,000 draws. Values are posterior medians. The likely range (95 in 100 credible interval) runs from the 2.5th to the 97.5th percentile of the draws. Significantly means the likely range of a difference between two regions excludes zero. A chance is the share of the 80,000 draws in which the statement holds. The seasonal swing is how far the yearly cycle rises above the level at its peak. Winter follows Met Éireann (2026) and the thesis: 1 December to the end of February. The winter excess is the region's yearly cycle averaged over study weeks starting in December to February, minus its average over the other study weeks, computed in every draw. It uses the yearly cycle only, not the New Year phases. The four phases are the week two weeks before the week containing 1 January, the week before it, which contains 25 December, the week containing 1 January, and the week after it. Each phase effect is the change from the baseline average in that week, and the same effect applies every winter. Region boundaries were simplified for display.
+**Methods.** Data are daily counts of patients on emergency department and ward trolleys from the HSE Urgent and Emergency Care daily report, 1 January 2023 to 5 April 2026, summed into Monday-start weeks for each region and divided by regional population per 10,000 people. The estimates come from model v4.6 of Henry and Bergin (2026): each region has its own level, a yearly cycle, four New Year phase effects, a Mid West operational reset in August 2024, and dependence on the previous two weeks. It was fitted in JAGS with 4 chains of 30,000 iterations, the first 10,000 dropped, giving 80,000 draws. Values are posterior medians. The 95% credible interval runs from the 2.5th to the 97.5th percentile of the draws. Significantly means the 95% credible interval of a difference between two regions excludes zero. A probability is the share of the 80,000 draws in which the statement holds. The seasonal swing is how far the yearly cycle rises above the level at its peak. Winter follows Met Éireann (2026) and the thesis: 1 December to the end of February. The winter excess is the region's yearly cycle averaged over study weeks starting in December to February, minus its average over the other study weeks, computed in every draw. It uses the yearly cycle only, not the New Year phases. The four phases are the week two weeks before the week containing 1 January, the week before it, which contains 25 December, the week containing 1 January, and the week after it. Each phase effect is the change from the baseline average in that week, and the same effect applies every winter. The yearly peak is the date where the fitted yearly cycle is highest, found in each draw from its sine and cosine terms. The probability of a winter peak is the share of draws with that date from 1 December to the end of February. The peak's 95% credible interval is the shortest stretch of the calendar that holds 95% of the draws. Region boundaries were simplified for display.
 
 ## References
 
@@ -91,6 +93,17 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ie-info { font-size: .85rem; color: #2a1a10; margin: 0 0 .35rem; line-height: 1.45; }
 .ie-info b { font-size: .95rem; }
 .ie-tlleg { font-size: .75rem; }
+.ie-pk { box-sizing: border-box; margin: 0 0 .5rem; }
+.ie-pkh { font-size: 1.15rem; font-weight: 700; color: #2a1a10; margin: 0 0 .1rem; line-height: 1.25; }
+.ie-pks { font-size: .8rem; color: #6b5440; margin: 0 0 .2rem; }
+#ie-pk svg { display: block; width: 100%; height: auto; font-family: inherit; }
+#ie-pk .ax text { font-size: 10px; fill: #6b5440; }
+#ie-pk .ax line { stroke: #b49a78; }
+#ie-pk .ttl { font-size: 10px; fill: #6b5440; }
+#ie-pk .pkw { font-size: 10px; fill: #4a5a60; text-anchor: middle; font-weight: 600; }
+#ie-pk .pkr line { stroke: #2a1a10; stroke-width: 1.2; }
+#ie-map .wh line { stroke: #2a1a10; stroke-width: 1.2; }
+#ie-pk .pkm { font-size: 10px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3px; }
 #ie-tl svg { display: block; width: 100%; height: auto; font-family: inherit; }
 #ie-tl .ax text { font-size: 10px; fill: #6b5440; }
 #ie-tl .ax line, #ie-tl .ax path { stroke: #b49a78; }
@@ -122,6 +135,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; font-size: .8rem; }
 #ie-t1 td:nth-child(n+3), #ie-t1 th:nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ca-tables td { font-size: .85rem; }
+#ie-t1.pk td:nth-child(n+3), #ie-t1.pk th:nth-child(n+3) { white-space: normal; }
+#ie-t1.pk td:nth-child(4), #ie-t1.pk th:nth-child(4) { text-align: left; }
 #ie-t2 td:nth-child(2) { font-size: .8rem; }
 .ca-tables tr.sig td:nth-child(2) { font-weight: 700; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
@@ -133,7 +148,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
   var el = document.getElementById("ie-map");
   Promise.all([
     d3.json("/visualizations/data/ireland_hse_regions.json"),
-    d3.json("/visualizations/data/hse_trolley_v46_per10k.json")
+    d3.json("/visualizations/data/hse_trolley_v46_per10k.json?v=2")
   ]).then(function (res) {
     var topo = res[0], D = res[1], rows = D.regions;
     var PH = ["pm1", "pre", "mid", "post"];
@@ -143,7 +158,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     var M = {
       alpha: { head: "Level", note: "Level: the baseline average weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed." },
       amp: { head: "Seasonal swing", note: "Seasonal swing: how far the yearly cycle rises above the level at its winter peak, per 10,000 people a week." },
-      pwin: { head: "Chance", prob: true, note: "Chance that the yearly cycle puts more patients on trolleys in winter, December to February, than in the rest of the year, of 100." },
+      pwin: { head: "Probability", prob: true, note: "Probability that the yearly cycle puts more patients on trolleys in winter, December to February, than in the rest of the year, in percent." },
+      ppk: { head: "Probability", prob: true, pk: true, note: "Probability that the yearly cycle reaches its highest point between 1 December and the end of February, in percent." },
       pm1: { head: "Change", phase: true, note: "Change from the baseline average weekly count, per 10,000 people, in the week two weeks before the week that contains 1 January." },
       pre: { head: "Change", phase: true, note: "Change from the baseline average weekly count, per 10,000 people, in the week that contains 25 December." },
       mid: { head: "Change", phase: true, note: "Change from the baseline average weekly count, per 10,000 people, in the week that contains 1 January." },
@@ -173,9 +189,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     function short(n) { return n.replace(/^HSE /, ""); }
     function f1(v) { var s = Math.abs(v) < 1 ? d3.format(".2f")(v) : d3.format(".1f")(v); return s.replace("\u2212", "-"); }
     function sp(v) { return (v > 0 ? "+" : "") + f1(v); }
-    function pc(p) { var n = Math.round(p * 100); return n >= 100 ? "over 99 in 100" : n <= 0 ? "under 1 in 100" : n + " in 100"; }
-    function val(r, m) { m = m || metric; return M[m].prob ? r.pwin[0] * 100 : r[m][0]; }
-    function fmtv(r, m) { m = m || metric; return M[m].prob ? pc(r.pwin[0]) : M[m].phase ? sp(r[m][0]) : f1(r[m][0]); }
+    function pc(p) { var n = Math.round(p * 100); return n >= 100 ? ">99%" : n <= 0 ? "<1%" : n + "%"; }
+    function pv(r, m) { return M[m].pk ? r.p_peak_winter : r.pwin[0]; }
+    function val(r, m) { m = m || metric; return M[m].prob ? pv(r, m) * 100 : r[m][0]; }
+    function fmtv(r, m) { m = m || metric; return M[m].prob ? pc(pv(r, m)) : M[m].phase ? sp(r[m][0]) : f1(r[m][0]); }
     function rng(q) { return f1(q[1]) + " to " + f1(q[2]); }
     function sig(r) { var q = r[metric]; return !!M[metric].phase && (q[1] > 0 || q[2] < 0); }
     var fmtD = d3.timeFormat("%-d %b %Y"), parse = d3.timeParse("%Y-%m-%d");
@@ -183,19 +200,22 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     function legend() {
       var m = M[metric], L = document.getElementById("ie-legend");
       L.innerHTML = m.phase
-        ? '<span><i class="sw" style="background:#14736b"></i>Fewer patients than the baseline average</span><span><i class="sw" style="background:#c2410c"></i>More patients than the baseline average</span><span><i class="sw" style="background:#2a1a10"></i>Dark top: likely range excludes zero</span>'
-        : m.prob ? '<span><i class="sw" style="background:#c2410c"></i>Bar height: chance higher in winter, of 100</span>'
+        ? '<span><i class="sw" style="background:#14736b"></i>Fewer patients than the baseline average</span><span><i class="sw" style="background:#c2410c"></i>More patients than the baseline average</span><span><i class="sw" style="background:#2a1a10"></i>Dark top: 95% credible interval excludes zero</span>'
+        : m.prob ? '<span><i class="sw" style="background:#c2410c"></i>Bar height: ' + (m.pk ? 'probability the yearly peak falls in winter' : 'probability higher in winter') + ', percent</span>'
         : '<span><i class="sw" style="background:#c2410c"></i>Bar height: ' + m.head.toLowerCase() + ' per 10,000 people a week</span>';
+      if (!m.prob) L.innerHTML += '<span><b style="font-weight:700;color:#2a1a10">|</b> Line beside each bar: 95% credible interval</span>';
       document.getElementById("ie-note").textContent = m.note;
     }
     function tables() {
       var m = M[metric];
       var ok = rows.slice().sort(function (a, b) { return val(b) - val(a); });
-      var heads = m.prob ? ["Rank", "Region", "Chance higher in winter", "Winter excess per 10,000"] : ["Rank", "Region", m.head + " per 10,000", "Likely range"];
+      var heads = m.pk ? ["Rank", "Region", "Probability the peak falls in winter", "Median peak date, 95% credible interval"] : m.prob ? ["Rank", "Region", "Probability higher in winter", "Winter excess per 10,000"] : ["Rank", "Region", m.head + " per 10,000", "Likely range"];
+      d3.select("#ie-t1").classed("pk", !!m.prob);
       d3.select("#ie-t1 thead tr").selectAll("th").data(heads).join("th").text(function (d) { return d; });
-      d3.select("#ie-t1 caption").text("Regions ranked by " + sel.options[sel.selectedIndex].text.replace(/, (change )?(per 10,000|in 100).*$/, "").toLowerCase().replace("new year", "New Year").replace("christmas", "Christmas"));
+      d3.select("#ie-t1 caption").text("Regions ranked by " + sel.options[sel.selectedIndex].text.replace(/, (change )?(per 10,000|percent).*$/, "").toLowerCase().replace("new year", "New Year").replace("christmas", "Christmas"));
       d3.select("#ie-t1 tbody").selectAll("tr").data(ok).join("tr").attr("class", function (r) { return sig(r) ? "sig" : null; }).html(function (r, i) {
-        if (m.prob) return "<td>" + (i + 1) + "</td><td>" + r.name + "</td><td>" + pc(r.pwin[0]) + "</td><td>" + sp(r.wex[0]) + ", likely range " + rng(r.wex) + "</td>";
+        if (m.pk) return "<td>" + (i + 1) + "</td><td>" + r.name + "</td><td>" + pc(r.p_peak_winter) + "</td><td>" + dayLabel(r.peak_median_day) + ", " + dayLabel(r.peak_range_days[0]) + " to " + dayLabel(r.peak_range_days[1]) + "</td>";
+        if (m.prob) return "<td>" + (i + 1) + "</td><td>" + r.name + "</td><td>" + pc(r.pwin[0]) + "</td><td>" + sp(r.wex[0]) + ", 95% credible interval " + rng(r.wex) + "</td>";
         return "<td>" + (i + 1) + "</td><td>" + r.name + "</td><td>" + fmtv(r) + "</td><td>" + rng(r[metric]) + "</td>";
       });
       d3.select("#ie-t2 tbody").selectAll("tr").data(PH).join("tr").html(function (k) {
@@ -211,14 +231,70 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     var phHi = d3.max(rows, function (r) { return d3.max(PH, function (k) { return r[k][2]; }); });
     var dates = D.dates.map(parse), d0 = dates[0], d1 = d3.timeDay.offset(dates[dates.length - 1], 7);
     var cur = null;
+
+    var PA = D.peak_axis, pkMax = d3.max(rows, function (r) { return d3.max(r.peak_density); });
+    var MON = ["Jul", "Aug", "Sep", "Oct", "Nov", "Dec", "Jan", "Feb", "Mar", "Apr", "May", "Jun"], MDAYS = [31, 31, 30, 31, 30, 31, 31, 28, 31, 30, 31, 30];
+    var MONL = ["July", "August", "September", "October", "November", "December", "January", "February", "March", "April", "May", "June"];
+    function dayLabel(x) { x = ((x % 365) + 365) % 365; var m = 0; while (m < 11 && x >= MDAYS[m]) { x -= MDAYS[m]; m++; } return (Math.floor(x) + 1) + " " + MONL[m]; }
+    var pkEl = document.getElementById("ie-pk");
+    function peakChart(r) {
+      pkEl.innerHTML = "";
+      var ns = pc(r.p_peak_winter);
+      d3.select(pkEl).append("p").attr("class", "ie-pkh").text(ns + " probability the peak falls in winter");
+      d3.select(pkEl).append("p").attr("class", "ie-pks").text("Median peak " + dayLabel(r.peak_median_day) + ", 95% credible interval " + dayLabel(r.peak_range_days[0]) + " to " + dayLabel(r.peak_range_days[1]) + (r.peak_range_len_days > 140 ? ", " + Math.round(r.peak_range_len_days / 7) + " weeks wide, so the peak is poorly pinned." : "."));
+      var W = Math.max(280, pkEl.clientWidth), L = 8, R = 8, T = 14, Hc = 60, H = T + Hc + 50;
+      var svg = d3.select(pkEl).append("svg").attr("viewBox", "0 0 " + W + " " + H).attr("width", W).attr("height", H)
+        .attr("role", "img").attr("aria-label", "Density of the yearly peak date, July to June, for " + r.name + ". " + ns + " of the draws put the peak in winter.");
+      var x = d3.scaleLinear().domain([0, PA.days]).range([L, W - R]);
+      var y = d3.scaleLinear().domain([0, pkMax]).range([T + Hc, T + 8]);
+      var wa = x(PA.winter[0]), wb = x(PA.winter[1]);
+      svg.append("rect").attr("x", wa).attr("width", wb - wa).attr("y", T).attr("height", Hc).attr("fill", "#dde5e8");
+      svg.append("text").attr("class", "pkw").attr("x", (wa + wb) / 2).attr("y", T - 3).text("Winter");
+      var dd = r.peak_density, step = PA.days / dd.length, edge = (dd[0] + dd[dd.length - 1]) / 2;
+      var pts = [[0, edge]].concat(dd.map(function (v, j) { return [(j + 0.5) * step, v]; }), [[PA.days, edge]]);
+      var cid = "pkclip" + Math.round(W);
+      svg.append("clipPath").attr("id", cid).append("rect").attr("x", wa).attr("width", wb - wa).attr("y", 0).attr("height", H);
+      svg.append("path").attr("d", d3.area().curve(d3.curveBasis).x(function (p) { return x(p[0]); }).y0(T + Hc).y1(function (p) { return y(p[1]); })(pts))
+        .attr("fill", "#f28c38").attr("opacity", 0.55).attr("clip-path", "url(#" + cid + ")");
+      svg.append("path").attr("d", d3.line().curve(d3.curveBasis).x(function (p) { return x(p[0]); }).y(function (p) { return y(p[1]); })(pts))
+        .attr("fill", "none").attr("stroke", "#2a1a10").attr("stroke-width", 1.6);
+      // median marker
+      var mx = x(r.peak_median_day), mj = Math.min(dd.length - 1, Math.floor(r.peak_median_day / step));
+      svg.append("line").attr("x1", mx).attr("x2", mx).attr("y1", T + Hc).attr("y2", y(dd[mj])).attr("stroke", "#b8400e").attr("stroke-width", 1.4).attr("stroke-dasharray", "3 2");
+      svg.append("circle").attr("cx", mx).attr("cy", y(dd[mj])).attr("r", 3.2).attr("fill", "#b8400e").attr("stroke", "#fffaf3").attr("stroke-width", 1);
+      var lab = svg.append("text").attr("class", "pkm").text("Median peak"), lw = 62, py = y(dd[mj]);
+      if (py < T + 26) { var rt = mx + 8 + lw <= W - R; lab.attr("y", py + 4).attr("x", rt ? mx + 8 : mx - 8).attr("text-anchor", rt ? "start" : "end"); }
+      else lab.attr("y", py - 8).attr("x", Math.max(L + lw / 2, Math.min(W - R - lw / 2, mx))).attr("text-anchor", "middle");
+      // 95% credible interval whisker |---| with median dot; two pieces if it wraps
+      var wy = T + Hc + 26, lo = r.peak_range_days[0], hi = r.peak_range_days[1];
+      var segs = lo <= hi ? [[lo, hi, true, true]] : [[lo, PA.days, true, false], [0, hi, false, true]];
+      var wg = svg.append("g").attr("class", "pkr");
+      segs.forEach(function (s) {
+        wg.append("line").attr("x1", x(s[0])).attr("x2", x(s[1])).attr("y1", wy).attr("y2", wy);
+        if (s[2]) wg.append("line").attr("x1", x(s[0])).attr("x2", x(s[0])).attr("y1", wy - 3).attr("y2", wy + 3);
+        if (s[3]) wg.append("line").attr("x1", x(s[1])).attr("x2", x(s[1])).attr("y1", wy - 3).attr("y2", wy + 3);
+      });
+      svg.append("circle").attr("cx", mx).attr("cy", wy).attr("r", 3).attr("fill", "#2a1a10");
+      // axis: month boundaries and centred labels
+      var ax = svg.append("g").attr("class", "ax");
+      ax.append("line").attr("x1", L).attr("x2", W - R).attr("y1", T + Hc).attr("y2", T + Hc);
+      var c = 0;
+      MON.forEach(function (m, k) {
+        ax.append("line").attr("x1", x(c)).attr("x2", x(c)).attr("y1", T + Hc).attr("y2", T + Hc + 4);
+        ax.append("text").attr("x", x(c + MDAYS[k] / 2)).attr("y", T + Hc + 14).attr("text-anchor", "middle").text(W < 340 ? m.charAt(0) : m);
+        c += MDAYS[k];
+      });
+      ax.append("line").attr("x1", x(c)).attr("x2", x(c)).attr("y1", T + Hc).attr("y2", T + Hc + 4);
+      svg.append("text").attr("class", "ttl").attr("x", L).attr("y", H - 3).text(W < 520 ? "Dot and bar: median peak date, 95% credible interval" : "Dot and bar: median peak date, 95% credible interval. Curve height: share of draws near that date");
+    }
     function panel(i) {
       cur = i;
       var r = rows[i];
-      info.innerHTML = "<b>" + r.name + "</b><br>Level " + f1(r.alpha[0]) + " patients on trolleys per 10,000 people a week, likely range " + rng(r.alpha) + ". "
-        + "Seasonal swing " + f1(r.amp[0]) + " per 10,000, likely range " + rng(r.amp) + ". "
-        + "Winter, December to February, averages " + sp(r.wex[0]) + " per 10,000 against the rest of the year, likely range " + rng(r.wex) + ". Chance trolleys were higher in winter: " + pc(r.pwin[0]) + ". "
-        + "Yearly peak in " + r.peak_month + (r.peak_width_weeks > 20 ? ", poorly pinned: its likely range is " + Math.round(r.peak_width_weeks) + " weeks wide" : ", likely range " + Math.round(r.peak_width_weeks) + " weeks wide") + ". "
+      info.innerHTML = "<b>" + r.name + "</b><br>Level " + f1(r.alpha[0]) + " patients on trolleys per 10,000 people a week, 95% credible interval " + rng(r.alpha) + ". "
+        + "Seasonal swing " + f1(r.amp[0]) + " per 10,000, 95% credible interval " + rng(r.amp) + ". "
+        + "Winter, December to February, averages " + sp(r.wex[0]) + " per 10,000 against the rest of the year, 95% credible interval " + rng(r.wex) + ". Probability trolleys were higher in winter: " + pc(r.pwin[0]) + ". "
         + r.weeks + " weeks of data, " + fmtD(d0) + " to " + fmtD(d3.timeDay.offset(d1, -1)) + ".";
+      peakChart(r);
       tl.innerHTML = "";
       var W = Math.max(280, tl.clientWidth), small = W < 400;
       var L = 34, R = 8, sT = 16, sH = 58, gap = 34, iH = small ? 128 : 140, colLab = small ? 56 : 44;
@@ -257,7 +333,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       var bx0 = x(blk[0]), bx1 = x(d3.timeDay.offset(blk[3], 7));
       var iT = sT + sH + 18 + gap, cL = L, cR = W - R;
       svg.append("path").attr("class", "zoom").attr("d", "M" + bx0 + "," + (sT + sH + 20) + "L" + bx1 + "," + (sT + sH + 20) + "L" + cR + "," + (iT - 14) + "L" + cL + "," + (iT - 14) + "Z");
-      svg.append("text").attr("class", "ttl").attr("x", cL).attr("y", iT - 4).text(small ? "Change per 10,000 a week, likely range, chance higher" : "Change per 10,000 people a week, likely range, and chance higher");
+      svg.append("text").attr("class", "ttl").attr("x", cL).attr("y", iT - 4).text(small ? "Change per 10,000 a week, 95% credible interval" : "Change per 10,000 people a week, 95% credible interval, and probability higher");
       var yi = d3.scaleLinear().domain([phLo, phHi]).nice().range([iT + iH, iT + 8]);
       var cw = (cR - cL) / 4;
       PH.forEach(function (k, j) {
@@ -279,7 +355,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         svg.append("line").attr("class", "ci").attr("x1", cx).attr("x2", cx).attr("y1", yi(q[1])).attr("y2", yi(q[2]));
         [q[1], q[2]].forEach(function (v) { svg.append("line").attr("class", "ci").attr("x1", cx - 5).attr("x2", cx + 5).attr("y1", yi(v)).attr("y2", yi(v)).attr("stroke-width", 1.4); });
         svg.append("circle").attr("cx", cx).attr("cy", yi(q[0])).attr("r", 4.5).attr("fill", (q[1] > 0 || q[2] < 0) ? (q[0] < 0 ? "#14736b" : "#c2410c") : "#fffaf3").attr("stroke", "#2a1a10").attr("stroke-width", 1.4)
-          .append("title").text(PHL[k] + ": " + sp(q[0]) + " per 10,000, likely range " + rng(q) + ", " + pc(q[3]) + " chance trolleys were higher");
+          .append("title").text(PHL[k] + ": " + sp(q[0]) + " per 10,000, 95% credible interval " + rng(q) + ", " + pc(q[3]) + " probability trolleys were higher");
         svg.append("text").attr("class", "vl").attr("x", cx).attr("y", q[0] < 0 ? yi(q[2]) - 6 : yi(q[1]) + 13).text(sp(q[0]));
       });
     }
@@ -289,7 +365,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     var byName = {}; rows.forEach(function (r, i) { byName[r.name] = i; });
     feats.forEach(function (f) { f.ri = byName[f.properties.Region]; });
     var maxAll = {};
-    Object.keys(M).forEach(function (k) { maxAll[k] = d3.max(rows, function (r) { return Math.abs(val(r, k)); }); });
+    Object.keys(M).forEach(function (k) { maxAll[k] = d3.max(rows, function (r) { return M[k].prob ? Math.abs(val(r, k)) : Math.max(Math.abs(r[k][1]), Math.abs(r[k][2])); }); });
     var TILT = 50 * Math.PI / 180;
     var land = topojson.merge(topo, topo.objects.regions.geometries);
     var state = { i: null };
@@ -382,8 +458,18 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
             });
           }
         });
+        if (!M[metric].prob) items.forEach(function (d) {
+          var q = rows[d.k][metric], sg = d.neg ? -1 : 1;
+          var a = Math.max(0, maxH * sg * q[1] / maxAll[metric]), b = Math.max(0, maxH * sg * q[2] / maxAll[metric]);
+          var lo2 = Math.min(a, b), hi2 = Math.max(a, b), wx = d.x - bw / 2 - 4;
+          d.wtop = d.y - hi2;
+          var wg = layer.append("g").attr("class", "wh");
+          wg.append("line").attr("x1", wx).attr("x2", wx).attr("y1", d.y - lo2).attr("y2", d.y - hi2);
+          if (lo2 > 0) wg.append("line").attr("x1", wx - 3).attr("x2", wx + 3).attr("y1", d.y - lo2).attr("y2", d.y - lo2);
+          wg.append("line").attr("x1", wx - 3).attr("x2", wx + 3).attr("y1", d.y - hi2).attr("y2", d.y - hi2);
+        });
         var placed = [];
-        var barsBox = items.map(function (d) { return { x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.hh + dy + 2 }; });
+        var barsBox = items.map(function (d) { var tp = Math.max(d.hh + dy, d.wtop !== undefined ? d.y - d.wtop : 0); return { x: d.x - bw / 2 - 8, y: d.y + 1, w: bw + dx + 9, h: tp + 2 }; });
         items.sort(function (a, b) { return a.k === i ? -1 : b.k === i ? 1 : a.top - b.top; }).forEach(function (d) {
           var tx2 = layer.append("text").attr("class", "lbl" + (d.k === i ? " main" : "")).text(d.text).attr("opacity", 0);
           var bb = tx2.node().getBBox(), lw = bb.width, lh = bb.height;
@@ -430,9 +516,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     var pnl = document.getElementById("ie-panel");
     function fixPanel() {
       var keep = cur, mx = 0, mi = 0;
-      pnl.style.minHeight = ""; info.style.minHeight = "";
-      rows.forEach(function (r, j) { panel(j); mi = Math.max(mi, info.offsetHeight); });
-      info.style.minHeight = mi + "px";
+      var mk = 0;
+      pnl.style.minHeight = ""; info.style.minHeight = ""; pkEl.style.minHeight = "";
+      rows.forEach(function (r, j) { panel(j); mi = Math.max(mi, info.offsetHeight); mk = Math.max(mk, pkEl.offsetHeight); });
+      info.style.minHeight = mi + "px"; pkEl.style.minHeight = mk + "px";
       rows.forEach(function (r, j) { panel(j); mx = Math.max(mx, pnl.offsetHeight); });
       pnl.style.minHeight = mx + "px";
       panel(keep === null || keep === undefined ? top0 : keep);
