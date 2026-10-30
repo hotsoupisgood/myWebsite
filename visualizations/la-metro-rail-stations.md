@@ -5,7 +5,7 @@ date: 2026-10-29
 layout: layouts/post.njk
 ---
 
-LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations on six lines. Line width shows average weekday boardings on each line, from LA Metro figures. The B and D Lines carried 159,362 average weekday boardings in fiscal year 2014 and 63,077 in fiscal year 2026. Press Play to watch the network grow, or hover a station for its line's boardings.
+LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations on six lines. Line width shows average weekday boardings on each line, from LA Metro figures. The B and D Lines carried 159,362 average weekday boardings in fiscal year 2014 and 63,077 in fiscal year 2026. Move the year slider to see the network grow, or hover a station for its line's boardings.
 
 <figure class="viz lam-wide" id="lam-viz">
   <div class="ca-card">
@@ -19,7 +19,6 @@ LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations 
       </div>
     </div>
     <div class="lam-year">
-      <button type="button" id="lam-play" aria-label="Play the years from 1990">Play</button>
       <label for="lam-slider" class="lam-ylab">Year <b id="lam-yv">2026</b></label>
       <input type="range" id="lam-slider" min="1990" max="2026" step="1" value="2026">
     </div>
@@ -94,9 +93,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ca-tabs button:hover { background: #f8e6cc; }
 .ca-tabs button[aria-selected="true"] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
 .ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
-#lam-play:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
 .lam-year { display: flex; align-items: center; gap: .7rem; flex: 0 1 28rem; min-width: 0; padding-bottom: 2px; }
-#lam-play { font: inherit; font-size: .9rem; font-weight: 600; min-height: 40px; min-width: 4.5rem; border: 1px solid #c2410c; background: #c2410c; color: #fff; border-radius: 8px; cursor: pointer; }
 .lam-ylab { font-size: .8rem; font-weight: 600; color: #6b5440; white-space: nowrap; }
 .lam-ylab b { font-size: 1.1rem; color: #2a1a10; font-variant-numeric: tabular-nums; }
 #lam-slider { flex: 1 1 auto; accent-color: #c2410c; min-height: 40px; min-width: 0; }
@@ -147,4 +144,4 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
-<script src="/visualizations/data/la_metro_viz.js?v=20261029g"></script>
+<script src="/visualizations/data/la_metro_viz.js?v=20261029h"></script>

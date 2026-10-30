@@ -12,7 +12,7 @@
   function partial(r, y) { var a = (y - 1) + "-07-01", b = y + "-06-30"; return r.opened >= a && r.opened <= b; }
   Promise.all([d3.json("/visualizations/data/ca-counties-10m.json?v=20261029c"), d3.json("/visualizations/data/la_metro_stations.json?v=20261029c"), d3.json("/visualizations/data/la_metro_contours.json?v=20261029c")]).then(function (res) {
     var topo = res[0], data = res[1], contours = res[2], rows = data.stations, LINES = data.lines;
-    var slider = document.getElementById("lam-slider"), play = document.getElementById("lam-play"), yv = document.getElementById("lam-yv");
+    var slider = document.getElementById("lam-slider"), yv = document.getElementById("lam-yv");
     var panel = document.getElementById("lam-panel");
     var LR = data.line_ridership || { fy: {} }, LFY = LR.fy, LFROM = LR.from || {};
     function lkey(k) { return k === "B" || k === "D" ? "BD" : k; }
@@ -298,15 +298,7 @@
     }
     busyCb.addEventListener("change", function () { refresh(true); });
     function refresh(animate) { yv.textContent = Y; busyUi(); legend(); tables(); if (api.update) api.update(animate); fixPanel(); }
-    var timer = null;
-    function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = "Play"; }
-    play.onclick = function () {
-      if (timer) { stop(); return; }
-      if (Y >= Y1) { Y = Y0; slider.value = Y; refresh(false); }
-      play.textContent = "Pause";
-      timer = setInterval(function () { if (Y >= Y1) { stop(); return; } Y += 1; slider.value = Y; refresh(true); }, 650);
-    };
-    slider.oninput = function () { stop(); Y = +slider.value; refresh(true); };
+    slider.oninput = function () { Y = +slider.value; refresh(true); };
     sel.onchange = function () { metric = sel.value; refresh(true); };
     busyUi(); legend(); tables(); draw(); fixPanel();
     window.__lam = api;
