@@ -20,7 +20,7 @@
     function lineB(k, y) { var q = lkey(k), s = LFY[q]; if (!s || y < (LFROM[q] || 0)) return null; var v = s[y]; return v === undefined ? null : v; }
     var LMAX = 0; Object.keys(LFY).forEach(function (q) { Object.keys(LFY[q]).forEach(function (y) { if (+y >= (LFROM[q] || 0)) LMAX = Math.max(LMAX, LFY[q][y]); }); });
     var LY = []; Object.keys(LFY).forEach(function (q) { Object.keys(LFY[q]).forEach(function (y) { if (LY.indexOf(+y) < 0) LY.push(+y); }); }); LY.sort();
-    function wScale(small) { return d3.scaleSqrt().domain([0, LMAX]).range([0, small ? 7 : 10]); }
+    function wScale(small) { return d3.scaleLinear().domain([0, LMAX]).range([0, small ? 17 : 30]); }
     function lineW(k, small) { var thin = small ? 1.4 : 1.8; if (metric === "age") return thin; var v = lineB(k, Y); if (v === null) return thin; return Math.max(thin, wScale(small)(v)); }
     var Y = +slider.value, metric = "b";
     var busyCb = document.getElementById("lam-busy"), busyNote = document.getElementById("lam-busy-na");
