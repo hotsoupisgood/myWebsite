@@ -46,7 +46,7 @@
   <div class="ca-card">
     <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="ie-tabs-label">Estimate</span>
       <div class="ca-tabs" id="ie-metric" role="tablist" aria-labelledby="ie-tabs-label">
-        <button type="button" role="tab" data-v="alpha" data-full="Level, patients per 10,000 people a week" aria-selected="true" tabindex="0">Level</button>
+        <button type="button" role="tab" data-v="alpha" data-full="Average, patients per 10,000 people a week" aria-selected="true" tabindex="0">Average</button>
         <button type="button" role="tab" data-v="amp" data-full="Seasonal swing, per 10,000 people a week" aria-selected="false" tabindex="-1">Swing</button>
         <button type="button" role="tab" data-v="pwin" data-full="Probability higher in winter, percent" aria-selected="false" tabindex="-1">Winter</button>
         <button type="button" role="tab" data-v="ppk" data-full="Probability the yearly peak falls in winter, percent" aria-selected="false" tabindex="-1">Peak in winter</button>
@@ -182,7 +182,7 @@
     var PHS = { pm1: "2 weeks before", pre: "Christmas week", mid: "New Year week", post: "Week after" };
     var PHC = { pm1: "#f6c79a", pre: "#e9915a", mid: "#d0652a", post: "#f3d3a8" };
     var M = {
-      alpha: { head: "Level", note: "Level: the baseline average weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed." },
+      alpha: { head: "Average", note: "Average: the baseline average weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed." },
       amp: { head: "Seasonal swing", note: "Seasonal swing: how far the yearly cycle rises above the level at its winter peak, per 10,000 people a week." },
       pwin: { head: "Probability", prob: true, note: "Probability that the yearly cycle puts more patients on trolleys in winter, December to February, than in the rest of the year, in percent." },
       ppk: { head: "Probability", prob: true, pk: true, note: "Probability that the yearly cycle reaches its highest point between 1 December and the end of February, in percent." },
