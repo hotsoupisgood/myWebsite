@@ -23,6 +23,23 @@
     function wScale(small) { return d3.scaleSqrt().domain([0, LMAX]).range([0, small ? 7 : 10]); }
     function lineW(k, small) { var thin = small ? 1.4 : 1.8; if (metric === "age") return thin; var v = lineB(k, Y); if (v === null) return thin; return Math.max(thin, wScale(small)(v)); }
     var Y = +slider.value, metric = "b";
+    var busyCb = document.getElementById("lam-busy"), busyNote = document.getElementById("lam-busy-na");
+    var BMAX = 0; rows.forEach(function (r) { FY.forEach(function (f) { if (r.b && r.b[f] !== undefined) BMAX = Math.max(BMAX, r.b[f]); }); });
+    function busyOn() { return busyCb.checked && Y >= 2024 && Y <= 2026; }
+    function top10() { var f = String(Y); return rows.filter(function (r) { return open(r) && r.b && r.b[f] !== undefined; }).sort(function (a, b) { return b.b[f] - a.b[f]; }).slice(0, 10); }
+    function busyUi() {
+      var dis = Y < 2024;
+      busyCb.disabled = dis; busyCb.parentNode.classList.toggle("off", dis); busyNote.hidden = !dis;
+      var on = busyOn();
+      document.getElementById("lam-t1").hidden = !on;
+      document.getElementById("lam-src-on").hidden = !on; document.getElementById("lam-src-off").hidden = on;
+      if (on) {
+        var f = String(Y);
+        d3.select("#lam-t1 caption").text("Busiest 10 stations, fiscal year " + Y);
+        d3.select("#lam-t1 thead tr").selectAll("th").data(["Station", "Lines", "Weekday boardings"]).join("th").text(function (d) { return d; });
+        d3.select("#lam-t1 tbody").selectAll("tr").data(top10()).join("tr").html(function (r) { return "<td>" + r.name + "</td><td>" + r.lines.join(", ") + "</td><td>" + fmt(r.b[f]) + "</td>"; });
+      }
+    }
     function open(r) { return oy(r) <= Y; }
     var tabsEl = document.getElementById("lam-metric");
     var tabBtns = Array.prototype.slice.call(tabsEl.querySelectorAll("button"));
@@ -48,6 +65,7 @@
       var L = document.getElementById("lam-legend"), cnt = rows.filter(open).length, h;
       if (metric === "b") h = cnt + " stations open in " + Y + ". Line width: average weekday boardings on the line in fiscal year " + Y + ", shown at each line's end." + (Y < 2009 ? " Line figures start in fiscal year 2009, so lines are thin before then." : "") + " Pins: stations opened in " + (Y - 1) + " or " + Y + ".";
       else { h = cnt + " stations open in " + Y + ". Dot color: decade the station opened:"; DEC.forEach(function (d, i) { h += '<i class="sw" style="background:' + DCOL[i] + '"></i>' + d + "s"; }); h += ". Pins: stations opened in " + (Y - 1) + " or " + Y + "."; }
+      if (busyOn()) h += " Bars: the 10 stations with the most average weekday boardings in fiscal year " + Y + ", on one height scale for fiscal years 2024 to 2026.";
       L.innerHTML = h;
     }
     function muted(k) { return d3.interpolateRgb(LINES[k].color, "#f1e3c8")(metric === "age" ? 0.45 : 0.3); }
@@ -155,6 +173,40 @@
       });
       var R = small ? 2.5 : 3, RON = small ? 5.5 : 6.5;
       var dots = svg.append("g").selectAll("circle").data(rows).join("circle").attr("class", "dot").attr("cx", function (r, i) { return pts[i][0]; }).attr("cy", function (r, i) { return pts[i][1]; });
+      var barG = svg.append("g"), barH = {}, bw = small ? 5 : 7, bdx = bw * 0.5, bdy = bw * 0.35, HMAX = small ? 38 : 60;
+      var hS = d3.scaleLinear().domain([0, BMAX]).range([0, HMAX]);
+      var BC = ["#f28c38", "#c4661c", "#f9b277"];
+      function barPaths(g, x, y, hh) {
+        var x0 = x - bw / 2, x1 = x + bw / 2, y0 = y, y1 = y - hh;
+        g.select(".f").attr("d", "M" + x0 + "," + y0 + "H" + x1 + "V" + y1 + "H" + x0 + "Z");
+        g.select(".s").attr("d", "M" + x1 + "," + y0 + "L" + (x1 + bdx) + "," + (y0 - bdy) + "V" + (y1 - bdy) + "L" + x1 + "," + y1 + "Z");
+        g.select(".c").attr("d", "M" + x0 + "," + y1 + "H" + x1 + "L" + (x1 + bdx) + "," + (y1 - bdy) + "H" + (x0 + bdx) + "Z");
+      }
+      function bars(animate) {
+        var set = busyOn() ? top10() : [], f = String(Y), ids = {};
+        set.forEach(function (r) { ids[r.id] = 1; });
+        barG.selectAll("g.bar").filter(function () { return !ids[this.__id]; }).each(function () { delete barH[this.__id]; }).interrupt().remove();
+        set.forEach(function (r) {
+          var i = rows.indexOf(r), x = pts[i][0], y = pts[i][1], full = hS(r.b[f]);
+          var g = barG.selectAll("g.bar").filter(function () { return this.__id === r.id; });
+          if (g.empty()) {
+            g = barG.append("g").attr("class", "bar");
+            g.node().__id = r.id; g.node().__to = null;
+            g.append("path").attr("class", "s").attr("fill", BC[1]); g.append("path").attr("class", "f").attr("fill", BC[0]); g.append("path").attr("class", "c").attr("fill", BC[2]);
+            barH[r.id] = animate ? 0 : full; barPaths(g, x, y, barH[r.id]);
+          }
+          var node = g.node();
+          if (node.__to !== null && Math.abs(node.__to - full) < 0.5) return;
+          node.__to = full;
+          var start = barH[r.id] || 0;
+          if (!animate || Math.abs(start - full) < 0.5) { g.interrupt(); barH[r.id] = full; barPaths(g, x, y, full); return; }
+          g.interrupt().transition().duration(start > 0 ? 350 : 500).ease(d3.easeCubicOut).tween("h", function () { var ip = d3.interpolateNumber(start, full); return function (u) { barH[r.id] = ip(u); barPaths(g, x, y, barH[r.id]); }; });
+        });
+        barG.selectAll("g.bar").sort(function () { return 0; });
+        var order = set.map(function (r) { return r; }).sort(function (a, b) { return pts[rows.indexOf(a)][1] - pts[rows.indexOf(b)][1]; });
+        order.forEach(function (r) { barG.selectAll("g.bar").filter(function () { return this.__id === r.id; }).raise(); });
+        return set;
+      }
       var layer = svg.append("g");
       // line ends open in year Y, both ends of each line
       function lineEnds(lk) {
@@ -174,8 +226,10 @@
           .classed("on", function (r, i) { return i === state.i; });
         dots.filter(function (r, i) { return i === state.i; }).raise();
         layer.selectAll("*").remove();
+        var bset = bars(animate), bf = String(Y);
         var placed = [];
         var obs = rows.map(function (r, i) { return open(r) ? { x: pts[i][0] - R, y: pts[i][1] + R, w: 2 * R, h: 2 * R } : null; }).filter(Boolean);
+        bset.forEach(function (r) { var i = rows.indexOf(r), hh = hS(r.b[bf]); obs.push({ x: pts[i][0] - bw / 2 - 1, y: pts[i][1] + 1, w: bw + bdx + 2, h: hh + bdy + 2 }); });
         function free(x, y, lw, lh, withObs) { if (x < 2 || x + lw > W - 2 || y - lh < 1 || y > H - 2) return false; var all = withObs ? placed.concat(obs) : placed; return !all.some(function (q) { return x < q.x + q.w + 2 && x + lw + 2 > q.x && y - lh < q.y + 1 && y + 1 > q.y - q.h - 1; }); }
         function place(text, ax, ay, cls, required, cands) {
           var t = layer.append("text").attr("class", "lbl " + cls).text(text);
@@ -190,6 +244,20 @@
         }
         // hovered station
         if (state.i !== null && open(rows[state.i])) { var hp = pts[state.i]; obs.push({ x: hp[0] - RON, y: hp[1] + RON, w: 2 * RON, h: 2 * RON }); place(rows[state.i].name, hp[0], hp[1] - RON, "main", true); }
+        // busiest station labels, tallest first, leader line when pushed away
+        bset.forEach(function (r) {
+          var i = rows.indexOf(r); if (i === state.i) return;
+          var x = pts[i][0], top = pts[i][1] - hS(r.b[bf]) - bdy, txt = r.name + " " + fmt(r.b[bf]);
+          var tm = layer.append("text").attr("class", "lbl busy").text(txt), tb = tm.node().getBBox(), lw = tb.width, lh = tb.height * 0.8; tm.remove();
+          var cands = [];
+          for (var gx = -220; gx <= 220; gx += 8) for (var gy = -140; gy <= 140; gy += 6) cands.push([x + gx - lw / 2, top - 4 + gy, gx * gx + 2 * gy * gy]);
+          cands.sort(function (a, b) { return a[2] - b[2]; });
+          var got = place(txt, x, top, "busy", false, [[x - lw / 2, top - 4], [x + bdx + 4, top + lh / 2], [x - lw - 4, top + lh / 2]].concat(cands));
+          if (!got) got = place(txt, x, top, "busy", true, null);
+          if (!got) return;
+          var lb = placed[placed.length - 1], lx = Math.max(lb.x, Math.min(lb.x + lb.w, x + bdx / 2)), ly = lb.y > top ? lb.y - lb.h : lb.y + 1;
+          if (Math.abs(ly - top) > 12 || lx === lb.x || lx === lb.x + lb.w) layer.insert("line", ":first-child").attr("class", "lead").attr("x1", x + bdx / 2).attr("y1", top).attr("x2", lx).attr("y2", ly);
+        });
         // line end labels; B and D share one
         ["A", "B", "C", "D", "E", "K"].forEach(function (lk) {
           if (lk === "D" && lineEnds("B").length) return;
@@ -228,7 +296,8 @@
       api.pts = function () { return rows.map(function (r, i) { var b = svg.node().getBoundingClientRect(), s = b.width / W; return { name: r.name, x: b.left + pts[i][0] * s, y: b.top + pts[i][1] * s }; }); };
       update(true);
     }
-    function refresh(animate) { yv.textContent = Y; legend(); tables(); if (api.update) api.update(animate); fixPanel(); }
+    busyCb.addEventListener("change", function () { refresh(true); });
+    function refresh(animate) { yv.textContent = Y; busyUi(); legend(); tables(); if (api.update) api.update(animate); fixPanel(); }
     var timer = null;
     function stop() { if (timer) { clearInterval(timer); timer = null; } play.textContent = "Play"; }
     play.onclick = function () {
@@ -239,7 +308,7 @@
     };
     slider.oninput = function () { stop(); Y = +slider.value; refresh(true); };
     sel.onchange = function () { metric = sel.value; refresh(true); };
-    legend(); tables(); draw(); fixPanel();
+    busyUi(); legend(); tables(); draw(); fixPanel();
     window.__lam = api;
     var lastW = el.clientWidth;
     window.addEventListener("resize", function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); fixPanel(); } });

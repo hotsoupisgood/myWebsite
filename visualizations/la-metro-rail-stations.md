@@ -10,9 +10,12 @@ LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations 
 <figure class="viz lam-wide" id="lam-viz">
   <div class="ca-card">
     <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="lam-tabs-label">Map shows</span>
+      <div class="lam-tabrow">
       <div class="ca-tabs" id="lam-metric" role="tablist" aria-labelledby="lam-tabs-label">
-        <button type="button" role="tab" data-v="b" aria-selected="true" tabindex="0">Ridership</button>
+        <button type="button" role="tab" data-v="b" aria-selected="true" tabindex="0">Average</button>
         <button type="button" role="tab" data-v="age" aria-selected="false" tabindex="-1">Station age</button>
+      </div>
+      <div class="lam-busy-wrap"><label class="viz-toggle"><input type="checkbox" id="lam-busy"> Busiest 10 stations</label><span class="lam-na" id="lam-busy-na" hidden>No station data before fiscal year 2024</span></div>
       </div>
     </div>
     <div class="lam-year">
@@ -28,14 +31,15 @@ LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations 
     </div>
     <div class="lam-panel" id="lam-panel" aria-live="polite"><p class="lam-hint">Hover or tap a station for its numbers.</p></div>
   </div>
-  <p class="ca-note lam-src">Station boardings: LA Metro figures released through public records requests, compiled on Wikipedia; not published by LA Metro. Line boardings: LA Metro Interactive Estimated Ridership Stats, fiscal years 2009 to 2026.</p>
+  <p class="ca-note lam-src"><span id="lam-src-off">Station boardings: LA Metro figures released through public records requests, compiled on Wikipedia; not published by LA Metro.</span><span id="lam-src-on" hidden>Station boardings cover fiscal years 2024 to 2026 and come from LA Metro figures released through public records requests, compiled on Wikipedia, not published by LA Metro.</span> Line boardings: LA Metro Interactive Estimated Ridership Stats, fiscal years 2009 to 2026.</p>
 </figure>
 
 <div class="ca-tables">
+  <table id="lam-t1" hidden><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
   <table id="lam-t2"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
 </div>
 
-**Methods.** Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. In the Ridership tab, line widths and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro's Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. In the Station age tab, each station dot is colored by the decade it opened, and all lines are drawn thin. The hover panel also gives station boardings. They are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. A pin marks each station that opened in the selected year or the year before. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.
+**Methods.** Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. In the Average tab, line widths and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro's Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. In the Station age tab, each station dot is colored by the decade it opened, and all lines are drawn thin. The hover panel also gives station boardings. They are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. A pin marks each station that opened in the selected year or the year before. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.
 
 ## References
 
@@ -119,16 +123,28 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 #lam-map .lbl.ln { font-size: 10.5px; font-weight: 700; }
 #lam-map .place { font-size: 10px; fill: #9a7b5a; font-style: italic; pointer-events: none; text-anchor: middle; }
 #lam-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
-.ca-tables { display: flex; justify-content: center; max-width: 30rem; margin: 0 auto 2rem; }
-.ca-tables table { flex: 1 1 auto; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables { display: flex; justify-content: center; align-items: flex-start; gap: 1.5rem 2.5rem; max-width: 62rem; margin: 0 auto 2rem; }
+.ca-tables table { flex: 0 1 28rem; min-width: 0; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
 .ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
 .ca-tables th, .ca-tables td { padding: .3rem .25rem; border-bottom: 1px solid #ead9bd; text-align: left; }
 .ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; font-size: .8rem; }
 .ca-tables td:nth-child(n+2), .ca-tables th:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ca-tables td:nth-child(n+2) { font-size: .8rem; }
 .ca-tables td:first-child { font-size: .85rem; }
+@media (max-width: 700px) { .ca-tables { flex-direction: column; align-items: stretch; } .ca-tables table { flex: none; width: 100%; } }
+.ca-tables table[hidden] { display: none; }
+.lam-tabrow { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; min-width: 0; max-width: 100%; }
+.lam-tabrow .ca-tabs { min-width: 0; max-width: 100%; }
+.lam-busy-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .6rem; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.viz-toggle.off { color: #a8957f; cursor: not-allowed; }
+.viz-toggle.off input { cursor: not-allowed; }
+.lam-na { font-size: .8rem; color: #6b5440; }
+#lam-map .bar { pointer-events: none; }
+#lam-map .lbl.busy { font-size: 10.5px; font-weight: 600; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
-<script src="/visualizations/data/la_metro_viz.js?v=20261029c"></script>
+<script src="/visualizations/data/la_metro_viz.js?v=20261029d"></script>
