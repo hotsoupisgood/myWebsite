@@ -5,7 +5,7 @@ date: 2026-10-29
 layout: layouts/post.njk
 ---
 
-LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations on six lines. Line width shows average weekday boardings on each line, from LA Metro figures. The B and D Lines carried 159,362 average weekday boardings in fiscal year 2014 and 63,077 in fiscal year 2026. Press Play to watch the network grow, or hover a station for its line's boardings.
+LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations on six lines. Wall height shows average weekday boardings on each line, from LA Metro figures. The B and D Lines carried 159,362 average weekday boardings in fiscal year 2014 and 63,077 in fiscal year 2026. Press Play to watch the network grow, or hover a station for its line's boardings.
 
 <figure class="viz lam-wide" id="lam-viz">
   <div class="ca-card">
@@ -39,7 +39,7 @@ LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations 
   <table id="lam-t2"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
 </div>
 
-**Methods.** Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. In the Ridership tab, line widths and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro's Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. In the Station age tab, each station dot is colored by the decade it opened, and all lines are drawn thin. The hover panel also gives station boardings. They are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. A pin marks each station that opened in the selected year or the year before. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.
+**Methods.** Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. In the Ridership tab, wall heights and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro's Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one wall height. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them as low walls. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Wall height is proportional to boardings, on one scale for all lines and years. In the Station age tab, each station dot is colored by the decade it opened, and all walls are drawn low. The hover panel also gives station boardings. They are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. A pin marks each station that opened in the selected year or the year before. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.
 
 ## References
 
@@ -142,9 +142,11 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .viz-toggle.off input { cursor: not-allowed; }
 .lam-na { font-size: .8rem; color: #6b5440; }
 #lam-map .bar { pointer-events: none; }
+#lam-map .wall { fill-opacity: .55; stroke: none; pointer-events: none; }
+#lam-map .wtop { fill: none; stroke-width: 1.2; stroke-linecap: round; pointer-events: none; }
 #lam-map .lbl.busy { font-size: 10.5px; font-weight: 600; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
-<script src="/visualizations/data/la_metro_viz.js?v=20261029d"></script>
+<script src="/visualizations/data/la_metro_viz.js?v=20261029e"></script>
