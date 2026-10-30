@@ -264,7 +264,7 @@
           if (lk === "K" && Y < 2022) return;
           var ends = lineEnds(lk); if (!ends.length) return;
           var v = metric === "b" ? lineB(lk, Y) : null;
-          var txt = (lk === "B" || lk === "D" ? (lineEnds("D").length && lineEnds("B").length ? "B, D" : lk) : lk) + (v !== null ? " " + fmt(v) : "");
+          var txt = (lk === "B" || lk === "D" ? (lineEnds("D").length && lineEnds("B").length ? "B and D combined" : lk) : lk) + (v !== null ? " " + fmt(v) : "");
           var t = layer.append("text").attr("class", "lbl ln").text(txt), bb = t.node().getBBox(), lw = bb.width, lh = bb.height * 0.8; t.remove();
           var cands = [];
           ends.forEach(function (e) { var o = 9; var cx = e.x + e.ux * o, cy = e.y + e.uy * o; cands.push([e.ux >= 0 ? cx : cx - lw, cy + lh / 2], [cx - lw / 2, e.uy < 0 ? cy : cy + lh], [e.x + 6, e.y - 4], [e.x - lw - 6, e.y - 4], [e.x + 6, e.y + lh + 4], [e.x - lw - 6, e.y + lh + 4]); });
