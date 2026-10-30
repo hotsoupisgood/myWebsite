@@ -54,11 +54,13 @@
     </div>
   </div>
   <p class="ca-note" id="ca-note"></p>
+  <div class="ca-mapwrap">
   <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors."></div>
-    <div class="ca-checks ca-checks-below">
+    <div class="ca-checks ca-checks-below ca-checks-in">
       <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 highest counties</label>
       <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 lowest counties</label>
     </div>
+  </div>
 </figure>
 <div class="ca-tables">
   <table id="ca-top"><caption>Highest 5 counties</caption><thead><tr><th>County</th><th class="vh">Of 100 workers</th><th class="nh">Workers</th></tr></thead><tbody></tbody></table>
@@ -92,6 +94,11 @@
 .ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
 .ca-checks-below { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0 1.5rem; margin: .4rem 0 0; }
 .ca-checks-below .viz-toggle { font-size: .85rem; color: #6b5440; }
+.ca-mapwrap { position: relative; }
+@media (min-width: 560px) {
+  .ca-checks-in { position: absolute; left: .4rem; bottom: .6rem; flex-direction: column; align-items: flex-start; gap: 0; margin: 0; padding: .3rem .7rem; background: rgba(253, 246, 234, .92); border: 1px solid #ead9bd; border-radius: 10px; }
+  .ca-checks-in .viz-toggle { min-height: 32px; font-size: .8rem; }
+}
 .viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
 .viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
 .ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .4rem; }
