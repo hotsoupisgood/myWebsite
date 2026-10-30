@@ -16,13 +16,13 @@ layout: layouts/post.njk
         <button type="button" role="tab" data-v="renter" aria-selected="false" tabindex="-1">Renters</button>
       </div>
     </div>
-    <div class="ca-checks">
-      <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 highest counties</label>
-      <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 lowest counties</label>
-    </div>
   </div>
   <p class="ca-note" id="ca-note"></p>
   <div id="ca-map" role="img" aria-label="Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors."></div>
+    <div class="ca-checks ca-checks-below">
+      <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 highest counties</label>
+      <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 lowest counties</label>
+    </div>
 </figure>
 
 <div class="ca-tables">
@@ -67,6 +67,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ca-tabs button[aria-selected="true"] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
 .ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
 .ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
+.ca-checks-below { flex-direction: row; flex-wrap: wrap; justify-content: center; gap: 0 1.5rem; margin: .4rem 0 0; }
+.ca-checks-below .viz-toggle { font-size: .85rem; color: #6b5440; }
 .viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
 .viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
 .ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .4rem; }
