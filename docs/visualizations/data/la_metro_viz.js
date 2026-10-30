@@ -10,7 +10,7 @@
   function odate(r) { var p = r.opened.split("-"); return +p[2] + " " + MONTHS[+p[1] - 1] + " " + p[0]; }
   function yrs(n) { return n + (n === 1 ? " year" : " years"); }
   function partial(r, y) { var a = (y - 1) + "-07-01", b = y + "-06-30"; return r.opened >= a && r.opened <= b; }
-  Promise.all([d3.json("/visualizations/data/ca-counties-10m.json"), d3.json("/visualizations/data/la_metro_stations.json"), d3.json("/visualizations/data/la_metro_contours.json")]).then(function (res) {
+  Promise.all([d3.json("/visualizations/data/ca-counties-10m.json?v=20261029c"), d3.json("/visualizations/data/la_metro_stations.json?v=20261029c"), d3.json("/visualizations/data/la_metro_contours.json?v=20261029c")]).then(function (res) {
     var topo = res[0], data = res[1], contours = res[2], rows = data.stations, LINES = data.lines;
     var slider = document.getElementById("lam-slider"), play = document.getElementById("lam-play"), yv = document.getElementById("lam-yv");
     var panel = document.getElementById("lam-panel");

@@ -139,7 +139,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
   var el = document.getElementById("ca-map");
   Promise.all([
     d3.json("/visualizations/data/ca-counties-10m.json"),
-    d3.json("/visualizations/data/ca_commute_metrics_2020_2024.json")
+    d3.json("/visualizations/data/ca_commute_metrics_2020_2024.json?v=20261029c")
   ]).then(function (res) {
     var topo = res[0], rows = res[1];
     var byFips = {};
@@ -479,7 +479,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       if (rows) draw();
     });
   });
-  d3.json("/visualizations/data/ca_commute_metrics_2020_2024.json").then(function (d) {
+  d3.json("/visualizations/data/ca_commute_metrics_2020_2024.json?v=20261029c").then(function (d) {
     rows = d; draw();
     var lw = plot.clientWidth;
     window.addEventListener("resize", function () { if (plot.clientWidth !== lw) { lw = plot.clientWidth; draw(); } });
