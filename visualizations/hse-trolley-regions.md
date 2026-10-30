@@ -30,7 +30,7 @@ HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (9
   <div class="ie-grid">
     <div id="ie-map" role="img" aria-label="Tilted map of Ireland split into the six HSE health regions. A bar rises from each region. Hover or tap a region to show its estimates and its calendar of winters and New Year weeks."></div>
     <div class="ie-panel" id="ie-panel" aria-live="polite">
-      <h3 class="ie-ptitle">Region detail</h3>
+      <h3 class="ie-ptitle">Region info</h3>
       <p class="ie-info" id="ie-info"></p>
       <div class="ie-pk" id="ie-pk"></div>
       <p class="bay-legend ie-tlleg"><span><i class="sw" style="background:#e2f0e2"></i>Winter (Met Éireann: December to February)</span><span><i class="sw" style="background:#e9915a"></i>New Year phases</span><span><i class="sw" style="background:#6b5440;height:2px;vertical-align:3px"></i>Weekly count</span></p>
