@@ -7,15 +7,15 @@ layout: layouts/post.njk
 
 <figure class="viz" id="ca-transit-viz">
   <div class="ca-card">
-    <label class="ca-select" for="ca-metric"><span>Statistic</span>
-      <select id="ca-metric">
-        <option value="transit" selected>Transit commuters, of 100 workers</option>
-        <option value="novehicle">Households with no vehicle, of 100 households</option>
-        <option value="commute">One-way commute time, minutes</option>
-        <option value="lowwage">Transit commuters among workers earning under $25,000 a year, of 100</option>
-        <option value="renter">Households that rent their home, of 100 households</option>
-      </select>
-    </label>
+    <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="ca-tabs-label">Statistic</span>
+      <div class="ca-tabs" id="ca-metric" role="tablist" aria-labelledby="ca-tabs-label">
+        <button type="button" role="tab" data-v="transit" aria-selected="true" tabindex="0">Transit</button>
+        <button type="button" role="tab" data-v="novehicle" aria-selected="false" tabindex="-1">No car</button>
+        <button type="button" role="tab" data-v="commute" aria-selected="false" tabindex="-1">Commute</button>
+        <button type="button" role="tab" data-v="lowwage" aria-selected="false" tabindex="-1">Low earners</button>
+        <button type="button" role="tab" data-v="renter" aria-selected="false" tabindex="-1">Renters</button>
+      </div>
+    </div>
     <div class="ca-checks">
       <label class="viz-toggle"><input type="checkbox" id="ca-top5" checked> Always show the 5 highest counties</label>
       <label class="viz-toggle"><input type="checkbox" id="ca-bottom5" checked> Always show the 5 lowest counties</label>
@@ -56,14 +56,21 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #ca-map { width: 100%; }
 .ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
-.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
-.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%23b8400e' stroke-width='2'/%3E%3C/svg%3E") no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
-.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; flex: 1 1 100%; min-width: 0; max-width: 100%; }
+.ca-card { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.ca-card > * { min-width: 0; }
+.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-tabs { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
+.ca-tabs::-webkit-scrollbar { display: none; }
+.ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .95rem; border: 1px solid #d4b483; border-radius: 999px; background: #fffaf3; color: #2a1a10; cursor: pointer; white-space: nowrap; }
+.ca-tabs button:hover { background: #f8e6cc; }
+.ca-tabs button[aria-selected="true"] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
+.ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
 .ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
 .viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
 .viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
 .ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .4rem; }
-@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } }
 #ca-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 #ca-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.6; stroke-linejoin: round; cursor: pointer; }
 #ca-map .county.nb { fill: #f5d6aa; }
@@ -107,7 +114,26 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       renter: { unit: " of 100", head: "Of 100 households", count: "Households", what: "households that rent",
         note: "Occupied homes where the household rents rather than owns, of every 100 occupied homes." }
     };
-    var sel = document.getElementById("ca-metric");
+    var tabsEl = document.getElementById("ca-metric");
+    var tabBtns = Array.prototype.slice.call(tabsEl.querySelectorAll("button"));
+    var sel = { value: "transit", onchange: null };
+    function pickTab(b, focus) {
+      tabBtns.forEach(function (x) { var on = x === b; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; });
+      if (focus) b.focus();
+      var l = b.offsetLeft - tabsEl.offsetLeft, r = l + b.offsetWidth;
+      if (l < tabsEl.scrollLeft) tabsEl.scrollLeft = l - 8; else if (r > tabsEl.scrollLeft + tabsEl.clientWidth) tabsEl.scrollLeft = r - tabsEl.clientWidth + 8;
+      if (sel.value === b.dataset.v) return;
+      sel.value = b.dataset.v;
+      if (sel.onchange) sel.onchange();
+    }
+    tabBtns.forEach(function (b, k) {
+      b.addEventListener("click", function () { pickTab(b, false); });
+      b.addEventListener("keydown", function (ev) {
+        var n = ev.key === "ArrowRight" ? k + 1 : ev.key === "ArrowLeft" ? k - 1 : ev.key === "Home" ? 0 : ev.key === "End" ? tabBtns.length - 1 : null;
+        if (n === null) return;
+        ev.preventDefault(); pickTab(tabBtns[(n + tabBtns.length) % tabBtns.length], true);
+      });
+    });
     var metric = sel.value;
     function mv(r) { return r[metric].value; }
     function fmt(v) { return v.toFixed(1) + METRICS[metric].unit; }
