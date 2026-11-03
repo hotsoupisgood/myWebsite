@@ -1,7 +1,7 @@
 // Dashboard for Twitch Transcripts: hours, topic rates and top words by stream.
 // Data: twitch_transcripts.json, built by scripts/build_twitch_transcripts.py (aggregates only).
 (function () {
-  const INK = "#2a1a10", MUTED = "#6b5440", LIGHT = "#f2d3a8", BAR = "#f28c38", FOCUS = "#c2410c";
+  const INK = "#2a2340", MUTED = "#625a7a", LIGHT = "#cfe3f7", BAR = "#f4a6c0", FOCUS = "#7461c4";
   const tip = document.getElementById("tw-tip");
   const fmt1 = d3.format(".1f"), fmtInt = d3.format(",");
   const short = (s) => s.label.replace(/^\w+ /, "");          // "Oct 26"
@@ -145,21 +145,61 @@
     return draw;
   }
 
+  // The grid has two views: word pairs (default) and single words. Both share the drawing code.
+  const VIEWS = {
+    pairs: { tab: "Word pairs", list: "top_pairs", rate: "pairs", count: "pairs_n",
+      head: (W, S) => `"${W[0].label}" was the most frequent word pair over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
+      body: (W) => `The grid shows the ${W.length} most frequent word pairs. A word pair is two words spoken one after the other, neither of them a common English word. ` +
+        `Each cell gives how often the pair was spoken per 10,000 words in that stream. Haley Stevens and Mike Rogers are Michigan politicians. A hype train is a Twitch feature that viewers start by subscribing or donating.`,
+      aria: "Grid of the 12 most frequent word pairs by stream. Darker cells mean the pair was spoken more often per 10,000 words." },
+    words: { tab: "Single words", list: "top_words", rate: "top", count: "top_n",
+      head: (W, S) => `"${W[0].label}" was the most frequent word over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
+      body: (W) => `The grid shows the ${W.length} most frequent words after common English words were removed. Each cell gives how often the word was spoken per 10,000 words in that stream. ` +
+        `El-Sayed, Rogers and Stevens are the Michigan politicians Abdul El-Sayed, Mike Rogers and Haley Stevens.`,
+      aria: "Grid of the 12 most frequent words by stream. Darker cells mean the word was spoken more often per 10,000 words." },
+  };
+
+  function wordTabs(redraw) {
+    const tabs = document.getElementById("tw-wview");
+    if (tabs.childElementCount) return;
+    Object.entries(VIEWS).forEach(([k, v], i) => {
+      const b = tabs.appendChild(document.createElement("button"));
+      b.type = "button"; b.setAttribute("role", "tab"); b.dataset.v = k; b.textContent = v.tab;
+      b.setAttribute("aria-selected", i === 0); b.tabIndex = i === 0 ? 0 : -1;
+    });
+    const btns = [...tabs.querySelectorAll("button")];
+    const select = (k, focus) => {
+      wordView = k;
+      btns.forEach((b) => { const on = b.dataset.v === k; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
+      redraw();
+    };
+    tabs.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) select(b.dataset.v); });
+    tabs.addEventListener("keydown", (e) => {
+      const i = btns.findIndex((b) => b.dataset.v === wordView);
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        select(btns[(i + (e.key === "ArrowRight" ? 1 : btns.length - 1)) % btns.length].dataset.v, true);
+      }
+    });
+  }
+
+  let wordView = "pairs";
   function words(D) {
-    const S = D.streams, W = D.top_words, el = document.getElementById("tw-words");
-    document.getElementById("tw-h3").textContent =
-      `"${W[0].label}" was the most frequent word over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`;
-    document.getElementById("tw-p3").textContent =
-      `The grid shows the ${W.length} most frequent words after common English words were removed. Each cell gives how often the word was spoken per 10,000 words in that stream. ` +
-      `El-Sayed, Rogers and Stevens are the Michigan politicians Abdul El-Sayed, Mike Rogers and Haley Stevens.`;
+    wordTabs(() => words(D));
+    const V = VIEWS[wordView], S = D.streams, W = D[V.list], el = document.getElementById("tw-words");
+    el.innerHTML = "";
+    el.setAttribute("aria-label", V.aria);
+    document.getElementById("tw-h3").textContent = V.head(W, S);
+    document.getElementById("tw-p3").textContent = V.body(W);
     const narrow = (el.clientWidth || 640) < 480;
-    const m = { t: 34, r: 4, b: 4, l: narrow ? 74 : 96 };
+    const lw = wordView === "pairs" ? (narrow ? 136 : 150) : (narrow ? 74 : 96);
+    const m = { t: 34, r: 4, b: 4, l: lw };
     const rowH = narrow ? 26 : 28;
     const f = frame(el, m.t + m.b + rowH * W.length, m);
     const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
     const y = d3.scaleBand(W.map((w) => w.key), [0, f.ih]).padding(0.08);
-    const vmax = d3.max(S, (s) => d3.max(W, (w) => s.top[w.key]));
-    const col = d3.scaleLinear([0, vmax], ["#fdf6ea", FOCUS]).interpolate(d3.interpolateLab);
+    const vmax = d3.max(S, (s) => d3.max(W, (w) => s[V.rate][w.key]));
+    const col = d3.scaleLinear([0, vmax], ["#f6f1fb", FOCUS]).interpolate(d3.interpolateLab);
     const hx = f.g.append("g").attr("class", "ax");
     S.forEach((s) => {
       const t = hx.append("text").attr("text-anchor", "middle");
@@ -168,7 +208,7 @@
     });
     f.g.selectAll(null).data(W).join("text").attr("class", "wl").attr("x", -8)
       .attr("y", (w) => y(w.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((w) => w.label);
-    const cells = S.flatMap((s) => W.map((w) => ({ s, w, v: s.top[w.key], n: s.top_n[w.key] })));
+    const cells = S.flatMap((s) => W.map((w) => ({ s, w, v: s[V.rate][w.key], n: s[V.count][w.key] })));
     f.g.selectAll(null).data(cells).join("rect")
       .attr("x", (c) => x(c.s.label)).attr("y", (c) => y(c.w.key)).attr("width", x.bandwidth()).attr("height", y.bandwidth())
       .attr("rx", 3).attr("fill", (c) => col(c.v))
@@ -194,7 +234,7 @@
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103b").then((D) => {
+  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103d").then((D) => {
     let drawTopics;
     const all = () => { hours(D); if (!drawTopics) drawTopics = topics(D); else drawTopics(); words(D); };
     all();

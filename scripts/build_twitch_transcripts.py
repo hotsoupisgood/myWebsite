@@ -20,6 +20,15 @@ EXTRA_STOP = set("people thank wait anti let crazy great understand years live h
 LABEL = {"sayed": "El-Sayed", "israel": "Israel", "stevens": "Stevens", "democrats": "Democrats",
          "trump": "Trump", "democratic": "Democratic", "rogers": "Rogers", "michigan": "Michigan"}
 
+# Left out of the pair grid: the streamer's own name, as in the word grid.
+PAIR_DROP = {"hassan piker", "hasan piker"}
+PAIR_LABEL = {"haley stevens": "Haley Stevens", "mike rogers": "Mike Rogers", "democratic party": "Democratic Party",
+              "donald trump": "Donald Trump", "united states": "United States", "anti semitic": "anti-Semitic", "anti semitism": "anti-Semitism",
+              "fox news": "Fox News", "benjamin netanyahu": "Benjamin Netanyahu", "pro israel": "pro-Israel",
+              "black people": "Black people", "ilhan omar": "Ilhan Omar", "mao zedong": "Mao Zedong",
+              "ethan klein": "Ethan Klein", "abdul sayed": "Abdul El-Sayed", "hype train": "hype train",
+              "republican party": "Republican Party", "white house": "White House", "kamala harris": "Kamala Harris"}
+
 # Topic word groups. A topic count is the number of tokens in the group.
 TOPICS = {
     "elections": ("Elections", "Election words", "election elections midterm midterms vote votes voting voter voters ballot ballots poll polls polling"),
@@ -46,7 +55,7 @@ def main():
     vods.sort(key=lambda x: x[0])
 
     streams, all_tok = [], collections.Counter()
-    per = []
+    per, pairs_per, all_pair = [], [], collections.Counter()
     for iso, d, meta in vods:
         rows = [json.loads(l) for l in open(d / "transcript.jsonl", encoding="utf-8") if l.strip()]
         speech = sum(r["end"] - r["start"] for r in rows)
@@ -57,6 +66,16 @@ def main():
         content = collections.Counter({w: n for w, n in c.items()
                                        if w not in STOP and w not in EXTRA_STOP and len(w) > 2})
         all_tok += content
+        # adjacent pairs inside one segment, both words past the shared stopwords (as hasan-stream
+        # plots_pairs.py, but every voice, like the word grid)
+        pc = collections.Counter()
+        for r in rows:
+            t = [w[:-2] if w.endswith("'s") else w for w in TOK.findall(r["text"].lower())]
+            for a, b in zip(t, t[1:]):
+                if a not in STOP and b not in STOP and len(a) > 2 and len(b) > 2 and a != b:
+                    pc[f"{a} {b}"] += 1
+        all_pair += pc
+        pairs_per.append(pc)
         dt = local_date(iso)
         streams.append({"date": dt.strftime("%Y-%m-%d"), "label": dt.strftime("%a %b %-d"),
                         "stream_h": round(float(meta["duration_s"]) / 3600, 2),
@@ -65,9 +84,12 @@ def main():
         per.append((c, len(toks)))
 
     top = [w for w, _ in all_tok.most_common(N_TOP)]
-    for s, (c, n) in zip(streams, per):
+    ptop = [p for p, _ in all_pair.most_common(N_TOP + len(PAIR_DROP)) if p not in PAIR_DROP][:N_TOP]
+    for s, (c, n), pc in zip(streams, per, pairs_per):
         s["top"] = {w: round(c[w] / n * 1e4, 1) for w in top}
         s["top_n"] = {w: c[w] for w in top}
+        s["pairs"] = {p: round(pc[p] / n * 1e4, 1) for p in ptop}
+        s["pairs_n"] = {p: pc[p] for p in ptop}
         s["topics"] = {k: round(sum(c[w] for w in ws.split()) / n * 1e4, 1) for k, (_, _n, ws) in TOPICS.items()}
         s["topics_n"] = {k: sum(c[w] for w in ws.split()) for k, (_, _n, ws) in TOPICS.items()}
 
@@ -76,6 +98,7 @@ def main():
                       "speech_h": round(sum(s["speech_s"] for s in streams) / 3600, 1),
                       "words": sum(s["words"] for s in streams)},
            "top_words": [{"key": w, "label": LABEL.get(w, w), "n": all_tok[w]} for w in top],
+           "top_pairs": [{"key": p, "label": PAIR_LABEL.get(p, p), "n": all_pair[p]} for p in ptop],
            "topics": [{"key": k, "label": lab, "noun": noun, "words": ws.split()}
                       for k, (lab, noun, ws) in TOPICS.items()],
            "streams": streams}
