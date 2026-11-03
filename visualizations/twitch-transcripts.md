@@ -16,6 +16,18 @@ layout: layouts/post.njk
 
 </div>
 
+<section class="tw-sec" aria-labelledby="tw-h3">
+  <h2 id="tw-h3" class="tw-h"></h2>
+  <div class="ca-card">
+    <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="tw-wview-label">Show</span>
+      <div class="ca-tabs" id="tw-wview" style="justify-content:flex-start" role="tablist" aria-labelledby="tw-wview-label"></div>
+    </div>
+  </div>
+  <div class="tw-chart" id="tw-words" role="img" aria-label="Grid of the 12 most frequent words by stream. Darker cells mean the word was spoken more often per 10,000 words."></div>
+  <p class="tw-legend" id="tw-wlegend"></p>
+  <p class="tw-p" id="tw-p3"></p>
+</section>
+
 <section class="tw-sec" aria-labelledby="tw-h1">
   <h2 id="tw-h1" class="tw-h"></h2>
   <div class="tw-tiles" id="tw-tiles"></div>
@@ -35,17 +47,6 @@ layout: layouts/post.njk
   <p class="tw-p" id="tw-p2"></p>
 </section>
 
-<section class="tw-sec" aria-labelledby="tw-h3">
-  <h2 id="tw-h3" class="tw-h"></h2>
-  <div class="ca-card">
-    <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="tw-wview-label">Show</span>
-      <div class="ca-tabs" id="tw-wview" style="justify-content:flex-start" role="tablist" aria-labelledby="tw-wview-label"></div>
-    </div>
-  </div>
-  <div class="tw-chart" id="tw-words" role="img" aria-label="Grid of the 12 most frequent words by stream. Darker cells mean the word was spoken more often per 10,000 words."></div>
-  <p class="tw-legend" id="tw-wlegend"></p>
-  <p class="tw-p" id="tw-p3"></p>
-</section>
 
 <div class="tw-tip" id="tw-tip" hidden></div>
 
