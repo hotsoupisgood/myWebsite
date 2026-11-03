@@ -5,7 +5,7 @@
 	
 	<link href="https://lucashenry.xyz/feed/feed.xml" rel="self"/>
 	<link href="https://lucashenry.xyz/"/>
-	<updated>2026-10-29T00:00:00Z</updated>
+	<updated>2026-11-03T00:00:00Z</updated>
 	<id>https://lucashenry.xyz/</id>
 	<author>
 		<name>Lucas</name>
@@ -13,43 +13,130 @@
 	</author>
 	
 	<entry>
-		<title>Rail stations opened in the 1990s carried 56 of every 100 LA Metro rail boardings in fiscal year 2026</title>
+		<title>Dashboard for Twitch Transcripts</title>
+		<link href="https://lucashenry.xyz/visualizations/twitch-transcripts/"/>
+		<updated>2026-11-03T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/visualizations/twitch-transcripts/</id>
+		<content type="html">&lt;div class=&quot;tw-tldr&quot;&gt;
+&lt;p&gt;&lt;strong&gt;TLDR&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I transcribed a week of HasanAbi&#39;s Twitch streams, from the archived video audio, with a speech recognition model.&lt;/li&gt;
+&lt;li&gt;I counted how much of each stream had speech and which words came up most.&lt;/li&gt;
+&lt;li&gt;I found that three Michigan politicians were named most often in the final streams before the midterms.&lt;/li&gt;
+&lt;li&gt;The panels below show hours, topics and words by stream. Methods are at the end.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h1&quot;&gt;
+  &lt;h2 id=&quot;tw-h1&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;tw-tiles&quot; id=&quot;tw-tiles&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-hours&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of stream length and hours of speech for each of the eight streams.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-legend&quot;&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#f2d3a8&quot;&gt;&lt;/span&gt;Stream length &lt;span class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/span&gt;Speech&lt;/p&gt;
+  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p1&quot;&gt;&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h2&quot;&gt;
+  &lt;h2 id=&quot;tw-h2&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;ca-card&quot;&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;tw-tabs-label&quot;&gt;Topic&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;tw-topic&quot; role=&quot;tablist&quot; aria-labelledby=&quot;tw-tabs-label&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-topics&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of how often the selected topic&#39;s words were spoken in each stream, per 10,000 words.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p2&quot;&gt;&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h3&quot;&gt;
+  &lt;h2 id=&quot;tw-h3&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-words&quot; role=&quot;img&quot; aria-label=&quot;Grid of the 12 most frequent words by stream. Darker cells mean the word was spoken more often per 10,000 words.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-legend&quot; id=&quot;tw-wlegend&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p3&quot;&gt;&lt;/p&gt;
+&lt;/section&gt;
+&lt;div class=&quot;tw-tip&quot; id=&quot;tw-tip&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; The streams are the eight HasanAbi Twitch broadcasts from October 26 to November 2, 2026, one a day. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so &amp;quot;Israel&#39;s&amp;quot; counts as &amp;quot;Israel&amp;quot;. Each topic is a fixed word list, shown under its chart. The word grid uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example &amp;quot;thank&amp;quot; and &amp;quot;wait&amp;quot;. So were first names whose surname is already counted, and the streamer&#39;s own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.&lt;/p&gt;
+&lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/twitch-transcripts/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
+&lt;div class=&quot;references&quot;&gt;
+&lt;p&gt;HasanAbi. (2026). &lt;em&gt;Twitch past broadcasts, October 26 to November 2, 2026&lt;/em&gt; [Video recordings]. Twitch. &lt;a href=&quot;https://www.twitch.tv/hasanabi&quot;&gt;https://www.twitch.tv/hasanabi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bain, M., Huh, J., Han, T., &amp;amp; Zisserman, A. (2023). WhisperX: Time-accurate speech transcription of long-form audio. &lt;em&gt;Proceedings of Interspeech 2023&lt;/em&gt;, 4489 to 4493. &lt;a href=&quot;https://github.com/m-bain/whisperX&quot;&gt;https://github.com/m-bain/whisperX&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Radford, A., Kim, J. W., Xu, T., Brockman, G., McLeavey, C., &amp;amp; Sutskever, I. (2023). Robust speech recognition via large-scale weak supervision. &lt;em&gt;Proceedings of the 40th International Conference on Machine Learning&lt;/em&gt;. &lt;a href=&quot;https://github.com/openai/whisper&quot;&gt;https://github.com/openai/whisper&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.tw-tldr { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .2rem 1.1rem; margin: 0 0 1.4rem; }
+.tw-tldr ul { margin: .3rem 0 .7rem; padding-left: 1.2rem; }
+.tw-tldr li { margin: .2rem 0; }
+.tw-sec { margin: 0 0 2.2rem; }
+.tw-h { font-size: 1.2rem; line-height: 1.35; margin: 0 0 .7rem; }
+.tw-p { font-size: .92rem; margin: .4rem 0 0; }
+.tw-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; margin-bottom: .9rem; }
+.tw-tile { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .55rem .7rem; }
+.tw-tile b { display: block; font-size: 1.55rem; line-height: 1.2; color: #2a1a10; font-variant-numeric: tabular-nums; }
+.tw-tile span { font-size: .8rem; color: #6b5440; }
+@media (max-width: 640px) { .tw-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tw-tile b { font-size: 1.3rem; } }
+.tw-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+.tw-chart .ax text { font-size: 11px; fill: #6b5440; }
+.tw-chart .ax line, .tw-chart .ax path { stroke: #d9c6a6; }
+.tw-chart .grid line { stroke: #efe3cf; }
+.tw-chart .axt { font-size: 11px; fill: #6b5440; }
+.tw-chart .val { font-size: 11px; fill: #2a1a10; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
+.tw-chart .hit { fill: transparent; cursor: pointer; }
+.tw-chart .cell-lbl { font-size: 10px; pointer-events: none; font-variant-numeric: tabular-nums; }
+.tw-chart .wl { font-size: 12px; fill: #2a1a10; }
+.tw-legend { font-size: .8rem; color: #6b5440; margin: .3rem 0 0; }
+.tw-legend .sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 3px; margin: 0 .25rem 0 .6rem; vertical-align: -1px; }
+.tw-legend .sw:first-child { margin-left: 0; }
+.tw-tip { position: absolute; z-index: 10; pointer-events: none; background: #fffaf3; border: 1px solid #d4b483; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a1a10; box-shadow: 0 2px 8px rgba(90,58,26,.18); max-width: 16rem; }
+.tw-tip b { display: block; margin-bottom: .1rem; }
+.ca-card { box-sizing: border-box; max-width: 100%; background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .7rem 1rem; margin-bottom: .6rem; }
+.ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; min-width: 0; max-width: 100%; }
+.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-tabs { display: flex; gap: .4rem; justify-content: space-between; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
+.ca-tabs::-webkit-scrollbar { display: none; }
+.ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .95rem; border: 1px solid #d4b483; border-radius: 999px; background: #fffaf3; color: #2a1a10; cursor: pointer; white-space: nowrap; }
+.ca-tabs button:hover { background: #f8e6cc; }
+.ca-tabs button[aria-selected=&quot;true&quot;] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
+.ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
+@media (max-width: 640px) { .ca-tabs { justify-content: flex-start; } .ca-card { padding: .7rem .8rem; } }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
+&lt;/style&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=20261103b&quot;&gt;&lt;/script&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>LA Metro rail grew from 21 stations in 1990 to 110 in 2026</title>
 		<link href="https://lucashenry.xyz/visualizations/la-metro-rail-stations/"/>
 		<updated>2026-10-29T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/la-metro-rail-stations/</id>
-		<content type="html">&lt;p&gt;LA Metro rail has 110 stations on six lines. The 47 stations opened from 1990 to 1999 had 127,389 of the 226,114 average weekday boardings counted by station in fiscal year 2026. The 18 stations opened since 2020 had 24,302. Line width shows average weekday boardings on each line, from LA Metro ridership figures. The B and D Lines carried 63,077 average weekday boardings in fiscal year 2026, down from 159,362 in fiscal year 2014.&lt;/p&gt;
+		<content type="html">&lt;p&gt;LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations on six lines. Line width shows average weekday boardings on each line, from LA Metro figures. The B and D Lines carried 159,362 average weekday boardings in fiscal year 2014 and 63,077 in fiscal year 2026. Move the year slider to see the network grow, or hover a station for its line&#39;s boardings.&lt;/p&gt;
 &lt;figure class=&quot;viz lam-wide&quot; id=&quot;lam-viz&quot;&gt;
   &lt;div class=&quot;ca-card&quot;&gt;
-    &lt;label class=&quot;ca-select&quot; for=&quot;lam-metric&quot;&gt;&lt;span&gt;Statistic&lt;/span&gt;
-      &lt;select id=&quot;lam-metric&quot;&gt;
-        &lt;option value=&quot;b&quot; selected=&quot;&quot;&gt;Average weekday boardings&lt;/option&gt;
-        &lt;option value=&quot;age&quot;&gt;Station age (years open)&lt;/option&gt;
-        &lt;option value=&quot;chg&quot;&gt;Change since fiscal year 2024, boardings&lt;/option&gt;
-      &lt;/select&gt;
-    &lt;/label&gt;
-    &lt;div class=&quot;ca-checks&quot;&gt;
-      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;lam-colors&quot; checked=&quot;&quot; /&gt; Show line colors&lt;/label&gt;
-      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;lam-terrain&quot; checked=&quot;&quot; /&gt; Show terrain&lt;/label&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;lam-tabs-label&quot;&gt;Map shows&lt;/span&gt;
+      &lt;div class=&quot;lam-tabrow&quot;&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;lam-metric&quot; role=&quot;tablist&quot; aria-labelledby=&quot;lam-tabs-label&quot;&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;b&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;Ridership&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;age&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Station age&lt;/button&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;lam-busy-wrap&quot;&gt;&lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;lam-busy&quot; /&gt; Busiest 10 stations&lt;/label&gt;&lt;/div&gt;
+      &lt;/div&gt;
     &lt;/div&gt;
     &lt;div class=&quot;lam-year&quot;&gt;
-      &lt;button type=&quot;button&quot; id=&quot;lam-play&quot; aria-label=&quot;Play the years from 1990&quot;&gt;Play&lt;/button&gt;
       &lt;label for=&quot;lam-slider&quot; class=&quot;lam-ylab&quot;&gt;Year &lt;b id=&quot;lam-yv&quot;&gt;2026&lt;/b&gt;&lt;/label&gt;
       &lt;input type=&quot;range&quot; id=&quot;lam-slider&quot; min=&quot;1990&quot; max=&quot;2026&quot; step=&quot;1&quot; value=&quot;2026&quot; /&gt;
     &lt;/div&gt;
   &lt;/div&gt;
-  &lt;p class=&quot;ca-note&quot; id=&quot;lam-note&quot;&gt;&lt;/p&gt;
-  &lt;p class=&quot;bay-legend&quot; id=&quot;lam-legend&quot;&gt;&lt;/p&gt;
   &lt;div class=&quot;lam-body&quot;&gt;
-    &lt;div id=&quot;lam-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of the LA Metro rail network. Each station that is open in the selected year has a bar for the selected statistic. Hover or tap a station for its numbers.&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;lam-mapcol&quot;&gt;
+      &lt;div id=&quot;lam-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of the LA Metro rail network in the selected year. Hover or tap a station for its numbers.&quot;&gt;&lt;/div&gt;
+      &lt;p class=&quot;bay-legend&quot; id=&quot;lam-legend&quot;&gt;&lt;/p&gt;
+    &lt;/div&gt;
     &lt;div class=&quot;lam-panel&quot; id=&quot;lam-panel&quot; aria-live=&quot;polite&quot;&gt;&lt;p class=&quot;lam-hint&quot;&gt;Hover or tap a station for its numbers.&lt;/p&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;p class=&quot;ca-note lam-src&quot;&gt;Station boardings: LA Metro figures released through public records requests, compiled on Wikipedia; not published by LA Metro. Line boardings: LA Metro Interactive Estimated Ridership Stats, fiscal years 2009 to 2026.&lt;/p&gt;
+  &lt;p class=&quot;ca-note lam-src&quot;&gt;&lt;span id=&quot;lam-src-off&quot;&gt;Station boardings: LA Metro figures released through public records requests, compiled on Wikipedia; not published by LA Metro.&lt;/span&gt;&lt;span id=&quot;lam-src-on&quot; hidden=&quot;&quot;&gt;Station boardings cover fiscal years 2024 to 2026 and come from LA Metro figures released through public records requests, compiled on Wikipedia, not published by LA Metro.&lt;/span&gt; Line boardings: LA Metro Interactive Estimated Ridership Stats, fiscal years 2009 to 2026.&lt;/p&gt;
 &lt;/figure&gt;
 &lt;div class=&quot;ca-tables&quot;&gt;
-  &lt;table id=&quot;lam-t1&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
+  &lt;table id=&quot;lam-t1&quot; hidden=&quot;&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
   &lt;table id=&quot;lam-t2&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. Line widths and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro&#39;s Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. Station boardings are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. In the Ridership tab, line widths and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro&#39;s Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. In the Station age tab, each station dot is colored by the decade it opened, and all lines are drawn thin. The hover panel also gives station boardings. They are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. A pin marks each station that opened in the selected year or the year before. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/la-metro-rail-stations/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;Los Angeles County Metropolitan Transportation Authority. (2026). &lt;em&gt;gtfs_rail: LA Metro rail GTFS feed&lt;/em&gt; [Data set]. GitLab. &lt;a href=&quot;https://gitlab.com/LACMTA/gtfs_rail&quot;&gt;https://gitlab.com/LACMTA/gtfs_rail&lt;/a&gt;&lt;/p&gt;
@@ -66,11 +153,12 @@
 &lt;/div&gt;
 &lt;style&gt;
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
-@media (min-width: 1000px) { .lam-wide { width: min(64rem, calc(100vw - 3rem)); max-width: none; position: relative; left: 50%; transform: translateX(-50%); } }
+@media (min-width: 1000px) { .lam-wide { max-width: min(64rem, 100%); } }
 .lam-body { display: flex; flex-direction: column; gap: .6rem; }
-@media (min-width: 1000px) { .lam-body { flex-direction: row; align-items: flex-start; } #lam-map { flex: 1 1 auto; min-width: 0; } .lam-panel { flex: 0 0 15.5rem; position: sticky; top: 1rem; } }
+.lam-mapcol { min-width: 0; width: 100%; }
+@media (min-width: 1000px) { .lam-body { flex-direction: row; align-items: flex-start; } .lam-mapcol { flex: 1 1 auto; } .lam-panel { flex: 0 0 15.5rem; position: sticky; top: 1rem; } }
 #lam-map { width: 100%; }
-.lam-panel { background: #fffaf3; border-left: 3px solid #c2410c; padding: .55rem .75rem; font-size: .88rem; color: #2a1a10; min-height: 4em; }
+.lam-panel { box-sizing: border-box; background: #fffaf3; border-left: 3px solid #c2410c; padding: .55rem .75rem; font-size: .88rem; color: #2a1a10; min-height: 4em; }
 .lam-panel h3 { font-size: 1rem; margin: 0 0 .25rem; }
 .lam-panel p { margin: .15rem 0; }
 .lam-hint { color: #6b5440; }
@@ -79,53 +167,66 @@
 .lam-chip { display: inline-block; min-width: 1.25rem; text-align: center; font-weight: 700; font-size: .75rem; border-radius: 50%; color: #fff; margin-right: .2rem; line-height: 1.25rem; }
 .lam-panel svg { display: block; width: 100%; max-width: 260px; height: auto; margin-top: .3rem; }
 .lam-panel .ax { font-size: 10px; fill: #6b5440; }
-.ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
-.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 16rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
-.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
-.ca-select select:focus-visible, #lam-play:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
-.ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
-.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
-.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
-.lam-year { display: flex; align-items: center; gap: .7rem; flex: 1 1 100%; }
-#lam-play { font: inherit; font-size: .9rem; font-weight: 600; min-height: 40px; min-width: 4.5rem; border: 1px solid #c2410c; background: #c2410c; color: #fff; border-radius: 8px; cursor: pointer; }
+.ca-card { box-sizing: border-box; max-width: 100%; background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .7rem 1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: .6rem 2rem; }
+.ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; flex: 0 1 auto; min-width: 0; max-width: 100%; }
+.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-tabs { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
+.ca-tabs::-webkit-scrollbar { display: none; }
+.ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .95rem; border: 1px solid #d4b483; border-radius: 999px; background: #fffaf3; color: #2a1a10; cursor: pointer; white-space: nowrap; }
+.ca-tabs button:hover { background: #f8e6cc; }
+.ca-tabs button[aria-selected=&quot;true&quot;] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
+.ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
+.lam-year { display: flex; align-items: center; gap: .7rem; flex: 1 1 14rem; min-width: 0; padding-bottom: 2px; }
 .lam-ylab { font-size: .8rem; font-weight: 600; color: #6b5440; white-space: nowrap; }
 .lam-ylab b { font-size: 1.1rem; color: #2a1a10; font-variant-numeric: tabular-nums; }
 #lam-slider { flex: 1 1 auto; accent-color: #c2410c; min-height: 40px; min-width: 0; }
 .ca-note { font-size: .85rem; color: #6b5440; margin: 0 0 .3rem; }
-.bay-legend { font-size: .8rem; color: #6b5440; margin: 0 0 .3rem; display: flex; flex-wrap: wrap; gap: .2rem 1rem; }
-.bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
-@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+.bay-legend { font-size: .8rem; color: #6b5440; margin: .3rem 0 0; }
+.bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 50%; margin: 0 .2rem 0 .5rem; vertical-align: -1px; }
+@media (max-width: 640px) { .ca-card { flex-direction: column; align-items: stretch; padding: .7rem .8rem; } .lam-year { flex: none; } }
 #lam-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 #lam-map .land { fill: #f1e3c8; stroke: none; }
 #lam-map .lac { fill: none; stroke: #c9ad85; stroke-width: 0.9; stroke-dasharray: 3 3; pointer-events: none; }
 #lam-map .slab { fill: #d4b483; }
 #lam-map .shadow { fill: #5a3a1a; opacity: 0.18; }
-#lam-map .topo { fill: none; stroke: #c9a77a; stroke-width: 0.6; opacity: 0.55; pointer-events: none; }
-#lam-map .topo.major { stroke: #a9824f; stroke-width: 0.9; opacity: 0.7; }
-#lam-map .topo-lbl { font-size: 9px; fill: #a9824f; pointer-events: none; paint-order: stroke; stroke: #f1e3c8; stroke-width: 3px; }
+#lam-map .topo { fill: none; stroke: #c9a77a; stroke-width: 0.5; opacity: 0.3; pointer-events: none; }
+#lam-map .topo.major { stroke: #a9824f; stroke-width: 0.7; opacity: 0.4; }
+#lam-map .topo-lbl { font-size: 9px; fill: #b89a74; pointer-events: none; paint-order: stroke; stroke: #f1e3c8; stroke-width: 3px; }
 #lam-map .rail { fill: none; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
-#lam-map .dot { fill: #fffaf3; stroke: #6b5440; stroke-width: 0.9; pointer-events: none; }
-#lam-map .dot.on { fill: #c2410c; stroke: #2a1a10; }
+#lam-map .dot { fill: #fffaf3; stroke: #2a1a10; stroke-width: 0.8; pointer-events: none; }
+#lam-map .dot.on { stroke-width: 1.6; }
 #lam-map .pin { stroke: #2a1a10; stroke-width: 0.9; pointer-events: none; }
 #lam-map .pinhead { fill: #2a1a10; pointer-events: none; }
 #lam-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
 #lam-map .lbl.main { font-weight: 700; font-size: 12px; }
 #lam-map .lbl.yr { font-size: 9.5px; font-weight: 700; fill: #8a2d08; }
+#lam-map .lbl.ln { font-size: 10.5px; font-weight: 700; }
 #lam-map .place { font-size: 10px; fill: #9a7b5a; font-style: italic; pointer-events: none; text-anchor: middle; }
 #lam-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
-.ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1rem; max-width: 46rem; margin: 0 auto 2rem; }
-.ca-tables table { flex: 1 1 19rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
+.ca-tables { display: flex; justify-content: center; align-items: flex-start; gap: 1.5rem 2.5rem; max-width: 62rem; margin: 0 auto 2rem; }
+.ca-tables table { flex: 0 1 28rem; min-width: 0; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
 .ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
 .ca-tables th, .ca-tables td { padding: .3rem .25rem; border-bottom: 1px solid #ead9bd; text-align: left; }
 .ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; font-size: .8rem; }
 .ca-tables td:nth-child(n+2), .ca-tables th:nth-child(n+2) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ca-tables td:nth-child(n+2) { font-size: .8rem; }
 .ca-tables td:first-child { font-size: .85rem; }
+@media (max-width: 700px) { .ca-tables { flex-direction: column; align-items: stretch; } .ca-tables table { flex: none; width: 100%; } }
+.ca-tables table[hidden] { display: none; }
+.lam-tabrow { display: flex; flex-wrap: wrap; align-items: center; gap: .3rem 1rem; min-width: 0; max-width: 100%; }
+.lam-tabrow .ca-tabs { min-width: 0; max-width: 100%; }
+.lam-busy-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 0 .6rem; }
+.viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
+.viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
+.viz-toggle.off { color: #a8957f; cursor: not-allowed; }
+.viz-toggle.off input { cursor: not-allowed; }
+#lam-map .bar { pointer-events: none; }
+#lam-map .lbl.busy { font-size: 10.5px; font-weight: 600; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/la_metro_viz.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/la_metro_viz.js?v=20261029i&quot;&gt;&lt;/script&gt;
 </content>
 	</entry>
 	
@@ -145,29 +246,6 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
-		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
-&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
-&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
-&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
-&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
-&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -199,24 +277,48 @@
 	</entry>
 	
 	<entry>
+		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
+		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
+&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
+&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
+&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
+&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
+&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>HSE Mid West had significantly more patients on trolleys than any other region, 8.1 per 10,000 people a week</title>
 		<link href="https://lucashenry.xyz/visualizations/hse-trolley-regions/"/>
 		<updated>2026-10-24T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/hse-trolley-regions/</id>
-		<content type="html">&lt;p&gt;HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (likely range 7.4 to 8.8). That is 1.6 more than HSE West and North West, the next highest (likely range 0.7 to 2.5 more). Every region dropped in the week that contains 25 December. The drop ran from 2.3 per 10,000 in HSE Dublin and North East to 5.4 per 10,000 in HSE Mid West.&lt;/p&gt;
+		<content type="html">&lt;p&gt;HSE Mid West had a level of 8.1 patients on trolleys per 10,000 people a week (95% credible interval 7.4 to 8.8). That is 1.6 more than HSE West and North West, the next highest (95% credible interval 0.7 to 2.5 more). Every region dropped in the week that contains 25 December. The drop ran from 2.3 per 10,000 in HSE Dublin and North East to 5.4 per 10,000 in HSE Mid West.&lt;/p&gt;
 &lt;figure class=&quot;viz ie-wide&quot; id=&quot;ie-viz&quot;&gt;
   &lt;div class=&quot;ca-card&quot;&gt;
-    &lt;label class=&quot;ca-select&quot; for=&quot;ie-metric&quot;&gt;&lt;span&gt;Estimate&lt;/span&gt;
-      &lt;select id=&quot;ie-metric&quot;&gt;
-        &lt;option value=&quot;alpha&quot; selected=&quot;&quot;&gt;Level, patients per 10,000 people a week&lt;/option&gt;
-        &lt;option value=&quot;amp&quot;&gt;Seasonal swing, per 10,000 people a week&lt;/option&gt;
-        &lt;option value=&quot;pwin&quot;&gt;Chance higher in winter, in 100&lt;/option&gt;
-        &lt;option value=&quot;pm1&quot;&gt;Two weeks before New Year week, change per 10,000&lt;/option&gt;
-        &lt;option value=&quot;pre&quot;&gt;Christmas week, change per 10,000&lt;/option&gt;
-        &lt;option value=&quot;mid&quot;&gt;New Year week, change per 10,000&lt;/option&gt;
-        &lt;option value=&quot;post&quot;&gt;Week after New Year week, change per 10,000&lt;/option&gt;
-      &lt;/select&gt;
-    &lt;/label&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;ie-tabs-label&quot;&gt;Estimate&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;ie-metric&quot; role=&quot;tablist&quot; aria-labelledby=&quot;ie-tabs-label&quot;&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;alpha&quot; data-full=&quot;Average, patients per 10,000 people a week&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;Average&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;amp&quot; data-full=&quot;Seasonal swing, per 10,000 people a week&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Swing&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;pwin&quot; data-full=&quot;Probability higher in winter, percent&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Winter&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;ppk&quot; data-full=&quot;Probability the yearly peak falls in winter, percent&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Peak in winter&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;pm1&quot; data-full=&quot;Two weeks before New Year week, change per 10,000&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;2 weeks before&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;pre&quot; data-full=&quot;Christmas week, change per 10,000&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Christmas&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;mid&quot; data-full=&quot;New Year week, change per 10,000&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;New Year&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;post&quot; data-full=&quot;Week after New Year week, change per 10,000&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Week after&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
     &lt;div class=&quot;ca-checks&quot;&gt;
       &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ie-all&quot; checked=&quot;&quot; /&gt; Always show all regions&lt;/label&gt;
     &lt;/div&gt;
@@ -226,8 +328,10 @@
   &lt;div class=&quot;ie-grid&quot;&gt;
     &lt;div id=&quot;ie-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of Ireland split into the six HSE health regions. A bar rises from each region. Hover or tap a region to show its estimates and its calendar of winters and New Year weeks.&quot;&gt;&lt;/div&gt;
     &lt;div class=&quot;ie-panel&quot; id=&quot;ie-panel&quot; aria-live=&quot;polite&quot;&gt;
+      &lt;h3 class=&quot;ie-ptitle&quot;&gt;Region info&lt;/h3&gt;
       &lt;p class=&quot;ie-info&quot; id=&quot;ie-info&quot;&gt;&lt;/p&gt;
-      &lt;p class=&quot;bay-legend ie-tlleg&quot;&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#dde5e8&quot;&gt;&lt;/i&gt;Winter (Met Éireann: December to February)&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e9915a&quot;&gt;&lt;/i&gt;New Year phases&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#6b5440;height:2px;vertical-align:3px&quot;&gt;&lt;/i&gt;Weekly count&lt;/span&gt;&lt;/p&gt;
+      &lt;div class=&quot;ie-pk&quot; id=&quot;ie-pk&quot;&gt;&lt;/div&gt;
+      &lt;p class=&quot;bay-legend ie-tlleg&quot;&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e2f0e2&quot;&gt;&lt;/i&gt;Winter (Met Éireann: December to February)&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e9915a&quot;&gt;&lt;/i&gt;New Year phases&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#6b5440;height:2px;vertical-align:3px&quot;&gt;&lt;/i&gt;Weekly count&lt;/span&gt;&lt;/p&gt;
       &lt;div id=&quot;ie-tl&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
   &lt;/div&gt;
@@ -236,7 +340,7 @@
   &lt;table id=&quot;ie-t1&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
   &lt;table id=&quot;ie-t2&quot;&gt;&lt;caption&gt;The four New Year phases, weeks starting Monday&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;Phase&lt;/th&gt;&lt;th&gt;Weeks&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Data are daily counts of patients on emergency department and ward trolleys from the HSE Urgent and Emergency Care daily report, 1 January 2023 to 5 April 2026, summed into Monday-start weeks for each region and divided by regional population per 10,000 people. The estimates come from model v4.6 of Henry and Bergin (2026): each region has its own level, a yearly cycle, four New Year phase effects, a Mid West operational reset in August 2024, and dependence on the previous two weeks. It was fitted in JAGS with 4 chains of 30,000 iterations, the first 10,000 dropped, giving 80,000 draws. Values are posterior medians. The likely range (95 in 100 credible interval) runs from the 2.5th to the 97.5th percentile of the draws. Significantly means the likely range of a difference between two regions excludes zero. A chance is the share of the 80,000 draws in which the statement holds. The seasonal swing is how far the yearly cycle rises above the level at its peak. Winter follows Met Éireann (2026) and the thesis: 1 December to the end of February. The winter excess is the region&#39;s yearly cycle averaged over study weeks starting in December to February, minus its average over the other study weeks, computed in every draw. It uses the yearly cycle only, not the New Year phases. The four phases are the week two weeks before the week containing 1 January, the week before it, which contains 25 December, the week containing 1 January, and the week after it. Each phase effect is the change from the baseline average in that week, and the same effect applies every winter. Region boundaries were simplified for display.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Data are daily counts of patients on emergency department and ward trolleys from the HSE Urgent and Emergency Care daily report, 1 January 2023 to 5 April 2026, summed into Monday-start weeks for each region and divided by regional population per 10,000 people. The estimates come from model v4.6 of Henry and Bergin (2026): each region has its own level, a yearly cycle, four New Year phase effects, a Mid West operational reset in August 2024, and dependence on the previous two weeks. It was fitted in JAGS with 4 chains of 30,000 iterations, the first 10,000 dropped, giving 80,000 draws. Values are posterior medians. The 95% credible interval runs from the 2.5th to the 97.5th percentile of the draws. Significantly means the 95% credible interval of a difference between two regions excludes zero. A probability is the share of the 80,000 draws in which the statement holds. The seasonal swing is how far the yearly cycle rises above the level at its peak. Winter follows Met Éireann (2026) and the thesis: 1 December to the end of February. The winter excess is the region&#39;s yearly cycle averaged over study weeks starting in December to February, minus its average over the other study weeks, computed in every draw. It uses the yearly cycle only, not the New Year phases. The four phases are the week two weeks before the week containing 1 January, the week before it, which contains 25 December, the week containing 1 January, and the week after it. Each phase effect is the change from the baseline average in that week, and the same effect applies every winter. The yearly peak is the date where the fitted yearly cycle is highest, found in each draw from its sine and cosine terms. The probability of a winter peak is the share of draws with that date from 1 December to the end of February. The peak&#39;s 95% credible interval is the shortest stretch of the calendar that holds 95% of the draws. Region boundaries were simplified for display.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/hse-trolley-regions/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;Henry, L., &amp;amp; Bergin, E. (2026). &lt;em&gt;A Bayesian time series framework for comparing on trolley counts across Irish HSE health regions&lt;/em&gt; [Master&#39;s thesis, University of Galway].&lt;/p&gt;
@@ -247,15 +351,25 @@
 &lt;/div&gt;
 &lt;style&gt;
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
-@media (min-width: 66rem) {
+@media (min-width: 82rem) {
   .viz.ie-wide { max-width: none; width: 62rem; position: relative; left: 50%; transform: translateX(-50%); }
+}
+@media (min-width: 66rem) {
+  .viz.ie-wide { max-width: none; }
   .ie-grid { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 1rem; align-items: start; }
 }
 #ie-map { width: 100%; }
 .ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
-.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
-.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
-.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; flex: 1 1 100%; min-width: 0; max-width: 100%; }
+.ca-card { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.ca-card &gt; * { min-width: 0; }
+.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-tabs { display: flex; justify-content: space-between; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
+.ca-tabs::-webkit-scrollbar { display: none; }
+.ca-tabs button { flex: none; font: inherit; font-size: .88rem; min-height: 40px; padding: .35rem .7rem; border: 1px solid #d4b483; border-radius: 999px; background: #fffaf3; color: #2a1a10; cursor: pointer; white-space: nowrap; }
+.ca-tabs button:hover { background: #f8e6cc; }
+.ca-tabs button[aria-selected=&quot;true&quot;] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
+.ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
 .ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
 .viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
 .viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
@@ -264,9 +378,22 @@
 .bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
 .ie-info { box-sizing: border-box; }
 .ie-panel { box-sizing: border-box; background: #fffaf3; border-left: 3px solid #c2410c; padding: .5rem .7rem .3rem; margin: .4rem 0 0; }
+.ie-ptitle { font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #8a2d08; margin: 0 0 .35rem; padding-bottom: .3rem; border-bottom: 1px solid #ead9bd; }
 .ie-info { font-size: .85rem; color: #2a1a10; margin: 0 0 .35rem; line-height: 1.45; }
 .ie-info b { font-size: .95rem; }
 .ie-tlleg { font-size: .75rem; }
+#ie-tl .sub { font-size: 13px; font-weight: 700; fill: #2a1a10; }
+.ie-pk { box-sizing: border-box; margin: 0 0 .5rem; }
+.ie-pkh { font-size: 1.15rem; font-weight: 700; color: #2a1a10; margin: 0 0 .1rem; line-height: 1.25; }
+.ie-pks { font-size: .8rem; color: #6b5440; margin: 0 0 .2rem; }
+#ie-pk svg { display: block; width: 100%; height: auto; font-family: inherit; }
+#ie-pk .ax text { font-size: 10px; fill: #6b5440; }
+#ie-pk .ax line { stroke: #b49a78; }
+#ie-pk .ttl { font-size: 10px; fill: #6b5440; }
+#ie-pk .pkw { font-size: 10px; fill: #4a5a60; text-anchor: middle; font-weight: 600; }
+#ie-pk .pkr line { stroke: #2a1a10; stroke-width: 1.2; }
+#ie-map .wh line { stroke: #2a1a10; stroke-width: 1.2; }
+#ie-pk .pkm { font-size: 10px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3px; }
 #ie-tl svg { display: block; width: 100%; height: auto; font-family: inherit; }
 #ie-tl .ax text { font-size: 10px; fill: #6b5440; }
 #ie-tl .ax line, #ie-tl .ax path { stroke: #b49a78; }
@@ -277,7 +404,7 @@
 #ie-tl .vl { font-size: 10.5px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3px; stroke-linejoin: round; text-anchor: middle; }
 #ie-tl .col.on { stroke: #c2410c; stroke-width: 2; }
 #ie-tl .zoom { stroke: #b49a78; stroke-width: .8; fill: #f1e3c8; opacity: .45; }
-@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } }
 #ie-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 #ie-map .ctx { fill: #ece6dc; stroke: #fffaf0; stroke-width: 0.6; pointer-events: none; }
 #ie-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 1; stroke-linejoin: round; cursor: pointer; }
@@ -298,6 +425,8 @@
 .ca-tables th { font-weight: 600; color: #6b5440; border-bottom: 2px solid #d4b483; font-size: .8rem; }
 #ie-t1 td:nth-child(n+3), #ie-t1 th:nth-child(n+3) { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
 .ca-tables td { font-size: .85rem; }
+#ie-t1.pk td:nth-child(n+3), #ie-t1.pk th:nth-child(n+3) { white-space: normal; }
+#ie-t1.pk td:nth-child(4), #ie-t1.pk th:nth-child(4) { text-align: left; }
 #ie-t2 td:nth-child(2) { font-size: .8rem; }
 .ca-tables tr.sig td:nth-child(2) { font-weight: 700; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
@@ -309,7 +438,7 @@
   var el = document.getElementById(&quot;ie-map&quot;);
   Promise.all([
     d3.json(&quot;/visualizations/data/ireland_hse_regions.json&quot;),
-    d3.json(&quot;/visualizations/data/hse_trolley_v46_per10k.json&quot;)
+    d3.json(&quot;/visualizations/data/hse_trolley_v46_per10k.json?v=3&quot;)
   ]).then(function (res) {
     var topo = res[0], D = res[1], rows = D.regions;
     var PH = [&quot;pm1&quot;, &quot;pre&quot;, &quot;mid&quot;, &quot;post&quot;];
@@ -317,22 +446,43 @@
     var PHS = { pm1: &quot;2 weeks before&quot;, pre: &quot;Christmas week&quot;, mid: &quot;New Year week&quot;, post: &quot;Week after&quot; };
     var PHC = { pm1: &quot;#f6c79a&quot;, pre: &quot;#e9915a&quot;, mid: &quot;#d0652a&quot;, post: &quot;#f3d3a8&quot; };
     var M = {
-      alpha: { head: &quot;Level&quot;, note: &quot;Level: the baseline average weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed.&quot; },
+      alpha: { head: &quot;Average&quot;, note: &quot;Average: the baseline average weekly count of patients on trolleys per 10,000 people, with the yearly cycle and New Year weeks removed.&quot; },
       amp: { head: &quot;Seasonal swing&quot;, note: &quot;Seasonal swing: how far the yearly cycle rises above the level at its winter peak, per 10,000 people a week.&quot; },
-      pwin: { head: &quot;Chance&quot;, prob: true, note: &quot;Chance that the yearly cycle puts more patients on trolleys in winter, December to February, than in the rest of the year, of 100.&quot; },
+      pwin: { head: &quot;Probability&quot;, prob: true, note: &quot;Probability that the yearly cycle puts more patients on trolleys in winter, December to February, than in the rest of the year, in percent.&quot; },
+      ppk: { head: &quot;Probability&quot;, prob: true, pk: true, note: &quot;Probability that the yearly cycle reaches its highest point between 1 December and the end of February, in percent.&quot; },
       pm1: { head: &quot;Change&quot;, phase: true, note: &quot;Change from the baseline average weekly count, per 10,000 people, in the week two weeks before the week that contains 1 January.&quot; },
       pre: { head: &quot;Change&quot;, phase: true, note: &quot;Change from the baseline average weekly count, per 10,000 people, in the week that contains 25 December.&quot; },
       mid: { head: &quot;Change&quot;, phase: true, note: &quot;Change from the baseline average weekly count, per 10,000 people, in the week that contains 1 January.&quot; },
       post: { head: &quot;Change&quot;, phase: true, note: &quot;Change from the baseline average weekly count, per 10,000 people, in the week after the week that contains 1 January.&quot; }
     };
-    var sel = document.getElementById(&quot;ie-metric&quot;), box = document.getElementById(&quot;ie-all&quot;);
+    var tabsEl = document.getElementById(&quot;ie-metric&quot;), box = document.getElementById(&quot;ie-all&quot;);
+    var tabBtns = Array.prototype.slice.call(tabsEl.querySelectorAll(&quot;button&quot;));
+    var sel = { value: tabBtns[0].dataset.v, selectedIndex: 0, onchange: null, options: tabBtns.map(function (b) { return { text: b.dataset.full }; }) };
+    function pickTab(b, focus) {
+      tabBtns.forEach(function (x) { var on = x === b; x.setAttribute(&quot;aria-selected&quot;, on); x.tabIndex = on ? 0 : -1; });
+      if (focus) b.focus();
+      var l = b.offsetLeft - tabsEl.offsetLeft, r = l + b.offsetWidth;
+      if (l &lt; tabsEl.scrollLeft) tabsEl.scrollLeft = l - 8; else if (r &gt; tabsEl.scrollLeft + tabsEl.clientWidth) tabsEl.scrollLeft = r - tabsEl.clientWidth + 8;
+      if (sel.value === b.dataset.v) return;
+      sel.value = b.dataset.v; sel.selectedIndex = tabBtns.indexOf(b);
+      if (sel.onchange) sel.onchange();
+    }
+    tabBtns.forEach(function (b, k) {
+      b.addEventListener(&quot;click&quot;, function () { pickTab(b, false); });
+      b.addEventListener(&quot;keydown&quot;, function (ev) {
+        var n = ev.key === &quot;ArrowRight&quot; ? k + 1 : ev.key === &quot;ArrowLeft&quot; ? k - 1 : ev.key === &quot;Home&quot; ? 0 : ev.key === &quot;End&quot; ? tabBtns.length - 1 : null;
+        if (n === null) return;
+        ev.preventDefault(); pickTab(tabBtns[(n + tabBtns.length) % tabBtns.length], true);
+      });
+    });
     var metric = sel.value;
     function short(n) { return n.replace(/^HSE /, &quot;&quot;); }
     function f1(v) { var s = Math.abs(v) &lt; 1 ? d3.format(&quot;.2f&quot;)(v) : d3.format(&quot;.1f&quot;)(v); return s.replace(&quot;&#92;u2212&quot;, &quot;-&quot;); }
     function sp(v) { return (v &gt; 0 ? &quot;+&quot; : &quot;&quot;) + f1(v); }
-    function pc(p) { var n = Math.round(p * 100); return n &gt;= 100 ? &quot;over 99 in 100&quot; : n &lt;= 0 ? &quot;under 1 in 100&quot; : n + &quot; in 100&quot;; }
-    function val(r, m) { m = m || metric; return M[m].prob ? r.pwin[0] * 100 : r[m][0]; }
-    function fmtv(r, m) { m = m || metric; return M[m].prob ? pc(r.pwin[0]) : M[m].phase ? sp(r[m][0]) : f1(r[m][0]); }
+    function pc(p) { var n = Math.round(p * 100); return n &gt;= 100 ? &quot;&gt;99%&quot; : n &lt;= 0 ? &quot;&lt;1%&quot; : n + &quot;%&quot;; }
+    function pv(r, m) { return M[m].pk ? r.p_peak_winter : r.pwin[0]; }
+    function val(r, m) { m = m || metric; return M[m].prob ? pv(r, m) * 100 : r[m][0]; }
+    function fmtv(r, m) { m = m || metric; return M[m].prob ? pc(pv(r, m)) : M[m].phase ? sp(r[m][0]) : f1(r[m][0]); }
     function rng(q) { return f1(q[1]) + &quot; to &quot; + f1(q[2]); }
     function sig(r) { var q = r[metric]; return !!M[metric].phase &amp;&amp; (q[1] &gt; 0 || q[2] &lt; 0); }
     var fmtD = d3.timeFormat(&quot;%-d %b %Y&quot;), parse = d3.timeParse(&quot;%Y-%m-%d&quot;);
@@ -340,19 +490,22 @@
     function legend() {
       var m = M[metric], L = document.getElementById(&quot;ie-legend&quot;);
       L.innerHTML = m.phase
-        ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#14736b&quot;&gt;&lt;/i&gt;Fewer patients than the baseline average&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/i&gt;More patients than the baseline average&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#2a1a10&quot;&gt;&lt;/i&gt;Dark top: likely range excludes zero&lt;/span&gt;&#39;
-        : m.prob ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/i&gt;Bar height: chance higher in winter, of 100&lt;/span&gt;&#39;
+        ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#14736b&quot;&gt;&lt;/i&gt;Fewer patients than the baseline average&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/i&gt;More patients than the baseline average&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#2a1a10&quot;&gt;&lt;/i&gt;Dark top: 95% credible interval excludes zero&lt;/span&gt;&#39;
+        : m.prob ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/i&gt;Bar height: &#39; + (m.pk ? &#39;probability the yearly peak falls in winter&#39; : &#39;probability higher in winter&#39;) + &#39;, percent&lt;/span&gt;&#39;
         : &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/i&gt;Bar height: &#39; + m.head.toLowerCase() + &#39; per 10,000 people a week&lt;/span&gt;&#39;;
+      if (!m.prob) L.innerHTML += &#39;&lt;span&gt;&lt;b style=&quot;font-weight:700;color:#2a1a10&quot;&gt;|&lt;/b&gt; Line beside each bar: 95% credible interval&lt;/span&gt;&#39;;
       document.getElementById(&quot;ie-note&quot;).textContent = m.note;
     }
     function tables() {
       var m = M[metric];
       var ok = rows.slice().sort(function (a, b) { return val(b) - val(a); });
-      var heads = m.prob ? [&quot;Rank&quot;, &quot;Region&quot;, &quot;Chance higher in winter&quot;, &quot;Winter excess per 10,000&quot;] : [&quot;Rank&quot;, &quot;Region&quot;, m.head + &quot; per 10,000&quot;, &quot;Likely range&quot;];
+      var heads = m.pk ? [&quot;Rank&quot;, &quot;Region&quot;, &quot;Probability the peak falls in winter&quot;, &quot;Median peak date, 95% credible interval&quot;] : m.prob ? [&quot;Rank&quot;, &quot;Region&quot;, &quot;Probability higher in winter&quot;, &quot;Winter excess per 10,000&quot;] : [&quot;Rank&quot;, &quot;Region&quot;, m.head + &quot; per 10,000&quot;, &quot;95% credible interval&quot;];
+      d3.select(&quot;#ie-t1&quot;).classed(&quot;pk&quot;, !!m.prob);
       d3.select(&quot;#ie-t1 thead tr&quot;).selectAll(&quot;th&quot;).data(heads).join(&quot;th&quot;).text(function (d) { return d; });
-      d3.select(&quot;#ie-t1 caption&quot;).text(&quot;Regions ranked by &quot; + sel.options[sel.selectedIndex].text.replace(/, (change )?(per 10,000|in 100).*$/, &quot;&quot;).toLowerCase().replace(&quot;new year&quot;, &quot;New Year&quot;).replace(&quot;christmas&quot;, &quot;Christmas&quot;));
+      d3.select(&quot;#ie-t1 caption&quot;).text(&quot;Regions ranked by &quot; + sel.options[sel.selectedIndex].text.replace(/, (change )?(per 10,000|percent).*$/, &quot;&quot;).toLowerCase().replace(&quot;new year&quot;, &quot;New Year&quot;).replace(&quot;christmas&quot;, &quot;Christmas&quot;));
       d3.select(&quot;#ie-t1 tbody&quot;).selectAll(&quot;tr&quot;).data(ok).join(&quot;tr&quot;).attr(&quot;class&quot;, function (r) { return sig(r) ? &quot;sig&quot; : null; }).html(function (r, i) {
-        if (m.prob) return &quot;&lt;td&gt;&quot; + (i + 1) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + r.name + &quot;&lt;/td&gt;&lt;td&gt;&quot; + pc(r.pwin[0]) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sp(r.wex[0]) + &quot;, likely range &quot; + rng(r.wex) + &quot;&lt;/td&gt;&quot;;
+        if (m.pk) return &quot;&lt;td&gt;&quot; + (i + 1) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + r.name + &quot;&lt;/td&gt;&lt;td&gt;&quot; + pc(r.p_peak_winter) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + dayLabel(r.peak_median_day) + &quot;, &quot; + dayLabel(r.peak_range_days[0]) + &quot; to &quot; + dayLabel(r.peak_range_days[1]) + &quot;&lt;/td&gt;&quot;;
+        if (m.prob) return &quot;&lt;td&gt;&quot; + (i + 1) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + r.name + &quot;&lt;/td&gt;&lt;td&gt;&quot; + pc(r.pwin[0]) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sp(r.wex[0]) + &quot;, 95% credible interval &quot; + rng(r.wex) + &quot;&lt;/td&gt;&quot;;
         return &quot;&lt;td&gt;&quot; + (i + 1) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + r.name + &quot;&lt;/td&gt;&lt;td&gt;&quot; + fmtv(r) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + rng(r[metric]) + &quot;&lt;/td&gt;&quot;;
       });
       d3.select(&quot;#ie-t2 tbody&quot;).selectAll(&quot;tr&quot;).data(PH).join(&quot;tr&quot;).html(function (k) {
@@ -368,17 +521,73 @@
     var phHi = d3.max(rows, function (r) { return d3.max(PH, function (k) { return r[k][2]; }); });
     var dates = D.dates.map(parse), d0 = dates[0], d1 = d3.timeDay.offset(dates[dates.length - 1], 7);
     var cur = null;
+
+    var PA = D.peak_axis, pkMax = d3.max(rows, function (r) { return d3.max(r.peak_density); });
+    var MON = [&quot;Jul&quot;, &quot;Aug&quot;, &quot;Sep&quot;, &quot;Oct&quot;, &quot;Nov&quot;, &quot;Dec&quot;, &quot;Jan&quot;, &quot;Feb&quot;, &quot;Mar&quot;, &quot;Apr&quot;, &quot;May&quot;, &quot;Jun&quot;], MDAYS = [31, 31, 30, 31, 30, 31, 31, 28, 31, 30, 31, 30];
+    var MONL = [&quot;July&quot;, &quot;August&quot;, &quot;September&quot;, &quot;October&quot;, &quot;November&quot;, &quot;December&quot;, &quot;January&quot;, &quot;February&quot;, &quot;March&quot;, &quot;April&quot;, &quot;May&quot;, &quot;June&quot;];
+    function dayLabel(x) { x = ((x % 365) + 365) % 365; var m = 0; while (m &lt; 11 &amp;&amp; x &gt;= MDAYS[m]) { x -= MDAYS[m]; m++; } return (Math.floor(x) + 1) + &quot; &quot; + MONL[m]; }
+    var pkEl = document.getElementById(&quot;ie-pk&quot;);
+    function peakChart(r) {
+      pkEl.innerHTML = &quot;&quot;;
+      var ns = pc(r.p_peak_winter);
+      d3.select(pkEl).append(&quot;p&quot;).attr(&quot;class&quot;, &quot;ie-pkh&quot;).text(ns + &quot; probability the peak falls in winter&quot;);
+      d3.select(pkEl).append(&quot;p&quot;).attr(&quot;class&quot;, &quot;ie-pks&quot;).text(&quot;Median peak &quot; + dayLabel(r.peak_median_day) + &quot;, 95% credible interval &quot; + dayLabel(r.peak_range_days[0]) + &quot; to &quot; + dayLabel(r.peak_range_days[1]) + (r.peak_range_len_days &gt; 140 ? &quot;, &quot; + Math.round(r.peak_range_len_days / 7) + &quot; weeks wide, so the peak is poorly pinned.&quot; : &quot;.&quot;));
+      var W = Math.max(280, pkEl.clientWidth), L = 8, R = 8, T = 14, Hc = 60, H = T + Hc + 50;
+      var svg = d3.select(pkEl).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H)
+        .attr(&quot;role&quot;, &quot;img&quot;).attr(&quot;aria-label&quot;, &quot;Density of the yearly peak date, July to June, for &quot; + r.name + &quot;. &quot; + ns + &quot; of the draws put the peak in winter.&quot;);
+      var x = d3.scaleLinear().domain([0, PA.days]).range([L, W - R]);
+      var y = d3.scaleLinear().domain([0, pkMax]).range([T + Hc, T + 8]);
+      var wa = x(PA.winter[0]), wb = x(PA.winter[1]);
+      svg.append(&quot;rect&quot;).attr(&quot;x&quot;, wa).attr(&quot;width&quot;, wb - wa).attr(&quot;y&quot;, T).attr(&quot;height&quot;, Hc).attr(&quot;fill&quot;, &quot;#e2f0e2&quot;);
+      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;pkw&quot;).attr(&quot;x&quot;, (wa + wb) / 2).attr(&quot;y&quot;, T - 3).text(&quot;Winter&quot;);
+      var dd = r.peak_density, step = PA.days / dd.length, edge = (dd[0] + dd[dd.length - 1]) / 2;
+      var pts = [[0, edge]].concat(dd.map(function (v, j) { return [(j + 0.5) * step, v]; }), [[PA.days, edge]]);
+      var cid = &quot;pkclip&quot; + Math.round(W);
+      svg.append(&quot;clipPath&quot;).attr(&quot;id&quot;, cid).append(&quot;rect&quot;).attr(&quot;x&quot;, wa).attr(&quot;width&quot;, wb - wa).attr(&quot;y&quot;, 0).attr(&quot;height&quot;, H);
+      svg.append(&quot;path&quot;).attr(&quot;d&quot;, d3.area().curve(d3.curveBasis).x(function (p) { return x(p[0]); }).y0(T + Hc).y1(function (p) { return y(p[1]); })(pts))
+        .attr(&quot;fill&quot;, &quot;#3f9a5a&quot;).attr(&quot;opacity&quot;, 0.6).attr(&quot;clip-path&quot;, &quot;url(#&quot; + cid + &quot;)&quot;);
+      svg.append(&quot;path&quot;).attr(&quot;d&quot;, d3.line().curve(d3.curveBasis).x(function (p) { return x(p[0]); }).y(function (p) { return y(p[1]); })(pts))
+        .attr(&quot;fill&quot;, &quot;none&quot;).attr(&quot;stroke&quot;, &quot;#2a1a10&quot;).attr(&quot;stroke-width&quot;, 1.6);
+      // median marker
+      var mx = x(r.peak_median_day), mj = Math.min(dd.length - 1, Math.floor(r.peak_median_day / step));
+      svg.append(&quot;line&quot;).attr(&quot;x1&quot;, mx).attr(&quot;x2&quot;, mx).attr(&quot;y1&quot;, T + Hc).attr(&quot;y2&quot;, y(dd[mj])).attr(&quot;stroke&quot;, &quot;#b8400e&quot;).attr(&quot;stroke-width&quot;, 1.4).attr(&quot;stroke-dasharray&quot;, &quot;3 2&quot;);
+      svg.append(&quot;circle&quot;).attr(&quot;cx&quot;, mx).attr(&quot;cy&quot;, y(dd[mj])).attr(&quot;r&quot;, 3.2).attr(&quot;fill&quot;, &quot;#b8400e&quot;).attr(&quot;stroke&quot;, &quot;#fffaf3&quot;).attr(&quot;stroke-width&quot;, 1);
+      var lab = svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;pkm&quot;).text(&quot;Median peak&quot;), lw = 62, py = y(dd[mj]);
+      if (py &lt; T + 26) { var rt = mx + 8 + lw &lt;= W - R; lab.attr(&quot;y&quot;, py + 4).attr(&quot;x&quot;, rt ? mx + 8 : mx - 8).attr(&quot;text-anchor&quot;, rt ? &quot;start&quot; : &quot;end&quot;); }
+      else lab.attr(&quot;y&quot;, py - 8).attr(&quot;x&quot;, Math.max(L + lw / 2, Math.min(W - R - lw / 2, mx))).attr(&quot;text-anchor&quot;, &quot;middle&quot;);
+      // 95% credible interval whisker |---| with median dot; two pieces if it wraps
+      var wy = T + Hc + 26, lo = r.peak_range_days[0], hi = r.peak_range_days[1];
+      var segs = lo &lt;= hi ? [[lo, hi, true, true]] : [[lo, PA.days, true, false], [0, hi, false, true]];
+      var wg = svg.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;pkr&quot;);
+      segs.forEach(function (s) {
+        wg.append(&quot;line&quot;).attr(&quot;x1&quot;, x(s[0])).attr(&quot;x2&quot;, x(s[1])).attr(&quot;y1&quot;, wy).attr(&quot;y2&quot;, wy);
+        if (s[2]) wg.append(&quot;line&quot;).attr(&quot;x1&quot;, x(s[0])).attr(&quot;x2&quot;, x(s[0])).attr(&quot;y1&quot;, wy - 3).attr(&quot;y2&quot;, wy + 3);
+        if (s[3]) wg.append(&quot;line&quot;).attr(&quot;x1&quot;, x(s[1])).attr(&quot;x2&quot;, x(s[1])).attr(&quot;y1&quot;, wy - 3).attr(&quot;y2&quot;, wy + 3);
+      });
+      svg.append(&quot;circle&quot;).attr(&quot;cx&quot;, mx).attr(&quot;cy&quot;, wy).attr(&quot;r&quot;, 3).attr(&quot;fill&quot;, &quot;#2a1a10&quot;);
+      // axis: month boundaries and centred labels
+      var ax = svg.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;ax&quot;);
+      ax.append(&quot;line&quot;).attr(&quot;x1&quot;, L).attr(&quot;x2&quot;, W - R).attr(&quot;y1&quot;, T + Hc).attr(&quot;y2&quot;, T + Hc);
+      var c = 0;
+      MON.forEach(function (m, k) {
+        ax.append(&quot;line&quot;).attr(&quot;x1&quot;, x(c)).attr(&quot;x2&quot;, x(c)).attr(&quot;y1&quot;, T + Hc).attr(&quot;y2&quot;, T + Hc + 4);
+        ax.append(&quot;text&quot;).attr(&quot;x&quot;, x(c + MDAYS[k] / 2)).attr(&quot;y&quot;, T + Hc + 14).attr(&quot;text-anchor&quot;, &quot;middle&quot;).text(W &lt; 340 ? m.charAt(0) : m);
+        c += MDAYS[k];
+      });
+      ax.append(&quot;line&quot;).attr(&quot;x1&quot;, x(c)).attr(&quot;x2&quot;, x(c)).attr(&quot;y1&quot;, T + Hc).attr(&quot;y2&quot;, T + Hc + 4);
+      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;ttl&quot;).attr(&quot;x&quot;, L).attr(&quot;y&quot;, H - 3).text(W &lt; 520 ? &quot;Dot and bar: median peak date, 95% credible interval&quot; : &quot;Dot and bar: median peak date, 95% credible interval. Curve height: share of draws near that date&quot;);
+    }
     function panel(i) {
       cur = i;
       var r = rows[i];
-      info.innerHTML = &quot;&lt;b&gt;&quot; + r.name + &quot;&lt;/b&gt;&lt;br&gt;Level &quot; + f1(r.alpha[0]) + &quot; patients on trolleys per 10,000 people a week, likely range &quot; + rng(r.alpha) + &quot;. &quot;
-        + &quot;Seasonal swing &quot; + f1(r.amp[0]) + &quot; per 10,000, likely range &quot; + rng(r.amp) + &quot;. &quot;
-        + &quot;Winter, December to February, averages &quot; + sp(r.wex[0]) + &quot; per 10,000 against the rest of the year, likely range &quot; + rng(r.wex) + &quot;. Chance trolleys were higher in winter: &quot; + pc(r.pwin[0]) + &quot;. &quot;
-        + &quot;Yearly peak in &quot; + r.peak_month + (r.peak_width_weeks &gt; 20 ? &quot;, poorly pinned: its likely range is &quot; + Math.round(r.peak_width_weeks) + &quot; weeks wide&quot; : &quot;, likely range &quot; + Math.round(r.peak_width_weeks) + &quot; weeks wide&quot;) + &quot;. &quot;
+      info.innerHTML = &quot;&lt;b&gt;&quot; + r.name + &quot;&lt;/b&gt;&lt;br&gt;Level &quot; + f1(r.alpha[0]) + &quot; patients on trolleys per 10,000 people a week, 95% credible interval &quot; + rng(r.alpha) + &quot;. &quot;
+        + &quot;Seasonal swing &quot; + f1(r.amp[0]) + &quot; per 10,000, 95% credible interval &quot; + rng(r.amp) + &quot;. &quot;
+        + &quot;Winter, December to February, averages &quot; + sp(r.wex[0]) + &quot; per 10,000 against the rest of the year, 95% credible interval &quot; + rng(r.wex) + &quot;. Probability trolleys were higher in winter: &quot; + pc(r.pwin[0]) + &quot;. &quot;
         + r.weeks + &quot; weeks of data, &quot; + fmtD(d0) + &quot; to &quot; + fmtD(d3.timeDay.offset(d1, -1)) + &quot;.&quot;;
+      peakChart(r);
       tl.innerHTML = &quot;&quot;;
       var W = Math.max(280, tl.clientWidth), small = W &lt; 400;
-      var L = 34, R = 8, sT = 16, sH = 58, gap = 34, iH = small ? 128 : 140, colLab = small ? 56 : 44;
+      var L = 34, R = 8, sT = 16, sH = 58, gap = 52, iH = small ? 128 : 140, colLab = small ? 56 : 44;
       var H = sT + sH + 18 + gap + iH + colLab + 4;
       var svg = d3.select(tl).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;width&quot;, W).attr(&quot;height&quot;, H);
       var x = d3.scaleTime().domain([d0, d1]).range([L, W - R]);
@@ -388,7 +597,7 @@
       for (var yr = d0.getFullYear() - 1; yr &lt;= d1.getFullYear(); yr++) {
         var wa = new Date(yr, 11, 1), wb = new Date(yr + 1, 2, 1);
         var xa = x(wa &lt; d0 ? d0 : wa), xb = x(wb &gt; d1 ? d1 : wb);
-        if (xb &gt; xa) svg.append(&quot;rect&quot;).attr(&quot;x&quot;, xa).attr(&quot;width&quot;, xb - xa).attr(&quot;y&quot;, sT).attr(&quot;height&quot;, sH).attr(&quot;fill&quot;, &quot;#dde5e8&quot;).append(&quot;title&quot;).text(&quot;Winter, Met Éireann: December to February&quot;);
+        if (xb &gt; xa) svg.append(&quot;rect&quot;).attr(&quot;x&quot;, xa).attr(&quot;width&quot;, xb - xa).attr(&quot;y&quot;, sT).attr(&quot;height&quot;, sH).attr(&quot;fill&quot;, &quot;#e2f0e2&quot;).append(&quot;title&quot;).text(&quot;Winter, Met Éireann: December to February&quot;);
       }
       D.phases.forEach(function (p) {
         p.weeks.forEach(function (s) {
@@ -413,8 +622,9 @@
       var blk = PH.map(function (k) { var w = D.phases.filter(function (p) { return p.key === k; })[0].weeks; return parse(w[w.length - 1]); });
       var bx0 = x(blk[0]), bx1 = x(d3.timeDay.offset(blk[3], 7));
       var iT = sT + sH + 18 + gap, cL = L, cR = W - R;
-      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;zoom&quot;).attr(&quot;d&quot;, &quot;M&quot; + bx0 + &quot;,&quot; + (sT + sH + 20) + &quot;L&quot; + bx1 + &quot;,&quot; + (sT + sH + 20) + &quot;L&quot; + cR + &quot;,&quot; + (iT - 14) + &quot;L&quot; + cL + &quot;,&quot; + (iT - 14) + &quot;Z&quot;);
-      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;ttl&quot;).attr(&quot;x&quot;, cL).attr(&quot;y&quot;, iT - 4).text(small ? &quot;Change per 10,000 a week, likely range, chance higher&quot; : &quot;Change per 10,000 people a week, likely range, and chance higher&quot;);
+      svg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;zoom&quot;).attr(&quot;d&quot;, &quot;M&quot; + bx0 + &quot;,&quot; + (sT + sH + 20) + &quot;L&quot; + bx1 + &quot;,&quot; + (sT + sH + 20) + &quot;L&quot; + cR + &quot;,&quot; + (iT - 34) + &quot;L&quot; + cL + &quot;,&quot; + (iT - 34) + &quot;Z&quot;);
+      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;sub&quot;).attr(&quot;x&quot;, cL).attr(&quot;y&quot;, iT - 18).text(&quot;New Year dip&quot;);
+      svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;ttl&quot;).attr(&quot;x&quot;, cL).attr(&quot;y&quot;, iT - 4).text(small ? &quot;Change per 10,000 a week, 95% credible interval&quot; : &quot;Change per 10,000 people a week, 95% credible interval, and probability higher&quot;);
       var yi = d3.scaleLinear().domain([phLo, phHi]).nice().range([iT + iH, iT + 8]);
       var cw = (cR - cL) / 4;
       PH.forEach(function (k, j) {
@@ -436,7 +646,7 @@
         svg.append(&quot;line&quot;).attr(&quot;class&quot;, &quot;ci&quot;).attr(&quot;x1&quot;, cx).attr(&quot;x2&quot;, cx).attr(&quot;y1&quot;, yi(q[1])).attr(&quot;y2&quot;, yi(q[2]));
         [q[1], q[2]].forEach(function (v) { svg.append(&quot;line&quot;).attr(&quot;class&quot;, &quot;ci&quot;).attr(&quot;x1&quot;, cx - 5).attr(&quot;x2&quot;, cx + 5).attr(&quot;y1&quot;, yi(v)).attr(&quot;y2&quot;, yi(v)).attr(&quot;stroke-width&quot;, 1.4); });
         svg.append(&quot;circle&quot;).attr(&quot;cx&quot;, cx).attr(&quot;cy&quot;, yi(q[0])).attr(&quot;r&quot;, 4.5).attr(&quot;fill&quot;, (q[1] &gt; 0 || q[2] &lt; 0) ? (q[0] &lt; 0 ? &quot;#14736b&quot; : &quot;#c2410c&quot;) : &quot;#fffaf3&quot;).attr(&quot;stroke&quot;, &quot;#2a1a10&quot;).attr(&quot;stroke-width&quot;, 1.4)
-          .append(&quot;title&quot;).text(PHL[k] + &quot;: &quot; + sp(q[0]) + &quot; per 10,000, likely range &quot; + rng(q) + &quot;, &quot; + pc(q[3]) + &quot; chance trolleys were higher&quot;);
+          .append(&quot;title&quot;).text(PHL[k] + &quot;: &quot; + sp(q[0]) + &quot; per 10,000, 95% credible interval &quot; + rng(q) + &quot;, &quot; + pc(q[3]) + &quot; probability trolleys were higher&quot;);
         svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;vl&quot;).attr(&quot;x&quot;, cx).attr(&quot;y&quot;, q[0] &lt; 0 ? yi(q[2]) - 6 : yi(q[1]) + 13).text(sp(q[0]));
       });
     }
@@ -446,7 +656,7 @@
     var byName = {}; rows.forEach(function (r, i) { byName[r.name] = i; });
     feats.forEach(function (f) { f.ri = byName[f.properties.Region]; });
     var maxAll = {};
-    Object.keys(M).forEach(function (k) { maxAll[k] = d3.max(rows, function (r) { return Math.abs(val(r, k)); }); });
+    Object.keys(M).forEach(function (k) { maxAll[k] = d3.max(rows, function (r) { return M[k].prob ? Math.abs(val(r, k)) : Math.max(Math.abs(r[k][1]), Math.abs(r[k][2])); }); });
     var TILT = 50 * Math.PI / 180;
     var land = topojson.merge(topo, topo.objects.regions.geometries);
     var state = { i: null };
@@ -539,8 +749,18 @@
             });
           }
         });
+        if (!M[metric].prob) items.forEach(function (d) {
+          var q = rows[d.k][metric], sg = d.neg ? -1 : 1;
+          var a = Math.max(0, maxH * sg * q[1] / maxAll[metric]), b = Math.max(0, maxH * sg * q[2] / maxAll[metric]);
+          var lo2 = Math.min(a, b), hi2 = Math.max(a, b), wx = d.x - bw / 2 - 4;
+          d.wtop = d.y - hi2;
+          var wg = layer.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;wh&quot;);
+          wg.append(&quot;line&quot;).attr(&quot;x1&quot;, wx).attr(&quot;x2&quot;, wx).attr(&quot;y1&quot;, d.y - lo2).attr(&quot;y2&quot;, d.y - hi2);
+          if (lo2 &gt; 0) wg.append(&quot;line&quot;).attr(&quot;x1&quot;, wx - 3).attr(&quot;x2&quot;, wx + 3).attr(&quot;y1&quot;, d.y - lo2).attr(&quot;y2&quot;, d.y - lo2);
+          wg.append(&quot;line&quot;).attr(&quot;x1&quot;, wx - 3).attr(&quot;x2&quot;, wx + 3).attr(&quot;y1&quot;, d.y - hi2).attr(&quot;y2&quot;, d.y - hi2);
+        });
         var placed = [];
-        var barsBox = items.map(function (d) { return { x: d.x - bw / 2 - 1, y: d.y + 1, w: bw + dx + 2, h: d.hh + dy + 2 }; });
+        var barsBox = items.map(function (d) { var tp = Math.max(d.hh + dy, d.wtop !== undefined ? d.y - d.wtop : 0); return { x: d.x - bw / 2 - 8, y: d.y + 1, w: bw + dx + 9, h: tp + 2 }; });
         items.sort(function (a, b) { return a.k === i ? -1 : b.k === i ? 1 : a.top - b.top; }).forEach(function (d) {
           var tx2 = layer.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;lbl&quot; + (d.k === i ? &quot; main&quot; : &quot;&quot;)).text(d.text).attr(&quot;opacity&quot;, 0);
           var bb = tx2.node().getBBox(), lw = bb.width, lh = bb.height;
@@ -587,9 +807,10 @@
     var pnl = document.getElementById(&quot;ie-panel&quot;);
     function fixPanel() {
       var keep = cur, mx = 0, mi = 0;
-      pnl.style.minHeight = &quot;&quot;; info.style.minHeight = &quot;&quot;;
-      rows.forEach(function (r, j) { panel(j); mi = Math.max(mi, info.offsetHeight); });
-      info.style.minHeight = mi + &quot;px&quot;;
+      var mk = 0;
+      pnl.style.minHeight = &quot;&quot;; info.style.minHeight = &quot;&quot;; pkEl.style.minHeight = &quot;&quot;;
+      rows.forEach(function (r, j) { panel(j); mi = Math.max(mi, info.offsetHeight); mk = Math.max(mk, pkEl.offsetHeight); });
+      info.style.minHeight = mi + &quot;px&quot;; pkEl.style.minHeight = mk + &quot;px&quot;;
       rows.forEach(function (r, j) { panel(j); mx = Math.max(mx, pnl.offsetHeight); });
       pnl.style.minHeight = mx + &quot;px&quot;;
       panel(keep === null || keep === undefined ? top0 : keep);
@@ -691,16 +912,16 @@
 		<content type="html">&lt;p&gt;San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 100 coded NIMBY. In the other 14 bodies drawn, public speakers showed no significant difference. Officials had significantly more YIMBY than NIMBY speakers in 11 of the 24 bodies drawn.&lt;/p&gt;
 &lt;figure class=&quot;viz&quot; id=&quot;bay-viz&quot;&gt;
   &lt;div class=&quot;ca-card&quot;&gt;
-    &lt;label class=&quot;ca-select&quot; for=&quot;bay-metric&quot;&gt;&lt;span&gt;Statistic&lt;/span&gt;
-      &lt;select id=&quot;bay-metric&quot;&gt;
-        &lt;option value=&quot;pub&quot; selected=&quot;&quot;&gt;Public speakers, YIMBY minus NIMBY, of 100&lt;/option&gt;
-        &lt;option value=&quot;off&quot;&gt;Officials, YIMBY minus NIMBY, of 100&lt;/option&gt;
-        &lt;option value=&quot;npub&quot;&gt;Public speakers with a stance, speakers&lt;/option&gt;
-        &lt;option value=&quot;noff&quot;&gt;Officials with a stance, speakers&lt;/option&gt;
-        &lt;option value=&quot;meetings&quot;&gt;Meetings found, meetings&lt;/option&gt;
-        &lt;option value=&quot;hours&quot;&gt;Video transcribed, hours&lt;/option&gt;
-      &lt;/select&gt;
-    &lt;/label&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bay-tabs-label&quot;&gt;Statistic&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;bay-metric&quot; role=&quot;tablist&quot; aria-labelledby=&quot;bay-tabs-label&quot;&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;pub&quot; data-full=&quot;Public speakers, YIMBY minus NIMBY, of 100&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;Public&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;off&quot; data-full=&quot;Officials, YIMBY minus NIMBY, of 100&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Officials&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;npub&quot; data-full=&quot;Public speakers with a stance, speakers&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Public count&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;noff&quot; data-full=&quot;Officials with a stance, speakers&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Officials count&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;meetings&quot; data-full=&quot;Meetings found, meetings&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Meetings&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;hours&quot; data-full=&quot;Video transcribed, hours&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Hours&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
     &lt;div class=&quot;ca-checks&quot;&gt;
       &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;bay-all&quot; checked=&quot;&quot; /&gt; Always show all bodies&lt;/label&gt;
     &lt;/div&gt;
@@ -730,9 +951,16 @@
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #bay-map { width: 100%; }
 .ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
-.ca-select { display: flex; flex-direction: column; gap: .25rem; flex: 1 1 18rem; min-width: 0; font-size: .8rem; font-weight: 600; color: #6b5440; }
-.ca-select select { font: inherit; font-size: .95rem; font-weight: 400; color: #2a1a10; min-height: 44px; width: 100%; padding: .4rem 2rem .4rem .7rem; border: 1px solid #d4b483; border-radius: 8px; background: #fffaf3 url(&quot;data:image/svg+xml,%3Csvg xmlns=&#39;http://www.w3.org/2000/svg&#39; width=&#39;12&#39; height=&#39;8&#39;%3E%3Cpath d=&#39;M1 1l5 5 5-5&#39; fill=&#39;none&#39; stroke=&#39;%23b8400e&#39; stroke-width=&#39;2&#39;/%3E%3C/svg%3E&quot;) no-repeat right .75rem center; appearance: none; -webkit-appearance: none; cursor: pointer; text-overflow: ellipsis; }
-.ca-select select:focus-visible { outline: 2px solid #c2410c; outline-offset: 1px; }
+.ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; flex: 1 1 100%; min-width: 0; max-width: 100%; }
+.ca-card { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.ca-card &gt; * { min-width: 0; }
+.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-tabs { display: flex; justify-content: space-between; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
+.ca-tabs::-webkit-scrollbar { display: none; }
+.ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .9rem; border: 1px solid #d4b483; border-radius: 999px; background: #fffaf3; color: #2a1a10; cursor: pointer; white-space: nowrap; }
+.ca-tabs button:hover { background: #f8e6cc; }
+.ca-tabs button[aria-selected=&quot;true&quot;] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
+.ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
 .ca-checks { display: flex; flex-direction: column; flex: 0 1 auto; }
 .viz-toggle { display: flex; align-items: center; gap: .55rem; min-height: 40px; font-size: .9rem; cursor: pointer; color: #2a1a10; }
 .viz-toggle input { accent-color: #c2410c; width: 1.15rem; height: 1.15rem; margin: 0; flex: none; }
@@ -741,7 +969,7 @@
 .bay-legend .sw { display: inline-block; width: .7rem; height: .7rem; border-radius: 2px; margin-right: .3rem; vertical-align: -1px; }
 .bay-detail { font-size: .9rem; color: #2a1a10; background: #fffaf3; border-left: 3px solid #c2410c; padding: .45rem .7rem; margin: .4rem 0 0; min-height: 2.6em; }
 .bay-few { font-size: .85rem; color: #6b5440; max-width: 44rem; margin: -1rem auto 1.5rem; }
-@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } .ca-select { flex: none; } }
+@media (max-width: 480px) { .ca-card { flex-direction: column; align-items: stretch; padding: .8rem .9rem; } }
 #bay-map svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 #bay-map .ctx { fill: #f6ecdb; stroke: #fffaf0; stroke-width: 0.6; opacity: .55; pointer-events: none; }
 #bay-map .county { fill: #f1e3c8; stroke: #fffaf0; stroke-width: 0.8; stroke-linejoin: round; cursor: pointer; }
@@ -802,7 +1030,26 @@
         v: function (r) { return r.hours_transcribed; },
         note: &quot;Hours of meeting video transcribed for each body.&quot; }
     };
-    var sel = document.getElementById(&quot;bay-metric&quot;), box = document.getElementById(&quot;bay-all&quot;);
+    var tabsEl = document.getElementById(&quot;bay-metric&quot;), box = document.getElementById(&quot;bay-all&quot;);
+    var tabBtns = Array.prototype.slice.call(tabsEl.querySelectorAll(&quot;button&quot;));
+    var sel = { value: tabBtns[0].dataset.v, selectedIndex: 0, onchange: null, options: tabBtns.map(function (b) { return { text: b.dataset.full }; }) };
+    function pickTab(b, focus) {
+      tabBtns.forEach(function (x) { var on = x === b; x.setAttribute(&quot;aria-selected&quot;, on); x.tabIndex = on ? 0 : -1; });
+      if (focus) b.focus();
+      var l = b.offsetLeft - tabsEl.offsetLeft, r = l + b.offsetWidth;
+      if (l &lt; tabsEl.scrollLeft) tabsEl.scrollLeft = l - 8; else if (r &gt; tabsEl.scrollLeft + tabsEl.clientWidth) tabsEl.scrollLeft = r - tabsEl.clientWidth + 8;
+      if (sel.value === b.dataset.v) return;
+      sel.value = b.dataset.v; sel.selectedIndex = tabBtns.indexOf(b);
+      if (sel.onchange) sel.onchange();
+    }
+    tabBtns.forEach(function (b, k) {
+      b.addEventListener(&quot;click&quot;, function () { pickTab(b, false); });
+      b.addEventListener(&quot;keydown&quot;, function (ev) {
+        var n = ev.key === &quot;ArrowRight&quot; ? k + 1 : ev.key === &quot;ArrowLeft&quot; ? k - 1 : ev.key === &quot;Home&quot; ? 0 : ev.key === &quot;End&quot; ? tabBtns.length - 1 : null;
+        if (n === null) return;
+        ev.preventDefault(); pickTab(tabBtns[(n + tabBtns.length) % tabBtns.length], true);
+      });
+    });
     var metric = sel.value;
     function g(r) { var m = M[metric]; return m.net ? r[m.key] : null; }
     function val(r) { var m = M[metric]; if (m.net) return r[m.key] ? r[m.key].net : null; return m.v(r); }
@@ -1073,6 +1320,13 @@
 		<updated>2026-10-03T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/ca-transit-share/</id>
 		<content type="html">&lt;figure class=&quot;viz&quot; id=&quot;ca-transit-viz&quot;&gt;
+  &lt;div class=&quot;ca-mapwrap&quot;&gt;
+  &lt;div id=&quot;ca-map&quot; role=&quot;img&quot; aria-label=&quot;Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors.&quot;&gt;&lt;/div&gt;
+    &lt;div class=&quot;ca-checks ca-checks-below ca-checks-in&quot;&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-top5&quot; checked=&quot;&quot; /&gt; Always show the 5 highest counties&lt;/label&gt;
+      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-bottom5&quot; checked=&quot;&quot; /&gt; Always show the 5 lowest counties&lt;/label&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
   &lt;div class=&quot;ca-card&quot;&gt;
     &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;ca-tabs-label&quot;&gt;Statistic&lt;/span&gt;
       &lt;div class=&quot;ca-tabs&quot; id=&quot;ca-metric&quot; role=&quot;tablist&quot; aria-labelledby=&quot;ca-tabs-label&quot;&gt;
@@ -1085,18 +1339,29 @@
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;p class=&quot;ca-note&quot; id=&quot;ca-note&quot;&gt;&lt;/p&gt;
-  &lt;div class=&quot;ca-mapwrap&quot;&gt;
-  &lt;div id=&quot;ca-map&quot; role=&quot;img&quot; aria-label=&quot;Map of California counties. Hover or tap a county to show bars for the selected statistic in that county and its neighbors.&quot;&gt;&lt;/div&gt;
-    &lt;div class=&quot;ca-checks ca-checks-below ca-checks-in&quot;&gt;
-      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-top5&quot; checked=&quot;&quot; /&gt; Always show the 5 highest counties&lt;/label&gt;
-      &lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;ca-bottom5&quot; checked=&quot;&quot; /&gt; Always show the 5 lowest counties&lt;/label&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
 &lt;/figure&gt;
 &lt;div class=&quot;ca-tables&quot;&gt;
   &lt;table id=&quot;ca-top&quot;&gt;&lt;caption&gt;Highest 5 counties&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;County&lt;/th&gt;&lt;th class=&quot;vh&quot;&gt;Of 100 workers&lt;/th&gt;&lt;th class=&quot;nh&quot;&gt;Workers&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
   &lt;table id=&quot;ca-bottom&quot;&gt;&lt;caption&gt;Lowest 5 counties&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;County&lt;/th&gt;&lt;th class=&quot;vh&quot;&gt;Of 100 workers&lt;/th&gt;&lt;th class=&quot;nh&quot;&gt;Workers&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;section class=&quot;ca-sc&quot; id=&quot;ca-sc&quot; aria-labelledby=&quot;ca-sc-h&quot;&gt;
+  &lt;h2 id=&quot;ca-sc-h&quot;&gt;Compare two statistics&lt;/h2&gt;
+  &lt;div class=&quot;ca-card ca-sc-card&quot;&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot;&gt;Pick two statistics&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs ca-sc-pick&quot; id=&quot;ca-sc-pick&quot; role=&quot;group&quot; aria-label=&quot;Statistics to compare&quot;&gt;
+        &lt;button type=&quot;button&quot; data-v=&quot;transit&quot; aria-pressed=&quot;true&quot;&gt;Transit&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-v=&quot;novehicle&quot; aria-pressed=&quot;true&quot;&gt;No car&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-v=&quot;commute&quot; aria-pressed=&quot;false&quot;&gt;Commute&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-v=&quot;lowwage&quot; aria-pressed=&quot;false&quot;&gt;Low earners&lt;/button&gt;
+        &lt;button type=&quot;button&quot; data-v=&quot;renter&quot; aria-pressed=&quot;false&quot;&gt;Renters&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;p class=&quot;ca-sc-r&quot; id=&quot;ca-sc-r&quot;&gt;&lt;/p&gt;
+  &lt;div id=&quot;ca-sc-plot&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;ca-note&quot; id=&quot;ca-sc-pt&quot;&gt;Hover or tap a dot for the county.&lt;/p&gt;
+  &lt;p class=&quot;ca-note&quot;&gt;Each dot is one county, 58 in all. The correlation (r) runs from -1 to +1. Near +1, counties that are high on one statistic are also high on the other. Near 0, the two are unrelated. Near -1, one is high where the other is low. A correlation does not show that one causes the other. The faint line is the straight line that fits the dots best.&lt;/p&gt;
+&lt;/section&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/ca-transit-share/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;U.S. Census Bureau. (2025). &lt;em&gt;Means of transportation to work&lt;/em&gt; (American Community Survey 5-year estimates, 2020 to 2024, Table B08301) [Data set]. &lt;a href=&quot;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&quot;&gt;https://www2.census.gov/programs-surveys/acs/summary_file/2024/table-based-SF/data/5YRData/acsdt5y2024-b08301.dat&lt;/a&gt;&lt;/p&gt;
@@ -1113,10 +1378,10 @@
 #ca-map { width: 100%; }
 .ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
 .ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; flex: 1 1 100%; min-width: 0; max-width: 100%; }
-.ca-card { min-width: 0; max-width: 100%; box-sizing: border-box; }
+.ca-card { min-width: 0; max-width: 100%; box-sizing: border-box; margin-top: .6rem; }
 .ca-card &gt; * { min-width: 0; }
 .ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
-.ca-tabs { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
+.ca-tabs { display: flex; justify-content: space-between; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
 .ca-tabs::-webkit-scrollbar { display: none; }
 .ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .95rem; border: 1px solid #d4b483; border-radius: 999px; background: #fffaf3; color: #2a1a10; cursor: pointer; white-space: nowrap; }
 .ca-tabs button:hover { background: #f8e6cc; }
@@ -1145,6 +1410,20 @@
 #ca-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
 #ca-map .lbl.main { font-weight: 700; font-size: 12px; }
 #ca-map .lead { stroke: #6b5440; stroke-width: 0.7; pointer-events: none; }
+.ca-sc { max-width: 44rem; margin: 0 auto 2rem; }
+.ca-sc h2 { margin-bottom: .5rem; }
+.ca-sc-card { margin-top: 0; }
+.ca-sc-pick button[aria-pressed=&quot;true&quot;] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
+.ca-sc-r { font-size: 1.05rem; font-weight: 600; color: #2a1a10; margin: .6rem 0 .2rem; }
+#ca-sc-plot svg { display: block; width: 100%; height: auto; }
+#ca-sc-plot .dot { fill: #f28c38; stroke: #fffaf3; stroke-width: 1; cursor: pointer; }
+#ca-sc-plot .dot.on { fill: #c2410c; stroke: #2a1a10; }
+#ca-sc-plot .ax text { font-size: 11px; fill: #6b5440; }
+#ca-sc-plot .ax line, #ca-sc-plot .ax path { stroke: #d4b483; }
+#ca-sc-plot .grid line { stroke: #f1e3c8; }
+#ca-sc-plot .fit { stroke: #8a2d08; stroke-width: 1.5; stroke-dasharray: 4 3; opacity: .55; fill: none; }
+#ca-sc-plot .alab { font-size: 12px; fill: #2a1a10; font-weight: 600; }
+#ca-sc-plot .plab { font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3px; pointer-events: none; }
 .ca-tables { display: flex; flex-wrap: wrap; justify-content: center; align-items: flex-start; gap: 1.5rem; max-width: 44rem; margin: 0 auto 2rem; }
 .ca-tables table { flex: 1 1 16rem; border-collapse: collapse; font-size: .9rem; margin: 0 !important; }
 .ca-tables caption { text-align: left; font-weight: 700; padding-bottom: .4rem; }
@@ -1160,7 +1439,7 @@
   var el = document.getElementById(&quot;ca-map&quot;);
   Promise.all([
     d3.json(&quot;/visualizations/data/ca-counties-10m.json&quot;),
-    d3.json(&quot;/visualizations/data/ca_commute_metrics_2020_2024.json&quot;)
+    d3.json(&quot;/visualizations/data/ca_commute_metrics_2020_2024.json?v=20261029c&quot;)
   ]).then(function (res) {
     var topo = res[0], rows = res[1];
     var byFips = {};
@@ -1416,6 +1695,94 @@
     draw();
     var lastW = el.clientWidth;
     window.addEventListener(&quot;resize&quot;, function () { if (el.clientWidth !== lastW) { lastW = el.clientWidth; draw(); } });
+  });
+})();
+&lt;/script&gt;
+&lt;script&gt;
+(function () {
+  var LAB = {
+    transit: { name: &quot;Transit&quot;, axis: &quot;Transit commuters, of 100 workers&quot;, u: &quot; of 100 workers&quot; },
+    novehicle: { name: &quot;No car&quot;, axis: &quot;Households with no vehicle, of 100 households&quot;, u: &quot; of 100 households&quot; },
+    commute: { name: &quot;Commute&quot;, axis: &quot;One-way commute time, minutes&quot;, u: &quot; minutes&quot; },
+    lowwage: { name: &quot;Low earners&quot;, axis: &quot;Transit commuters earning under $25,000, of 100 such workers&quot;, u: &quot; of 100 such workers&quot; },
+    renter: { name: &quot;Renters&quot;, axis: &quot;Households that rent, of 100 households&quot;, u: &quot; of 100 households&quot; }
+  };
+  var pick = document.getElementById(&quot;ca-sc-pick&quot;), btns = Array.prototype.slice.call(pick.querySelectorAll(&quot;button&quot;));
+  var plot = document.getElementById(&quot;ca-sc-plot&quot;), rOut = document.getElementById(&quot;ca-sc-r&quot;), ptOut = document.getElementById(&quot;ca-sc-pt&quot;);
+  var order = [&quot;transit&quot;, &quot;novehicle&quot;], rows = null, hot = null;
+  function pearson(a, b) {
+    var n = a.length, ma = d3.mean(a), mb = d3.mean(b), sab = 0, saa = 0, sbb = 0;
+    for (var i = 0; i &lt; n; i++) { var x = a[i] - ma, y = b[i] - mb; sab += x * y; saa += x * x; sbb += y * y; }
+    return { r: sab / Math.sqrt(saa * sbb), slope: sab / saa, icpt: mb - (sab / saa) * ma };
+  }
+  function nm(r) { return r.county.replace(/ County$/, &quot;&quot;); }
+  function fmt(k, v) { return (k === &quot;commute&quot; ? v.toFixed(1) : v.toFixed(1)) + LAB[k].u; }
+  function draw() {
+    plot.innerHTML = &quot;&quot;;
+    if (order.length &lt; 2) { rOut.textContent = &quot;Pick a second statistic to compare.&quot;; ptOut.textContent = &quot;&quot;; return; }
+    var kx = order[0], ky = order[1];
+    var xs = rows.map(function (r) { return r[kx].value; }), ys = rows.map(function (r) { return r[ky].value; });
+    var all = pearson(xs, ys);
+    var noSF = rows.filter(function (r) { return r.fips !== &quot;06075&quot;; });
+    var rs = pearson(noSF.map(function (r) { return r[kx].value; }), noSF.map(function (r) { return r[ky].value; }));
+    rOut.textContent = &quot;Correlation (r) between &quot; + LAB[kx].name.toLowerCase() + &quot; and &quot; + LAB[ky].name.toLowerCase() + &quot;: &quot; + all.r.toFixed(2) + &quot; across 58 counties. Without San Francisco: &quot; + rs.r.toFixed(2) + &quot;.&quot;;
+    var W = Math.max(300, plot.clientWidth), small = W &lt; 480, H = Math.round(W * (small ? 0.85 : 0.62));
+    var m = { l: small ? 44 : 52, r: 14, t: 12, b: small ? 52 : 48 };
+    var x = d3.scaleLinear().domain([0, d3.max(xs) * 1.05]).nice().range([m.l, W - m.r]);
+    var y = d3.scaleLinear().domain([0, d3.max(ys) * 1.05]).nice().range([H - m.b, m.t]);
+    var svg = d3.select(plot).append(&quot;svg&quot;).attr(&quot;viewBox&quot;, &quot;0 0 &quot; + W + &quot; &quot; + H).attr(&quot;role&quot;, &quot;img&quot;)
+      .attr(&quot;aria-label&quot;, &quot;Scatter plot of &quot; + LAB[kx].axis + &quot; against &quot; + LAB[ky].axis + &quot; for 58 California counties&quot;);
+    svg.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;grid&quot;).selectAll(&quot;line&quot;).data(y.ticks(5)).join(&quot;line&quot;).attr(&quot;x1&quot;, m.l).attr(&quot;x2&quot;, W - m.r).attr(&quot;y1&quot;, y).attr(&quot;y2&quot;, y);
+    svg.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;ax&quot;).attr(&quot;transform&quot;, &quot;translate(0,&quot; + (H - m.b) + &quot;)&quot;).call(d3.axisBottom(x).ticks(small ? 4 : 6).tickSizeOuter(0));
+    svg.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;ax&quot;).attr(&quot;transform&quot;, &quot;translate(&quot; + m.l + &quot;,0)&quot;).call(d3.axisLeft(y).ticks(5).tickSizeOuter(0));
+    svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;alab&quot;).attr(&quot;x&quot;, (m.l + W - m.r) / 2).attr(&quot;y&quot;, H - 8).attr(&quot;text-anchor&quot;, &quot;middle&quot;).text(LAB[kx].axis);
+    svg.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;alab&quot;).attr(&quot;transform&quot;, &quot;translate(12,&quot; + ((m.t + H - m.b) / 2) + &quot;) rotate(-90)&quot;).attr(&quot;text-anchor&quot;, &quot;middle&quot;).text(LAB[ky].axis);
+    svg.append(&quot;clipPath&quot;).attr(&quot;id&quot;, &quot;ca-sc-clip&quot;).append(&quot;rect&quot;).attr(&quot;x&quot;, m.l).attr(&quot;y&quot;, m.t).attr(&quot;width&quot;, W - m.l - m.r).attr(&quot;height&quot;, H - m.t - m.b);
+    var xa = d3.min(xs), xb = d3.max(xs);
+    svg.append(&quot;line&quot;).attr(&quot;class&quot;, &quot;fit&quot;).attr(&quot;clip-path&quot;, &quot;url(#ca-sc-clip)&quot;).attr(&quot;x1&quot;, x(xa)).attr(&quot;x2&quot;, x(xb))
+      .attr(&quot;y1&quot;, y(all.icpt + all.slope * xa)).attr(&quot;y2&quot;, y(all.icpt + all.slope * xb));
+    var mx = d3.mean(xs), my = d3.mean(ys), sx = d3.deviation(xs), sy = d3.deviation(ys);
+    var lab = rows.slice().sort(function (a, b) {
+      var da = Math.hypot((a[kx].value - mx) / sx, (a[ky].value - my) / sy), db = Math.hypot((b[kx].value - mx) / sx, (b[ky].value - my) / sy);
+      return db - da; }).slice(0, small ? 3 : 5).map(function (r) { return r.fips; });
+    var dots = svg.append(&quot;g&quot;).selectAll(&quot;circle&quot;).data(rows).join(&quot;circle&quot;).attr(&quot;class&quot;, &quot;dot&quot;)
+      .attr(&quot;cx&quot;, function (r) { return x(r[kx].value); }).attr(&quot;cy&quot;, function (r) { return y(r[ky].value); }).attr(&quot;r&quot;, small ? 4 : 5)
+      .on(&quot;pointerenter&quot;, function (ev, r) { show(r); }).on(&quot;click&quot;, function (ev, r) { show(r); });
+    var pl = svg.append(&quot;g&quot;);
+    function labels(extra) {
+      pl.selectAll(&quot;*&quot;).remove();
+      var placed = [];
+      rows.filter(function (r) { return lab.indexOf(r.fips) &gt;= 0 || r === extra; }).forEach(function (r) {
+        var px = x(r[kx].value), py = y(r[ky].value), right = px &lt; W * 0.7;
+        var t = pl.append(&quot;text&quot;).attr(&quot;class&quot;, &quot;plab&quot;).attr(&quot;x&quot;, px + (right ? 8 : -8)).attr(&quot;text-anchor&quot;, right ? &quot;start&quot; : &quot;end&quot;).text(nm(r));
+        var w = t.node().getComputedTextLength(), x0 = right ? px + 8 : px - 8 - w, ty = py - 6;
+        for (var k = 0; k &lt; 12 &amp;&amp; placed.some(function (q) { return x0 &lt; q.x + q.w &amp;&amp; x0 + w &gt; q.x &amp;&amp; Math.abs(ty - q.y) &lt; 12; }); k++) ty += (k % 2 ? -1 : 1) * 12 * (k + 1);
+        placed.push({ x: x0, y: ty, w: w });
+        t.attr(&quot;y&quot;, ty);
+      });
+    }
+    function show(r) {
+      hot = r.fips;
+      dots.classed(&quot;on&quot;, function (d) { return d.fips === hot; }).filter(function (d) { return d.fips === hot; }).raise();
+      labels(r);
+      ptOut.textContent = nm(r) + &quot;: &quot; + fmt(kx, r[kx].value) + &quot;; &quot; + fmt(ky, r[ky].value) + &quot;.&quot;;
+    }
+    labels(null);
+    var keep = rows.filter(function (r) { return r.fips === hot; })[0];
+    if (keep) show(keep); else ptOut.textContent = &quot;Hover or tap a dot for the county.&quot;;
+  }
+  btns.forEach(function (b) {
+    b.addEventListener(&quot;click&quot;, function () {
+      var v = b.dataset.v, i = order.indexOf(v);
+      if (i &gt;= 0) order.splice(i, 1); else { order.push(v); if (order.length &gt; 2) order.shift(); }
+      btns.forEach(function (x) { x.setAttribute(&quot;aria-pressed&quot;, order.indexOf(x.dataset.v) &gt;= 0); });
+      if (rows) draw();
+    });
+  });
+  d3.json(&quot;/visualizations/data/ca_commute_metrics_2020_2024.json?v=20261029c&quot;).then(function (d) {
+    rows = d; draw();
+    var lw = plot.clientWidth;
+    window.addEventListener(&quot;resize&quot;, function () { if (plot.clientWidth !== lw) { lw = plot.clientWidth; draw(); } });
   });
 })();
 &lt;/script&gt;
