@@ -1,7 +1,7 @@
 // Dashboard for Twitch Transcripts: hours, topic rates and top words by stream.
 // Data: twitch_transcripts.json, built by scripts/build_twitch_transcripts.py (aggregates only).
 (function () {
-  const INK = "#2a1a10", MUTED = "#6b5440", LIGHT = "#f2d3a8", BAR = "#f28c38", FOCUS = "#c2410c";
+  const INK = "#2a2340", MUTED = "#625a7a", LIGHT = "#cfe3f7", BAR = "#f4a6c0", FOCUS = "#7461c4";
   const tip = document.getElementById("tw-tip");
   const fmt1 = d3.format(".1f"), fmtInt = d3.format(",");
   const short = (s) => s.label.replace(/^\w+ /, "");          // "Oct 26"
@@ -159,7 +159,7 @@
     const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
     const y = d3.scaleBand(W.map((w) => w.key), [0, f.ih]).padding(0.08);
     const vmax = d3.max(S, (s) => d3.max(W, (w) => s.top[w.key]));
-    const col = d3.scaleLinear([0, vmax], ["#fdf6ea", FOCUS]).interpolate(d3.interpolateLab);
+    const col = d3.scaleLinear([0, vmax], ["#f6f1fb", FOCUS]).interpolate(d3.interpolateLab);
     const hx = f.g.append("g").attr("class", "ax");
     S.forEach((s) => {
       const t = hx.append("text").attr("text-anchor", "middle");
