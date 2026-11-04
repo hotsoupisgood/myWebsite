@@ -1,5 +1,5 @@
 ---
-title: LA Metro rail grew from 21 stations in 1990 to 110 in 2026
+title: LA Metro Rail Ridership by Line and Station, 2026
 description: LA Metro rail stations by opening year on a tilted map, with average weekday boardings on each line in fiscal years 2009 to 2026.
 date: 2026-10-29
 layout: layouts/post.njk
