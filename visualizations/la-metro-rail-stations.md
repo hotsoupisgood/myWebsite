@@ -35,10 +35,6 @@ layout: layouts/post.njk
   <p class="lmc-p" id="lmc-scatter-note"></p>
 </section>
 
-<div class="ca-tables">
-  <table id="lam-t1" hidden><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
-</div>
-
 <section class="lmc-sec" aria-labelledby="lmc-h1">
   <h2 id="lmc-h1" class="lmc-h">Average weekday boardings by line, fiscal years 2009 to 2026</h2>
   <div class="lmc-chart" id="lmc-lines" role="img" aria-label="Line chart of average weekday boardings on each LA Metro rail line from fiscal year 2009 to 2026."></div>
@@ -48,6 +44,7 @@ layout: layouts/post.njk
 <div class="lmc-tip" id="lmc-tip" hidden></div>
 
 <div class="ca-tables lam-newest">
+  <table id="lam-t1" hidden><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
   <table id="lam-t2"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
 </div>
 
