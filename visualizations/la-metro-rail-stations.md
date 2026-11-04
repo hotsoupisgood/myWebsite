@@ -23,8 +23,8 @@ layout: layouts/post.njk
   </div>
   <div class="lam-body">
     <div class="lam-mapcol">
-      <div id="lam-map" role="img" aria-label="Tilted map of the LA Metro rail network in 2026, with line width showing average weekday boardings."></div>
       <p class="bay-legend" id="lam-legend"></p>
+      <div id="lam-map" role="img" aria-label="Tilted map of the LA Metro rail network in 2026, with line width showing average weekday boardings."></div>
     </div>
   </div>
 </figure>
