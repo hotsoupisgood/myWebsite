@@ -347,11 +347,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         }
         counties.classed("on", function (f) { return f.id === state.c; });
         outline.attr("d", state.c ? path(feats.filter(function (f) { return f.id === state.c; })[0]) : null);
-        if (i !== null) det.innerHTML = detail(rows[i]);
-        else if (state.c) {
-          var inC = hov.map(function (j) { return rows[j]; });
-          det.innerHTML = "<b>" + cname[state.c] + " County</b>: " + (inC.length ? inC.map(function (r) { return label(r) + " " + fmtv(r); }).join("; ") + "." : "no body in this project.") + " Tap a bar for its likely range.";
-        }
+        // the hint line below the map stays fixed; the numbers are in the tables (Puck 2026-11-03)
         var had = {};
         layer.selectAll("g.bar").each(function () { if (this.__k !== undefined && +d3.select(this).datum() > 0) had[this.__k] = +d3.select(this).datum(); });
         layer.interrupt().selectAll("*").interrupt();
@@ -451,7 +447,6 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       };
       sel.onchange = function () {
         metric = sel.value; legend(); tables();
-        if (state.i !== null) det.innerHTML = detail(rows[state.i]);
         if (state.i !== null || state.c || box.checked) show(state.i, state.c); else resizeHits();
       };
       window.__bayShow = function (body) { var j = rows.findIndex(function (r) { return r.body === body; }); show(j, COUNTY_FIPS[rows[j].county]); };
