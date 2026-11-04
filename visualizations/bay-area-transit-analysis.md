@@ -59,7 +59,7 @@ No Bay Area body had significantly more YIMBY than NIMBY public speakers once th
 </section>
 <div class="bp-tip" id="bp-tip" hidden></div>
 
-**Methods.** Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significant means the result passes a test corrected for checking many bodies at once. The correction is the Holm method, applied to the 15 public-speaker results and, separately, to the 24 official results, at 10 in 100. A likely range that excludes zero is not enough on its own. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.
+**Methods.** Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significant means the result passes a test corrected for checking many bodies at once. The correction is the Holm method, applied to the 15 public-speaker results and, separately, to the 24 official results, at 10 in 100. A likely range that excludes zero is not enough on its own. A body is drawn when it has at least 10 speakers with a stance in that group. Faint lines on the map are elevation contours every 150 meters, from the Terrain Tiles data set. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.
 
 ## References
 
@@ -74,6 +74,8 @@ Granicus. (2026). *Public meeting video archives of Bay Area city councils and b
 Swagit. (2026). *Public meeting video archives of Bay Area city councils* [Video archive]. https://www.swagit.com/
 
 YouTube. (2026). *Public meeting video channels of Bay Area city councils, county boards and transit boards* [Video archive]. https://www.youtube.com/
+
+Mapzen, & Amazon Web Services. (2026). *Terrain Tiles* [Data set]. Registry of Open Data on AWS. Retrieved November 3, 2026, from https://registry.opendata.aws/terrain-tiles/
 
 U.S. Census Bureau. (2024). *Cartographic boundary files, counties* [Data set], via Bostock, M. *us-atlas* (Version 3). https://github.com/topojson/us-atlas
 
@@ -126,6 +128,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 #bay-map .county.on { fill: #efbe8a; }
 #bay-map .slab { fill: #d4b483; }
 #bay-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#bay-map .topo { fill: none; stroke: #b9905f; stroke-width: 0.55; opacity: 0.3; pointer-events: none; }
+#bay-map .topo.major { stroke: #94693a; stroke-width: 0.8; opacity: 0.5; }
 #bay-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
 #bay-map .cname { font-size: 10px; fill: #9a7b5a; font-style: italic; pointer-events: none; text-anchor: middle; }
 #bay-map .bar { pointer-events: none; }
@@ -157,9 +161,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
   var BAY = ["06001", "06013", "06041", "06055", "06075", "06081", "06085", "06095", "06097"];
   Promise.all([
     d3.json("/visualizations/data/ca-counties-10m.json"),
-    d3.json("/visualizations/data/bay_area_bodies.json?v=20261103holm")
+    d3.json("/visualizations/data/bay_area_bodies.json?v=20261103holm"),
+    d3.json("/visualizations/data/bay_area_contours.json?v=20261103a").catch(function () { return { features: [] }; })
   ]).then(function (res) {
-    var topo = res[0], rows = res[1].bodies;
+    var topo = res[0], rows = res[1].bodies, contours = res[2];
     var COUNTY_FIPS = { "Alameda": "06001", "Contra Costa": "06013", "Marin": "06041", "Napa": "06055", "San Francisco": "06075", "San Mateo": "06081", "Santa Clara": "06085", "Solano": "06095", "Sonoma": "06097" };
     function sign(v) { var r = Math.round(v); return (r > 0 ? "+" : "") + r; }
     function label(r) { return r.kind === "transit" ? r.short + " (HQ " + r.site.replace(/^HQ \(|\)$/g, "") + ")" : r.kind === "county" ? r.short + " (county board)" : r.short; }
@@ -326,6 +331,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         .on("pointerenter", function (ev, f) { if (ev.pointerType === "mouse") showCounty(f.id); })
         .on("pointerleave", function (ev) { if (ev.pointerType === "mouse") clear(); })
         .on("click", function (ev, f) { ev.stopPropagation(); if (state.c === f.id && state.i === null && ev.pointerType !== "mouse") clear(); else showCounty(f.id); });
+      // Terrain: elevation contours every 150 m, clipped to the nine counties, faint and always on (VIZ-STYLE).
+      defs.append("clipPath").attr("id", "bay-land").append("path").attr("d", landD);
+      svg.append("g").attr("clip-path", "url(#bay-land)").selectAll("path").data(contours.features).join("path")
+        .attr("class", function (f) { return f.properties.elev % 600 === 0 ? "topo major" : "topo"; }).attr("d", path);
       var cnames = svg.append("g").selectAll("text").data(feats).join("text").attr("class", "cname").each(function (f) {
         var c = bpath.centroid(f), q = tiltPt(c[0], c[1]);
         if (f.id === "06075") q = tiltPt(c[0] - 40, c[1] + 10);
