@@ -1,5 +1,5 @@
 ---
-title: San Mateo was the one Bay Area body with significantly more YIMBY than NIMBY public speakers
+title: Exploratory Dashboard of Bay Area Public Meetings
 description: Public speakers and officials at Bay Area city councils, a county board and transit boards, coded YIMBY or NIMBY on housing and transit proposals, by body, 2025 to 2026.
 date: 2026-10-12
 layout: layouts/post.njk
