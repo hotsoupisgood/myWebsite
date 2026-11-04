@@ -166,4 +166,4 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
 <script src="/visualizations/data/la_metro_viz.js?v=20261103c"></script>
-<script src="/visualizations/data/la_metro_charts.js?v=20261103c"></script>
+<script src="/visualizations/data/la_metro_charts.js?v=20261103d"></script>

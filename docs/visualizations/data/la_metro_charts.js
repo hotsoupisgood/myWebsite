@@ -38,7 +38,7 @@
     ax.append("text").attr("x", f.iw / 2).attr("y", f.ih + 31).attr("text-anchor", "middle").text("Fiscal year, ending in June");
     // June 2023: the Regional Connector gave the A and E Lines their current routes
     ax.append("line").attr("x1", x(2023.5)).attr("x2", x(2023.5)).attr("y1", 0).attr("y2", f.ih).attr("stroke", MUTED).attr("stroke-dasharray", "3 3");
-    ax.append("text").attr("x", x(2023.5) - 4).attr("y", 10).attr("text-anchor", "end").text("Regional Connector");
+    ax.append("text").attr("x", x(2023.5) - 4).attr("y", 10).attr("text-anchor", "end").text("Line change");
     const ln = d3.line().x((p) => x(p[0])).y((p) => y(p[1]));
     S.forEach((s) => {
       // one solid line per route; the dashed vertical rule marks where the A and E routes changed
