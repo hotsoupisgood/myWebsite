@@ -32,7 +32,7 @@
       busyCb.disabled = dis; busyCb.parentNode.classList.toggle("off", dis); busyCb.parentNode.title = dis ? "No station data before fiscal year 2024" : "";
       var on = busyOn();
       document.getElementById("lam-t1").hidden = !on;
-      document.getElementById("lam-src-on").hidden = !on; document.getElementById("lam-src-off").hidden = on;
+      var so = document.getElementById("lam-src-on"), sf = document.getElementById("lam-src-off"); if (so) so.hidden = !on; if (sf) sf.hidden = on;
       if (on) {
         var f = String(Y);
         d3.select("#lam-t1 caption").text("Busiest 10 stations, fiscal year " + Y);
@@ -62,10 +62,9 @@
       });
     });
     function legend() {
-      var L = document.getElementById("lam-legend"), cnt = rows.filter(open).length, h;
-      if (metric === "b") h = cnt + " stations open in " + Y + ". Line width: average weekday boardings on the line in fiscal year " + Y + ", shown at each line's end." + (Y < 2009 ? " Line figures start in fiscal year 2009, so lines are thin before then." : "") + " Pins: stations opened in " + (Y - 1) + " or " + Y + ".";
-      else { h = cnt + " stations open in " + Y + ". Dot color: decade the station opened:"; DEC.forEach(function (d, i) { h += '<i class="sw" style="background:' + DCOL[i] + '"></i>' + d + "s"; }); h += ". Pins: stations opened in " + (Y - 1) + " or " + Y + "."; }
-      if (busyOn()) h += " Bars: the 10 stations with the most average weekday boardings in fiscal year " + Y + ", on one height scale for fiscal years 2024 to 2026.";
+      // Puck 2026-11-03: the note under the map says only what line width shows
+      var L = document.getElementById("lam-legend"), h;
+      h = "Line width: average weekday boardings on each line in fiscal year " + Y + ".";
       L.innerHTML = h;
     }
     function muted(k) { return d3.interpolateRgb(LINES[k].color, "#f1e3c8")(metric === "age" ? 0.45 : 0.3); }

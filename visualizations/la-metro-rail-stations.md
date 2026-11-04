@@ -27,7 +27,6 @@ layout: layouts/post.njk
       <p class="bay-legend" id="lam-legend"></p>
     </div>
   </div>
-  <p class="ca-note lam-src"><span id="lam-src-off">Station boardings: LA Metro figures released through public records requests, compiled on Wikipedia; not published by LA Metro.</span><span id="lam-src-on" hidden>Station boardings cover fiscal years 2024 to 2026 and come from LA Metro figures released through public records requests, compiled on Wikipedia, not published by LA Metro.</span> Line boardings: LA Metro Interactive Estimated Ridership Stats, fiscal years 2009 to 2026.</p>
 </figure>
 
 <section class="lmc-sec" aria-labelledby="lmc-h2">
@@ -167,5 +166,5 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
-<script src="/visualizations/data/la_metro_viz.js?v=20261103d"></script>
+<script src="/visualizations/data/la_metro_viz.js?v=20261103e"></script>
 <script src="/visualizations/data/la_metro_charts.js?v=20261103d"></script>
