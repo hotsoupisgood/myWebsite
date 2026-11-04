@@ -118,6 +118,11 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 #lam-map .slab { fill: #d4b483; }
 #lam-map .shadow { fill: #5a3a1a; opacity: 0.18; }
 #lam-viz > .ca-card { background: none; border: none; box-shadow: none; padding: 0; margin-bottom: .3rem; }
+/* Note sits in the empty bay at the map's lower left on wide screens; above the map on phones. */
+@media (min-width: 1180px) {
+  .lam-mapcol { position: relative; }
+  .lam-mapcol #lam-legend { position: absolute; left: 0; bottom: 6%; width: 24%; max-width: 13rem; margin: 0; font-size: .78rem; line-height: 1.35; z-index: 2; }
+}
 .lmc-sec { margin: 2rem 0 1.4rem; }
 /* Map and scatter fit on one laptop screen together (Puck 2026-11-03): cap the map's width so its height
    stays near 360 px, and keep the scatter short and close under it. */
