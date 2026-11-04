@@ -5,7 +5,7 @@ date: 2026-10-29
 layout: layouts/post.njk
 ---
 
-LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations on six lines. Line width shows average weekday boardings on each line, from LA Metro figures. The B and D Lines carried 159,362 average weekday boardings in fiscal year 2014 and 63,077 in fiscal year 2026. Move the year slider to see the network grow, or hover a station for its line's boardings.
+Move the year slider to see the network grow, or hover a station for its line's boardings.
 
 <figure class="viz lam-wide" id="lam-viz">
   <div class="ca-card">
