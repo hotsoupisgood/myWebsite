@@ -1,6 +1,6 @@
 ---
 title: Dashboard for Twitch Transcripts
-description: Hours of speech and the most frequent words and topics in eight HasanAbi Twitch streams, October 26 to November 2, 2026.
+description: Hours of speech, word pairs, topics and people named in HasanAbi Twitch streams, 2026, updated as streams are transcribed.
 date: 2026-11-03
 layout: layouts/post.njk
 ---
@@ -9,7 +9,7 @@ layout: layouts/post.njk
 
 **TLDR**
 
-- I transcribed a week of HasanAbi's Twitch streams, from the archived video audio, with a speech recognition model.
+- I transcribed HasanAbi's Twitch streams, from the archived video audio, with a speech recognition model.
 - I counted how much of each stream had speech and which words came up most.
 - I found that three Michigan politicians were named most often in the final streams before the midterms.
 - The panels below show hours, topics and words by stream. Methods are at the end.
@@ -39,7 +39,7 @@ layout: layouts/post.njk
 <section class="tw-sec" aria-labelledby="tw-h1">
   <h2 id="tw-h1" class="tw-h"></h2>
   <div class="tw-tiles" id="tw-tiles"></div>
-  <div class="tw-chart" id="tw-hours" role="img" aria-label="Bar chart of stream length and hours of speech for each of the eight streams."></div>
+  <div class="tw-chart" id="tw-hours" role="img" aria-label="Bar chart of stream length and hours of speech for each stream."></div>
   <p class="tw-legend"><span class="sw" style="background:#cfe3f7"></span>Stream length <span class="sw" style="background:#7461c4"></span>Speech</p>
   <p class="tw-p" id="tw-p1"></p>
 </section>
@@ -55,13 +55,13 @@ layout: layouts/post.njk
 
 <div class="tw-tip" id="tw-tip" hidden></div>
 
-**Methods.** The streams are the eight HasanAbi Twitch broadcasts from October 26 to November 2, 2026, one a day. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so "Israel's" counts as "Israel". The speech recognition spells Abdul El-Sayed several ways, such as "Abdullah Al-Sayed" and "Abdel El-Sayed". All of them count as "Abdul El-Sayed". Each topic is a fixed word list, shown under its chart. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer's own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example "thank" and "wait". So were first names whose surname is already counted, and the streamer's own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.
+**Methods.** The streams are the HasanAbi Twitch broadcasts transcribed so far, <span id="tw-range">listed in the charts</span>. New streams and older archived streams are added as they are transcribed. On days with many streams, each chart scrolls sideways. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so "Israel's" counts as "Israel". The speech recognition spells Abdul El-Sayed several ways, such as "Abdullah Al-Sayed" and "Abdel El-Sayed". All of them count as "Abdul El-Sayed". Each topic is a fixed word list, shown under its chart. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer's own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example "thank" and "wait". So were first names whose surname is already counted, and the streamer's own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.
 
 ## References
 
 <div class="references">
 
-HasanAbi. (2026). *Twitch past broadcasts, October 26 to November 2, 2026* [Video recordings]. Twitch. https://www.twitch.tv/hasanabi
+HasanAbi. (2026). *Twitch past broadcasts, 2026* [Video recordings]. Twitch. https://www.twitch.tv/hasanabi
 
 Bain, M., Huh, J., Han, T., & Zisserman, A. (2023). WhisperX: Time-accurate speech transcription of long-form audio. *Proceedings of Interspeech 2023*, 4489 to 4493. https://github.com/m-bain/whisperX
 
@@ -86,6 +86,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .tw-tile b { display: block; font-size: 1.55rem; line-height: 1.2; color: #2a2340; font-variant-numeric: tabular-nums; }
 .tw-tile span { font-size: .8rem; color: #625a7a; }
 @media (max-width: 640px) { .tw-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tw-tile b { font-size: 1.3rem; } }
+.tw-chart { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .tw-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 .tw-chart .ax text { font-size: 11px; fill: #625a7a; }
 @media (max-width: 480px) { .tw-chart .ax text { font-size: 9.5px; } }
@@ -114,4 +115,4 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=20261103g"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=20261103h"></script>

@@ -23,10 +23,14 @@
   const hideTip = () => { tip.hidden = true; };
   document.addEventListener("touchstart", (e) => { if (!e.target.closest(".tw-chart")) hideTip(); }, { passive: true });
 
-  function frame(el, h, m) {
-    const w = Math.max(300, el.clientWidth || 640);
+  // Many streams: each column keeps a minimum width and the chart scrolls sideways inside its box.
+  const MANY = 14;
+  const dense = (S) => S.length > MANY;
+  const showTick = (S, i) => !dense(S) || i === 0 || S[i].label.startsWith("Mon");
+  function frame(el, h, m, cols = 0, minCol = 0) {
+    const w = Math.max(300, el.clientWidth || 640, m.l + m.r + cols * minCol);
     el.innerHTML = "";
-    const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${w} ${h}`);
+    const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${w} ${h}`).style("min-width", `${w}px`);
     return { svg, w, h, iw: w - m.l - m.r, ih: h - m.t - m.b, g: svg.append("g").attr("transform", `translate(${m.l},${m.t})`) };
   }
 
@@ -34,7 +38,8 @@
     const narrow = x.step() < 56;
     const ax = g.append("g").attr("class", "ax").attr("transform", `translate(0,${ih})`);
     ax.append("line").attr("x2", x.range()[1]);
-    S.forEach((s) => {
+    S.forEach((s, i) => {
+      if (!showTick(S, i)) return;
       const t = ax.append("text").attr("x", x(s.label) + x.bandwidth() / 2).attr("text-anchor", "middle");
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("dy", "1.3em").text(day(s));
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("dy", "1.2em").text(tick(s, narrow));
@@ -83,7 +88,7 @@
       `The longest stream ran ${fmt1(longest.stream_h)} hours, on ${longest.label}.`;
 
     const m = { t: 26, r: 8, b: 40, l: 34 };
-    const f = frame(el, 250, m);
+    const f = frame(el, 250, m, S.length, 14);
     const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.28);
     const y = d3.scaleLinear([0, Math.ceil(d3.max(S, (s) => s.stream_h) / 2) * 2], [f.ih, 0]);
     yAxis(f.g, y, f.iw, "Hours");
@@ -106,13 +111,14 @@
       `${R[0].label} was the person named most often over the ${S.length} streams, ${fmtInt(R[0].n)} times.`;
     const narrow = (el.clientWidth || 640) < 480;
     const m = { t: 34, r: 4, b: 4, l: narrow ? 126 : 150 }, rowH = narrow ? 26 : 28;
-    const f = frame(el, m.t + m.b + rowH * R.length, m);
+    const f = frame(el, m.t + m.b + rowH * R.length, m, S.length, 22);
     const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
     const y = d3.scaleBand(R.map((r) => r.key), [0, f.ih]).padding(0.08);
     const vmax = d3.max(S, (s) => d3.max(R, (r) => s.names[r.key]));
     const col = d3.scaleLinear([0, vmax], ["#f6f1fb", FOCUS]).interpolate(d3.interpolateLab);
     const hx = f.g.append("g").attr("class", "ax");
-    S.forEach((s) => {
+    S.forEach((s, i) => {
+      if (!showTick(S, i)) return;
       const t = hx.append("text").attr("text-anchor", "middle");
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -20).text(day(s));
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
@@ -125,7 +131,7 @@
       .attr("rx", 3).attr("fill", (c) => col(c.v))
       .on("pointermove click", (ev, c) => showTip(ev, `<b>${c.r.label}, ${c.s.label}, 2026</b>${fmtInt(c.n)} times, ${fmt1(c.v)} per 10,000 words`))
       .on("pointerleave", hideTip);
-    if (!narrow) {
+    if (!narrow && !dense(S)) {
       f.g.selectAll(null).data(cells).join("text").attr("class", "cell-lbl")
         .attr("x", (c) => x(c.s.label) + x.bandwidth() / 2).attr("y", (c) => y(c.r.key) + y.bandwidth() / 2)
         .attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", (c) => (c.v > vmax * 0.55 ? "#fff" : INK))
@@ -149,13 +155,14 @@
     const narrow = (el.clientWidth || 640) < 480;
     const m = { t: 34, r: 4, b: 4, l: narrow ? 104 : 120 };
     const rowH = narrow ? 30 : 32;
-    const f = frame(el, m.t + m.b + rowH * R.length, m);
+    const f = frame(el, m.t + m.b + rowH * R.length, m, S.length, 22);
     const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
     const y = d3.scaleBand(R.map((t) => t.key), [0, f.ih]).padding(0.08);
     const vmax = d3.max(S, (s) => d3.max(R, (t) => s.topics[t.key]));
     const col = d3.scaleLinear([0, vmax], ["#f6f1fb", FOCUS]).interpolate(d3.interpolateLab);
     const hx = f.g.append("g").attr("class", "ax");
-    S.forEach((s) => {
+    S.forEach((s, i) => {
+      if (!showTick(S, i)) return;
       const t = hx.append("text").attr("text-anchor", "middle");
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -20).text(day(s));
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
@@ -168,7 +175,7 @@
       .attr("rx", 3).attr("fill", (c) => col(c.v))
       .on("pointermove click", (ev, c) => showTip(ev, `<b>${c.t.label}, ${c.s.label}, 2026</b>${fmtInt(c.n)} times, ${fmt1(c.v)} per 10,000 words`))
       .on("pointerleave", hideTip);
-    if (!narrow) {
+    if (!narrow && !dense(S)) {
       f.g.selectAll(null).data(cells).join("text").attr("class", "cell-lbl")
         .attr("x", (c) => x(c.s.label) + x.bandwidth() / 2).attr("y", (c) => y(c.t.key) + y.bandwidth() / 2)
         .attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", (c) => (c.v > vmax * 0.55 ? "#fff" : INK))
@@ -227,13 +234,14 @@
     const lw = wordView === "pairs" ? (narrow ? 136 : 150) : (narrow ? 74 : 96);
     const m = { t: 34, r: 4, b: 4, l: lw };
     const rowH = narrow ? 26 : 28;
-    const f = frame(el, m.t + m.b + rowH * W.length, m);
+    const f = frame(el, m.t + m.b + rowH * W.length, m, S.length, 22);
     const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
     const y = d3.scaleBand(W.map((w) => w.key), [0, f.ih]).padding(0.08);
     const vmax = d3.max(S, (s) => d3.max(W, (w) => s[V.rate][w.key]));
     const col = d3.scaleLinear([0, vmax], ["#f6f1fb", FOCUS]).interpolate(d3.interpolateLab);
     const hx = f.g.append("g").attr("class", "ax");
-    S.forEach((s) => {
+    S.forEach((s, i) => {
+      if (!showTick(S, i)) return;
       const t = hx.append("text").attr("text-anchor", "middle");
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -20).text(day(s));
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
@@ -246,7 +254,7 @@
       .attr("rx", 3).attr("fill", (c) => col(c.v))
       .on("pointermove click", (ev, c) => showTip(ev, `<b>"${c.w.label}", ${c.s.label}, 2026</b>${fmtInt(c.n)} times, ${fmt1(c.v)} per 10,000 words`))
       .on("pointerleave", hideTip);
-    if (!narrow) {
+    if (!narrow && !dense(S)) {
       f.g.selectAll(null).data(cells).join("text").attr("class", "cell-lbl")
         .attr("x", (c) => x(c.s.label) + x.bandwidth() / 2).attr("y", (c) => y(c.w.key) + y.bandwidth() / 2)
         .attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", (c) => (c.v > vmax * 0.55 ? "#fff" : INK))
@@ -266,7 +274,10 @@
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103g").then((D) => {
+  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103h").then((D) => {
+    const S = D.streams;
+    document.getElementById("tw-range").textContent =
+      `${S.length} streams from ${S[0].label} to ${S[S.length - 1].label}, 2026`;
     const all = () => { hours(D); topics(D); words(D); names(D); };
     all();
     let w = window.innerWidth;

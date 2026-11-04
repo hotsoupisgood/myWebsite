@@ -3,3 +3,5 @@ package-lock.json
 CLAUDE.md
 .DS_Store
 originals/
+scripts/update_twitch.log
+scripts/update_twitch.launchd.log

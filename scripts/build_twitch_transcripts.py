@@ -39,7 +39,7 @@ TOPICS = {
 }
 
 
-FIRST_DAY = "2026-10-26"
+FIRST_DAY = "2026-01-01"
 
 # One spelling for Abdul El-Sayed before counting (Puck 2026-11-03). Whisper writes "Abdullah Al-Sayed",
 # "Abdel El-Sayed", "Abdul Alsaid" and others; "el"/"al" are under three letters, so without this the name
@@ -117,7 +117,7 @@ def main():
             meta = json.loads((d / "vod.json").read_text())
             vods.append((meta["date"], d, meta))
     vods.sort(key=lambda x: x[0])
-    # The page covers the streams from FIRST_DAY on (Pacific dates). Older backlog streams wait for the full-month update.
+    # Every transcribed stream from FIRST_DAY on (Pacific dates); new and backlog streams join as they land.
     vods = [v for v in vods if local_date(v[0]).strftime("%Y-%m-%d") >= FIRST_DAY]
 
     streams, all_tok = [], collections.Counter()
