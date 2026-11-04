@@ -246,7 +246,7 @@
           return got;
         }
         // hovered station
-        if (state.i !== null && open(rows[state.i])) { var hp = pts[state.i]; obs.push({ x: hp[0] - RON, y: hp[1] + RON, w: 2 * RON, h: 2 * RON }); place(rows[state.i].name, hp[0], hp[1] - RON, "main", true); }
+        if (state.i !== null && open(rows[state.i])) { var hp = pts[state.i]; obs.push({ x: hp[0] - RON, y: hp[1] + RON, w: 2 * RON, h: 2 * RON }); var hr = rows[state.i], hb = hr.b && hr.b[String(Y)]; place(hr.name + (hb !== undefined ? " " + d3.format(",")(hb) : ""), hp[0], hp[1] - RON, "main", true); }
         // busiest station labels, tallest first, leader line when pushed away
         bset.forEach(function (r) {
           var i = rows.indexOf(r); if (i === state.i) return;
