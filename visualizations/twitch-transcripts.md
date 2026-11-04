@@ -38,12 +38,8 @@ layout: layouts/post.njk
 
 <section class="tw-sec" aria-labelledby="tw-h2">
   <h2 id="tw-h2" class="tw-h"></h2>
-  <div class="ca-card">
-    <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="tw-tabs-label">Topic</span>
-      <div class="ca-tabs" id="tw-topic" role="tablist" aria-labelledby="tw-tabs-label"></div>
-    </div>
-  </div>
-  <div class="tw-chart" id="tw-topics" role="img" aria-label="Bar chart of how often the selected topic's words were spoken in each stream, per 10,000 words."></div>
+  <div class="tw-chart" id="tw-topics" role="img" aria-label="Grid of five topic word lists by stream. Darker cells mean the topic's words were spoken more often per 10,000 words."></div>
+  <p class="tw-legend" id="tw-tlegend"></p>
   <p class="tw-p" id="tw-p2"></p>
 </section>
 
@@ -105,4 +101,4 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=20261103e"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=20261103f"></script>

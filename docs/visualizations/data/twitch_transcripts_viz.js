@@ -98,51 +98,47 @@
       .on("pointerleave", hideTip);
   }
 
+  // Topic grid: one row per fixed word list, one column per stream, same drawing as the word grid.
   function topics(D) {
-    const S = D.streams, el = document.getElementById("tw-topics"), tabs = document.getElementById("tw-topic");
-    let cur = D.topics[0].key;
-    D.topics.forEach((t, i) => {
-      const b = tabs.appendChild(document.createElement("button"));
-      b.type = "button"; b.setAttribute("role", "tab"); b.dataset.v = t.key; b.textContent = t.label;
-      b.setAttribute("aria-selected", i === 0); b.tabIndex = i === 0 ? 0 : -1;
+    const S = D.streams, T = D.topics, el = document.getElementById("tw-topics");
+    el.innerHTML = "";
+    const tok = d3.sum(S, (s) => s.tokens);
+    const all = T.map((t) => ({ t, v: d3.sum(S, (s) => s.topics_n[t.key]) / tok * 1e4 })).sort((p, q) => q.v - p.v);
+    document.getElementById("tw-h2").textContent =
+      `${all[0].t.noun} came up most often of the ${T.length} topics: ${fmt1(all[0].v)} times per 10,000 words over the ${S.length} streams.`;
+    document.getElementById("tw-p2").textContent =
+      `Each row is a fixed list of words, and each cell gives how often its words were spoken per 10,000 words in that stream. ` +
+      T.map((t) => `${t.label}: ${t.words.join(", ")}.`).join(" ");
+    const R = all.map((d) => d.t);
+    const narrow = (el.clientWidth || 640) < 480;
+    const m = { t: 34, r: 4, b: 4, l: narrow ? 104 : 120 };
+    const rowH = narrow ? 30 : 32;
+    const f = frame(el, m.t + m.b + rowH * R.length, m);
+    const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
+    const y = d3.scaleBand(R.map((t) => t.key), [0, f.ih]).padding(0.08);
+    const vmax = d3.max(S, (s) => d3.max(R, (t) => s.topics[t.key]));
+    const col = d3.scaleLinear([0, vmax], ["#f6f1fb", FOCUS]).interpolate(d3.interpolateLab);
+    const hx = f.g.append("g").attr("class", "ax");
+    S.forEach((s) => {
+      const t = hx.append("text").attr("text-anchor", "middle");
+      t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -20).text(day(s));
+      t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
     });
-    const btns = [...tabs.querySelectorAll("button")];
-    function select(k, focus) {
-      cur = k;
-      btns.forEach((b) => { const on = b.dataset.v === k; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
-      draw();
+    f.g.selectAll(null).data(R).join("text").attr("class", "wl").attr("x", -8)
+      .attr("y", (t) => y(t.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((t) => t.label);
+    const cells = S.flatMap((s) => R.map((t) => ({ s, t, v: s.topics[t.key], n: s.topics_n[t.key] })));
+    f.g.selectAll(null).data(cells).join("rect")
+      .attr("x", (c) => x(c.s.label)).attr("y", (c) => y(c.t.key)).attr("width", x.bandwidth()).attr("height", y.bandwidth())
+      .attr("rx", 3).attr("fill", (c) => col(c.v))
+      .on("pointermove click", (ev, c) => showTip(ev, `<b>${c.t.label}, ${c.s.label}, 2026</b>${fmtInt(c.n)} times, ${fmt1(c.v)} per 10,000 words`))
+      .on("pointerleave", hideTip);
+    if (!narrow) {
+      f.g.selectAll(null).data(cells).join("text").attr("class", "cell-lbl")
+        .attr("x", (c) => x(c.s.label) + x.bandwidth() / 2).attr("y", (c) => y(c.t.key) + y.bandwidth() / 2)
+        .attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", (c) => (c.v > vmax * 0.55 ? "#fff" : INK))
+        .text((c) => fmt1(c.v));
     }
-    tabs.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) select(b.dataset.v); });
-    tabs.addEventListener("keydown", (e) => {
-      const i = btns.findIndex((b) => b.dataset.v === cur);
-      const j = { ArrowRight: i + 1, ArrowLeft: i - 1, Home: 0, End: btns.length - 1 }[e.key];
-      if (j === undefined) return;
-      e.preventDefault();
-      select(btns[(j + btns.length) % btns.length].dataset.v, true);
-    });
-    const yMax = d3.max(S, (s) => d3.max(D.topics, (t) => s.topics[t.key]));
-    function draw() {
-      const t = D.topics.find((d) => d.key === cur), v = (s) => s.topics[cur];
-      const hi = S.reduce((a, b) => (v(b) > v(a) ? b : a)), lo = S.reduce((a, b) => (v(b) < v(a) ? b : a));
-      document.getElementById("tw-h2").textContent =
-        `${t.noun} came up most often on ${hi.label}, ${fmt1(v(hi))} times per 10,000 words.`;
-      document.getElementById("tw-p2").textContent =
-        `The lowest rate was on ${lo.label}, ${fmt1(v(lo))} times per 10,000 words. All tabs share one scale. Words counted: ${t.words.join(", ")}.`;
-      const m = { t: 26, r: 8, b: 40, l: 34 };
-      const f = frame(el, 250, m);
-      const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.28);
-      const y = d3.scaleLinear([0, Math.ceil(yMax / 10) * 10], [f.ih, 0]);
-      yAxis(f.g, y, f.iw, "Times per 10,000 words");
-      bars(f.g, x, y, S, v, (s) => (s === hi ? FOCUS : BAR), f.ih);
-      f.g.append("text").attr("class", "val").attr("x", x(hi.label) + x.bandwidth() / 2).attr("y", y(v(hi)) - 5)
-        .attr("text-anchor", "middle").text(fmt1(v(hi)));
-      xAxis(f.g, x, S, f.ih);
-      f.g.selectAll(null).data(S).join("rect").attr("class", "hit")
-        .attr("x", (s) => x(s.label) - x.step() * x.paddingInner() / 2).attr("width", x.step()).attr("y", 0).attr("height", f.ih)
-        .on("pointermove click", (ev, s) => showTip(ev, `<b>${s.label}, 2026: ${t.label}</b>${fmtInt(s.topics_n[cur])} times, ${fmt1(v(s))} per 10,000 words`))
-        .on("pointerleave", hideTip);
-    }
-    return draw;
+    legend(col, vmax, "tw-tlegend");
   }
 
   // The grid has two views: word pairs (default) and single words. Both share the drawing code.
@@ -223,8 +219,8 @@
     legend(col, vmax);
   }
 
-  function legend(col, vmax) {
-    const el = document.getElementById("tw-wlegend"), n = 5;
+  function legend(col, vmax, id = "tw-wlegend") {
+    const el = document.getElementById(id), n = 5;
     el.innerHTML = "";
     el.appendChild(document.createTextNode("Times per 10,000 words: "));
     for (let i = 0; i < n; i++) {
@@ -234,11 +230,9 @@
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103e").then((D) => {
-    let drawTopics;
-    const all = () => { hours(D); if (!drawTopics) drawTopics = topics(D); else drawTopics(); words(D); };
+  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103f").then((D) => {
+    const all = () => { hours(D); topics(D); words(D); };
     all();
-    drawTopics();
     let w = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== w) { w = window.innerWidth; all(); } });
   });
