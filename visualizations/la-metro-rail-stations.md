@@ -121,7 +121,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 /* Note sits in the empty bay at the map's lower left on wide screens; above the map on phones. */
 @media (min-width: 1180px) {
   .lam-mapcol { position: relative; }
-  .lam-mapcol #lam-legend { position: absolute; left: 0; bottom: 6%; width: 24%; max-width: 13rem; margin: 0; font-size: .78rem; line-height: 1.35; z-index: 2; }
+  .lam-mapcol #lam-legend { position: absolute; left: 0; bottom: 6%; width: 24%; max-width: 13rem; margin: 0; font-size: .78rem; line-height: 1.35; z-index: 2;
+    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff, 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff; }
 }
 main h1 .src-link { font-size: .5em; font-weight: 500; color: #8a2d08; text-decoration: underline; vertical-align: middle; white-space: nowrap; }
 .lmc-sec { margin: 2rem 0 1.4rem; }
