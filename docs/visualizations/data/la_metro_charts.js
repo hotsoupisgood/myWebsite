@@ -82,7 +82,15 @@
       .on("pointermove click", (ev, p) => {
         const [yy, mm, dd] = p.r.opened.split("-").map(Number);
         show(ev, `<b>${p.r.name}</b>${p.r.lines.join(", ")} Line · opened ${dd} ${MONTHS[mm - 1]} ${yy}<br>${fmt(p.v)} average weekday boardings, fiscal year ${FY}`);
-      }).on("pointerleave", hide);
+        // and the other way: the map highlights this station (hover), or keeps it (click)
+        const map = window.__lam; if (!map || !map.focus) return;
+        if (ev.type === "click") { map.focus(p.r.id, true); scatter.cur = map.pinnedId(); scatter.focus(scatter.cur); }
+        else if (!map.pinnedId()) { map.focus(p.r.id, false); scatter.focus(p.r.id); }
+      }).on("pointerleave", () => {
+        hide();
+        const map = window.__lam; if (!map || !map.focus || map.pinnedId()) return;
+        map.focus(null, false); scatter.focus(scatter.cur = null);
+      });
     // label the 5 busiest
     pts.slice().sort((a, b) => b.v - a.v).slice(0, 5).forEach((p, i) => {
       const left = x(p.t) > f.iw * 0.6;
@@ -103,7 +111,7 @@
     };
     if (scatter.cur) scatter.focus(scatter.cur);
     document.getElementById("lmc-scatter-note").textContent =
-      `Each dot is one of ${pts.length} stations, colored by its first line. Hover over or click a station on the map to find it here.`;
+      `Each dot is one of ${pts.length} stations, colored by its first line. Hover over or click a station here or on the map to see it in both.`;
   }
 
   d3.json("/visualizations/data/la_metro_stations.json?v=20261029c").then((D) => {
