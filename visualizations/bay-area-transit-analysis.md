@@ -239,7 +239,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     function legend() {
       var m = M[metric], L = document.getElementById("bay-legend");
       L.innerHTML = m.net
-        ? '<span><i class="sw" style="background:#e56a32"></i>More YIMBY</span><span><i class="sw" style="background:#2b8f86"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant after correcting for the number of bodies tested</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: under 10 speakers</span>'
+        ? '<span><i class="sw" style="background:#2f8f63"></i>More YIMBY</span><span><i class="sw" style="background:#c94a60"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant after correcting for the number of bodies tested</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: under 10 speakers</span>'
         : '<span><i class="sw" style="background:#e56a32"></i>Bar height: ' + m.head.toLowerCase() + '</span>' + (m.few ? '<span><i class="sw" style="background:#cfc6bb"></i>Grey: under 10 speakers</span>' : '<span><i class="sw" style="background:#cfc6bb"></i>Grey: 0' + m.unit + '</span>');
       document.getElementById("bay-note").textContent = m.note;
     }
@@ -339,6 +339,9 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       var COL = { pos: { main: ["#c2410c", "#8a2d08", "#e56a32"], nb: ["#f28c38", "#c4661c", "#f9b277"] },
         neg: { main: ["#14736b", "#0b4f49", "#2b8f86"], nb: ["#3fa69c", "#2a7d75", "#7fc8c0"] },
         grey: ["#cfc6bb", "#aea398", "#e2dbd2"] };
+      // YIMBY minus NIMBY tabs: green for more YIMBY, red for more NIMBY (Puck 2026-11-03); count tabs keep orange.
+      var NETCOL = { pos: { main: ["#2f8f63", "#1f6545", "#4fb083"], nb: ["#5fbf8c", "#3f9a6c", "#9bd9b6"] },
+        neg: { main: ["#c94a60", "#8f2f41", "#de6e82"], nb: ["#e27b8d", "#b9576a", "#f0aab6"] } };
 
       function show(i, c) {
         state.i = i; state.c = c === undefined ? (i === null ? null : null) : c;
@@ -375,7 +378,8 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
           gg.select(".c").attr("d", "M" + x0 + "," + y1 + "H" + x1 + "L" + (x1 + dx) + "," + (y1 - dy) + "H" + (x0 + dx) + "Z");
         }
         items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
-          var col = d.grey ? COL.grey : (d.neg ? COL.neg : COL.pos)[d.main ? "main" : "nb"];
+          var P = M[metric].net ? NETCOL : COL;
+          var col = d.grey ? COL.grey : (d.neg ? P.neg : P.pos)[d.main ? "main" : "nb"];
           var gg = layer.append("g").attr("class", "bar").datum(0);
           gg.append("path").attr("class", "s").attr("fill", col[1]);
           gg.append("path").attr("class", "f").attr("fill", col[0]).attr("stroke", d.sig ? "#2a1a10" : "none").attr("stroke-width", 1);
