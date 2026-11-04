@@ -5,7 +5,7 @@ date: 2026-10-12
 layout: layouts/post.njk
 ---
 
-No Bay Area body had significantly more YIMBY than NIMBY public speakers once the test was corrected for checking 15 bodies at once. San Mateo City Council came closest: 56 of 100 public speakers were coded YIMBY against 17 of 100 coded NIMBY, but a gap that size can arise by chance when 15 bodies are checked. Officials had significantly more YIMBY than NIMBY speakers in 8 of the 24 bodies drawn.
+A YIMBY ("yes in my backyard") speaker supports more housing or transit being built. A NIMBY ("not in my backyard") speaker opposes it, often near where they live. Each bar shows how many more of a body's speakers were coded YIMBY than NIMBY, of every 100 with a stance.
 
 <figure class="viz" id="bay-viz">
   <div class="ca-card">
