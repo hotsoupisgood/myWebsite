@@ -42,6 +42,8 @@ San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 1
       <div class="ca-tabs" id="bp-view" role="tablist" aria-labelledby="bp-view-label" style="justify-content:flex-start">
         <button type="button" role="tab" data-v="pairs" aria-selected="true" tabindex="0">Word pairs</button>
         <button type="button" role="tab" data-v="words" aria-selected="false" tabindex="-1">Single words</button>
+        <button type="button" role="tab" data-v="g3" aria-selected="false" tabindex="-1">3 words</button>
+        <button type="button" role="tab" data-v="g4" aria-selected="false" tabindex="-1">4 words</button>
       </div>
     </div>
     <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="bp-tabs-label">Body</span>
@@ -51,11 +53,13 @@ San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 1
   <div class="bp-chart" id="bp-grid" role="img" aria-label="Grid of the 12 most frequent word pairs by month for the selected body. Darker cells mean the pair was said more often per 10,000 words."></div>
   <p class="bay-legend bp-legend" id="bp-legend"></p>
   <p class="bp-p" id="bp-p-words" hidden>The grid shows the 12 most frequent single words in the coded meeting stretches, after common English words were removed. Words about running the meeting, such as "council" and "mayor", place names, such as "Clara" and "Napa", and spoken filler, such as "questions" and "people", were also removed. Each cell gives how often the word was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.</p>
+  <p class="bp-p" id="bp-p-g3" hidden>The grid shows the 12 most frequent 3-word phrases in the coded meeting stretches. A phrase counts once per speaker per meeting stretch, so one person repeating a line adds one. The first and last words are not common English words. Phrases about running the meeting, such as calls to speak and votes, place names, the Pledge of Allegiance and phrases with a person's given name were removed. Each cell gives how often the phrase was said per 10,000 words in that month.</p>
+  <p class="bp-p" id="bp-p-g4" hidden>The grid shows the 12 most frequent 4-word phrases in the coded meeting stretches. A phrase counts once per speaker per meeting stretch, so one person repeating a line adds one. The first and last words are not common English words. Phrases about running the meeting, such as calls to speak and votes, place names, the Pledge of Allegiance and phrases with a person's given name were removed. Each cell gives how often the phrase was said per 10,000 words in that month.</p>
   <p class="bp-p" id="bp-p-pairs">The grid shows the 12 most frequent word pairs in the coded meeting stretches. A word pair is two words said one after the other, neither of them a common English word. Pairs about running the meeting, such as "council member" and "public comment", and place names, such as "San Jose", were removed. Each cell gives how often the pair was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.</p>
 </section>
 <div class="bp-tip" id="bp-tip" hidden></div>
 
-**Methods.** Word pairs are counted in the published, redacted transcripts; a redaction mark breaks a pair. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significantly means the likely range excludes zero. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.
+**Methods.** Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significantly means the likely range excludes zero. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.
 
 ## References
 
@@ -146,7 +150,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
-<script src="/visualizations/data/bay_area_pairs_viz.js?v=20261103c"></script>
+<script src="/visualizations/data/bay_area_pairs_viz.js?v=20261103d"></script>
 <script>
 (function () {
   var el = document.getElementById("bay-map");

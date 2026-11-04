@@ -17,7 +17,9 @@
 
   let cur = "all", view = "pairs";
   const VIEW = { pairs: { list: "pairs", rate: "rate", n: "n", noun: "word pair" },
-                 words: { list: "words", rate: "wrate", n: "wn", noun: "word" } };
+                 words: { list: "words", rate: "wrate", n: "wn", noun: "word" },
+                 g3: { list: "g3", rate: "r3", n: "n3", noun: "3-word phrase" },
+                 g4: { list: "g4", rate: "r4", n: "n4", noun: "4-word phrase" } };
   function draw(D) {
     const V = VIEW[view], T = D.tabs.find((t) => t.key === cur), P = T[V.list], el = document.getElementById("bp-grid");
     const M = T.months.map((c) => ({ m: c.m, rate: c[V.rate], n: c[V.n] }));
@@ -25,8 +27,13 @@
     const where = cur === "all" ? `across all ${D.bodies_total} bodies` : `at the ${T.label}`;
     document.getElementById("bp-h").textContent = `"${P[0].label}" was the most frequent ${V.noun} ${where}, said ${fmtInt(P[0].n)} times.`;
     const narrow = (el.clientWidth || 640) < 480;
-    const m = { t: 34, r: 4, b: 4, l: narrow ? 150 : 160 }, rowH = narrow ? 26 : 28;
-    const W = el.clientWidth || 640, H = m.t + m.b + rowH * P.length;
+    // Label column fits the longest label, up to about half the chart; longer labels are cut with "…".
+    const W = el.clientWidth || 640, cw = narrow ? 6.1 : 6.6;
+    const maxL = Math.round(W * (narrow ? 0.46 : 0.34));
+    const lw = Math.min(maxL, Math.max(90, Math.ceil(d3.max(P, (p) => p.label.length) * cw) + 14));
+    const fit = (t) => (t.length * cw + 14 <= lw ? t : t.slice(0, Math.max(4, Math.floor((lw - 20) / cw))) + "…");
+    const m = { t: 34, r: 4, b: 4, l: lw }, rowH = narrow ? 26 : 28;
+    const H = m.t + m.b + rowH * P.length;
     const svg = d3.select(el).append("svg").attr("viewBox", `0 0 ${W} ${H}`);
     const g = svg.append("g").attr("transform", `translate(${m.l},${m.t})`);
     const iw = W - m.l - m.r, ih = H - m.t - m.b;
@@ -43,7 +50,12 @@
       if (i === 0 || mo === 1) t.append("tspan").attr("x", cx).attr("y", -7).text(narrow ? `'${String(yr).slice(2)}` : yr);
     });
     g.selectAll(null).data(P).join("text").attr("class", "wl").attr("x", -8)
-      .attr("y", (p) => y(p.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((p) => p.label);
+      .attr("y", (p) => y(p.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((p) => p.label)
+      .each(function (p) {                     // measured: cut with "…" until it fits the label column
+        let t = p.label;
+        while (this.getComputedTextLength() > lw - 12 && t.length > 4) { t = t.slice(0, -1); this.textContent = t.trimEnd() + "…"; }
+      })
+      .append("title").text((p) => p.label);
     const cells = M.flatMap((c) => P.map((p) => ({ c, p, v: c.rate ? c.rate[p.key] : null, n: c.n ? c.n[p.key] : 0 })));
     const lab = (c) => { const [yr, mo] = c.m.split("-").map(Number); return `${MON[mo - 1]} ${yr}`; };
     g.selectAll(null).data(cells).join("rect")
@@ -65,14 +77,14 @@
     for (let i = 0; i < 5; i++) {
       const v = vmax * i / 4, sw = lg.appendChild(document.createElement("span"));
       sw.className = "sw"; sw.style.background = col(v);
-      lg.appendChild(document.createTextNode(Math.round(v)));
+      lg.appendChild(document.createTextNode(vmax < 10 ? fmt1(v) : Math.round(v)));
     }
     const sw = lg.appendChild(document.createElement("span"));
     sw.className = "sw"; sw.style.background = EMPTY;
     lg.appendChild(document.createTextNode("no coded meetings"));
   }
 
-  d3.json("/visualizations/data/bay_area_pairs.json?v=20261103c").then((D) => {
+  d3.json("/visualizations/data/bay_area_pairs.json?v=20261103d").then((D) => {
     const tabs = document.getElementById("bp-tabs");
     D.tabs.forEach((t, i) => {
       const b = tabs.appendChild(document.createElement("button"));
@@ -96,15 +108,15 @@
     const setView = (k, focus) => {
       view = k;
       vb.forEach((b) => { const on = b.dataset.v === k; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
-      document.getElementById("bp-p-pairs").hidden = k !== "pairs";
-      document.getElementById("bp-p-words").hidden = k !== "words";
+      ["pairs", "words", "g3", "g4"].forEach((v) => { document.getElementById(`bp-p-${v}`).hidden = k !== v; });
       draw(D);
     };
     vt.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setView(b.dataset.v); });
     vt.addEventListener("keydown", (e) => {
       if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
       e.preventDefault();
-      setView(view === "pairs" ? "words" : "pairs", true);
+      const i = vb.findIndex((b) => b.dataset.v === view);
+      setView(vb[(i + (e.key === "ArrowRight" ? 1 : vb.length - 1)) % vb.length].dataset.v, true);
     });
     draw(D);
     let w = window.innerWidth;
