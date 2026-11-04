@@ -41,10 +41,8 @@
     ax.append("text").attr("x", x(2023.5) - 4).attr("y", 10).attr("text-anchor", "end").text("Regional Connector");
     const ln = d3.line().x((p) => x(p[0])).y((p) => y(p[1]));
     S.forEach((s) => {
-      const cut = FROM[s.q] || 0;
-      const before = s.p.filter((p) => p[0] <= cut), after = s.p.filter((p) => p[0] >= cut);
-      if (cut && before.length > 1) f.g.append("path").attr("d", ln(before)).attr("fill", "none").attr("stroke", col(s.q)).attr("stroke-width", 1.6).attr("stroke-dasharray", "4 3").attr("opacity", 0.55);
-      f.g.append("path").attr("d", ln(after)).attr("fill", "none").attr("stroke", col(s.q)).attr("stroke-width", 2.6);
+      // one solid line per route; the dashed vertical rule marks where the A and E routes changed
+      f.g.append("path").attr("d", ln(s.p)).attr("fill", "none").attr("stroke", col(s.q)).attr("stroke-width", 2.6);
       const l = s.p[s.p.length - 1];
       s.end = { x: x(l[0]) + 6, y: y(l[1]), t: `${NAME[s.q]} ${fmt(l[1])}`, c: col(s.q) };
     });
@@ -55,7 +53,7 @@
     f.g.append("rect").attr("width", f.iw).attr("height", f.ih).attr("fill", "transparent")
       .on("pointermove click", (ev) => {
         const yr = Math.round(x.invert(d3.pointer(ev)[0])); if (yr < 2009 || yr > 2026) return hide();
-        const rows = S.filter((s) => LR.fy[s.q][yr] !== undefined).map((s) => `${NAME[s.q]}: ${fmt(LR.fy[s.q][yr])}${FROM[s.q] && yr < FROM[s.q] ? " (old route)" : ""}`);
+        const rows = S.filter((s) => LR.fy[s.q][yr] !== undefined).map((s) => `${NAME[s.q]}: ${fmt(LR.fy[s.q][yr])}${FROM[s.q] && yr < FROM[s.q] ? " (route before June 2023)" : ""}`);
         show(ev, `<b>Fiscal year ${yr}</b>${rows.join("<br>")}`);
       }).on("pointerleave", hide);
   }

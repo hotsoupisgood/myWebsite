@@ -41,7 +41,7 @@ Move the year slider to see the network grow, or hover a station for its line's 
 <section class="lmc-sec" aria-labelledby="lmc-h1">
   <h2 id="lmc-h1" class="lmc-h">Average weekday boardings by line, fiscal years 2009 to 2026</h2>
   <div class="lmc-chart" id="lmc-lines" role="img" aria-label="Line chart of average weekday boardings on each LA Metro rail line from fiscal year 2009 to 2026."></div>
-  <p class="lmc-p">Dashed lines are the A and E Lines on their routes before June 2023, when the Regional Connector tunnel downtown changed both routes. Those years are not comparable with the current routes. LA Metro reports the B and D Lines as one figure.</p>
+  <p class="lmc-p">The dashed vertical line marks June 2023, when the Regional Connector tunnel downtown changed the routes of the A and E Lines. Their figures before that line are for the earlier routes. LA Metro reports the B and D Lines as one figure.</p>
 </section>
 
 <section class="lmc-sec" aria-labelledby="lmc-h2">
@@ -166,4 +166,4 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
 <script src="/visualizations/data/la_metro_viz.js?v=20261029i"></script>
-<script src="/visualizations/data/la_metro_charts.js?v=20261103a"></script>
+<script src="/visualizations/data/la_metro_charts.js?v=20261103c"></script>
