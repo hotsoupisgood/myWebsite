@@ -28,6 +28,14 @@ layout: layouts/post.njk
   <p class="tw-p" id="tw-p3"></p>
 </section>
 
+<section class="tw-sec" aria-labelledby="tw-h4">
+  <p class="tw-kicker">People named</p>
+  <h2 id="tw-h4" class="tw-h"></h2>
+  <div class="tw-chart" id="tw-names" role="img" aria-label="Grid of the 12 people named most often, by stream. Darker cells mean the person was named more often per 10,000 words."></div>
+  <p class="tw-legend" id="tw-nlegend"></p>
+  <p class="tw-p">Names were found with spaCy, a language-processing library, which marks the words in a sentence that name a person. Mentions are grouped by surname, so "Stevens" alone counts as Haley Stevens. A first name alone, such as "Abdul", is not counted. The streamer himself, fictional characters and religious figures were left out. Each cell gives how often the person was named per 10,000 words in that stream.</p>
+</section>
+
 <section class="tw-sec" aria-labelledby="tw-h1">
   <h2 id="tw-h1" class="tw-h"></h2>
   <div class="tw-tiles" id="tw-tiles"></div>
@@ -42,14 +50,6 @@ layout: layouts/post.njk
   <div class="tw-chart" id="tw-topics" role="img" aria-label="Grid of five topic word lists by stream. Darker cells mean the topic's words were spoken more often per 10,000 words."></div>
   <p class="tw-legend" id="tw-tlegend"></p>
   <p class="tw-p" id="tw-p2"></p>
-</section>
-
-<section class="tw-sec" aria-labelledby="tw-h4">
-  <p class="tw-kicker">People named</p>
-  <h2 id="tw-h4" class="tw-h"></h2>
-  <div class="tw-chart" id="tw-names" role="img" aria-label="Grid of the 12 people named most often, by stream. Darker cells mean the person was named more often per 10,000 words."></div>
-  <p class="tw-legend" id="tw-nlegend"></p>
-  <p class="tw-p">Names were found with spaCy, a language-processing library, which marks the words in a sentence that name a person. Mentions are grouped by surname, so "Stevens" alone counts as Haley Stevens. A first name alone, such as "Abdul", is not counted. The streamer himself, fictional characters and religious figures were left out. Each cell gives how often the person was named per 10,000 words in that stream.</p>
 </section>
 
 
