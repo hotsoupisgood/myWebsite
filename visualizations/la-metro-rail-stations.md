@@ -38,7 +38,6 @@ layout: layouts/post.njk
 
 <div class="ca-tables">
   <table id="lam-t1" hidden><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
-  <table id="lam-t2"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
 </div>
 
 <section class="lmc-sec" aria-labelledby="lmc-h1">
@@ -48,6 +47,10 @@ layout: layouts/post.njk
 </section>
 
 <div class="lmc-tip" id="lmc-tip" hidden></div>
+
+<div class="ca-tables lam-newest">
+  <table id="lam-t2"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
+</div>
 
 **Methods.** Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. Line widths and the line chart use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro's Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. Station boardings, in the busiest-10 bars and the scatter chart, are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. A pin marks each station that opened in 2025 or 2026. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.
 
