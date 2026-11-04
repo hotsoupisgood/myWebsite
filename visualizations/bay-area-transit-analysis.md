@@ -212,6 +212,14 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       if (v === null) return "too few speakers";
       return d3.format(",")(v) + m.unit;
     }
+    // Hover label on the map: the side the gap leans to, as "+39 YIMBY" or "+12 NIMBY" (Puck 2026-11-03).
+    function fmtHover(r) {
+      var v = val(r);
+      if (!M[metric].net) return fmtv(r);
+      if (v === null) return "too few speakers";
+      var n = Math.round(v);
+      return n === 0 ? "even" : "+" + Math.abs(n) + (n > 0 ? " YIMBY" : " NIMBY");
+    }
     function detail(r) {
       var m = M[metric], s = g(r), t = "<b>" + r.name + "</b>";
       if (r.kind === "transit") t += ", placed at its headquarters in " + r.site.replace(/^HQ \(|\)$/g, "");
@@ -357,7 +365,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
           var r = rows[j], v = val(r), p = pts[j], grey = v === null || v === 0;
           var hh = grey ? 4 : Math.max(3, h(v));
           return { k: j, n: n, x: p[0], y: p[1], top: p[1] - hh, hh: hh, main: j === i || (i === null && hov.indexOf(j) >= 0), grey: grey, neg: !grey && v < 0, sig: sig(r),
-            lab: lab.indexOf(j) >= 0, text: label(r) + (grey ? ": " : " ") + fmtv(r) + (M[metric].net && sig(r) ? " *" : "") };
+            lab: lab.indexOf(j) >= 0, text: label(r) + (grey ? ": " : " ") + fmtHover(r) + (M[metric].net && sig(r) ? " *" : "") };
         });
         var dx = bw * 0.5, dy = bw * 0.35;
         function barPaths(gg, d, hh) {
