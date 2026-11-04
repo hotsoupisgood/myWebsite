@@ -274,7 +274,7 @@
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103h").then((D) => {
+  d3.json("/visualizations/data/twitch_transcripts.json?v=202611040644").then((D) => {
     const S = D.streams;
     document.getElementById("tw-range").textContent =
       `${S.length} streams from ${S[0].label} to ${S[S.length - 1].label}, 2026`;
