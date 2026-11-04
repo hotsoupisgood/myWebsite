@@ -225,7 +225,7 @@
         var rw = railG.selectAll("path").interrupt();
         (animate ? rw.transition().duration(450).ease(d3.easeCubicOut) : rw).attr("stroke-width", function (d) { return lineW(d.k, small); });
         dots.attr("display", function (r) { return open(r) ? null : "none"; }).attr("r", function (r, i) { return i === state.i ? RON : R; })
-          .style("fill", function (r, i) { return metric === "age" ? dcol(r) : i === state.i ? "#c2410c" : null; })
+          .style("fill", function (r, i) { return metric === "age" ? dcol(r) : i === state.i ? "#2a1a10" : null; })
           .classed("on", function (r, i) { return i === state.i; });
         dots.filter(function (r, i) { return i === state.i; }).raise();
         layer.selectAll("*").remove();
