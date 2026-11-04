@@ -98,6 +98,42 @@
       .on("pointerleave", hideTip);
   }
 
+  // Names grid: the most named people, one column per stream.
+  function names(D) {
+    const S = D.streams, R = D.top_names, el = document.getElementById("tw-names");
+    el.innerHTML = "";
+    document.getElementById("tw-h4").textContent =
+      `${R[0].label} was the person named most often over the ${S.length} streams, ${fmtInt(R[0].n)} times.`;
+    const narrow = (el.clientWidth || 640) < 480;
+    const m = { t: 34, r: 4, b: 4, l: narrow ? 126 : 150 }, rowH = narrow ? 26 : 28;
+    const f = frame(el, m.t + m.b + rowH * R.length, m);
+    const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
+    const y = d3.scaleBand(R.map((r) => r.key), [0, f.ih]).padding(0.08);
+    const vmax = d3.max(S, (s) => d3.max(R, (r) => s.names[r.key]));
+    const col = d3.scaleLinear([0, vmax], ["#f6f1fb", FOCUS]).interpolate(d3.interpolateLab);
+    const hx = f.g.append("g").attr("class", "ax");
+    S.forEach((s) => {
+      const t = hx.append("text").attr("text-anchor", "middle");
+      t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -20).text(day(s));
+      t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
+    });
+    f.g.selectAll(null).data(R).join("text").attr("class", "wl").attr("x", -8)
+      .attr("y", (r) => y(r.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((r) => r.label);
+    const cells = S.flatMap((s) => R.map((r) => ({ s, r, v: s.names[r.key], n: s.names_n[r.key] })));
+    f.g.selectAll(null).data(cells).join("rect")
+      .attr("x", (c) => x(c.s.label)).attr("y", (c) => y(c.r.key)).attr("width", x.bandwidth()).attr("height", y.bandwidth())
+      .attr("rx", 3).attr("fill", (c) => col(c.v))
+      .on("pointermove click", (ev, c) => showTip(ev, `<b>${c.r.label}, ${c.s.label}, 2026</b>${fmtInt(c.n)} times, ${fmt1(c.v)} per 10,000 words`))
+      .on("pointerleave", hideTip);
+    if (!narrow) {
+      f.g.selectAll(null).data(cells).join("text").attr("class", "cell-lbl")
+        .attr("x", (c) => x(c.s.label) + x.bandwidth() / 2).attr("y", (c) => y(c.r.key) + y.bandwidth() / 2)
+        .attr("dy", "0.35em").attr("text-anchor", "middle").attr("fill", (c) => (c.v > vmax * 0.55 ? "#fff" : INK))
+        .text((c) => fmt1(c.v));
+    }
+    legend(col, vmax, "tw-nlegend");
+  }
+
   // Topic grid: one row per fixed word list, one column per stream, same drawing as the word grid.
   function topics(D) {
     const S = D.streams, T = D.topics, el = document.getElementById("tw-topics");
@@ -230,8 +266,8 @@
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103f").then((D) => {
-    const all = () => { hours(D); topics(D); words(D); };
+  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103g").then((D) => {
+    const all = () => { hours(D); topics(D); words(D); names(D); };
     all();
     let w = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== w) { w = window.innerWidth; all(); } });

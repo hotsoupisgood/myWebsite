@@ -53,6 +53,56 @@ def norm(text):
     return NAME_LAST.sub(" elsayed ", t)
 
 
+# People's names: spaCy en_core_web_sm PERSON entities, grouped by surname. A first name on its own ("Abdul",
+# "David") is not counted, because it cannot be told apart from other people with that name. Left out: the
+# streamer himself, fictional characters, religious figures, and tags that are not a person.
+# Surname alone: "Bolsonaro" on its own can be Flavio or Jair Bolsonaro.
+SURNAME_ONLY = {"bolsonaro"}
+NOT_PEOPLE = {"piker", "hassan", "hasan", "lightyear", "malfoy", "christ", "twitter", "turkish", "boogie", "s"}
+
+
+def people(texts_by_stream):
+    """-> (ordered [{key,label,n}], [Counter per stream]) for the N_TOP most named people."""
+    import spacy
+    nlp = spacy.load("en_core_web_sm", disable=["parser", "lemmatizer"])
+    per, forms = [], collections.defaultdict(collections.Counter)
+    for texts in texts_by_stream:
+        raw = []
+        for doc in nlp.pipe([NAME_FULL.sub(" Abdul El-Sayed ", t) for t in texts], batch_size=256):
+            for e in doc.ents:
+                if e.label_ != "PERSON":
+                    continue
+                w = [x for x in re.findall(r"[A-Za-z]+(?:-[A-Za-z]+)?", e.text) if x.lower() != "s"]
+                if w:
+                    last = re.sub(r"^(?:el|al)-?", "el-", w[-1].lower()) if re.match(r"(?i)^(?:el|al)-?s", w[-1]) else w[-1].lower()
+                    first = w[0].lower() if len(w) > 1 else ""
+                    raw.append((last, first))
+                    if first:
+                        forms[last][first] += 1
+        per.append(raw)
+    # surname groups seen at least 10 times as a full name; the label uses the most common first name,
+    # unless a second first name is at least 20 of every 100 full-name mentions (then the surname alone)
+    label, keepfirst = {}, {}
+    for last, fc in forms.items():
+        if last in NOT_PEOPLE or sum(fc.values()) < 10:
+            continue
+        (f1, n1), *rest = fc.most_common()
+        two = last in SURNAME_ONLY or (rest and rest[0][1] >= 0.2 * sum(fc.values()))
+        label[last] = last.title().replace("El-sayed", "El-Sayed") if two else f"{f1.title()} {last.title()}".replace("El-sayed", "El-Sayed")
+        keepfirst[last] = None if two else f1
+    counts = []
+    for raw in per:
+        c = collections.Counter()
+        for last, first in raw:
+            if last in label and (not first or keepfirst[last] is None or first == keepfirst[last]
+                                  or (last == "el-sayed")):
+                c[last] += 1
+        counts.append(c)
+    tot = sum(counts, collections.Counter())
+    top = [k for k, _ in tot.most_common(N_TOP)]
+    return [{"key": k, "label": label[k], "n": tot[k]} for k in top], counts
+
+
 def local_date(iso):
     """Stream start in Pacific time, as hasan-stream plots_pairs.local_date."""
     start = datetime.fromisoformat(iso)
@@ -71,9 +121,10 @@ def main():
     vods = [v for v in vods if local_date(v[0]).strftime("%Y-%m-%d") >= FIRST_DAY]
 
     streams, all_tok = [], collections.Counter()
-    per, pairs_per, all_pair = [], [], collections.Counter()
+    per, pairs_per, all_pair, texts_by_stream = [], [], collections.Counter(), []
     for iso, d, meta in vods:
         rows = [json.loads(l) for l in open(d / "transcript.jsonl", encoding="utf-8") if l.strip()]
+        texts_by_stream.append([r["text"] for r in rows])
         speech = sum(r["end"] - r["start"] for r in rows)
         words = sum(len(r["text"].split()) for r in rows)        # as build_outputs.py
         # possessive 's folds into its word ("israel's" counts as "israel")
@@ -99,6 +150,10 @@ def main():
                         "speech_s": round(speech), "words": words, "tokens": len(toks)})
         per.append((c, len(toks)))
 
+    names, name_c = people(texts_by_stream)
+    for s_, c_, (_, n_) in zip(streams, name_c, per):
+        s_["names"] = {k["key"]: round(c_[k["key"]] / n_ * 1e4, 1) for k in names}
+        s_["names_n"] = {k["key"]: c_[k["key"]] for k in names}
     top = [w for w, _ in all_tok.most_common(N_TOP)]
     ptop = [p for p, _ in all_pair.most_common(N_TOP + len(PAIR_DROP)) if p not in PAIR_DROP][:N_TOP]
     for s, (c, n), pc in zip(streams, per, pairs_per):
@@ -114,6 +169,7 @@ def main():
                       "speech_h": round(sum(s["speech_s"] for s in streams) / 3600, 1),
                       "words": sum(s["words"] for s in streams)},
            "top_words": [{"key": w, "label": LABEL.get(w, w), "n": all_tok[w]} for w in top],
+           "top_names": names,
            "top_pairs": [{"key": p, "label": PAIR_LABEL.get(p, p), "n": all_pair[p]} for p in ptop],
            "topics": [{"key": k, "label": lab, "noun": noun, "words": ws.split()}
                       for k, (lab, noun, ws) in TOPICS.items()],

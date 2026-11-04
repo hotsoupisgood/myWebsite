@@ -28,6 +28,14 @@ layout: layouts/post.njk
   <p class="tw-p" id="tw-p3"></p>
 </section>
 
+<section class="tw-sec" aria-labelledby="tw-h4">
+  <p class="tw-kicker">People named</p>
+  <h2 id="tw-h4" class="tw-h"></h2>
+  <div class="tw-chart" id="tw-names" role="img" aria-label="Grid of the 12 people named most often, by stream. Darker cells mean the person was named more often per 10,000 words."></div>
+  <p class="tw-legend" id="tw-nlegend"></p>
+  <p class="tw-p">Names were found with spaCy, a language-processing library, which marks the words in a sentence that name a person. Mentions are grouped by surname, so "Stevens" alone counts as Haley Stevens. A first name alone, such as "Abdul", is not counted. The streamer himself, fictional characters and religious figures were left out. Each cell gives how often the person was named per 10,000 words in that stream.</p>
+</section>
+
 <section class="tw-sec" aria-labelledby="tw-h1">
   <h2 id="tw-h1" class="tw-h"></h2>
   <div class="tw-tiles" id="tw-tiles"></div>
@@ -59,6 +67,8 @@ Bain, M., Huh, J., Han, T., & Zisserman, A. (2023). WhisperX: Time-accurate spee
 
 Radford, A., Kim, J. W., Xu, T., Brockman, G., McLeavey, C., & Sutskever, I. (2023). Robust speech recognition via large-scale weak supervision. *Proceedings of the 40th International Conference on Machine Learning*. https://github.com/openai/whisper
 
+Honnibal, M., Montani, I., Van Landeghem, S., & Boyd, A. (2020). *spaCy: Industrial-strength natural language processing in Python* [Computer software]. https://spacy.io/
+
 Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 
 </div>
@@ -78,6 +88,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 @media (max-width: 640px) { .tw-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tw-tile b { font-size: 1.3rem; } }
 .tw-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
 .tw-chart .ax text { font-size: 11px; fill: #625a7a; }
+@media (max-width: 480px) { .tw-chart .ax text { font-size: 9.5px; } }
 .tw-chart .ax line, .tw-chart .ax path { stroke: #d6cce6; }
 .tw-chart .grid line { stroke: #eee8f5; }
 .tw-chart .axt { font-size: 11px; fill: #625a7a; }
@@ -103,4 +114,4 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=20261103f"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=20261103g"></script>
