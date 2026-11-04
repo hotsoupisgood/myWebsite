@@ -30,13 +30,13 @@ layout: layouts/post.njk
 </figure>
 
 <section class="lmc-sec lmc-near" aria-labelledby="lmc-h2">
-  <h2 id="lmc-h2" class="lmc-h">Station boardings in fiscal year 2026, by year opened <a class="src-link" href="https://en.wikipedia.org/wiki/List_of_Los_Angeles_Metro_Rail_stations" target="_blank" rel="noopener">(Source)</a></h2>
+  <h2 id="lmc-h2" class="lmc-h">Station boardings in fiscal year 2026, by year opened</h2>
   <div class="lmc-chart" id="lmc-scatter" role="img" aria-label="Scatter plot of LA Metro rail stations: year opened against average weekday boardings in fiscal year 2026."></div>
   <p class="lmc-p" id="lmc-scatter-note"></p>
 </section>
 
 <section class="lmc-sec" aria-labelledby="lmc-h1">
-  <h2 id="lmc-h1" class="lmc-h">Average weekday boardings by line, fiscal years 2009 to 2026 <a class="src-link" href="https://opa.metro.net/MetroRidership/IndexRail.aspx" target="_blank" rel="noopener">(Source)</a></h2>
+  <h2 id="lmc-h1" class="lmc-h">Average weekday boardings by line, fiscal years 2009 to 2026</h2>
   <div class="lmc-chart" id="lmc-lines" role="img" aria-label="Line chart of average weekday boardings on each LA Metro rail line from fiscal year 2009 to 2026."></div>
   <p class="lmc-p">The dashed vertical line marks June 2023, when the Regional Connector tunnel downtown changed the routes of the A and E Lines. Their figures before that line are for the earlier routes. LA Metro reports the B and D Lines as one figure.</p>
 </section>
@@ -124,7 +124,6 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
   .lam-mapcol #lam-legend { position: absolute; left: 0; bottom: 6%; width: 24%; max-width: 13rem; margin: 0; font-size: .78rem; line-height: 1.35; z-index: 2;
     text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff, 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff; }
 }
-.lmc-h .src-link { font-size: .75em; font-weight: 500; color: #8a2d08; text-decoration: underline; vertical-align: middle; white-space: nowrap; }
 .lmc-sec { margin: 2rem 0 1.4rem; }
 /* Map and scatter fit on one laptop screen together (Puck 2026-11-03): cap the map's width so its height
    stays near 360 px, and keep the scatter short and close under it. */
