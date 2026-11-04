@@ -65,7 +65,7 @@
       return { r, t: yy + (mm - 1) / 12 + (dd - 1) / 365, v: r.b[FY], c: D.lines[r.lines[0]].color };
     });
     const narrow = (el.clientWidth || 640) < 480;
-    const m = { t: 14, r: 12, b: 34, l: 52 }, f = frame(el, narrow ? 300 : 340, m);
+    const m = { t: 10, r: 12, b: 32, l: 48 }, f = frame(el, narrow ? 250 : 230, m);
     const x = d3.scaleLinear([1989.5, 2026.5], [0, f.iw]);
     const y = d3.scaleLinear([0, d3.max(pts, (p) => p.v) * 1.08], [f.ih, 0]).nice();
     const ax = f.g.append("g").attr("class", "lmc-ax");
@@ -103,7 +103,7 @@
     };
     if (scatter.cur) scatter.focus(scatter.cur);
     document.getElementById("lmc-scatter-note").textContent =
-      `${pts.length} stations. Each dot is one station, colored by its first line. Stations that opened during fiscal year ${FY} have an average over the days they were open.`;
+      `Each dot is one of ${pts.length} stations, colored by its first line. Click a station on the map to find it here.`;
   }
 
   d3.json("/visualizations/data/la_metro_stations.json?v=20261029c").then((D) => {

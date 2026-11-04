@@ -64,8 +64,8 @@
     </div>
   </div>
 </figure>
-<section class="lmc-sec" aria-labelledby="lmc-h2">
-  <h2 id="lmc-h2" class="lmc-h">Station boardings in fiscal year 2026, by the year each station opened</h2>
+<section class="lmc-sec lmc-near" aria-labelledby="lmc-h2">
+  <h2 id="lmc-h2" class="lmc-h">Station boardings in fiscal year 2026, by year opened</h2>
   <div class="lmc-chart" id="lmc-scatter" role="img" aria-label="Scatter plot of LA Metro rail stations: year opened against average weekday boardings in fiscal year 2026."></div>
   <p class="lmc-p" id="lmc-scatter-note"></p>
 </section>
@@ -136,6 +136,12 @@
 #lam-map .slab { fill: #d4b483; }
 #lam-map .shadow { fill: #5a3a1a; opacity: 0.18; }
 .lmc-sec { margin: 2rem 0 1.4rem; }
+/* Map and scatter fit on one laptop screen together (Puck 2026-11-03): cap the map's width so its height
+   stays near 360 px, and keep the scatter short and close under it. */
+@media (min-width: 900px) { #lam-map { max-width: 860px; margin: 0 auto; } }
+.lmc-sec.lmc-near { margin: .9rem 0 1.4rem; }
+.lmc-sec.lmc-near .lmc-h { font-size: 1rem; margin-bottom: .3rem; }
+.lmc-sec.lmc-near .lmc-p { font-size: .8rem; margin-top: .2rem; }
 .lmc-h { font-size: 1.15rem; line-height: 1.35; margin: 0 0 .6rem; }
 .lmc-p { font-size: .88rem; color: #6b5440; margin: .4rem 0 0; }
 .lmc-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
@@ -181,8 +187,8 @@
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
-<script src="/visualizations/data/la_metro_viz.js?v=20261103g"></script>
-<script src="/visualizations/data/la_metro_charts.js?v=20261103e"></script>
+<script src="/visualizations/data/la_metro_viz.js?v=20261103h"></script>
+<script src="/visualizations/data/la_metro_charts.js?v=20261103f"></script>
 
 </div>
 
