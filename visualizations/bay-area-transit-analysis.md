@@ -5,7 +5,7 @@ date: 2026-10-12
 layout: layouts/post.njk
 ---
 
-San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 100 coded NIMBY. In the other 14 bodies drawn, public speakers showed no significant difference. Officials had significantly more YIMBY than NIMBY speakers in 11 of the 24 bodies drawn.
+No Bay Area body had significantly more YIMBY than NIMBY public speakers once the test was corrected for checking 15 bodies at once. San Mateo City Council came closest: 56 of 100 public speakers were coded YIMBY against 17 of 100 coded NIMBY, but a gap that size can arise by chance when 15 bodies are checked. Officials had significantly more YIMBY than NIMBY speakers in 8 of the 24 bodies drawn.
 
 <figure class="viz" id="bay-viz">
   <div class="ca-card">
@@ -59,7 +59,7 @@ San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 1
 </section>
 <div class="bp-tip" id="bp-tip" hidden></div>
 
-**Methods.** Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significantly means the likely range excludes zero. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.
+**Methods.** Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significant means the result passes a test corrected for checking many bodies at once. The correction is the Holm method, applied to the 15 public-speaker results and, separately, to the 24 official results, at 10 in 100. A likely range that excludes zero is not enough on its own. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.
 
 ## References
 
@@ -157,7 +157,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
   var BAY = ["06001", "06013", "06041", "06055", "06075", "06081", "06085", "06095", "06097"];
   Promise.all([
     d3.json("/visualizations/data/ca-counties-10m.json"),
-    d3.json("/visualizations/data/bay_area_bodies.json")
+    d3.json("/visualizations/data/bay_area_bodies.json?v=20261103holm")
   ]).then(function (res) {
     var topo = res[0], rows = res[1].bodies;
     var COUNTY_FIPS = { "Alameda": "06001", "Contra Costa": "06013", "Marin": "06041", "Napa": "06055", "San Francisco": "06075", "San Mateo": "06081", "Santa Clara": "06085", "Solano": "06095", "Sonoma": "06097" };
@@ -221,7 +221,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         if (!s) return t + "Too few " + m.who + " with a stance to draw, under 10 speakers.";
         return t + "YIMBY minus NIMBY " + sign(s.net) + " of 100 " + m.who + ", likely range " + sign(s.lo) + " to " + sign(s.hi) + ". "
           + "YIMBY " + Math.round(s.yimby) + " of 100, NIMBY " + Math.round(s.nimby) + " of 100, of " + s.n + " " + m.who + " with a stance. "
-          + (s.sig ? "The likely range excludes zero: significant." : "The likely range includes zero: not significant.");
+          + (s.sig ? "Significant after correcting for the number of bodies tested." : (s.sig_uncorrected ? "The likely range excludes zero, but the result is not significant after correcting for the number of bodies tested." : "The likely range includes zero: not significant."));
       }
       var v = val(r);
       if (v === null) return t + "Too few speakers with a stance to draw, under 10 speakers.";
@@ -231,7 +231,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
     function legend() {
       var m = M[metric], L = document.getElementById("bay-legend");
       L.innerHTML = m.net
-        ? '<span><i class="sw" style="background:#e56a32"></i>More YIMBY</span><span><i class="sw" style="background:#2b8f86"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant, likely range excludes zero</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: too few speakers</span>'
+        ? '<span><i class="sw" style="background:#e56a32"></i>More YIMBY</span><span><i class="sw" style="background:#2b8f86"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant after correcting for the number of bodies tested</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: too few speakers</span>'
         : '<span><i class="sw" style="background:#e56a32"></i>Bar height: ' + m.head.toLowerCase() + '</span>' + (m.few ? '<span><i class="sw" style="background:#cfc6bb"></i>Grey: too few speakers</span>' : '<span><i class="sw" style="background:#cfc6bb"></i>Grey: 0' + m.unit + '</span>');
       document.getElementById("bay-note").textContent = m.note;
     }
@@ -245,7 +245,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
         d3.select("#" + id + " thead tr").selectAll("th").data(heads).join("th").text(function (d) { return d; });
         d3.select("#" + id + " caption").text("Ranks " + from + " to " + (from + list.length - 1) + ", " + sel.options[sel.selectedIndex].text.replace(/, [a-z]+$/, "").replace(/, of 100$/, ""));
         d3.select("#" + id + " tbody").selectAll("tr").data(list).join("tr").attr("class", function (r) { return sig(r) ? "sig" : null; }).html(function (r) {
-          if (m.net) { var s = g(r); return "<td>" + label(r) + "</td><td>" + sign(s.net) + " of 100" + (s.sig ? ' <span class="mk" title="likely range excludes zero">*</span>' : "") + "</td><td>" + sign(s.lo) + " to " + sign(s.hi) + "</td><td>" + s.n + " " + (m.key === "off" ? "officials" : "speakers") + "</td>"; }
+          if (m.net) { var s = g(r); return "<td>" + label(r) + "</td><td>" + sign(s.net) + " of 100" + (s.sig ? ' <span class="mk" title="significant after correcting for the number of bodies tested">*</span>' : "") + "</td><td>" + sign(s.lo) + " to " + sign(s.hi) + "</td><td>" + s.n + " " + (m.key === "off" ? "officials" : "speakers") + "</td>"; }
           return "<td>" + label(r) + "</td><td>" + d3.format(",")(val(r)) + m.unit + "</td><td>" + d3.format(",")(m.cv(r)) + m.cu + "</td>";
         });
       }
@@ -253,7 +253,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
       fill("bay-t2", ok.slice(half), half + 1);
       var rest = rows.filter(function (r) { return ok.indexOf(r) < 0; }).map(label).sort();
       var why = m.net || m.few ? "Too few speakers with a stance to draw, under 10 speakers: " : (metric === "hours" ? "No hours transcribed: " : "No meetings found: ");
-      document.getElementById("bay-few").textContent = (m.net ? "* marks a significant result: the likely range excludes zero. " : "") + (rest.length ? why + rest.join(", ") + "." : "");
+      document.getElementById("bay-few").textContent = (m.net ? "* marks a result that is significant after correcting for the number of bodies tested. " : "") + (rest.length ? why + rest.join(", ") + "." : "");
     }
     legend(); tables();
 
