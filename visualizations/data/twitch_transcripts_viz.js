@@ -150,7 +150,7 @@
     pairs: { tab: "Word pairs", list: "top_pairs", rate: "pairs", count: "pairs_n",
       head: (W, S) => `"${W[0].label}" was the most frequent word pair over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
       body: (W) => `The grid shows the ${W.length} most frequent word pairs. A word pair is two words spoken one after the other, neither of them a common English word. ` +
-        `Each cell gives how often the pair was spoken per 10,000 words in that stream. Haley Stevens and Mike Rogers are Michigan politicians. A hype train is a Twitch feature that viewers start by subscribing or donating.`,
+        `Each cell gives how often the pair was spoken per 10,000 words in that stream. Haley Stevens, Mike Rogers and Abdul El-Sayed are Michigan politicians. A hype train is a Twitch feature that viewers start by subscribing or donating.`,
       aria: "Grid of the 12 most frequent word pairs by stream. Darker cells mean the pair was spoken more often per 10,000 words." },
     words: { tab: "Single words", list: "top_words", rate: "top", count: "top_n",
       head: (W, S) => `"${W[0].label}" was the most frequent word over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
@@ -234,7 +234,7 @@
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103d").then((D) => {
+  d3.json("/visualizations/data/twitch_transcripts.json?v=20261103e").then((D) => {
     let drawTopics;
     const all = () => { hours(D); if (!drawTopics) drawTopics = topics(D); else drawTopics(); words(D); };
     all();

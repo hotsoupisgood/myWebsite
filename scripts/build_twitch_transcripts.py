@@ -17,13 +17,13 @@ N_TOP = 12
 # Left out of the top-word list: spoken filler the shared stopwords miss, first names whose
 # surname is already counted (haley, abdul, mike), and the streamer's own names (piker, hassan).
 EXTRA_STOP = set("people thank wait anti let crazy great understand years live haley abdul mike piker hassan".split())
-LABEL = {"sayed": "El-Sayed", "israel": "Israel", "stevens": "Stevens", "democrats": "Democrats",
+LABEL = {"elsayed": "El-Sayed", "israel": "Israel", "stevens": "Stevens", "democrats": "Democrats",
          "trump": "Trump", "democratic": "Democratic", "rogers": "Rogers", "michigan": "Michigan"}
 
 # Left out of the pair grid: the streamer's own name, as in the word grid.
 PAIR_DROP = {"hassan piker", "hasan piker"}
 PAIR_LABEL = {"haley stevens": "Haley Stevens", "mike rogers": "Mike Rogers", "democratic party": "Democratic Party",
-              "donald trump": "Donald Trump", "united states": "United States", "anti semitic": "anti-Semitic", "anti semitism": "anti-Semitism",
+              "donald trump": "Donald Trump", "united states": "United States", "abdul elsayed": "Abdul El-Sayed", "anti semitic": "anti-Semitic", "anti semitism": "anti-Semitism",
               "fox news": "Fox News", "benjamin netanyahu": "Benjamin Netanyahu", "pro israel": "pro-Israel",
               "black people": "Black people", "ilhan omar": "Ilhan Omar", "mao zedong": "Mao Zedong",
               "ethan klein": "Ethan Klein", "abdul sayed": "Abdul El-Sayed", "hype train": "hype train",
@@ -37,6 +37,20 @@ TOPICS = {
     "parties": ("Parties", "Party words", "democrat democrats democratic dems republican republicans gop maga"),
     "iran": ("Iran", "Iran words", "iran iranian"),
 }
+
+
+FIRST_DAY = "2026-10-26"
+
+# One spelling for Abdul El-Sayed before counting (Puck 2026-11-03). Whisper writes "Abdullah Al-Sayed",
+# "Abdel El-Sayed", "Abdul Alsaid" and others; "el"/"al" are under three letters, so without this the name
+# never forms a pair. Full name -> "abdul elsayed"; surname alone -> "elsayed".
+NAME_FULL = re.compile(r"\b(?:abdul|abdullah|abdel)[\s-]+(?:(?:el|al)[\s-]?(?:sayed|sayyed|syed|said)|elsayed|alsayed|alsaid)\b")
+NAME_LAST = re.compile(r"\b(?:el|al)[\s-]?(?:sayed|sayyed|syed)\b|\belsayed\b|\balsayed\b")
+
+
+def norm(text):
+    t = NAME_FULL.sub(" abdul elsayed ", text.lower())
+    return NAME_LAST.sub(" elsayed ", t)
 
 
 def local_date(iso):
@@ -53,6 +67,8 @@ def main():
             meta = json.loads((d / "vod.json").read_text())
             vods.append((meta["date"], d, meta))
     vods.sort(key=lambda x: x[0])
+    # The page covers the streams from FIRST_DAY on (Pacific dates). Older backlog streams wait for the full-month update.
+    vods = [v for v in vods if local_date(v[0]).strftime("%Y-%m-%d") >= FIRST_DAY]
 
     streams, all_tok = [], collections.Counter()
     per, pairs_per, all_pair = [], [], collections.Counter()
@@ -61,7 +77,7 @@ def main():
         speech = sum(r["end"] - r["start"] for r in rows)
         words = sum(len(r["text"].split()) for r in rows)        # as build_outputs.py
         # possessive 's folds into its word ("israel's" counts as "israel")
-        toks = [w[:-2] if w.endswith("'s") else w for r in rows for w in TOK.findall(r["text"].lower())]
+        toks = [w[:-2] if w.endswith("'s") else w for r in rows for w in TOK.findall(norm(r["text"]))]
         c = collections.Counter(toks)
         content = collections.Counter({w: n for w, n in c.items()
                                        if w not in STOP and w not in EXTRA_STOP and len(w) > 2})
@@ -70,7 +86,7 @@ def main():
         # plots_pairs.py, but every voice, like the word grid)
         pc = collections.Counter()
         for r in rows:
-            t = [w[:-2] if w.endswith("'s") else w for w in TOK.findall(r["text"].lower())]
+            t = [w[:-2] if w.endswith("'s") else w for w in TOK.findall(norm(r["text"]))]
             for a, b in zip(t, t[1:]):
                 if a not in STOP and b not in STOP and len(a) > 2 and len(b) > 2 and a != b:
                     pc[f"{a} {b}"] += 1
