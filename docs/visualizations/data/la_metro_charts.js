@@ -103,7 +103,7 @@
     };
     if (scatter.cur) scatter.focus(scatter.cur);
     document.getElementById("lmc-scatter-note").textContent =
-      `Each dot is one of ${pts.length} stations, colored by its first line. Click a station on the map to find it here.`;
+      `Each dot is one of ${pts.length} stations, colored by its first line. Hover over or click a station on the map to find it here.`;
   }
 
   d3.json("/visualizations/data/la_metro_stations.json?v=20261029c").then((D) => {

@@ -292,8 +292,8 @@
         rows.forEach(function (r, i) { if (!open(r)) return; var ddx = p[0] - pts[i][0], ddy = p[1] - pts[i][1], dist = Math.sqrt(ddx * ddx + ddy * ddy); if (dist < bd) { bd = dist; best = i; } });
         return best;
       }
-      svg.on("pointermove", function (ev) { if (ev.pointerType !== "mouse" || state.pinned) return; var i = nearest(ev); if (i !== state.i) { state.i = i; showPanel(i === null ? null : rows[i]); update(false); } })
-        .on("pointerleave", function (ev) { if (ev.pointerType !== "mouse" || state.pinned) return; state.i = null; showPanel(null); update(false); })
+      svg.on("pointermove", function (ev) { if (ev.pointerType !== "mouse" || state.pinned) return; var i = nearest(ev); if (i !== state.i) { state.i = i; showPanel(i === null ? null : rows[i]); window.dispatchEvent(new CustomEvent("lam:station", { detail: i === null ? null : rows[i].id })); update(false); } })
+        .on("pointerleave", function (ev) { if (ev.pointerType !== "mouse" || state.pinned) return; state.i = null; showPanel(null); window.dispatchEvent(new CustomEvent("lam:station", { detail: null })); update(false); })
         .on("click", function (ev) { var i = nearest(ev); if (i === null || (state.pinned && i === state.i)) { state.pinned = false; state.i = null; showPanel(null); } else { state.pinned = true; state.i = i; showPanel(rows[i]); } update(false);
           // a click (not a hover) tells the scatter below which station to highlight (la_metro_charts.js)
           window.dispatchEvent(new CustomEvent("lam:station", { detail: state.pinned ? rows[state.i].id : null })); });
