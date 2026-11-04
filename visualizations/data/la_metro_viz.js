@@ -65,7 +65,7 @@
       // Puck 2026-11-03: the note under the map says only what line width shows
       var L = document.getElementById("lam-legend"), h;
       h = "Line width: average weekday boardings on each line in fiscal year " + Y + ".";
-      h += busyOn() ? " Bar height: average weekday boardings at the 10 busiest stations and at a station you click." : " Click a station to show its boardings as a bar.";
+      h += busyOn() ? " Bar height: average weekday boardings at the 10 busiest stations and at a station you hover over or click." : " Hover over or click a station to show its boardings as a bar.";
       L.innerHTML = h;
     }
     function muted(k) { return d3.interpolateRgb(LINES[k].color, "#f1e3c8")(metric === "age" ? 0.45 : 0.3); }
@@ -185,8 +185,8 @@
       }
       function bars(animate) {
         var set = busyOn() ? top10() : [], f = String(Y), ids = {};
-        // a clicked station gets a bar too, even outside the busiest 10 (Puck 2026-11-03)
-        if (state.pinned && state.i !== null && rows[state.i] && rows[state.i].b && rows[state.i].b[f] !== undefined && set.indexOf(rows[state.i]) < 0) set = set.concat([rows[state.i]]);
+        // a hovered or clicked station gets a bar too, even outside the busiest 10 (Puck 2026-11-03)
+        if (state.i !== null && rows[state.i] && rows[state.i].b && rows[state.i].b[f] !== undefined && set.indexOf(rows[state.i]) < 0) set = set.concat([rows[state.i]]);
         set.forEach(function (r) { ids[r.id] = 1; });
         barG.selectAll("g.bar").filter(function () { return !ids[this.__id]; }).each(function () { delete barH[this.__id]; }).interrupt().remove();
         set.forEach(function (r) {
