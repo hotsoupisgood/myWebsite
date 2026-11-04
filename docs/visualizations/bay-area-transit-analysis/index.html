@@ -229,15 +229,15 @@
     function sig(r) { var s = g(r); return !!(s && s.sig); }
     function fmtv(r) {
       var m = M[metric], v = val(r);
-      if (m.net) return v === null ? "too few speakers" : sign(v) + " of 100";
-      if (v === null) return "too few speakers";
+      if (m.net) return v === null ? "<10 speakers" : sign(v) + " of 100";
+      if (v === null) return "<10 speakers";
       return d3.format(",")(v) + m.unit;
     }
     // Hover label on the map: the side the gap leans to, as "+39 YIMBY" or "+12 NIMBY" (Puck 2026-11-03).
     function fmtHover(r) {
       var v = val(r);
       if (!M[metric].net) return fmtv(r);
-      if (v === null) return "too few speakers";
+      if (v === null) return "<10 speakers";
       var n = Math.round(v);
       return n === 0 ? "even" : "+" + Math.abs(n) + (n > 0 ? " YIMBY" : " NIMBY");
     }
@@ -260,8 +260,8 @@
     function legend() {
       var m = M[metric], L = document.getElementById("bay-legend");
       L.innerHTML = m.net
-        ? '<span><i class="sw" style="background:#e56a32"></i>More YIMBY</span><span><i class="sw" style="background:#2b8f86"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant after correcting for the number of bodies tested</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: too few speakers</span>'
-        : '<span><i class="sw" style="background:#e56a32"></i>Bar height: ' + m.head.toLowerCase() + '</span>' + (m.few ? '<span><i class="sw" style="background:#cfc6bb"></i>Grey: too few speakers</span>' : '<span><i class="sw" style="background:#cfc6bb"></i>Grey: 0' + m.unit + '</span>');
+        ? '<span><i class="sw" style="background:#e56a32"></i>More YIMBY</span><span><i class="sw" style="background:#2b8f86"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant after correcting for the number of bodies tested</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: under 10 speakers</span>'
+        : '<span><i class="sw" style="background:#e56a32"></i>Bar height: ' + m.head.toLowerCase() + '</span>' + (m.few ? '<span><i class="sw" style="background:#cfc6bb"></i>Grey: under 10 speakers</span>' : '<span><i class="sw" style="background:#cfc6bb"></i>Grey: 0' + m.unit + '</span>');
       document.getElementById("bay-note").textContent = m.note;
     }
     function tables() {
