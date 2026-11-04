@@ -244,7 +244,13 @@
           return got;
         }
         // hovered station
-        if (state.i !== null && open(rows[state.i])) { var hp = pts[state.i]; obs.push({ x: hp[0] - RON, y: hp[1] + RON, w: 2 * RON, h: 2 * RON }); var hr = rows[state.i], hb = hr.b && hr.b[String(Y)]; place(hr.name + (hb !== undefined ? " " + d3.format(",")(hb) : ""), hp[0], hp[1] - RON, "main", true); }
+        if (state.i !== null && open(rows[state.i])) { var hp = pts[state.i]; obs.push({ x: hp[0] - RON, y: hp[1] + RON, w: 2 * RON, h: 2 * RON }); var hr = rows[state.i], hb = hr.b && hr.b[String(Y)]; place(hr.name + (hb !== undefined ? " " + d3.format(",")(hb) : ""), hp[0], hp[1] - RON, "main", true);
+          // thick arrow pointing at the highlighted station, from below-left so it clears the label (Puck 2026-11-03)
+          var ah = small ? 7 : 9, tx = hp[0] - RON * 0.7, ty = hp[1] + RON * 0.7, L0 = small ? 22 : 30;
+          var sx = tx - L0 * 0.7, sy = ty + L0 * 0.7, ang = Math.atan2(ty - sy, tx - sx), bx = tx - ah * Math.cos(ang), by = ty - ah * Math.sin(ang);
+          layer.append("line").attr("class", "lam-arrow").attr("x1", sx).attr("y1", sy).attr("x2", bx).attr("y2", by);
+          layer.append("path").attr("class", "lam-arrowhead").attr("d", "M" + tx + "," + ty + "L" + (bx + ah * 0.6 * Math.sin(ang)) + "," + (by - ah * 0.6 * Math.cos(ang)) + "L" + (bx - ah * 0.6 * Math.sin(ang)) + "," + (by + ah * 0.6 * Math.cos(ang)) + "Z");
+          obs.push({ x: sx - 4, y: sy + 4, w: tx - sx + 8, h: sy - ty + 8 }); }
         // busiest station labels, tallest first, leader line when pushed away
         bset.forEach(function (r) {
           var i = rows.indexOf(r); if (i === state.i) return;
