@@ -77,6 +77,7 @@
     }
     function chip(k) { return '<span class="lam-chip" style="background:' + LINES[k].color + ';color:' + (k === "E" || k === "K" ? "#2a1a10" : "#fff") + '">' + k + "</span>"; }
     function showPanel(r) {
+      if (!panel) return;                                 // side panel removed (Puck 2026-11-03)
       if (!r) { panel.innerHTML = '<p class="lam-hint">Hover or tap a station for its numbers.</p>'; return; }
       var h = '<div class="lam-a"><h3>' + r.name + "</h3><p>" + r.lines.map(chip).join("") + " " + r.lines.map(function (k) { return k + " Line"; }).join(", ") + "</p>";
       h += "<p>Opened " + odate(r) + ". " + (open(r) ? yrs(Y - oy(r)) + " open in " + Y + "." : "Not yet open in " + Y + ".") + "</p>";
@@ -113,7 +114,7 @@
     }
     var MH = {};
     function fixPanel() {
-      if (!panel.offsetWidth) return;
+      if (!panel || !panel.offsetWidth) return;
       var keep = state.i, mh = { a: 0, b: 0, c: 0 };
       MH = {};
       rows.forEach(function (r) { showPanel(r); ["a", "b", "c"].forEach(function (k) { var d = panel.querySelector(".lam-" + k); if (d) mh[k] = Math.max(mh[k], d.offsetHeight); }); });
