@@ -15,12 +15,15 @@
   }
   const hideTip = () => { tip.hidden = true; };
 
-  let cur = "all";
+  let cur = "all", view = "pairs";
+  const VIEW = { pairs: { list: "pairs", rate: "rate", n: "n", noun: "word pair" },
+                 words: { list: "words", rate: "wrate", n: "wn", noun: "word" } };
   function draw(D) {
-    const T = D.tabs.find((t) => t.key === cur), P = T.pairs, M = T.months, el = document.getElementById("bp-grid");
+    const V = VIEW[view], T = D.tabs.find((t) => t.key === cur), P = T[V.list], el = document.getElementById("bp-grid");
+    const M = T.months.map((c) => ({ m: c.m, rate: c[V.rate], n: c[V.n] }));
     el.innerHTML = "";
     const where = cur === "all" ? `across all ${D.bodies_total} bodies` : `at the ${T.label}`;
-    document.getElementById("bp-h").textContent = `"${P[0].label}" was the most frequent word pair ${where}, said ${fmtInt(P[0].n)} times.`;
+    document.getElementById("bp-h").textContent = `"${P[0].label}" was the most frequent ${V.noun} ${where}, said ${fmtInt(P[0].n)} times.`;
     const narrow = (el.clientWidth || 640) < 480;
     const m = { t: 34, r: 4, b: 4, l: narrow ? 150 : 160 }, rowH = narrow ? 26 : 28;
     const W = el.clientWidth || 640, H = m.t + m.b + rowH * P.length;
@@ -69,7 +72,7 @@
     lg.appendChild(document.createTextNode("no coded meetings"));
   }
 
-  d3.json("/visualizations/data/bay_area_pairs.json?v=20261103a").then((D) => {
+  d3.json("/visualizations/data/bay_area_pairs.json?v=20261103b").then((D) => {
     const tabs = document.getElementById("bp-tabs");
     D.tabs.forEach((t, i) => {
       const b = tabs.appendChild(document.createElement("button"));
@@ -88,6 +91,20 @@
       e.preventDefault();
       const i = btns.findIndex((b) => b.dataset.v === cur);
       select(btns[(i + (e.key === "ArrowRight" ? 1 : btns.length - 1)) % btns.length].dataset.v, true);
+    });
+    const vt = document.getElementById("bp-view"), vb = [...vt.querySelectorAll("button")];
+    const setView = (k, focus) => {
+      view = k;
+      vb.forEach((b) => { const on = b.dataset.v === k; b.setAttribute("aria-selected", on); b.tabIndex = on ? 0 : -1; if (on && focus) b.focus(); });
+      document.getElementById("bp-p-pairs").hidden = k !== "pairs";
+      document.getElementById("bp-p-words").hidden = k !== "words";
+      draw(D);
+    };
+    vt.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) setView(b.dataset.v); });
+    vt.addEventListener("keydown", (e) => {
+      if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+      e.preventDefault();
+      setView(view === "pairs" ? "words" : "pairs", true);
     });
     draw(D);
     let w = window.innerWidth;
