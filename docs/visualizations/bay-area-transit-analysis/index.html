@@ -264,7 +264,7 @@
     function legend() {
       var m = M[metric], L = document.getElementById("bay-legend");
       L.innerHTML = m.net
-        ? '<span><i class="sw" style="background:#0e6b4f"></i>More YIMBY</span><span><i class="sw" style="background:#f0645c"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant after correcting for the number of bodies tested</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: under 10 speakers</span>'
+        ? '<span><i class="sw" style="background:#0a5a42"></i>More YIMBY</span><span><i class="sw" style="background:#f48079"></i>More NIMBY</span><span><i class="sw" style="background:#2a1a10"></i>* and dark top: significant after correcting for the number of bodies tested</span><span><i class="sw" style="background:#cfc6bb"></i>Grey: under 10 speakers</span>'
         : '<span><i class="sw" style="background:#e56a32"></i>Bar height: ' + m.head.toLowerCase() + '</span>' + (m.few ? '<span><i class="sw" style="background:#cfc6bb"></i>Grey: under 10 speakers</span>' : '<span><i class="sw" style="background:#cfc6bb"></i>Grey: 0' + m.unit + '</span>');
       document.getElementById("bay-note").textContent = m.note;
     }
@@ -370,8 +370,8 @@
         grey: ["#cfc6bb", "#aea398", "#e2dbd2"] };
       // YIMBY minus NIMBY tabs: deep green for more YIMBY, light red for more NIMBY (Puck 2026-11-03); the two differ in
       // lightness as well as hue so they still separate for red-green colour blindness. Count tabs keep orange.
-      var NETCOL = { pos: { main: ["#0e6b4f", "#084a36", "#2f8f6f"], nb: ["#3f9a7c", "#2a7a5f", "#86c9b2"] },
-        neg: { main: ["#f0645c", "#c0443d", "#f58c85"], nb: ["#f48a84", "#d16b65", "#f9b8b4"] } };
+      var NETCOL = { pos: { main: ["#0a5a42", "#063d2d", "#277a60"], nb: ["#3a8a70", "#256b54", "#80bfa9"] },
+        neg: { main: ["#f48079", "#c75a54", "#f8a29c"], nb: ["#f6a19b", "#d98680", "#fac9c5"] } };
 
       function show(i, c) {
         state.i = i; state.c = c === undefined ? (i === null ? null : null) : c;
