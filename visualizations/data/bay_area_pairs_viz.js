@@ -1,6 +1,6 @@
 // Word-pair grid for the Bay Area Transit Analysis post: the 12 most frequent word pairs, by month, one tab per body.
 (function () {
-  const INK = "#2a1a10", MUTED = "#6b5440", FOCUS = "#c2410c", EMPTY = "#efeae3";
+  const INK = "#2a2340", MUTED = "#625a7a", FOCUS = "#7461c4", EMPTY = "#ebe8ef";
   const fmtInt = d3.format(","), fmt1 = d3.format(".1f");
   const MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   const short = (l) => l.replace(/ City Council$/, "").replace(/ Board of Directors$/, "").replace(/ Board of Supervisors$/, " County");
@@ -33,7 +33,7 @@
     const x = d3.scaleBand(M.map((c) => c.m), [0, iw]).padding(0.06);
     const y = d3.scaleBand(P.map((p) => p.key), [0, ih]).padding(0.08);
     const vmax = d3.max(M, (c) => (c.rate ? d3.max(P, (p) => c.rate[p.key]) : 0)) || 1;
-    const col = d3.scaleLinear([0, vmax], ["#fdf6ea", FOCUS]).interpolate(d3.interpolateLab);
+    const col = d3.scaleLinear([0, vmax], ["#f6f1fb", FOCUS]).interpolate(d3.interpolateLab);
     const hx = g.append("g").attr("class", "ax");
     M.forEach((c, i) => {
       const [yr, mo] = c.m.split("-").map(Number);
@@ -72,7 +72,7 @@
     lg.appendChild(document.createTextNode("no coded meetings"));
   }
 
-  d3.json("/visualizations/data/bay_area_pairs.json?v=20261103b").then((D) => {
+  d3.json("/visualizations/data/bay_area_pairs.json?v=20261103c").then((D) => {
     const tabs = document.getElementById("bp-tabs");
     D.tabs.forEach((t, i) => {
       const b = tabs.appendChild(document.createElement("button"));
