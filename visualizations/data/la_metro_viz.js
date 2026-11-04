@@ -65,6 +65,7 @@
       // Puck 2026-11-03: the note under the map says only what line width shows
       var L = document.getElementById("lam-legend"), h;
       h = "Line width: average weekday boardings on each line in fiscal year " + Y + ".";
+      if (busyOn()) h += " Bar height: average weekday boardings at each of the 10 busiest stations.";
       L.innerHTML = h;
     }
     function muted(k) { return d3.interpolateRgb(LINES[k].color, "#f1e3c8")(metric === "age" ? 0.45 : 0.3); }
