@@ -68,7 +68,19 @@
   <table id="bay-t2"><caption></caption><thead><tr></tr></thead><tbody></tbody></table>
 </div>
 <p class="bay-few" id="bay-few"></p>
-<p><strong>Methods.</strong> A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significantly means the likely range excludes zero. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.</p>
+<section class="bp-sec" aria-labelledby="bp-h">
+  <h2 id="bp-h" class="bp-h"></h2>
+  <div class="ca-card">
+    <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="bp-tabs-label">Body</span>
+      <div class="ca-tabs" id="bp-tabs" role="tablist" aria-labelledby="bp-tabs-label" style="justify-content:flex-start"></div>
+    </div>
+  </div>
+  <div class="bp-chart" id="bp-grid" role="img" aria-label="Grid of the 12 most frequent word pairs by month for the selected body. Darker cells mean the pair was said more often per 10,000 words."></div>
+  <p class="bay-legend bp-legend" id="bp-legend"></p>
+  <p class="bp-p">The grid shows the 12 most frequent word pairs in the coded meeting stretches. A word pair is two words said one after the other, neither of them a common English word. Pairs about running the meeting, such as "council member" and "public comment", and place names, such as "San Jose", were removed. Each cell gives how often the pair was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.</p>
+</section>
+<div class="bp-tip" id="bp-tip" hidden></div>
+<p><strong>Methods.</strong> Word pairs are counted in the published, redacted transcripts; a redaction mark breaks a pair. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significantly means the likely range excludes zero. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.</p>
 <h2 id="references" tabindex="-1">References <a class="direct-link" href="#references" aria-hidden="true">#</a></h2>
 <div class="references">
 <p>Henry, L. (2026). <em>Bay Area Transit Analysis</em> [Data set and dashboard]. <a href="https://hotsoupisgood.github.io/baytransitanalysis/">https://hotsoupisgood.github.io/baytransitanalysis/</a></p>
@@ -80,6 +92,16 @@
 <p>Bostock, M. (2023). <em>D3.js</em> (Version 7) [Computer software]. <a href="https://d3js.org/">https://d3js.org/</a></p>
 </div>
 <style>
+.bp-sec { margin: 2rem 0 1.5rem; }
+.bp-h { font-size: 1.2rem; line-height: 1.35; margin: 0 0 .7rem; }
+.bp-p { font-size: .92rem; margin: .4rem 0 0; }
+.bp-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+.bp-chart .ax text { font-size: 11px; fill: #6b5440; }
+.bp-chart .wl { font-size: 12px; fill: #2a1a10; }
+.bp-chart .cell-lbl { font-size: 9.5px; pointer-events: none; font-variant-numeric: tabular-nums; }
+.bp-legend .sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 3px; margin: 0 .25rem 0 .6rem; vertical-align: -1px; }
+.bp-tip { position: absolute; z-index: 10; pointer-events: none; background: #fffaf3; border: 1px solid #d4b483; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a1a10; box-shadow: 0 2px 8px rgba(90,58,26,.18); max-width: 16rem; }
+.bp-tip b { display: block; margin-bottom: .1rem; }
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #bay-map { width: 100%; }
 .ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
@@ -132,6 +154,7 @@
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
+<script src="/visualizations/data/bay_area_pairs_viz.js?v=20261103a"></script>
 <script>
 (function () {
   var el = document.getElementById("bay-map");
