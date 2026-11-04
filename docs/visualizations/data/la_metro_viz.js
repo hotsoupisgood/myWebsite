@@ -77,6 +77,8 @@
     }
     function chip(k) { return '<span class="lam-chip" style="background:' + LINES[k].color + ';color:' + (k === "E" || k === "K" ? "#2a1a10" : "#fff") + '">' + k + "</span>"; }
     function showPanel(r) {
+      // tell the charts below which station is in focus (la_metro_charts.js highlights its dot)
+      window.dispatchEvent(new CustomEvent("lam:station", { detail: r ? r.id : null }));
       if (!r) { panel.innerHTML = '<p class="lam-hint">Hover or tap a station for its numbers.</p>'; return; }
       var h = '<div class="lam-a"><h3>' + r.name + "</h3><p>" + r.lines.map(chip).join("") + " " + r.lines.map(function (k) { return k + " Line"; }).join(", ") + "</p>";
       h += "<p>Opened " + odate(r) + ". " + (open(r) ? yrs(Y - oy(r)) + " open in " + Y + "." : "Not yet open in " + Y + ".") + "</p>";

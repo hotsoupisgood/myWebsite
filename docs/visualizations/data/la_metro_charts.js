@@ -79,7 +79,7 @@
       ax.append("text").attr("x", x(t)).attr("y", f.ih + 16).attr("text-anchor", "middle").text(t);
     });
     ax.append("text").attr("x", f.iw / 2).attr("y", f.ih + 31).attr("text-anchor", "middle").text("Year the station opened");
-    f.g.selectAll(null).data(pts).join("circle").attr("cx", (p) => x(p.t)).attr("cy", (p) => y(p.v)).attr("r", narrow ? 3.6 : 4.4)
+    const dots = f.g.selectAll(null).data(pts).join("circle").attr("cx", (p) => x(p.t)).attr("cy", (p) => y(p.v)).attr("r", narrow ? 3.6 : 4.4)
       .attr("fill", (p) => p.c).attr("fill-opacity", 0.85).attr("stroke", "#fff").attr("stroke-width", 1)
       .on("pointermove click", (ev, p) => {
         const [yy, mm, dd] = p.r.opened.split("-").map(Number);
@@ -91,12 +91,25 @@
       f.g.append("text").attr("class", "lmc-lbl").attr("x", x(p.t) + (left ? -7 : 7)).attr("y", y(p.v)).attr("dy", "0.32em")
         .attr("text-anchor", left ? "end" : "start").text(p.r.name);
     });
+    // Map hover: highlight that station's dot (event from la_metro_viz.js)
+    const hl = f.g.append("g").attr("pointer-events", "none");
+    scatter.focus = (id) => {
+      hl.selectAll("*").remove();
+      dots.attr("fill-opacity", id ? 0.25 : 0.85);
+      const p = pts.find((q) => q.r.id === id); if (!p) { dots.attr("fill-opacity", 0.85); return; }
+      hl.append("circle").attr("cx", x(p.t)).attr("cy", y(p.v)).attr("r", narrow ? 7 : 8).attr("fill", p.c).attr("stroke", INK).attr("stroke-width", 2);
+      const left = x(p.t) > f.iw * 0.6;
+      hl.append("text").attr("class", "lmc-lbl").attr("x", x(p.t) + (left ? -11 : 11)).attr("y", y(p.v) - 2).attr("dy", "0.32em")
+        .attr("text-anchor", left ? "end" : "start").style("font-weight", 700).text(`${p.r.name} ${fmt(p.v)}`);
+    };
+    if (scatter.cur) scatter.focus(scatter.cur);
     document.getElementById("lmc-scatter-note").textContent =
       `${pts.length} stations. Each dot is one station, colored by its first line. Stations that opened during fiscal year ${FY} have an average over the days they were open.`;
   }
 
   d3.json("/visualizations/data/la_metro_stations.json?v=20261029c").then((D) => {
     const all = () => { lines(D); scatter(D); };
+    window.addEventListener("lam:station", (e) => { scatter.cur = e.detail; if (scatter.focus) scatter.focus(e.detail); });
     all();
     let w = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== w) { w = window.innerWidth; all(); } });
