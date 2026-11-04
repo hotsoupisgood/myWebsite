@@ -22,6 +22,35 @@ LABEL = {"elsayed": "El-Sayed", "israel": "Israel", "stevens": "Stevens", "democ
 
 # Left out of the pair grid: the streamer's own name, as in the word grid.
 PAIR_DROP = {"hassan piker", "hasan piker"}
+# 3- and 4-word phrases: first and last word not a stopword, at least two non-stopwords, no word repeated
+# back to back; phrases with the streamer's own name and spoken filler are left out (as the pair grid).
+NG = (3, 4)
+GLABEL = {"angela gonzalez torres": "Angela Gonzalez-Torres", "strait of hormuz": "Strait of Hormuz",
+          "critical of israel": "critical of Israel", "state of israel": "State of Israel", "war with iran": "war with Iran",
+          "state of michigan": "State of Michigan", "united states senate": "United States Senate", "support for israel": "support for Israel",
+          "endorsing mike rogers": "endorsing Mike Rogers", "wall street journal": "Wall Street Journal",
+          "vote for mike rogers": "vote for Mike Rogers", "voting for mike rogers": "voting for Mike Rogers",
+          "democratic socialists of america": "Democratic Socialists of America", "vote for abdul elsayed": "vote for Abdul El-Sayed",
+          "majority in the senate": "majority in the Senate", "mayor of new york": "mayor of New York", "control of the senate": "control of the Senate",
+          "palestinian citizens of israel": "Palestinian citizens of Israel", "itamar ben gavir": "Itamar Ben-Gvir",
+          "issue of israel": "issue of Israel", "house of representatives": "House of Representatives", "green new deal": "Green New Deal",
+          "war in iran": "war in Iran", "feeling like david sirota": "feeling like David Sirota"}
+GRAM_NAME = {"hasan", "hassan", "piker", "hasanabi"}
+GDROP = {"ladies and gentlemen", "nice to meet", "matter of fact", "states of america", "united states of america",
+         "wait a minute", "quite a bit", "years and years", "shape or form", "having a fantastic", "president of the united",
+         "reality of the matter", "coming to you live", "boys girls and enbies", "ladies and gentlemen boys",
+         "rest of the world", "year and a half", "sit back and watch", "including but not limited", "having a fantastic evening",
+         "rest of the country", "soon just you wait", "broadcasting service the people", "service the people broadcasting",
+         "booty cheeks big booty", "cheeks big booty cheeks", "sick and tired", "millions of people", "vote for abdul", "vote for mike",
+         "voting for mike", "socialists of america"}
+
+
+def gram_ok(g):
+    if g[0] in STOP or g[-1] in STOP or len(g[0]) < 3 or len(g[-1]) < 3:
+        return False
+    if sum(w not in STOP for w in g) < 2 or any(a == b for a, b in zip(g, g[1:])):
+        return False
+    return not any(w in GRAM_NAME for w in g) and " ".join(g) not in GDROP
 PAIR_LABEL = {"haley stevens": "Haley Stevens", "mike rogers": "Mike Rogers", "democratic party": "Democratic Party",
               "donald trump": "Donald Trump", "united states": "United States", "abdul elsayed": "Abdul El-Sayed", "anti semitic": "anti-Semitic", "anti semitism": "anti-Semitism",
               "fox news": "Fox News", "benjamin netanyahu": "Benjamin Netanyahu", "pro israel": "pro-Israel",
@@ -122,6 +151,7 @@ def main():
 
     streams, all_tok = [], collections.Counter()
     per, pairs_per, all_pair, texts_by_stream = [], [], collections.Counter(), []
+    grams_per, all_gram = [], {k: collections.Counter() for k in NG}
     for iso, d, meta in vods:
         rows = [json.loads(l) for l in open(d / "transcript.jsonl", encoding="utf-8") if l.strip()]
         texts_by_stream.append([r["text"] for r in rows])
@@ -143,6 +173,17 @@ def main():
                     pc[f"{a} {b}"] += 1
         all_pair += pc
         pairs_per.append(pc)
+        gc = {k: collections.Counter() for k in NG}
+        for r in rows:
+            t = [w[:-2] if w.endswith("'s") else w for w in TOK.findall(norm(r["text"]))]
+            for k in NG:
+                for i in range(len(t) - k + 1):
+                    g = t[i:i + k]
+                    if gram_ok(g):
+                        gc[k][" ".join(g)] += 1
+        for k in NG:
+            all_gram[k] += gc[k]
+        grams_per.append(gc)
         dt = local_date(iso)
         streams.append({"date": dt.strftime("%Y-%m-%d"), "label": dt.strftime("%a %b %-d"),
                         "stream_h": round(float(meta["duration_s"]) / 3600, 2),
@@ -156,7 +197,11 @@ def main():
         s_["names_n"] = {k["key"]: c_[k["key"]] for k in names}
     top = [w for w, _ in all_tok.most_common(N_TOP)]
     ptop = [p for p, _ in all_pair.most_common(N_TOP + len(PAIR_DROP)) if p not in PAIR_DROP][:N_TOP]
-    for s, (c, n), pc in zip(streams, per, pairs_per):
+    gtop = {k: [g for g, _ in all_gram[k].most_common(N_TOP)] for k in NG}
+    for s, (c, n), pc, gc in zip(streams, per, pairs_per, grams_per):
+        for k in NG:
+            s[f"g{k}"] = {g: round(gc[k][g] / n * 1e4, 1) for g in gtop[k]}
+            s[f"g{k}_n"] = {g: gc[k][g] for g in gtop[k]}
         s["top"] = {w: round(c[w] / n * 1e4, 1) for w in top}
         s["top_n"] = {w: c[w] for w in top}
         s["pairs"] = {p: round(pc[p] / n * 1e4, 1) for p in ptop}
@@ -170,6 +215,7 @@ def main():
                       "words": sum(s["words"] for s in streams)},
            "top_words": [{"key": w, "label": LABEL.get(w, w), "n": all_tok[w]} for w in top],
            "top_names": names,
+           **{f"top_g{k}": [{"key": g, "label": GLABEL.get(g, g), "n": all_gram[k][g]} for g in gtop[k]] for k in NG},
            "top_pairs": [{"key": p, "label": PAIR_LABEL.get(p, p), "n": all_pair[p]} for p in ptop],
            "topics": [{"key": k, "label": lab, "noun": noun, "words": ws.split()}
                       for k, (lab, noun, ws) in TOPICS.items()],

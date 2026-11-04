@@ -186,16 +186,26 @@
 
   // The grid has two views: word pairs (default) and single words. Both share the drawing code.
   const VIEWS = {
-    pairs: { tab: "Word pairs", list: "top_pairs", rate: "pairs", count: "pairs_n",
-      head: (W, S) => `"${W[0].label}" was the most frequent word pair over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
-      body: (W) => `The grid shows the ${W.length} most frequent word pairs. A word pair is two words spoken one after the other, neither of them a common English word. ` +
-        `Each cell gives how often the pair was spoken per 10,000 words in that stream. Haley Stevens, Mike Rogers and Abdul El-Sayed are Michigan politicians. A hype train is a Twitch feature that viewers start by subscribing or donating.`,
-      aria: "Grid of the 12 most frequent word pairs by stream. Darker cells mean the pair was spoken more often per 10,000 words." },
     words: { tab: "Single words", list: "top_words", rate: "top", count: "top_n",
       head: (W, S) => `"${W[0].label}" was the most frequent word over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
       body: (W) => `The grid shows the ${W.length} most frequent words after common English words were removed. Each cell gives how often the word was spoken per 10,000 words in that stream. ` +
         `El-Sayed, Rogers and Stevens are the Michigan politicians Abdul El-Sayed, Mike Rogers and Haley Stevens.`,
       aria: "Grid of the 12 most frequent words by stream. Darker cells mean the word was spoken more often per 10,000 words." },
+    pairs: { tab: "Word pairs", list: "top_pairs", rate: "pairs", count: "pairs_n",
+      head: (W, S) => `"${W[0].label}" was the most frequent word pair over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
+      body: (W) => `The grid shows the ${W.length} most frequent word pairs. A word pair is two words spoken one after the other, neither of them a common English word. ` +
+        `Each cell gives how often the pair was spoken per 10,000 words in that stream. Haley Stevens, Mike Rogers and Abdul El-Sayed are Michigan politicians. A hype train is a Twitch feature that viewers start by subscribing or donating.`,
+      aria: "Grid of the 12 most frequent word pairs by stream. Darker cells mean the pair was spoken more often per 10,000 words." },
+    g3: { tab: "3 words", list: "top_g3", rate: "g3", count: "g3_n",
+      head: (W, S) => `"${W[0].label}" was the most frequent 3-word phrase over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
+      body: (W) => `The grid shows the ${W.length} most frequent 3-word phrases. The first and last words are not common English words. ` +
+        `Greetings and stock phrases, such as "ladies and gentlemen", and phrases with the streamer's own name were removed. Each cell gives how often the phrase was spoken per 10,000 words in that stream.`,
+      aria: "Grid of the 12 most frequent 3-word phrases by stream. Darker cells mean the phrase was spoken more often per 10,000 words." },
+    g4: { tab: "4 words", list: "top_g4", rate: "g4", count: "g4_n",
+      head: (W, S) => `"${W[0].label}" was the most frequent 4-word phrase over the ${S.length} streams, spoken ${fmtInt(W[0].n)} times.`,
+      body: (W) => `The grid shows the ${W.length} most frequent 4-word phrases. The first and last words are not common English words. ` +
+        `Greetings and stock phrases, such as "United States of America", and phrases with the streamer's own name were removed. Each cell gives how often the phrase was spoken per 10,000 words in that stream.`,
+      aria: "Grid of the 12 most frequent 4-word phrases by stream. Darker cells mean the phrase was spoken more often per 10,000 words." },
   };
 
   function wordTabs(redraw) {
@@ -204,7 +214,7 @@
     Object.entries(VIEWS).forEach(([k, v], i) => {
       const b = tabs.appendChild(document.createElement("button"));
       b.type = "button"; b.setAttribute("role", "tab"); b.dataset.v = k; b.textContent = v.tab;
-      b.setAttribute("aria-selected", i === 0); b.tabIndex = i === 0 ? 0 : -1;
+      b.setAttribute("aria-selected", k === wordView); b.tabIndex = k === wordView ? 0 : -1;
     });
     const btns = [...tabs.querySelectorAll("button")];
     const select = (k, focus) => {
@@ -231,7 +241,7 @@
     document.getElementById("tw-h3").textContent = V.head(W, S);
     document.getElementById("tw-p3").textContent = V.body(W);
     const narrow = (el.clientWidth || 640) < 480;
-    const lw = wordView === "pairs" ? (narrow ? 136 : 150) : (narrow ? 74 : 96);
+    const lw = wordView === "words" ? (narrow ? 74 : 96) : wordView === "pairs" ? (narrow ? 136 : 150) : (narrow ? 150 : 210);
     const m = { t: 34, r: 4, b: 4, l: lw };
     const rowH = narrow ? 26 : 28;
     const f = frame(el, m.t + m.b + rowH * W.length, m, S.length, 22);
@@ -247,7 +257,9 @@
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
     });
     f.g.selectAll(null).data(W).join("text").attr("class", "wl").attr("x", -8)
-      .attr("y", (w) => y(w.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((w) => w.label);
+      .attr("y", (w) => y(w.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((w) => w.label)
+      .each(function (w) { let s = w.label; while (this.getComputedTextLength() > lw - 12 && s.length > 4) { s = s.slice(0, -1); this.textContent = s.trimEnd() + "…"; } })
+      .append("title").text((w) => w.label);
     const cells = S.flatMap((s) => W.map((w) => ({ s, w, v: s[V.rate][w.key], n: s[V.count][w.key] })));
     f.g.selectAll(null).data(cells).join("rect")
       .attr("x", (c) => x(c.s.label)).attr("y", (c) => y(c.w.key)).attr("width", x.bandwidth()).attr("height", y.bandwidth())
@@ -270,11 +282,11 @@
     for (let i = 0; i < n; i++) {
       const v = vmax * i / (n - 1), sw = el.appendChild(document.createElement("span"));
       sw.className = "sw"; sw.style.background = col(v);
-      el.appendChild(document.createTextNode(Math.round(v)));
+      el.appendChild(document.createTextNode(vmax < 10 ? fmt1(v) : Math.round(v)));
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=202611040644").then((D) => {
+  d3.json("/visualizations/data/twitch_transcripts.json?v=20261104b").then((D) => {
     const S = D.streams;
     document.getElementById("tw-range").textContent =
       `${S.length} streams from ${S[0].label} to ${S[S.length - 1].label}, 2026`;
