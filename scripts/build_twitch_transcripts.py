@@ -12,13 +12,16 @@ sys.path.insert(0, str(SRC))
 from plots_stop import STOP  # noqa: E402  (same stopwords as the hasan-stream plots)
 
 OUT = Path(__file__).resolve().parent.parent / "visualizations" / "data" / "twitch_transcripts.json"
+VOCAB_OUT = OUT.with_name("twitch_vocab.json")
 TOK = re.compile(r"[a-z]+(?:'[a-z]+)?")   # same tokeniser as hasan-stream plots_pairs.py
 N_TOP = 12
 # Left out of the top-word list: spoken filler the shared stopwords miss, first names whose
 # surname is already counted (haley, abdul, mike), and the streamer's own names (piker, hassan).
 EXTRA_STOP = set("people thank wait anti let crazy great understand years live haley abdul mike piker hassan".split())
 LABEL = {"elsayed": "El-Sayed", "israel": "Israel", "stevens": "Stevens", "democrats": "Democrats",
-         "trump": "Trump", "democratic": "Democratic", "rogers": "Rogers", "michigan": "Michigan"}
+         "trump": "Trump", "democratic": "Democratic", "rogers": "Rogers", "michigan": "Michigan",
+         "jewish": "Jewish", "jews": "Jews", "america": "America", "american": "American", "senate": "Senate",
+         "republican": "Republican", "republicans": "Republicans", "netanyahu": "Netanyahu", "gaza": "Gaza", "iran": "Iran"}
 
 # Left out of the pair grid: the streamer's own name, as in the word grid.
 PAIR_DROP = {"hassan piker", "hasan piker"}
@@ -69,6 +72,13 @@ TOPICS = {
 
 
 FIRST_DAY = "2026-01-01"
+
+# Words near a target (2026-11-05): for each mention of a target's words, the content words within NEAR words on
+# either side. A word counts once per mention. Share = mentions with the word nearby, out of every 100 mentions.
+NEAR = 5
+NEAR_TARGETS = {**{k: (lab, ws) for k, (lab, _n, ws) in TOPICS.items()},
+                "elsayed": ("Abdul El-Sayed", "elsayed"), "stevens": ("Haley Stevens", "stevens"), "rogers": ("Mike Rogers", "rogers")}
+NEAR_SKIP = {"abdul", "haley", "mike", "donald", "benjamin"}   # the target's own first name
 
 # One spelling for Abdul El-Sayed before counting (Puck 2026-11-03). Whisper writes "Abdullah Al-Sayed",
 # "Abdel El-Sayed", "Abdul Alsaid" and others; "el"/"al" are under three letters, so without this the name
@@ -150,6 +160,7 @@ def main():
     vods = [v for v in vods if local_date(v[0]).strftime("%Y-%m-%d") >= FIRST_DAY]
 
     streams, all_tok = [], collections.Counter()
+    near = {k: collections.Counter() for k in NEAR_TARGETS}; near_m = collections.Counter(); tok_lists = []
     per, pairs_per, all_pair, texts_by_stream = [], [], collections.Counter(), []
     grams_per, all_gram = [], {k: collections.Counter() for k in NG}
     for iso, d, meta in vods:
@@ -160,6 +171,15 @@ def main():
         # possessive 's folds into its word ("israel's" counts as "israel")
         toks = [w[:-2] if w.endswith("'s") else w for r in rows for w in TOK.findall(norm(r["text"]))]
         c = collections.Counter(toks)
+        tok_lists.append(toks)
+        for k, (_lab, ws) in NEAR_TARGETS.items():
+            tw = set(ws.split())
+            for i, w in enumerate(toks):
+                if w in tw:
+                    near_m[k] += 1
+                    near[k].update({x for x in toks[max(0, i - NEAR):i + NEAR + 1]
+                                    if x not in tw and x not in STOP and x not in EXTRA_STOP and x not in GRAM_NAME
+                                    and x not in NEAR_SKIP and len(x) > 2})
         content = collections.Counter({w: n for w, n in c.items()
                                        if w not in STOP and w not in EXTRA_STOP and len(w) > 2})
         all_tok += content
@@ -191,6 +211,24 @@ def main():
                         "speech_s": round(speech), "words": words, "tokens": len(toks)})
         per.append((c, len(toks)))
 
+    # Word lookup (2026-11-05): per-stream counts for every word said at least VOCAB_MIN times in all streams,
+    # so the page can chart any one word. Stored as a separate file so the main JSON stays small.
+    VOCAB_MIN = 10
+    allc = sum((c for c, _ in per), collections.Counter())
+    vocab = sorted(w for w, n in allc.items() if n >= VOCAB_MIN and len(w) > 1)
+    # Overall only (Puck 2026-11-05: "not through time just overall"): each word's total and its words nearby,
+    # for every content word said at least NEAR_MIN times. Counts only; no text leaves this script.
+    NEAR_MIN = 30
+    ok = lambda x: x not in STOP and x not in EXTRA_STOP and x not in GRAM_NAME and len(x) > 2
+    keys = {w for w, n in allc.items() if n >= NEAR_MIN and ok(w)}
+    nb = {w: collections.Counter() for w in keys}
+    for toks in tok_lists:
+        for i, w in enumerate(toks):
+            if w in keys:
+                nb[w].update({x for x in toks[max(0, i - NEAR):i + NEAR + 1] if x != w and ok(x)})
+    total_tok = sum(n for _, n in per)
+    VOCAB_OUT.write_text(json.dumps({"min": NEAR_MIN, "window": NEAR, "tokens": total_tok,
+        "words": {w: [allc[w], [[x, k] for x, k in nb[w].most_common(N_TOP)]] for w in sorted(keys)}}, separators=(",", ":")))
     names, name_c = people(texts_by_stream)
     for s_, c_, (_, n_) in zip(streams, name_c, per):
         s_["names"] = {k["key"]: round(c_[k["key"]] / n_ * 1e4, 1) for k in names}
@@ -219,6 +257,10 @@ def main():
            "top_pairs": [{"key": p, "label": PAIR_LABEL.get(p, p), "n": all_pair[p]} for p in ptop],
            "topics": [{"key": k, "label": lab, "noun": noun, "words": ws.split()}
                       for k, (lab, noun, ws) in TOPICS.items()],
+           "near": {"window": NEAR, "targets": [{"key": k, "label": lab, "mentions": near_m[k],
+                     "words": [{"key": w, "label": LABEL.get(w, w), "n": n, "share": round(100 * n / near_m[k], 1)}
+                               for w, n in near[k].most_common(N_TOP)] if near_m[k] else []}
+                    for k, (lab, _ws) in NEAR_TARGETS.items()]},
            "streams": streams}
     OUT.write_text(json.dumps(out, separators=(",", ":")))
     print(json.dumps(out["totals"]), top)

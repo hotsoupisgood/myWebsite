@@ -61,6 +61,19 @@
   <p class="tw-legend" id="tw-wlegend"></p>
   <p class="tw-p" id="tw-p3"></p>
 </section>
+<section class="tw-sec" aria-labelledby="tw-h6">
+  <p class="tw-kicker">Words near a word</p>
+  <h2 id="tw-h6" class="tw-h"></h2>
+  <div class="ca-card">
+    <label class="ca-tabs-label" for="tw-q">Type a word</label>
+    <div class="tw-q"><input id="tw-q" type="search" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="e.g. housing" list="tw-qlist"><datalist id="tw-qlist"></datalist></div>
+    <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="tw-nview-label">Or pick a topic</span>
+      <div class="ca-tabs" id="tw-nview" style="justify-content:flex-start" role="tablist" aria-labelledby="tw-nview-label"></div>
+    </div>
+  </div>
+  <div class="tw-chart" id="tw-word" role="img" aria-label="Bar chart of the words said most often within five words of the chosen word, across all streams."></div>
+  <p class="tw-p" id="tw-p6"></p>
+</section>
 <section class="tw-sec" aria-labelledby="tw-h4">
   <p class="tw-kicker">People named</p>
   <h2 id="tw-h4" class="tw-h"></h2>
@@ -131,10 +144,11 @@
 .ca-tabs button[aria-selected="true"] { background: #7461c4; border-color: #7461c4; color: #fff; font-weight: 600; }
 .ca-tabs button:focus-visible { outline: 2px solid #4b3a99; outline-offset: 2px; }
 @media (max-width: 640px) { .ca-tabs { justify-content: flex-start; } .ca-card { padding: .7rem .8rem; } }
+.tw-q input { box-sizing: border-box; width: 100%; max-width: 22rem; font: inherit; font-size: 1rem; padding: .5rem .8rem; border: 1px solid #c9bce3; border-radius: 999px; background: #fff; color: #2a2340; margin-top: .3rem; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611050648"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611051300"></script>
 
 </div>
 

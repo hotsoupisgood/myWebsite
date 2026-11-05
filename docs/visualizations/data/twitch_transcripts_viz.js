@@ -275,6 +275,66 @@
     legend(col, vmax);
   }
 
+
+  // Words near a word, across all streams (Puck 2026-11-05: "not through time just overall"). A typed word uses
+  // twitch_vocab.json (every word said at least V.min times); a topic button uses D.near (the topic's word list).
+  // The bar is how many mentions, out of every 100, had that word within the window on either side.
+  let V = null, qWord = "housing", qTopic = null;
+  function lookup(D) {
+    const el = document.getElementById("tw-word"), q = document.getElementById("tw-q"), tabs = document.getElementById("tw-nview");
+    const head = document.getElementById("tw-h6"), body = document.getElementById("tw-p6");
+    if (!V) return;
+    if (!q.dataset.ready) {
+      q.dataset.ready = 1; q.value = qWord;
+      const dl = document.getElementById("tw-qlist"), order = Object.keys(V.words).sort((a, b) => V.words[b][0] - V.words[a][0]);
+      q.addEventListener("input", () => {
+        const t = q.value.trim().toLowerCase().replace(/[’']s$/, ""); dl.innerHTML = "";
+        if (t.length >= 2) order.filter((w) => w.startsWith(t)).slice(0, 12).forEach((w) => { dl.appendChild(document.createElement("option")).value = w; });
+        qWord = t; qTopic = null; lookup(D);
+      });
+      (D.near ? D.near.targets : []).forEach((t) => { const b = tabs.appendChild(document.createElement("button")); b.type = "button"; b.setAttribute("role", "tab");
+        b.dataset.v = t.key; b.textContent = t.label; });
+      tabs.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) { qTopic = b.dataset.v; q.value = ""; lookup(D); } });
+    }
+    tabs.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.v === qTopic));
+    el.innerHTML = "";
+    const win = V.window;
+    let label, n, W;
+    if (qTopic) {
+      const T = D.near.targets.find((t) => t.key === qTopic);
+      label = T.label; n = T.mentions; W = T.words.map((w) => ({ label: w.label, n: w.n }));
+    } else {
+      const w = qWord, e = V.words[w];
+      if (!w) { head.textContent = "Type a word to see the words said near it"; body.textContent = ""; return; }
+      if (!e) {
+        head.textContent = `"${w}" was said fewer than ${V.min} times in all streams, or is a common short word`;
+        body.textContent = `Only words said at least ${V.min} times are included, and common short words such as "the" are left out. Try another word.`;
+        return;
+      }
+      label = `"${w}"`; n = e[0]; W = e[1].map(([x, k]) => ({ label: x, n: k }));
+    }
+    W.forEach((w) => (w.share = 100 * w.n / n));
+    head.textContent = W.length ? `${label} was said ${fmtInt(n)} times. "${W[0].label}" came within ${win} words of it in ${Math.round(W[0].share)} of every 100 mentions`
+      : `${label} was said ${fmtInt(n)} times`;
+    body.textContent = `Across all streams together, ${label} was said ${fmt1(n / V.tokens * 1e4)} times per 10,000 words. Each bar shows how many of every 100 mentions had that word within ${win} words before or after it. A word counts once per mention. Common short words are left out, as in the grids above.`;
+    const narrow = (el.clientWidth || 640) < 480, lw = narrow ? 96 : 130, rowH = 26;
+    const m = { t: 6, r: 74, b: 22, l: lw };
+    const f = frame(el, m.t + m.b + rowH * W.length, m);
+    const x = d3.scaleLinear([0, d3.max(W, (w) => w.share) || 1], [0, f.iw]).nice();
+    const y = d3.scaleBand(W.map((w, i) => i), [0, f.ih]).padding(0.18);
+    const ax = f.g.append("g").attr("class", "ax grid").attr("transform", `translate(0,${f.ih})`);
+    x.ticks(4).forEach((v) => { ax.append("line").attr("x1", x(v)).attr("x2", x(v)).attr("y1", -f.ih);
+      ax.append("text").attr("x", x(v)).attr("y", 14).attr("text-anchor", "middle").text(v); });
+    f.g.selectAll(null).data(W).join("text").attr("class", "wl").attr("x", -8).attr("y", (w, i) => y(i) + y.bandwidth() / 2)
+      .attr("dy", "0.35em").attr("text-anchor", "end").text((w) => w.label);
+    f.g.selectAll(null).data(W).join("rect").attr("x", 0).attr("y", (w, i) => y(i)).attr("height", y.bandwidth()).attr("rx", 3)
+      .attr("fill", FOCUS).attr("width", (w) => x(w.share))
+      .on("pointermove click", (ev, w) => showTip(ev, `<b>"${w.label}" near ${label}</b>${fmtInt(w.n)} of ${fmtInt(n)} mentions, ${fmt1(w.share)} of every 100`))
+      .on("pointerleave", hideTip);
+    f.g.selectAll(null).data(W).join("text").attr("class", "val").attr("x", (w) => x(w.share) + 6).attr("y", (w, i) => y(i) + y.bandwidth() / 2)
+      .attr("dy", "0.35em").text((w) => `${fmt1(w.share)} of 100`);
+  }
+
   function legend(col, vmax, id = "tw-wlegend") {
     const el = document.getElementById(id), n = 5;
     el.innerHTML = "";
@@ -286,11 +346,12 @@
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=202611050648").then((D) => {
+  d3.json("/visualizations/data/twitch_transcripts.json?v=202611051300").then((D) => {
     const S = D.streams;
     document.getElementById("tw-range").textContent =
       `${S.length} streams from ${S[0].label} to ${S[S.length - 1].label}, 2026`;
-    const all = () => { hours(D); topics(D); words(D); names(D); };
+    const all = () => { hours(D); topics(D); words(D); lookup(D); names(D); };
+    d3.json("/visualizations/data/twitch_vocab.json?v=202611051300").then((v) => { V = v; lookup(D); });
     all();
     let w = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== w) { w = window.innerWidth; all(); } });
