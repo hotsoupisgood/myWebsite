@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Swipe Labeller for YIMBY and NIMBY Comments</title>
+    <meta name="description" content="My public notes.">
+    <meta name="generator" content="Eleventy v1.0.2">
+
+    <link rel="stylesheet" href="/css/index.css?v=0ec57e8c">
+    <link rel="stylesheet" href="/css/prism-base16-monokai.dark.css">
+    <link rel="stylesheet" href="/css/prism-diff.css">
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="Lucas">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="Lucas">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <nav class="sidebar" aria-label="Main">
+      <a class="site-title" href="/">Lucas</a>
+      <ul class="nav">
+        <li class="nav-item"><a href="/">Projects</a></li>
+        <li class="nav-item"><a href="/photos/">Photos</a></li>
+        <li class="nav-item"><a href="/cooking/">Cooking</a></li>
+        <li class="nav-item"><a href="/visualizations/">Visualizations</a></li>
+        <li class="nav-item"><a href="/about/">About Me</a></li>
+      </ul>
+      <div class="sidebar-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </div>
+    </nav>
+
+    <div class="page">
+
+      <main id="main" class="tmpl-post">
+        <div class="post-head">
+  <a href="/" class="back-link" aria-label="Back to Projects" title="Back to Projects">&#8592;</a>
+  <h1>A Swipe Labeller for YIMBY and NIMBY Comments</h1>
+</div>
+<time datetime="2026-11-04">04 Nov 2026</time><a href="/tags/web-app/" class="post-tag">web app</a><a href="/tags/statistics/" class="post-tag">statistics</a>
+<div class="read-more-target">
+  <p><strong>TLDR:</strong></p>
+<ul>
+<li>I built a phone page for labelling public comments from Bay Area meetings. Friends read and hear each comment and say whether the speaker is a YIMBY or a NIMBY.</li>
+<li>The answers are a human check on the automated labels in the <a href="/visualizations/bay-area-transit-analysis/">Exploratory Dashboard of Bay Area Public Meetings</a>.</li>
+<li>I tried three designs and chose Option C: one YIMBY or NIMBY question, answered with a swipe.</li>
+</ul>
+<p>YIMBY means &quot;yes in my backyard&quot;: the speaker wants more homes, or more transit, walking or cycling, built in their area. NIMBY means &quot;not in my backyard&quot;: the speaker is against it in their area.</p>
+<p><strong>Option A: two questions.</strong> The labeller picks the topic, then picks for, against or neutral. This records the topic and the stance separately.</p>
+<p><img src="/img/yimby-labeller/option-a-two-questions.png" alt="Option A: a comment card with Topic buttons (Housing, Transit, Other) and Stance buttons (For, Against, Neutral) and a Next button"></p>
+<p><strong>Option B: one question, for or against.</strong> The labeller swipes right for &quot;for&quot; and left for &quot;against&quot;. It takes one action per comment instead of three.</p>
+<p><img src="/img/yimby-labeller/option-b-for-against.png" alt="Option B: a comment card asking whether the speaker is for or against more housing, with Against, Neutral and For buttons"></p>
+<p><strong>Option C: one question, YIMBY or NIMBY. This is the one I chose.</strong> The swipe is the same as in Option B, but the answers are YIMBY and NIMBY. These are the words the study uses, so the answers need no translation before they are compared with the automated labels.</p>
+<p><img src="/img/yimby-labeller/option-c-yimby-nimby.png" alt="Option C: a comment card asking whether the speaker is a YIMBY or a NIMBY, with NIMBY, Neutral and YIMBY buttons"></p>
+<p><strong>The final version.</strong> It is Option C with one change: it asks one general question for housing and transit together, instead of one session for each. The words light up as the audio plays, and a swipe saves the answer and shows the next comment.</p>
+<p><img src="/img/yimby-labeller/final-audio-swipe.gif" alt="The final labeller: the audio plays with the current word highlighted, then the card is swiped right and stamped YIMBY"></p>
+
+</div>
+
+      </main>
+
+      <footer class="page-foot">
+        <a href="https://github.com/hotsoupisgood/myWebsite">GitHub</a>
+        <a href="https://www.linkedin.com/in/lucas-henry-dataspace/">LinkedIn</a>
+        <a href="mailto:contact@lucashenry.xyz">Contact</a>
+        <a href="/feed/feed.xml">Feed</a>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -5,12 +5,35 @@
 	
 	<link href="https://lucashenry.xyz/feed/feed.xml" rel="self"/>
 	<link href="https://lucashenry.xyz/"/>
-	<updated>2026-11-03T00:00:00Z</updated>
+	<updated>2026-11-04T00:00:00Z</updated>
 	<id>https://lucashenry.xyz/</id>
 	<author>
 		<name>Lucas</name>
 		<email>contact@lucashenry.xyz</email>
 	</author>
+	
+	<entry>
+		<title>A Swipe Labeller for YIMBY and NIMBY Comments</title>
+		<link href="https://lucashenry.xyz/projects/yimby-labeller/"/>
+		<updated>2026-11-04T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/yimby-labeller/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I built a phone page for labelling public comments from Bay Area meetings. Friends read and hear each comment and say whether the speaker is a YIMBY or a NIMBY.&lt;/li&gt;
+&lt;li&gt;The answers are a human check on the automated labels in the &lt;a href=&quot;https://lucashenry.xyz/visualizations/bay-area-transit-analysis/&quot;&gt;Exploratory Dashboard of Bay Area Public Meetings&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;I tried three designs and chose Option C: one YIMBY or NIMBY question, answered with a swipe.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;YIMBY means &amp;quot;yes in my backyard&amp;quot;: the speaker wants more homes, or more transit, walking or cycling, built in their area. NIMBY means &amp;quot;not in my backyard&amp;quot;: the speaker is against it in their area.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Option A: two questions.&lt;/strong&gt; The labeller picks the topic, then picks for, against or neutral. This records the topic and the stance separately.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/yimby-labeller/option-a-two-questions.png&quot; alt=&quot;Option A: a comment card with Topic buttons (Housing, Transit, Other) and Stance buttons (For, Against, Neutral) and a Next button&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Option B: one question, for or against.&lt;/strong&gt; The labeller swipes right for &amp;quot;for&amp;quot; and left for &amp;quot;against&amp;quot;. It takes one action per comment instead of three.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/yimby-labeller/option-b-for-against.png&quot; alt=&quot;Option B: a comment card asking whether the speaker is for or against more housing, with Against, Neutral and For buttons&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Option C: one question, YIMBY or NIMBY. This is the one I chose.&lt;/strong&gt; The swipe is the same as in Option B, but the answers are YIMBY and NIMBY. These are the words the study uses, so the answers need no translation before they are compared with the automated labels.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/yimby-labeller/option-c-yimby-nimby.png&quot; alt=&quot;Option C: a comment card asking whether the speaker is a YIMBY or a NIMBY, with NIMBY, Neutral and YIMBY buttons&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;The final version.&lt;/strong&gt; It is Option C with one change: it asks one general question for housing and transit together, instead of one session for each. The words light up as the audio plays, and a swipe saves the answer and shows the next comment.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/yimby-labeller/final-audio-swipe.gif&quot; alt=&quot;The final labeller: the audio plays with the current word highlighted, then the card is swiped right and stamped YIMBY&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>Dashboard for Twitch Transcripts</title>
@@ -20,123 +43,144 @@
 		<content type="html">&lt;div class=&quot;tw-tldr&quot;&gt;
 &lt;p&gt;&lt;strong&gt;TLDR&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;I transcribed a week of HasanAbi&#39;s Twitch streams, from the archived video audio, with a speech recognition model.&lt;/li&gt;
+&lt;li&gt;I transcribed HasanAbi&#39;s Twitch streams, from the archived video audio, with a speech recognition model.&lt;/li&gt;
 &lt;li&gt;I counted how much of each stream had speech and which words came up most.&lt;/li&gt;
 &lt;li&gt;I found that three Michigan politicians were named most often in the final streams before the midterms.&lt;/li&gt;
 &lt;li&gt;The panels below show hours, topics and words by stream. Methods are at the end.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
-&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h1&quot;&gt;
-  &lt;h2 id=&quot;tw-h1&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
-  &lt;div class=&quot;tw-tiles&quot; id=&quot;tw-tiles&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-hours&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of stream length and hours of speech for each of the eight streams.&quot;&gt;&lt;/div&gt;
-  &lt;p class=&quot;tw-legend&quot;&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#f2d3a8&quot;&gt;&lt;/span&gt;Stream length &lt;span class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/span&gt;Speech&lt;/p&gt;
-  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p1&quot;&gt;&lt;/p&gt;
-&lt;/section&gt;
-&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h2&quot;&gt;
-  &lt;h2 id=&quot;tw-h2&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
-  &lt;div class=&quot;ca-card&quot;&gt;
-    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;tw-tabs-label&quot;&gt;Topic&lt;/span&gt;
-      &lt;div class=&quot;ca-tabs&quot; id=&quot;tw-topic&quot; role=&quot;tablist&quot; aria-labelledby=&quot;tw-tabs-label&quot;&gt;&lt;/div&gt;
-    &lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-topics&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of how often the selected topic&#39;s words were spoken in each stream, per 10,000 words.&quot;&gt;&lt;/div&gt;
-  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p2&quot;&gt;&lt;/p&gt;
-&lt;/section&gt;
 &lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h3&quot;&gt;
   &lt;h2 id=&quot;tw-h3&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;ca-card&quot;&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;tw-wview-label&quot;&gt;Show&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;tw-wview&quot; style=&quot;justify-content:flex-start&quot; role=&quot;tablist&quot; aria-labelledby=&quot;tw-wview-label&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
   &lt;div class=&quot;tw-chart&quot; id=&quot;tw-words&quot; role=&quot;img&quot; aria-label=&quot;Grid of the 12 most frequent words by stream. Darker cells mean the word was spoken more often per 10,000 words.&quot;&gt;&lt;/div&gt;
   &lt;p class=&quot;tw-legend&quot; id=&quot;tw-wlegend&quot;&gt;&lt;/p&gt;
   &lt;p class=&quot;tw-p&quot; id=&quot;tw-p3&quot;&gt;&lt;/p&gt;
 &lt;/section&gt;
+&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h4&quot;&gt;
+  &lt;p class=&quot;tw-kicker&quot;&gt;People named&lt;/p&gt;
+  &lt;h2 id=&quot;tw-h4&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-names&quot; role=&quot;img&quot; aria-label=&quot;Grid of the 12 people named most often, by stream. Darker cells mean the person was named more often per 10,000 words.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-legend&quot; id=&quot;tw-nlegend&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;tw-p&quot;&gt;Names were found with spaCy, a language-processing library, which marks the words in a sentence that name a person. Mentions are grouped by surname, so &quot;Stevens&quot; alone counts as Haley Stevens. A first name alone, such as &quot;Abdul&quot;, is not counted. The streamer himself, fictional characters and religious figures were left out. Each cell gives how often the person was named per 10,000 words in that stream.&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h1&quot;&gt;
+  &lt;h2 id=&quot;tw-h1&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;tw-tiles&quot; id=&quot;tw-tiles&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-hours&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of stream length and hours of speech for each stream.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-legend&quot;&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#cfe3f7&quot;&gt;&lt;/span&gt;Stream length &lt;span class=&quot;sw&quot; style=&quot;background:#7461c4&quot;&gt;&lt;/span&gt;Speech&lt;/p&gt;
+  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p1&quot;&gt;&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h2&quot;&gt;
+  &lt;p class=&quot;tw-kicker&quot;&gt;Selected topics&lt;/p&gt;
+  &lt;h2 id=&quot;tw-h2&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-topics&quot; role=&quot;img&quot; aria-label=&quot;Grid of five topic word lists by stream. Darker cells mean the topic&#39;s words were spoken more often per 10,000 words.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-legend&quot; id=&quot;tw-tlegend&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p2&quot;&gt;&lt;/p&gt;
+&lt;/section&gt;
 &lt;div class=&quot;tw-tip&quot; id=&quot;tw-tip&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; The streams are the eight HasanAbi Twitch broadcasts from October 26 to November 2, 2026, one a day. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so &amp;quot;Israel&#39;s&amp;quot; counts as &amp;quot;Israel&amp;quot;. Each topic is a fixed word list, shown under its chart. The word grid uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example &amp;quot;thank&amp;quot; and &amp;quot;wait&amp;quot;. So were first names whose surname is already counted, and the streamer&#39;s own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; The streams are the HasanAbi Twitch broadcasts transcribed so far, &lt;span id=&quot;tw-range&quot;&gt;listed in the charts&lt;/span&gt;. New streams and older archived streams are added as they are transcribed. On days with many streams, each chart scrolls sideways. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so &amp;quot;Israel&#39;s&amp;quot; counts as &amp;quot;Israel&amp;quot;. The speech recognition spells Abdul El-Sayed several ways, such as &amp;quot;Abdullah Al-Sayed&amp;quot; and &amp;quot;Abdel El-Sayed&amp;quot;. All of them count as &amp;quot;Abdul El-Sayed&amp;quot;. Each topic is a fixed word list, shown under its chart. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer&#39;s own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example &amp;quot;thank&amp;quot; and &amp;quot;wait&amp;quot;. So were first names whose surname is already counted, and the streamer&#39;s own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/twitch-transcripts/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
-&lt;p&gt;HasanAbi. (2026). &lt;em&gt;Twitch past broadcasts, October 26 to November 2, 2026&lt;/em&gt; [Video recordings]. Twitch. &lt;a href=&quot;https://www.twitch.tv/hasanabi&quot;&gt;https://www.twitch.tv/hasanabi&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;HasanAbi. (2026). &lt;em&gt;Twitch past broadcasts, 2026&lt;/em&gt; [Video recordings]. Twitch. &lt;a href=&quot;https://www.twitch.tv/hasanabi&quot;&gt;https://www.twitch.tv/hasanabi&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bain, M., Huh, J., Han, T., &amp;amp; Zisserman, A. (2023). WhisperX: Time-accurate speech transcription of long-form audio. &lt;em&gt;Proceedings of Interspeech 2023&lt;/em&gt;, 4489 to 4493. &lt;a href=&quot;https://github.com/m-bain/whisperX&quot;&gt;https://github.com/m-bain/whisperX&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Radford, A., Kim, J. W., Xu, T., Brockman, G., McLeavey, C., &amp;amp; Sutskever, I. (2023). Robust speech recognition via large-scale weak supervision. &lt;em&gt;Proceedings of the 40th International Conference on Machine Learning&lt;/em&gt;. &lt;a href=&quot;https://github.com/openai/whisper&quot;&gt;https://github.com/openai/whisper&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Honnibal, M., Montani, I., Van Landeghem, S., &amp;amp; Boyd, A. (2020). &lt;em&gt;spaCy: Industrial-strength natural language processing in Python&lt;/em&gt; [Computer software]. &lt;a href=&quot;https://spacy.io/&quot;&gt;https://spacy.io/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;style&gt;
-.tw-tldr { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .2rem 1.1rem; margin: 0 0 1.4rem; }
+.tw-tldr { background: #f6f1fb; border: 1px solid #e2d6f0; border-radius: 12px; padding: .2rem 1.1rem; margin: 0 0 1.4rem; }
 .tw-tldr ul { margin: .3rem 0 .7rem; padding-left: 1.2rem; }
 .tw-tldr li { margin: .2rem 0; }
 .tw-sec { margin: 0 0 2.2rem; }
+.tw-kicker { font-size: .8rem; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #7461c4; margin: 0 0 .2rem; }
 .tw-h { font-size: 1.2rem; line-height: 1.35; margin: 0 0 .7rem; }
 .tw-p { font-size: .92rem; margin: .4rem 0 0; }
 .tw-tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .6rem; margin-bottom: .9rem; }
-.tw-tile { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .55rem .7rem; }
-.tw-tile b { display: block; font-size: 1.55rem; line-height: 1.2; color: #2a1a10; font-variant-numeric: tabular-nums; }
-.tw-tile span { font-size: .8rem; color: #6b5440; }
+.tw-tile { background: #f6f1fb; border: 1px solid #e2d6f0; border-radius: 12px; padding: .55rem .7rem; }
+.tw-tile b { display: block; font-size: 1.55rem; line-height: 1.2; color: #2a2340; font-variant-numeric: tabular-nums; }
+.tw-tile span { font-size: .8rem; color: #625a7a; }
 @media (max-width: 640px) { .tw-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); } .tw-tile b { font-size: 1.3rem; } }
+.tw-chart { overflow-x: auto; -webkit-overflow-scrolling: touch; }
 .tw-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
-.tw-chart .ax text { font-size: 11px; fill: #6b5440; }
-.tw-chart .ax line, .tw-chart .ax path { stroke: #d9c6a6; }
-.tw-chart .grid line { stroke: #efe3cf; }
-.tw-chart .axt { font-size: 11px; fill: #6b5440; }
-.tw-chart .val { font-size: 11px; fill: #2a1a10; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
+.tw-chart .ax text { font-size: 11px; fill: #625a7a; }
+@media (max-width: 480px) { .tw-chart .ax text { font-size: 9.5px; } }
+.tw-chart .ax line, .tw-chart .ax path { stroke: #d6cce6; }
+.tw-chart .grid line { stroke: #eee8f5; }
+.tw-chart .axt { font-size: 11px; fill: #625a7a; }
+.tw-chart .val { font-size: 11px; fill: #2a2340; font-variant-numeric: tabular-nums; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
 .tw-chart .hit { fill: transparent; cursor: pointer; }
 .tw-chart .cell-lbl { font-size: 10px; pointer-events: none; font-variant-numeric: tabular-nums; }
-.tw-chart .wl { font-size: 12px; fill: #2a1a10; }
-.tw-legend { font-size: .8rem; color: #6b5440; margin: .3rem 0 0; }
+.tw-chart .wl { font-size: 12px; fill: #2a2340; }
+.tw-legend { font-size: .8rem; color: #625a7a; margin: .3rem 0 0; }
 .tw-legend .sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 3px; margin: 0 .25rem 0 .6rem; vertical-align: -1px; }
 .tw-legend .sw:first-child { margin-left: 0; }
-.tw-tip { position: absolute; z-index: 10; pointer-events: none; background: #fffaf3; border: 1px solid #d4b483; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a1a10; box-shadow: 0 2px 8px rgba(90,58,26,.18); max-width: 16rem; }
+.tw-tip { position: absolute; z-index: 10; pointer-events: none; background: #fcfaff; border: 1px solid #c9bce3; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a2340; box-shadow: 0 2px 8px rgba(60,48,110,.18); max-width: 16rem; }
 .tw-tip b { display: block; margin-bottom: .1rem; }
-.ca-card { box-sizing: border-box; max-width: 100%; background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .7rem 1rem; margin-bottom: .6rem; }
+.ca-card { box-sizing: border-box; max-width: 100%; background: #f6f1fb; border: 1px solid #e2d6f0; border-radius: 12px; padding: .7rem 1rem; margin-bottom: .6rem; }
 .ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; min-width: 0; max-width: 100%; }
-.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #6b5440; }
+.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #625a7a; }
 .ca-tabs { display: flex; gap: .4rem; justify-content: space-between; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
 .ca-tabs::-webkit-scrollbar { display: none; }
-.ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .95rem; border: 1px solid #d4b483; border-radius: 999px; background: #fffaf3; color: #2a1a10; cursor: pointer; white-space: nowrap; }
-.ca-tabs button:hover { background: #f8e6cc; }
-.ca-tabs button[aria-selected=&quot;true&quot;] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
-.ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
+.ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .95rem; border: 1px solid #c9bce3; border-radius: 999px; background: #fcfaff; color: #2a2340; cursor: pointer; white-space: nowrap; }
+.ca-tabs button:hover { background: #ece4f8; }
+.ca-tabs button[aria-selected=&quot;true&quot;] { background: #7461c4; border-color: #7461c4; color: #fff; font-weight: 600; }
+.ca-tabs button:focus-visible { outline: 2px solid #4b3a99; outline-offset: 2px; }
 @media (max-width: 640px) { .ca-tabs { justify-content: flex-start; } .ca-card { padding: .7rem .8rem; } }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=20261103b&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611042148&quot;&gt;&lt;/script&gt;
 </content>
 	</entry>
 	
 	<entry>
-		<title>LA Metro rail grew from 21 stations in 1990 to 110 in 2026</title>
+		<title>LA Metro Rail Ridership by Line and Station, 2026</title>
 		<link href="https://lucashenry.xyz/visualizations/la-metro-rail-stations/"/>
 		<updated>2026-10-29T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/la-metro-rail-stations/</id>
-		<content type="html">&lt;p&gt;LA Metro rail opened its first 21 stations in 1990. In 2026 it has 110 stations on six lines. Line width shows average weekday boardings on each line, from LA Metro figures. The B and D Lines carried 159,362 average weekday boardings in fiscal year 2014 and 63,077 in fiscal year 2026. Move the year slider to see the network grow, or hover a station for its line&#39;s boardings.&lt;/p&gt;
-&lt;figure class=&quot;viz lam-wide&quot; id=&quot;lam-viz&quot;&gt;
+		<content type="html">&lt;figure class=&quot;viz lam-wide&quot; id=&quot;lam-viz&quot;&gt;
   &lt;div class=&quot;ca-card&quot;&gt;
-    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;lam-tabs-label&quot;&gt;Map shows&lt;/span&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;lam-tabs-label&quot; hidden=&quot;&quot;&gt;Map shows&lt;/span&gt;
       &lt;div class=&quot;lam-tabrow&quot;&gt;
-      &lt;div class=&quot;ca-tabs&quot; id=&quot;lam-metric&quot; role=&quot;tablist&quot; aria-labelledby=&quot;lam-tabs-label&quot;&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;lam-metric&quot; role=&quot;tablist&quot; aria-labelledby=&quot;lam-tabs-label&quot; hidden=&quot;&quot;&gt;
         &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;b&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;Ridership&lt;/button&gt;
         &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;age&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Station age&lt;/button&gt;
       &lt;/div&gt;
-      &lt;div class=&quot;lam-busy-wrap&quot;&gt;&lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;lam-busy&quot; /&gt; Busiest 10 stations&lt;/label&gt;&lt;/div&gt;
+      &lt;div class=&quot;lam-busy-wrap&quot;&gt;&lt;label class=&quot;viz-toggle&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;lam-busy&quot; checked=&quot;&quot; /&gt; Busiest 10 stations&lt;/label&gt;&lt;/div&gt;
       &lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class=&quot;lam-year&quot;&gt;
+    &lt;div class=&quot;lam-year&quot; hidden=&quot;&quot;&gt;
       &lt;label for=&quot;lam-slider&quot; class=&quot;lam-ylab&quot;&gt;Year &lt;b id=&quot;lam-yv&quot;&gt;2026&lt;/b&gt;&lt;/label&gt;
       &lt;input type=&quot;range&quot; id=&quot;lam-slider&quot; min=&quot;1990&quot; max=&quot;2026&quot; step=&quot;1&quot; value=&quot;2026&quot; /&gt;
     &lt;/div&gt;
   &lt;/div&gt;
   &lt;div class=&quot;lam-body&quot;&gt;
     &lt;div class=&quot;lam-mapcol&quot;&gt;
-      &lt;div id=&quot;lam-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of the LA Metro rail network in the selected year. Hover or tap a station for its numbers.&quot;&gt;&lt;/div&gt;
       &lt;p class=&quot;bay-legend&quot; id=&quot;lam-legend&quot;&gt;&lt;/p&gt;
+      &lt;div id=&quot;lam-map&quot; role=&quot;img&quot; aria-label=&quot;Tilted map of the LA Metro rail network in 2026, with line width showing average weekday boardings.&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
-    &lt;div class=&quot;lam-panel&quot; id=&quot;lam-panel&quot; aria-live=&quot;polite&quot;&gt;&lt;p class=&quot;lam-hint&quot;&gt;Hover or tap a station for its numbers.&lt;/p&gt;&lt;/div&gt;
   &lt;/div&gt;
-  &lt;p class=&quot;ca-note lam-src&quot;&gt;&lt;span id=&quot;lam-src-off&quot;&gt;Station boardings: LA Metro figures released through public records requests, compiled on Wikipedia; not published by LA Metro.&lt;/span&gt;&lt;span id=&quot;lam-src-on&quot; hidden=&quot;&quot;&gt;Station boardings cover fiscal years 2024 to 2026 and come from LA Metro figures released through public records requests, compiled on Wikipedia, not published by LA Metro.&lt;/span&gt; Line boardings: LA Metro Interactive Estimated Ridership Stats, fiscal years 2009 to 2026.&lt;/p&gt;
 &lt;/figure&gt;
-&lt;div class=&quot;ca-tables&quot;&gt;
+&lt;section class=&quot;lmc-sec lmc-near&quot; aria-labelledby=&quot;lmc-h2&quot;&gt;
+  &lt;h2 id=&quot;lmc-h2&quot; class=&quot;lmc-h&quot;&gt;Station boardings in fiscal year 2026, by year opened&lt;/h2&gt;
+  &lt;div class=&quot;lmc-chart&quot; id=&quot;lmc-scatter&quot; role=&quot;img&quot; aria-label=&quot;Scatter plot of LA Metro rail stations: year opened against average weekday boardings in fiscal year 2026.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;lmc-p&quot; id=&quot;lmc-scatter-note&quot;&gt;&lt;/p&gt;
+&lt;/section&gt;
+&lt;section class=&quot;lmc-sec&quot; aria-labelledby=&quot;lmc-h1&quot;&gt;
+  &lt;h2 id=&quot;lmc-h1&quot; class=&quot;lmc-h&quot;&gt;Average weekday boardings by line, fiscal years 2009 to 2026&lt;/h2&gt;
+  &lt;div class=&quot;lmc-chart&quot; id=&quot;lmc-lines&quot; role=&quot;img&quot; aria-label=&quot;Line chart of average weekday boardings on each LA Metro rail line from fiscal year 2009 to 2026.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;lmc-p&quot;&gt;The dashed vertical line marks June 2023, when the Regional Connector tunnel downtown changed the routes of the A and E Lines. Their figures before that line are for the earlier routes. LA Metro reports the B and D Lines as one figure, drawn in red and purple dashes.&lt;/p&gt;
+&lt;/section&gt;
+&lt;div class=&quot;lmc-tip&quot; id=&quot;lmc-tip&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;ca-tables lam-newest&quot;&gt;
   &lt;table id=&quot;lam-t1&quot; hidden=&quot;&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
   &lt;table id=&quot;lam-t2&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. In the Ridership tab, line widths and the line charts use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro&#39;s Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. In the Station age tab, each station dot is colored by the decade it opened, and all lines are drawn thin. The hover panel also gives station boardings. They are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. A pin marks each station that opened in the selected year or the year before. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Station places, names and lines come from the LA Metro rail GTFS feed. GTFS is the standard timetable format that transit agencies publish. Opening dates come from the Wikipedia list of LA Metro Rail stations, which cites LA Metro. Line widths and the line chart use average weekday boardings by line, fiscal years 2009 to 2026. They come from LA Metro&#39;s Interactive Estimated Ridership Stats, retrieved 29 October 2026. LA Metro reports the B and D Lines together as the B Line, so they share one width. The A and E Lines took their current routes in June 2023, when the Regional Connector opened. Their line data starts in fiscal year 2024, and earlier years draw them thin. The former L Line is not drawn. Fiscal year 2009 covers 127 weekdays. Width grows with the square root of boardings. Station boardings, in the busiest-10 bars and the scatter chart, are average weekday boardings by station for LA Metro fiscal years 2024, 2025 and 2026. A fiscal year runs from July to June and is named for the year it ends. LA Metro released these figures through public records requests, and they were copied from three dated versions of a Wikipedia table that cites those releases. Boardings by station are not available before fiscal year 2024, so the 2020 drop does not show here. Stations that opened during a fiscal year have an average over the days they were open. Lines are drawn with their 2026 names and colors in every year. Expo / Crenshaw has two platforms in the feed and is drawn as one station. In fiscal year 2024, Lynwood was named Long Beach Boulevard. The North Hollywood figure for fiscal years 2025 and 2026 includes G Line bus boardings. The map uses the 2024 county boundary file. A pin marks each station that opened in 2025 or 2026. Contour lines are drawn every 100 m of elevation, with every 500 m line darker. They were built from AWS Terrain Tiles at zoom 10, about 130 m per cell, smoothed and simplified.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/la-metro-rail-stations/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;Los Angeles County Metropolitan Transportation Authority. (2026). &lt;em&gt;gtfs_rail: LA Metro rail GTFS feed&lt;/em&gt; [Data set]. GitLab. &lt;a href=&quot;https://gitlab.com/LACMTA/gtfs_rail&quot;&gt;https://gitlab.com/LACMTA/gtfs_rail&lt;/a&gt;&lt;/p&gt;
@@ -176,6 +220,7 @@
 .ca-tabs button:hover { background: #f8e6cc; }
 .ca-tabs button[aria-selected=&quot;true&quot;] { background: #c2410c; border-color: #c2410c; color: #fff; font-weight: 600; }
 .ca-tabs button:focus-visible { outline: 2px solid #8a2d08; outline-offset: 2px; }
+.lam-year[hidden], .ca-tabs[hidden] { display: none !important; }
 .lam-year { display: flex; align-items: center; gap: .7rem; flex: 1 1 14rem; min-width: 0; padding-bottom: 2px; }
 .lam-ylab { font-size: .8rem; font-weight: 600; color: #6b5440; white-space: nowrap; }
 .lam-ylab b { font-size: 1.1rem; color: #2a1a10; font-variant-numeric: tabular-nums; }
@@ -189,12 +234,36 @@
 #lam-map .lac { fill: none; stroke: #c9ad85; stroke-width: 0.9; stroke-dasharray: 3 3; pointer-events: none; }
 #lam-map .slab { fill: #d4b483; }
 #lam-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#lam-viz &gt; .ca-card { background: none; border: none; box-shadow: none; padding: 0; margin-bottom: .3rem; }
+/* Note sits in the empty bay at the map&#39;s lower left on wide screens; above the map on phones. */
+@media (min-width: 1180px) {
+  .lam-mapcol { position: relative; }
+  .lam-mapcol #lam-legend { position: absolute; left: 0; bottom: 6%; width: 24%; max-width: 13rem; margin: 0; font-size: .78rem; line-height: 1.35; z-index: 2;
+    text-shadow: 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #fff, 1px 1px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff; }
+}
+.lmc-sec { margin: 2rem 0 1.4rem; }
+/* Map and scatter fit on one laptop screen together (Puck 2026-11-03): cap the map&#39;s width so its height
+   stays near 360 px, and keep the scatter short and close under it. */
+@media (min-width: 900px) { #lam-map { max-width: 860px; margin: 0 auto; } }
+.lmc-sec.lmc-near { margin: .9rem 0 1.4rem; }
+.lmc-sec.lmc-near .lmc-h { font-size: 1rem; margin-bottom: .3rem; }
+.lmc-sec.lmc-near .lmc-p { font-size: .8rem; margin-top: .2rem; }
+.lmc-h { font-size: 1.15rem; line-height: 1.35; margin: 0 0 .6rem; }
+.lmc-p { font-size: .88rem; color: #6b5440; margin: .4rem 0 0; }
+.lmc-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+.lmc-ax text { font-size: 11px; fill: #6b5440; }
+.lmc-end { font-size: 11.5px; font-weight: 700; paint-order: stroke; stroke: #fff; stroke-width: 3px; }
+.lmc-lbl { font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fff; stroke-width: 3px; pointer-events: none; }
+.lmc-tip { position: absolute; z-index: 10; pointer-events: none; background: #fffaf3; border: 1px solid #d4b483; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a1a10; box-shadow: 0 2px 8px rgba(90,58,26,.18); max-width: 17rem; }
+.lmc-tip b { display: block; margin-bottom: .1rem; }
 #lam-map .topo { fill: none; stroke: #c9a77a; stroke-width: 0.5; opacity: 0.3; pointer-events: none; }
 #lam-map .topo.major { stroke: #a9824f; stroke-width: 0.7; opacity: 0.4; }
 #lam-map .topo-lbl { font-size: 9px; fill: #b89a74; pointer-events: none; paint-order: stroke; stroke: #f1e3c8; stroke-width: 3px; }
 #lam-map .rail { fill: none; stroke-linejoin: round; stroke-linecap: round; pointer-events: none; }
 #lam-map .dot { fill: #fffaf3; stroke: #2a1a10; stroke-width: 0.8; pointer-events: none; }
 #lam-map .dot.on { stroke-width: 1.6; }
+#lam-map .lam-arrow { stroke: #2a1a10; stroke-width: 4; stroke-linecap: round; pointer-events: none; }
+#lam-map .lam-arrowhead { fill: #2a1a10; pointer-events: none; }
 #lam-map .pin { stroke: #2a1a10; stroke-width: 0.9; pointer-events: none; }
 #lam-map .pinhead { fill: #2a1a10; pointer-events: none; }
 #lam-map .lbl { pointer-events: none; font-size: 11px; fill: #2a1a10; paint-order: stroke; stroke: #fffaf3; stroke-width: 3.5px; stroke-linejoin: round; }
@@ -226,7 +295,8 @@
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/la_metro_viz.js?v=20261029i&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/la_metro_viz.js?v=20261103q&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/la_metro_charts.js?v=20261104amp&quot;&gt;&lt;/script&gt;
 </content>
 	</entry>
 	
@@ -246,6 +316,29 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
+		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
+&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
+&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
+&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
+&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
+&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -273,29 +366,6 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
 &lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
-		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
-&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
-&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
-&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
-&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
-&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -905,11 +975,11 @@
 	</entry>
 	
 	<entry>
-		<title>San Mateo was the one Bay Area body with significantly more YIMBY than NIMBY public speakers</title>
+		<title>Exploratory Dashboard of Bay Area Public Meetings</title>
 		<link href="https://lucashenry.xyz/visualizations/bay-area-transit-analysis/"/>
 		<updated>2026-10-12T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/bay-area-transit-analysis/</id>
-		<content type="html">&lt;p&gt;San Mateo City Council had 56 of 100 public speakers coded YIMBY against 17 of 100 coded NIMBY. In the other 14 bodies drawn, public speakers showed no significant difference. Officials had significantly more YIMBY than NIMBY speakers in 11 of the 24 bodies drawn.&lt;/p&gt;
+		<content type="html">&lt;p&gt;A YIMBY (&amp;quot;yes in my backyard&amp;quot;) speaker supports more housing or transit being built. A NIMBY (&amp;quot;not in my backyard&amp;quot;) speaker opposes it, often near where they live. Each bar shows how many more of a body&#39;s speakers were coded YIMBY than NIMBY, of every 100 with a stance.&lt;/p&gt;
 &lt;figure class=&quot;viz&quot; id=&quot;bay-viz&quot;&gt;
   &lt;div class=&quot;ca-card&quot;&gt;
     &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bay-tabs-label&quot;&gt;Statistic&lt;/span&gt;
@@ -936,7 +1006,30 @@
   &lt;table id=&quot;bay-t2&quot;&gt;&lt;caption&gt;&lt;/caption&gt;&lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;p class=&quot;bay-few&quot; id=&quot;bay-few&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significantly means the likely range excludes zero. A body is drawn when it has at least 10 speakers with a stance in that group. Transit boards are placed at their headquarters city and the county board at the county&#39;s center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project&#39;s published data of 2026-10-25.&lt;/p&gt;
+&lt;section class=&quot;bp-sec&quot; aria-labelledby=&quot;bp-h&quot;&gt;
+  &lt;h2 id=&quot;bp-h&quot; class=&quot;bp-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;ca-card&quot;&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot; style=&quot;margin-bottom:.5rem&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bp-view-label&quot;&gt;Show&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;bp-view&quot; role=&quot;tablist&quot; aria-labelledby=&quot;bp-view-label&quot; style=&quot;justify-content:flex-start&quot;&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;pairs&quot; aria-selected=&quot;true&quot; tabindex=&quot;0&quot;&gt;Word pairs&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;words&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;Single words&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;g3&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;3 words&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;g4&quot; aria-selected=&quot;false&quot; tabindex=&quot;-1&quot;&gt;4 words&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bp-tabs-label&quot;&gt;Body&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;bp-tabs&quot; role=&quot;tablist&quot; aria-labelledby=&quot;bp-tabs-label&quot; style=&quot;justify-content:flex-start&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;bp-chart&quot; id=&quot;bp-grid&quot; role=&quot;img&quot; aria-label=&quot;Grid of the 12 most frequent word pairs by month for the selected body. Darker cells mean the pair was said more often per 10,000 words.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;bay-legend bp-legend&quot; id=&quot;bp-legend&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;bp-p&quot; id=&quot;bp-p-words&quot; hidden=&quot;&quot;&gt;The grid shows the 12 most frequent single words in the coded meeting stretches, after common English words were removed. Words about running the meeting, such as &quot;council&quot; and &quot;mayor&quot;, place names, such as &quot;Clara&quot; and &quot;Napa&quot;, and spoken filler, such as &quot;questions&quot; and &quot;people&quot;, were also removed. Each cell gives how often the word was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.&lt;/p&gt;
+  &lt;p class=&quot;bp-p&quot; id=&quot;bp-p-g3&quot; hidden=&quot;&quot;&gt;The grid shows the 12 most frequent 3-word phrases in the coded meeting stretches. A phrase counts once per speaker per meeting stretch, so one person repeating a line adds one. The first and last words are not common English words. Phrases about running the meeting, such as calls to speak and votes, place names, the Pledge of Allegiance and phrases with a person&#39;s given name were removed. Each cell gives how often the phrase was said per 10,000 words in that month.&lt;/p&gt;
+  &lt;p class=&quot;bp-p&quot; id=&quot;bp-p-g4&quot; hidden=&quot;&quot;&gt;The grid shows the 12 most frequent 4-word phrases in the coded meeting stretches. A phrase counts once per speaker per meeting stretch, so one person repeating a line adds one. The first and last words are not common English words. Phrases about running the meeting, such as calls to speak and votes, place names, the Pledge of Allegiance and phrases with a person&#39;s given name were removed. Each cell gives how often the phrase was said per 10,000 words in that month.&lt;/p&gt;
+  &lt;p class=&quot;bp-p&quot; id=&quot;bp-p-pairs&quot;&gt;The grid shows the 12 most frequent word pairs in the coded meeting stretches. A word pair is two words said one after the other, neither of them a common English word. Pairs about running the meeting, such as &quot;council member&quot; and &quot;public comment&quot;, and place names, such as &quot;San Jose&quot;, were removed. Each cell gives how often the pair was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.&lt;/p&gt;
+&lt;/section&gt;
+&lt;div class=&quot;bp-tip&quot; id=&quot;bp-tip&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significant means the result passes a test corrected for checking many bodies at once. The correction is the Holm method, applied to the 15 public-speaker results and, separately, to the 24 official results, at 10 in 100. A likely range that excludes zero is not enough on its own. A body is drawn when it has at least 10 speakers with a stance in that group. Faint lines on the map are elevation contours every 150 meters, from the Terrain Tiles data set. Transit boards are placed at their headquarters city and the county board at the county&#39;s center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project&#39;s published data of 2026-10-25.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/bay-area-transit-analysis/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;Henry, L. (2026). &lt;em&gt;Bay Area Transit Analysis&lt;/em&gt; [Data set and dashboard]. &lt;a href=&quot;https://hotsoupisgood.github.io/baytransitanalysis/&quot;&gt;https://hotsoupisgood.github.io/baytransitanalysis/&lt;/a&gt;&lt;/p&gt;
@@ -944,10 +1037,21 @@
 &lt;p&gt;Granicus. (2026). &lt;em&gt;Public meeting video archives of Bay Area city councils and boards&lt;/em&gt; [Video archive]. &lt;a href=&quot;https://granicus.com/&quot;&gt;https://granicus.com/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Swagit. (2026). &lt;em&gt;Public meeting video archives of Bay Area city councils&lt;/em&gt; [Video archive]. &lt;a href=&quot;https://www.swagit.com/&quot;&gt;https://www.swagit.com/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;YouTube. (2026). &lt;em&gt;Public meeting video channels of Bay Area city councils, county boards and transit boards&lt;/em&gt; [Video archive]. &lt;a href=&quot;https://www.youtube.com/&quot;&gt;https://www.youtube.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Mapzen, &amp;amp; Amazon Web Services. (2026). &lt;em&gt;Terrain Tiles&lt;/em&gt; [Data set]. Registry of Open Data on AWS. Retrieved November 3, 2026, from &lt;a href=&quot;https://registry.opendata.aws/terrain-tiles/&quot;&gt;https://registry.opendata.aws/terrain-tiles/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;U.S. Census Bureau. (2024). &lt;em&gt;Cartographic boundary files, counties&lt;/em&gt; [Data set], via Bostock, M. &lt;em&gt;us-atlas&lt;/em&gt; (Version 3). &lt;a href=&quot;https://github.com/topojson/us-atlas&quot;&gt;https://github.com/topojson/us-atlas&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;style&gt;
+.bp-sec { margin: 2rem 0 1.5rem; }
+.bp-h { font-size: 1.2rem; line-height: 1.35; margin: 0 0 .7rem; }
+.bp-p { font-size: .92rem; margin: .4rem 0 0; }
+.bp-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+.bp-chart .ax text { font-size: 11px; fill: #6b5440; }
+.bp-chart .wl { font-size: 12px; fill: #2a1a10; }
+.bp-chart .cell-lbl { font-size: 9.5px; pointer-events: none; font-variant-numeric: tabular-nums; }
+.bp-legend .sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 3px; margin: 0 .25rem 0 .6rem; vertical-align: -1px; }
+.bp-tip { position: absolute; z-index: 10; pointer-events: none; background: #fffaf3; border: 1px solid #d4b483; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a1a10; box-shadow: 0 2px 8px rgba(90,58,26,.18); max-width: 16rem; }
+.bp-tip b { display: block; margin-bottom: .1rem; }
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #bay-map { width: 100%; }
 .ca-card { background: #fdf6ea; border: 1px solid #ead9bd; border-radius: 12px; padding: .9rem 1.1rem; margin-bottom: .6rem; display: flex; flex-wrap: wrap; align-items: flex-end; gap: .5rem 1.5rem; }
@@ -976,6 +1080,8 @@
 #bay-map .county.on { fill: #efbe8a; }
 #bay-map .slab { fill: #d4b483; }
 #bay-map .shadow { fill: #5a3a1a; opacity: 0.18; }
+#bay-map .topo { fill: none; stroke: #b9905f; stroke-width: 0.55; opacity: 0.3; pointer-events: none; }
+#bay-map .topo.major { stroke: #94693a; stroke-width: 0.8; opacity: 0.5; }
 #bay-map .outline { fill: none; stroke: #b8400e; stroke-width: 1.6; stroke-linejoin: round; pointer-events: none; }
 #bay-map .cname { font-size: 10px; fill: #9a7b5a; font-style: italic; pointer-events: none; text-anchor: middle; }
 #bay-map .bar { pointer-events: none; }
@@ -1000,15 +1106,17 @@
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_pairs_viz.js?v=20261103e&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 (function () {
   var el = document.getElementById(&quot;bay-map&quot;);
   var BAY = [&quot;06001&quot;, &quot;06013&quot;, &quot;06041&quot;, &quot;06055&quot;, &quot;06075&quot;, &quot;06081&quot;, &quot;06085&quot;, &quot;06095&quot;, &quot;06097&quot;];
   Promise.all([
     d3.json(&quot;/visualizations/data/ca-counties-10m.json&quot;),
-    d3.json(&quot;/visualizations/data/bay_area_bodies.json&quot;)
+    d3.json(&quot;/visualizations/data/bay_area_bodies.json?v=20261103holm&quot;),
+    d3.json(&quot;/visualizations/data/bay_area_contours.json?v=20261103a&quot;).catch(function () { return { features: [] }; })
   ]).then(function (res) {
-    var topo = res[0], rows = res[1].bodies;
+    var topo = res[0], rows = res[1].bodies, contours = res[2];
     var COUNTY_FIPS = { &quot;Alameda&quot;: &quot;06001&quot;, &quot;Contra Costa&quot;: &quot;06013&quot;, &quot;Marin&quot;: &quot;06041&quot;, &quot;Napa&quot;: &quot;06055&quot;, &quot;San Francisco&quot;: &quot;06075&quot;, &quot;San Mateo&quot;: &quot;06081&quot;, &quot;Santa Clara&quot;: &quot;06085&quot;, &quot;Solano&quot;: &quot;06095&quot;, &quot;Sonoma&quot;: &quot;06097&quot; };
     function sign(v) { var r = Math.round(v); return (r &gt; 0 ? &quot;+&quot; : &quot;&quot;) + r; }
     function label(r) { return r.kind === &quot;transit&quot; ? r.short + &quot; (HQ &quot; + r.site.replace(/^HQ &#92;(|&#92;)$/g, &quot;&quot;) + &quot;)&quot; : r.kind === &quot;county&quot; ? r.short + &quot; (county board)&quot; : r.short; }
@@ -1057,9 +1165,17 @@
     function sig(r) { var s = g(r); return !!(s &amp;&amp; s.sig); }
     function fmtv(r) {
       var m = M[metric], v = val(r);
-      if (m.net) return v === null ? &quot;too few speakers&quot; : sign(v) + &quot; of 100&quot;;
-      if (v === null) return &quot;too few speakers&quot;;
+      if (m.net) return v === null ? &quot;&lt;10 speakers&quot; : sign(v) + &quot; of 100&quot;;
+      if (v === null) return &quot;&lt;10 speakers&quot;;
       return d3.format(&quot;,&quot;)(v) + m.unit;
+    }
+    // Hover label on the map: the side the gap leans to, as &quot;+39 YIMBY&quot; or &quot;+12 NIMBY&quot; (Puck 2026-11-03).
+    function fmtHover(r) {
+      var v = val(r);
+      if (!M[metric].net) return fmtv(r);
+      if (v === null) return &quot;&lt;10 speakers&quot;;
+      var n = Math.round(v);
+      return n === 0 ? &quot;even&quot; : &quot;+&quot; + Math.abs(n) + (n &gt; 0 ? &quot; YIMBY&quot; : &quot; NIMBY&quot;);
     }
     function detail(r) {
       var m = M[metric], s = g(r), t = &quot;&lt;b&gt;&quot; + r.name + &quot;&lt;/b&gt;&quot;;
@@ -1070,7 +1186,7 @@
         if (!s) return t + &quot;Too few &quot; + m.who + &quot; with a stance to draw, under 10 speakers.&quot;;
         return t + &quot;YIMBY minus NIMBY &quot; + sign(s.net) + &quot; of 100 &quot; + m.who + &quot;, likely range &quot; + sign(s.lo) + &quot; to &quot; + sign(s.hi) + &quot;. &quot;
           + &quot;YIMBY &quot; + Math.round(s.yimby) + &quot; of 100, NIMBY &quot; + Math.round(s.nimby) + &quot; of 100, of &quot; + s.n + &quot; &quot; + m.who + &quot; with a stance. &quot;
-          + (s.sig ? &quot;The likely range excludes zero: significant.&quot; : &quot;The likely range includes zero: not significant.&quot;);
+          + (s.sig ? &quot;Significant after correcting for the number of bodies tested.&quot; : (s.sig_uncorrected ? &quot;The likely range excludes zero, but the result is not significant after correcting for the number of bodies tested.&quot; : &quot;The likely range includes zero: not significant.&quot;));
       }
       var v = val(r);
       if (v === null) return t + &quot;Too few speakers with a stance to draw, under 10 speakers.&quot;;
@@ -1080,8 +1196,8 @@
     function legend() {
       var m = M[metric], L = document.getElementById(&quot;bay-legend&quot;);
       L.innerHTML = m.net
-        ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e56a32&quot;&gt;&lt;/i&gt;More YIMBY&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#2b8f86&quot;&gt;&lt;/i&gt;More NIMBY&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#2a1a10&quot;&gt;&lt;/i&gt;* and dark top: significant, likely range excludes zero&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: too few speakers&lt;/span&gt;&#39;
-        : &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e56a32&quot;&gt;&lt;/i&gt;Bar height: &#39; + m.head.toLowerCase() + &#39;&lt;/span&gt;&#39; + (m.few ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: too few speakers&lt;/span&gt;&#39; : &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: 0&#39; + m.unit + &#39;&lt;/span&gt;&#39;);
+        ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#0a5a42&quot;&gt;&lt;/i&gt;More YIMBY&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#f48079&quot;&gt;&lt;/i&gt;More NIMBY&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#2a1a10&quot;&gt;&lt;/i&gt;* and dark top: significant after correcting for the number of bodies tested&lt;/span&gt;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: under 10 speakers&lt;/span&gt;&#39;
+        : &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#e56a32&quot;&gt;&lt;/i&gt;Bar height: &#39; + m.head.toLowerCase() + &#39;&lt;/span&gt;&#39; + (m.few ? &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: under 10 speakers&lt;/span&gt;&#39; : &#39;&lt;span&gt;&lt;i class=&quot;sw&quot; style=&quot;background:#cfc6bb&quot;&gt;&lt;/i&gt;Grey: 0&#39; + m.unit + &#39;&lt;/span&gt;&#39;);
       document.getElementById(&quot;bay-note&quot;).textContent = m.note;
     }
     function tables() {
@@ -1094,7 +1210,7 @@
         d3.select(&quot;#&quot; + id + &quot; thead tr&quot;).selectAll(&quot;th&quot;).data(heads).join(&quot;th&quot;).text(function (d) { return d; });
         d3.select(&quot;#&quot; + id + &quot; caption&quot;).text(&quot;Ranks &quot; + from + &quot; to &quot; + (from + list.length - 1) + &quot;, &quot; + sel.options[sel.selectedIndex].text.replace(/, [a-z]+$/, &quot;&quot;).replace(/, of 100$/, &quot;&quot;));
         d3.select(&quot;#&quot; + id + &quot; tbody&quot;).selectAll(&quot;tr&quot;).data(list).join(&quot;tr&quot;).attr(&quot;class&quot;, function (r) { return sig(r) ? &quot;sig&quot; : null; }).html(function (r) {
-          if (m.net) { var s = g(r); return &quot;&lt;td&gt;&quot; + label(r) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sign(s.net) + &quot; of 100&quot; + (s.sig ? &#39; &lt;span class=&quot;mk&quot; title=&quot;likely range excludes zero&quot;&gt;*&lt;/span&gt;&#39; : &quot;&quot;) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sign(s.lo) + &quot; to &quot; + sign(s.hi) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + s.n + &quot; &quot; + (m.key === &quot;off&quot; ? &quot;officials&quot; : &quot;speakers&quot;) + &quot;&lt;/td&gt;&quot;; }
+          if (m.net) { var s = g(r); return &quot;&lt;td&gt;&quot; + label(r) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sign(s.net) + &quot; of 100&quot; + (s.sig ? &#39; &lt;span class=&quot;mk&quot; title=&quot;significant after correcting for the number of bodies tested&quot;&gt;*&lt;/span&gt;&#39; : &quot;&quot;) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + sign(s.lo) + &quot; to &quot; + sign(s.hi) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + s.n + &quot; &quot; + (m.key === &quot;off&quot; ? &quot;officials&quot; : &quot;speakers&quot;) + &quot;&lt;/td&gt;&quot;; }
           return &quot;&lt;td&gt;&quot; + label(r) + &quot;&lt;/td&gt;&lt;td&gt;&quot; + d3.format(&quot;,&quot;)(val(r)) + m.unit + &quot;&lt;/td&gt;&lt;td&gt;&quot; + d3.format(&quot;,&quot;)(m.cv(r)) + m.cu + &quot;&lt;/td&gt;&quot;;
         });
       }
@@ -1102,7 +1218,7 @@
       fill(&quot;bay-t2&quot;, ok.slice(half), half + 1);
       var rest = rows.filter(function (r) { return ok.indexOf(r) &lt; 0; }).map(label).sort();
       var why = m.net || m.few ? &quot;Too few speakers with a stance to draw, under 10 speakers: &quot; : (metric === &quot;hours&quot; ? &quot;No hours transcribed: &quot; : &quot;No meetings found: &quot;);
-      document.getElementById(&quot;bay-few&quot;).textContent = (m.net ? &quot;* marks a significant result: the likely range excludes zero. &quot; : &quot;&quot;) + (rest.length ? why + rest.join(&quot;, &quot;) + &quot;.&quot; : &quot;&quot;);
+      document.getElementById(&quot;bay-few&quot;).textContent = (m.net ? &quot;* marks a result that is significant after correcting for the number of bodies tested. &quot; : &quot;&quot;) + (rest.length ? why + rest.join(&quot;, &quot;) + &quot;.&quot; : &quot;&quot;);
     }
     legend(); tables();
 
@@ -1167,6 +1283,10 @@
         .on(&quot;pointerenter&quot;, function (ev, f) { if (ev.pointerType === &quot;mouse&quot;) showCounty(f.id); })
         .on(&quot;pointerleave&quot;, function (ev) { if (ev.pointerType === &quot;mouse&quot;) clear(); })
         .on(&quot;click&quot;, function (ev, f) { ev.stopPropagation(); if (state.c === f.id &amp;&amp; state.i === null &amp;&amp; ev.pointerType !== &quot;mouse&quot;) clear(); else showCounty(f.id); });
+      // Terrain: elevation contours every 150 m, clipped to the nine counties, faint and always on (VIZ-STYLE).
+      defs.append(&quot;clipPath&quot;).attr(&quot;id&quot;, &quot;bay-land&quot;).append(&quot;path&quot;).attr(&quot;d&quot;, landD);
+      svg.append(&quot;g&quot;).attr(&quot;clip-path&quot;, &quot;url(#bay-land)&quot;).selectAll(&quot;path&quot;).data(contours.features).join(&quot;path&quot;)
+        .attr(&quot;class&quot;, function (f) { return f.properties.elev % 600 === 0 ? &quot;topo major&quot; : &quot;topo&quot;; }).attr(&quot;d&quot;, path);
       var cnames = svg.append(&quot;g&quot;).selectAll(&quot;text&quot;).data(feats).join(&quot;text&quot;).attr(&quot;class&quot;, &quot;cname&quot;).each(function (f) {
         var c = bpath.centroid(f), q = tiltPt(c[0], c[1]);
         if (f.id === &quot;06075&quot;) q = tiltPt(c[0] - 40, c[1] + 10);
@@ -1180,6 +1300,10 @@
       var COL = { pos: { main: [&quot;#c2410c&quot;, &quot;#8a2d08&quot;, &quot;#e56a32&quot;], nb: [&quot;#f28c38&quot;, &quot;#c4661c&quot;, &quot;#f9b277&quot;] },
         neg: { main: [&quot;#14736b&quot;, &quot;#0b4f49&quot;, &quot;#2b8f86&quot;], nb: [&quot;#3fa69c&quot;, &quot;#2a7d75&quot;, &quot;#7fc8c0&quot;] },
         grey: [&quot;#cfc6bb&quot;, &quot;#aea398&quot;, &quot;#e2dbd2&quot;] };
+      // YIMBY minus NIMBY tabs: deep green for more YIMBY, light red for more NIMBY (Puck 2026-11-03); the two differ in
+      // lightness as well as hue so they still separate for red-green colour blindness. Count tabs keep orange.
+      var NETCOL = { pos: { main: [&quot;#0a5a42&quot;, &quot;#063d2d&quot;, &quot;#277a60&quot;], nb: [&quot;#3a8a70&quot;, &quot;#256b54&quot;, &quot;#80bfa9&quot;] },
+        neg: { main: [&quot;#f48079&quot;, &quot;#c75a54&quot;, &quot;#f8a29c&quot;], nb: [&quot;#f6a19b&quot;, &quot;#d98680&quot;, &quot;#fac9c5&quot;] } };
 
       function show(i, c) {
         state.i = i; state.c = c === undefined ? (i === null ? null : null) : c;
@@ -1196,11 +1320,7 @@
         }
         counties.classed(&quot;on&quot;, function (f) { return f.id === state.c; });
         outline.attr(&quot;d&quot;, state.c ? path(feats.filter(function (f) { return f.id === state.c; })[0]) : null);
-        if (i !== null) det.innerHTML = detail(rows[i]);
-        else if (state.c) {
-          var inC = hov.map(function (j) { return rows[j]; });
-          det.innerHTML = &quot;&lt;b&gt;&quot; + cname[state.c] + &quot; County&lt;/b&gt;: &quot; + (inC.length ? inC.map(function (r) { return label(r) + &quot; &quot; + fmtv(r); }).join(&quot;; &quot;) + &quot;.&quot; : &quot;no body in this project.&quot;) + &quot; Tap a bar for its likely range.&quot;;
-        }
+        // the hint line below the map stays fixed; the numbers are in the tables (Puck 2026-11-03)
         var had = {};
         layer.selectAll(&quot;g.bar&quot;).each(function () { if (this.__k !== undefined &amp;&amp; +d3.select(this).datum() &gt; 0) had[this.__k] = +d3.select(this).datum(); });
         layer.interrupt().selectAll(&quot;*&quot;).interrupt();
@@ -1210,7 +1330,7 @@
           var r = rows[j], v = val(r), p = pts[j], grey = v === null || v === 0;
           var hh = grey ? 4 : Math.max(3, h(v));
           return { k: j, n: n, x: p[0], y: p[1], top: p[1] - hh, hh: hh, main: j === i || (i === null &amp;&amp; hov.indexOf(j) &gt;= 0), grey: grey, neg: !grey &amp;&amp; v &lt; 0, sig: sig(r),
-            lab: lab.indexOf(j) &gt;= 0, text: label(r) + (grey ? &quot;: &quot; : &quot; &quot;) + fmtv(r) + (M[metric].net &amp;&amp; sig(r) ? &quot; *&quot; : &quot;&quot;) };
+            lab: lab.indexOf(j) &gt;= 0, text: label(r) + (grey ? &quot;: &quot; : &quot; &quot;) + fmtHover(r) + (M[metric].net &amp;&amp; sig(r) ? &quot; *&quot; : &quot;&quot;) };
         });
         var dx = bw * 0.5, dy = bw * 0.35;
         function barPaths(gg, d, hh) {
@@ -1220,7 +1340,8 @@
           gg.select(&quot;.c&quot;).attr(&quot;d&quot;, &quot;M&quot; + x0 + &quot;,&quot; + y1 + &quot;H&quot; + x1 + &quot;L&quot; + (x1 + dx) + &quot;,&quot; + (y1 - dy) + &quot;H&quot; + (x0 + dx) + &quot;Z&quot;);
         }
         items.slice().sort(function (a, b) { return a.y - b.y; }).forEach(function (d) {
-          var col = d.grey ? COL.grey : (d.neg ? COL.neg : COL.pos)[d.main ? &quot;main&quot; : &quot;nb&quot;];
+          var P = M[metric].net ? NETCOL : COL;
+          var col = d.grey ? COL.grey : (d.neg ? P.neg : P.pos)[d.main ? &quot;main&quot; : &quot;nb&quot;];
           var gg = layer.append(&quot;g&quot;).attr(&quot;class&quot;, &quot;bar&quot;).datum(0);
           gg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;s&quot;).attr(&quot;fill&quot;, col[1]);
           gg.append(&quot;path&quot;).attr(&quot;class&quot;, &quot;f&quot;).attr(&quot;fill&quot;, col[0]).attr(&quot;stroke&quot;, d.sig ? &quot;#2a1a10&quot; : &quot;none&quot;).attr(&quot;stroke-width&quot;, 1);
@@ -1300,7 +1421,6 @@
       };
       sel.onchange = function () {
         metric = sel.value; legend(); tables();
-        if (state.i !== null) det.innerHTML = detail(rows[state.i]);
         if (state.i !== null || state.c || box.checked) show(state.i, state.c); else resizeHits();
       };
       window.__bayShow = function (body) { var j = rows.findIndex(function (r) { return r.body === body; }); show(j, COUNTY_FIPS[rows[j].county]); };
