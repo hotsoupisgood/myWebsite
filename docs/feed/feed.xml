@@ -147,7 +147,7 @@
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611051420&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611051425&quot;&gt;&lt;/script&gt;
 </content>
 	</entry>
 	
@@ -1146,7 +1146,7 @@
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_pairs_viz.js?v=20261105c&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105e&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105f&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 (function () {
   var el = document.getElementById(&quot;bay-map&quot;);

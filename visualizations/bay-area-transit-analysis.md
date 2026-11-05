@@ -176,7 +176,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
 <script src="/visualizations/data/bay_area_pairs_viz.js?v=20261105c"></script>
-<script src="/visualizations/data/bay_area_near_viz.js?v=20261105e"></script>
+<script src="/visualizations/data/bay_area_near_viz.js?v=20261105f"></script>
 <script>
 (function () {
   var el = document.getElementById("bay-map");

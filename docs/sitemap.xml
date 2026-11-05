@@ -142,22 +142,12 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/ios/</loc>
+    <loc>https://lucashenry.xyz/tags/visualizations/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/app/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/web-app/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/crypto/</loc>
+    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
@@ -182,21 +172,6 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/llm/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/learning/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/eleventy/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
     <loc>https://lucashenry.xyz/tags/simulation/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
@@ -212,12 +187,37 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/jags/</loc>
+    <loc>https://lucashenry.xyz/tags/ios/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/time-series/</loc>
+    <loc>https://lucashenry.xyz/tags/app/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/sentiment-analysis/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/llm/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/learning/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/web-app/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/crypto/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
@@ -242,12 +242,7 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/flask/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://lucashenry.xyz/tags/python/</loc>
+    <loc>https://lucashenry.xyz/tags/node/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
@@ -257,22 +252,27 @@
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/sentiment-analysis/</loc>
-    <lastmod>2026-10-26</lastmod>
-  </url>
-  
-  <url>
     <loc>https://lucashenry.xyz/tags/tools/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/node/</loc>
+    <loc>https://lucashenry.xyz/tags/jags/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
   <url>
-    <loc>https://lucashenry.xyz/tags/visualizations/</loc>
+    <loc>https://lucashenry.xyz/tags/time-series/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/flask/</loc>
+    <lastmod>2026-10-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://lucashenry.xyz/tags/python/</loc>
     <lastmod>2026-10-26</lastmod>
   </url>
   
