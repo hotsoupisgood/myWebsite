@@ -67,6 +67,14 @@ A YIMBY ("yes in my backyard") speaker supports more housing or transit being bu
     <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="bn-tabs-label">Or pick a word</span>
       <div class="ca-tabs" id="bn-tabs" role="tablist" aria-labelledby="bn-tabs-label" style="justify-content:flex-start"></div>
     </div>
+    <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="bn-len-label">Show nearby</span>
+      <div class="ca-tabs" id="bn-len" role="tablist" aria-labelledby="bn-len-label" style="justify-content:flex-start">
+        <button type="button" role="tab" data-v="1" aria-selected="true">Single words</button>
+        <button type="button" role="tab" data-v="2" aria-selected="false">Word pairs</button>
+        <button type="button" role="tab" data-v="3" aria-selected="false">3 words</button>
+        <button type="button" role="tab" data-v="4" aria-selected="false">4 words</button>
+      </div>
+    </div>
     <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="bn-emo-label">Nearby words</span>
       <div class="ca-tabs" id="bn-emo" role="tablist" aria-labelledby="bn-emo-label" style="justify-content:flex-start">
         <button type="button" role="tab" data-v="all" aria-selected="true">All words</button>
@@ -76,7 +84,7 @@ A YIMBY ("yes in my backyard") speaker supports more housing or transit being bu
   </div>
   <p class="bay-legend" id="bn-key" hidden><span><span class="sw" style="background:#2b6cb0"></span>Positive word</span><span><span class="sw" style="background:#c2410c"></span>Negative word</span></p>
   <div class="bn-wrap"><div class="bn-tone" id="bn-tone" hidden></div>
-  <div class="bp-chart" id="bn-chart" role="img" aria-label="Bar chart of the words said most often within fifty words of the chosen word, across all coded meeting stretches."></div></div>
+  <div class="bp-chart" id="bn-chart" role="img" aria-label="Bar chart of the words or phrases said most often within fifteen words of the chosen word, across all coded meeting stretches."></div></div>
   <p class="bp-p" id="bn-p"></p>
 </section>
 
@@ -118,6 +126,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .bn-q { box-sizing: border-box; width: 100%; max-width: 22rem; font: inherit; font-size: 1rem; padding: .5rem .8rem; border: 1px solid #d4b483; border-radius: 999px; background: #fff; color: #2a1a10; margin-top: .3rem; }
 .bn-wrap { position: relative; }
 .bn-tone { text-align: right; font-size: .78rem; line-height: 1.3; color: #6b5440; margin: .2rem 0 0; }
+.ca-tabs button:disabled { opacity: .4; cursor: default; }
 .bn-tone b { font-size: 1.15rem; color: #2a1a10; margin-right: .3rem; }
 .bay-legend[hidden] { display: none; }
 .bp-tip b { display: block; margin-bottom: .1rem; }
@@ -176,7 +185,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
 <script src="/visualizations/data/bay_area_pairs_viz.js?v=20261105c"></script>
-<script src="/visualizations/data/bay_area_near_viz.js?v=20261105f"></script>
+<script src="/visualizations/data/bay_area_near_viz.js?v=20261105g"></script>
 <script>
 (function () {
   var el = document.getElementById("bay-map");

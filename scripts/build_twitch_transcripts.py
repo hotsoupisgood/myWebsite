@@ -75,7 +75,15 @@ FIRST_DAY = "2026-01-01"
 
 # Words near a target (2026-11-05): for each mention of a target's words, the content words within NEAR words on
 # either side. A word counts once per mention. Share = mentions with the word nearby, out of every 100 mentions.
-NEAR = 50
+NEAR = 15   # about one or two sentences either side (5 was a phrase; 50 reached into other topics)
+# Emotional words: the same VADER list and left-out words as the Bay Area post (scripts/build_bay_near.py)
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from build_bay_near import emotion  # noqa: E402
+EMO = emotion()
+# Political names that VADER scores as feelings: "party" (Democratic Party), "lobby", "justice" (Justice Democrats),
+# "supreme" (Supreme Court), "united" (United States), "dreams" (the "dream" in DREAM Act talk)
+for _w in "party parties lobby justice supreme united dreams dream".split():
+    EMO.pop(_w, None)
 NEAR_TARGETS = {**{k: (lab, ws) for k, (lab, _n, ws) in TOPICS.items()},
                 "elsayed": ("Abdul El-Sayed", "elsayed"), "stevens": ("Haley Stevens", "stevens"), "rogers": ("Mike Rogers", "rogers")}
 NEAR_SKIP = {"abdul", "haley", "mike", "donald", "benjamin"}   # the target's own first name
@@ -161,6 +169,7 @@ def main():
 
     streams, all_tok = [], collections.Counter()
     near = {k: collections.Counter() for k in NEAR_TARGETS}; near_m = collections.Counter(); tok_lists = []
+    near_e = {k: collections.Counter() for k in NEAR_TARGETS}; near_t = {k: [0.0, 0] for k in NEAR_TARGETS}
     per, pairs_per, all_pair, texts_by_stream = [], [], collections.Counter(), []
     grams_per, all_gram = [], {k: collections.Counter() for k in NG}
     for iso, d, meta in vods:
@@ -177,9 +186,12 @@ def main():
             for i, w in enumerate(toks):
                 if w in tw:
                     near_m[k] += 1
-                    near[k].update({x for x in toks[max(0, i - NEAR):i + NEAR + 1]
-                                    if x not in tw and x not in STOP and x not in EXTRA_STOP and x not in GRAM_NAME
-                                    and x not in NEAR_SKIP and len(x) > 2})
+                    nset = {x for x in toks[max(0, i - NEAR):i + NEAR + 1]
+                            if x not in tw and x not in STOP and x not in EXTRA_STOP and x not in GRAM_NAME
+                            and x not in NEAR_SKIP and len(x) > 2}
+                    near[k].update(nset)
+                    em = [x for x in nset if x in EMO]
+                    near_e[k].update(em); near_t[k][0] += sum(EMO[x] for x in em); near_t[k][1] += len(em)
         content = collections.Counter({w: n for w, n in c.items()
                                        if w not in STOP and w not in EXTRA_STOP and len(w) > 2})
         all_tok += content
@@ -222,13 +234,21 @@ def main():
     ok = lambda x: x not in STOP and x not in EXTRA_STOP and x not in GRAM_NAME and len(x) > 2
     keys = {w for w, n in allc.items() if n >= NEAR_MIN and ok(w)}
     nb = {w: collections.Counter() for w in keys}
+    nbe = {w: collections.Counter() for w in keys}; tone = {w: [0.0, 0] for w in keys}
     for toks in tok_lists:
         for i, w in enumerate(toks):
             if w in keys:
-                nb[w].update({x for x in toks[max(0, i - NEAR):i + NEAR + 1] if x != w and ok(x)})
+                nset = {x for x in toks[max(0, i - NEAR):i + NEAR + 1] if x != w and ok(x)}
+                nb[w].update(nset)
+                em = [x for x in nset if x in EMO]
+                nbe[w].update(em); tone[w][0] += sum(EMO[x] for x in em); tone[w][1] += len(em)
+    allemo = [EMO[x] for toks in tok_lists for x in toks if x in EMO and ok(x)]
     total_tok = sum(n for _, n in per)
     VOCAB_OUT.write_text(json.dumps({"min": NEAR_MIN, "window": NEAR, "tokens": total_tok,
-        "words": {w: [allc[w], [[x, k] for x, k in nb[w].most_common(N_TOP)]] for w in sorted(keys)}}, separators=(",", ":")))
+        "tone_all": round(sum(allemo) / len(allemo), 2),
+        "words": {w: [allc[w], [[x, k] for x, k in nb[w].most_common(N_TOP)],
+                      [[x, k, 1 if EMO[x] > 0 else -1] for x, k in nbe[w].most_common(N_TOP)],
+                      round(tone[w][0] / tone[w][1], 2) if tone[w][1] else None] for w in sorted(keys)}}, separators=(",", ":")))
     names, name_c = people(texts_by_stream)
     for s_, c_, (_, n_) in zip(streams, name_c, per):
         s_["names"] = {k["key"]: round(c_[k["key"]] / n_ * 1e4, 1) for k in names}
@@ -259,7 +279,10 @@ def main():
                       for k, (lab, noun, ws) in TOPICS.items()],
            "near": {"window": NEAR, "targets": [{"key": k, "label": lab, "mentions": near_m[k],
                      "words": [{"key": w, "label": LABEL.get(w, w), "n": n, "share": round(100 * n / near_m[k], 1)}
-                               for w, n in near[k].most_common(N_TOP)] if near_m[k] else []}
+                               for w, n in near[k].most_common(N_TOP)] if near_m[k] else [],
+                     "emo": [{"key": w, "label": LABEL.get(w, w), "n": n, "s": 1 if EMO[w] > 0 else -1}
+                             for w, n in near_e[k].most_common(N_TOP)] if near_m[k] else [],
+                     "tone": round(near_t[k][0] / near_t[k][1], 2) if near_t[k][1] else None}
                     for k, (lab, _ws) in NEAR_TARGETS.items()]},
            "streams": streams}
     OUT.write_text(json.dumps(out, separators=(",", ":")))

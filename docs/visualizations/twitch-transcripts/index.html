@@ -70,8 +70,16 @@
     <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="tw-nview-label">Or pick a topic</span>
       <div class="ca-tabs" id="tw-nview" style="justify-content:flex-start" role="tablist" aria-labelledby="tw-nview-label"></div>
     </div>
+    <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="tw-emo-label">Nearby words</span>
+      <div class="ca-tabs" id="tw-emo" style="justify-content:flex-start" role="tablist" aria-labelledby="tw-emo-label">
+        <button type="button" role="tab" data-v="all" aria-selected="true">All words</button>
+        <button type="button" role="tab" data-v="emo" aria-selected="false">Emotional words only</button>
+      </div>
+    </div>
   </div>
-  <div class="tw-chart" id="tw-word" role="img" aria-label="Bar chart of the words said most often within five words of the chosen word, across all streams."></div>
+  <p class="tw-legend" id="tw-key" hidden><span class="sw" style="background:#4a7fc1"></span>Positive word <span class="sw" style="background:#d0587a"></span>Negative word</p>
+  <div class="tw-tone" id="tw-tone" hidden></div>
+  <div class="tw-chart" id="tw-word" role="img" aria-label="Bar chart of the words said most often within fifteen words of the chosen word, across all streams."></div>
   <p class="tw-p" id="tw-p6"></p>
 </section>
 <section class="tw-sec" aria-labelledby="tw-h4">
@@ -145,10 +153,13 @@
 .ca-tabs button:focus-visible { outline: 2px solid #4b3a99; outline-offset: 2px; }
 @media (max-width: 640px) { .ca-tabs { justify-content: flex-start; } .ca-card { padding: .7rem .8rem; } }
 .tw-q input { box-sizing: border-box; width: 100%; max-width: 22rem; font: inherit; font-size: 1rem; padding: .5rem .8rem; border: 1px solid #c9bce3; border-radius: 999px; background: #fff; color: #2a2340; margin-top: .3rem; }
+.tw-tone { text-align: right; font-size: .78rem; line-height: 1.3; color: #625a7a; margin: .3rem 0 0; }
+.tw-tone b { font-size: 1.15rem; color: #2a2340; margin-right: .3rem; }
+.tw-legend[hidden] { display: none; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611051425"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611051500"></script>
 
 </div>
 

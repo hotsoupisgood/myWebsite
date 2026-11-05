@@ -69,8 +69,16 @@
     &lt;div class=&quot;ca-tabs-wrap&quot; style=&quot;margin-top:.6rem&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;tw-nview-label&quot;&gt;Or pick a topic&lt;/span&gt;
       &lt;div class=&quot;ca-tabs&quot; id=&quot;tw-nview&quot; style=&quot;justify-content:flex-start&quot; role=&quot;tablist&quot; aria-labelledby=&quot;tw-nview-label&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot; style=&quot;margin-top:.6rem&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;tw-emo-label&quot;&gt;Nearby words&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;tw-emo&quot; style=&quot;justify-content:flex-start&quot; role=&quot;tablist&quot; aria-labelledby=&quot;tw-emo-label&quot;&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;all&quot; aria-selected=&quot;true&quot;&gt;All words&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;emo&quot; aria-selected=&quot;false&quot;&gt;Emotional words only&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-word&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of the words said most often within five words of the chosen word, across all streams.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-legend&quot; id=&quot;tw-key&quot; hidden=&quot;&quot;&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#4a7fc1&quot;&gt;&lt;/span&gt;Positive word &lt;span class=&quot;sw&quot; style=&quot;background:#d0587a&quot;&gt;&lt;/span&gt;Negative word&lt;/p&gt;
+  &lt;div class=&quot;tw-tone&quot; id=&quot;tw-tone&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-word&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of the words said most often within fifteen words of the chosen word, across all streams.&quot;&gt;&lt;/div&gt;
   &lt;p class=&quot;tw-p&quot; id=&quot;tw-p6&quot;&gt;&lt;/p&gt;
 &lt;/section&gt;
 &lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h4&quot;&gt;
@@ -144,10 +152,13 @@
 .ca-tabs button:focus-visible { outline: 2px solid #4b3a99; outline-offset: 2px; }
 @media (max-width: 640px) { .ca-tabs { justify-content: flex-start; } .ca-card { padding: .7rem .8rem; } }
 .tw-q input { box-sizing: border-box; width: 100%; max-width: 22rem; font: inherit; font-size: 1rem; padding: .5rem .8rem; border: 1px solid #c9bce3; border-radius: 999px; background: #fff; color: #2a2340; margin-top: .3rem; }
+.tw-tone { text-align: right; font-size: .78rem; line-height: 1.3; color: #625a7a; margin: .3rem 0 0; }
+.tw-tone b { font-size: 1.15rem; color: #2a2340; margin-right: .3rem; }
+.tw-legend[hidden] { display: none; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611051425&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611051500&quot;&gt;&lt;/script&gt;
 </content>
 	</entry>
 	
@@ -334,6 +345,29 @@
 	</entry>
 	
 	<entry>
+		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
+		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
+&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
+&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
+&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
+&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
+&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
 		<title>A Queue Model of an Emergency Department, to Size an Intervention</title>
 		<link href="https://lucashenry.xyz/projects/hse-ed-simulation/"/>
 		<updated>2026-10-26T00:00:00Z</updated>
@@ -357,29 +391,6 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
 &lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
-		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
-		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
-&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
-&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
-&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
-&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
-&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -1051,6 +1062,14 @@
     &lt;div class=&quot;ca-tabs-wrap&quot; style=&quot;margin-top:.6rem&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bn-tabs-label&quot;&gt;Or pick a word&lt;/span&gt;
       &lt;div class=&quot;ca-tabs&quot; id=&quot;bn-tabs&quot; role=&quot;tablist&quot; aria-labelledby=&quot;bn-tabs-label&quot; style=&quot;justify-content:flex-start&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot; style=&quot;margin-top:.6rem&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bn-len-label&quot;&gt;Show nearby&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;bn-len&quot; role=&quot;tablist&quot; aria-labelledby=&quot;bn-len-label&quot; style=&quot;justify-content:flex-start&quot;&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;1&quot; aria-selected=&quot;true&quot;&gt;Single words&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;2&quot; aria-selected=&quot;false&quot;&gt;Word pairs&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;3&quot; aria-selected=&quot;false&quot;&gt;3 words&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;4&quot; aria-selected=&quot;false&quot;&gt;4 words&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
     &lt;div class=&quot;ca-tabs-wrap&quot; style=&quot;margin-top:.6rem&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bn-emo-label&quot;&gt;Nearby words&lt;/span&gt;
       &lt;div class=&quot;ca-tabs&quot; id=&quot;bn-emo&quot; role=&quot;tablist&quot; aria-labelledby=&quot;bn-emo-label&quot; style=&quot;justify-content:flex-start&quot;&gt;
         &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;all&quot; aria-selected=&quot;true&quot;&gt;All words&lt;/button&gt;
@@ -1060,7 +1079,7 @@
   &lt;/div&gt;
   &lt;p class=&quot;bay-legend&quot; id=&quot;bn-key&quot; hidden=&quot;&quot;&gt;&lt;span&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#2b6cb0&quot;&gt;&lt;/span&gt;Positive word&lt;/span&gt;&lt;span&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/span&gt;Negative word&lt;/span&gt;&lt;/p&gt;
   &lt;div class=&quot;bn-wrap&quot;&gt;&lt;div class=&quot;bn-tone&quot; id=&quot;bn-tone&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
-  &lt;div class=&quot;bp-chart&quot; id=&quot;bn-chart&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of the words said most often within fifty words of the chosen word, across all coded meeting stretches.&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;bp-chart&quot; id=&quot;bn-chart&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of the words or phrases said most often within fifteen words of the chosen word, across all coded meeting stretches.&quot;&gt;&lt;/div&gt;&lt;/div&gt;
   &lt;p class=&quot;bp-p&quot; id=&quot;bn-p&quot;&gt;&lt;/p&gt;
 &lt;/section&gt;
 &lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significant means the result passes a test corrected for checking many bodies at once. The correction is the Holm method, applied to the 15 public-speaker results and, separately, to the 24 official results, at 10 in 100. A likely range that excludes zero is not enough on its own. A body is drawn when it has at least 10 speakers with a stance in that group. Faint lines on the map are elevation contours every 150 meters, from the Terrain Tiles data set. Transit boards are placed at their headquarters city and the county board at the county&#39;s center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project&#39;s published data of 2026-10-25.&lt;/p&gt;
@@ -1088,6 +1107,7 @@
 .bn-q { box-sizing: border-box; width: 100%; max-width: 22rem; font: inherit; font-size: 1rem; padding: .5rem .8rem; border: 1px solid #d4b483; border-radius: 999px; background: #fff; color: #2a1a10; margin-top: .3rem; }
 .bn-wrap { position: relative; }
 .bn-tone { text-align: right; font-size: .78rem; line-height: 1.3; color: #6b5440; margin: .2rem 0 0; }
+.ca-tabs button:disabled { opacity: .4; cursor: default; }
 .bn-tone b { font-size: 1.15rem; color: #2a1a10; margin-right: .3rem; }
 .bay-legend[hidden] { display: none; }
 .bp-tip b { display: block; margin-bottom: .1rem; }
@@ -1146,7 +1166,7 @@
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_pairs_viz.js?v=20261105c&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105f&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105g&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 (function () {
   var el = document.getElementById(&quot;bay-map&quot;);
