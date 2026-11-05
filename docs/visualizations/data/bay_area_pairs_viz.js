@@ -15,7 +15,7 @@
   }
   const hideTip = () => { tip.hidden = true; };
 
-  let cur = "all", view = "pairs";
+  let cur = "all", view = "words";
   const VIEW = { pairs: { list: "pairs", rate: "rate", n: "n", noun: "word pair" },
                  words: { list: "words", rate: "wrate", n: "wn", noun: "word" },
                  g3: { list: "g3", rate: "r3", n: "n3", noun: "3-word phrase" },

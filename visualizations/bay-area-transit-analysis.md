@@ -40,8 +40,8 @@ A YIMBY ("yes in my backyard") speaker supports more housing or transit being bu
   <div class="ca-card">
     <div class="ca-tabs-wrap" style="margin-bottom:.5rem"><span class="ca-tabs-label" id="bp-view-label">Show</span>
       <div class="ca-tabs" id="bp-view" role="tablist" aria-labelledby="bp-view-label" style="justify-content:flex-start">
-        <button type="button" role="tab" data-v="pairs" aria-selected="true" tabindex="0">Word pairs</button>
-        <button type="button" role="tab" data-v="words" aria-selected="false" tabindex="-1">Single words</button>
+        <button type="button" role="tab" data-v="words" aria-selected="true" tabindex="0">Single words</button>
+        <button type="button" role="tab" data-v="pairs" aria-selected="false" tabindex="-1">Word pairs</button>
         <button type="button" role="tab" data-v="g3" aria-selected="false" tabindex="-1">3 words</button>
         <button type="button" role="tab" data-v="g4" aria-selected="false" tabindex="-1">4 words</button>
       </div>
@@ -52,10 +52,10 @@ A YIMBY ("yes in my backyard") speaker supports more housing or transit being bu
   </div>
   <div class="bp-chart" id="bp-grid" role="img" aria-label="Grid of the 12 most frequent word pairs by month for the selected body. Darker cells mean the pair was said more often per 10,000 words."></div>
   <p class="bay-legend bp-legend" id="bp-legend"></p>
-  <p class="bp-p" id="bp-p-words" hidden>The grid shows the 12 most frequent single words in the coded meeting stretches, after common English words were removed. Words about running the meeting, such as "council" and "mayor", place names, such as "Clara" and "Napa", and spoken filler, such as "questions" and "people", were also removed. Each cell gives how often the word was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.</p>
+  <p class="bp-p" id="bp-p-words">The grid shows the 12 most frequent single words in the coded meeting stretches, after common English words were removed. Words about running the meeting, such as "council" and "mayor", place names, such as "Clara" and "Napa", and spoken filler, such as "questions" and "people", were also removed. Each cell gives how often the word was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.</p>
   <p class="bp-p" id="bp-p-g3" hidden>The grid shows the 12 most frequent 3-word phrases in the coded meeting stretches. A phrase counts once per speaker per meeting stretch, so one person repeating a line adds one. The first and last words are not common English words. Phrases about running the meeting, such as calls to speak and votes, place names, the Pledge of Allegiance and phrases with a person's given name were removed. Each cell gives how often the phrase was said per 10,000 words in that month.</p>
   <p class="bp-p" id="bp-p-g4" hidden>The grid shows the 12 most frequent 4-word phrases in the coded meeting stretches. A phrase counts once per speaker per meeting stretch, so one person repeating a line adds one. The first and last words are not common English words. Phrases about running the meeting, such as calls to speak and votes, place names, the Pledge of Allegiance and phrases with a person's given name were removed. Each cell gives how often the phrase was said per 10,000 words in that month.</p>
-  <p class="bp-p" id="bp-p-pairs">The grid shows the 12 most frequent word pairs in the coded meeting stretches. A word pair is two words said one after the other, neither of them a common English word. Pairs about running the meeting, such as "council member" and "public comment", and place names, such as "San Jose", were removed. Each cell gives how often the pair was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.</p>
+  <p class="bp-p" id="bp-p-pairs" hidden>The grid shows the 12 most frequent word pairs in the coded meeting stretches. A word pair is two words said one after the other, neither of them a common English word. Pairs about running the meeting, such as "council member" and "public comment", and place names, such as "San Jose", were removed. Each cell gives how often the pair was said per 10,000 words in that month. Bodies with fewer than 30,000 transcribed words have no tab of their own but count in All.</p>
 </section>
 <div class="bp-tip" id="bp-tip" hidden></div>
 
@@ -163,7 +163,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
-<script src="/visualizations/data/bay_area_pairs_viz.js?v=20261103e"></script>
+<script src="/visualizations/data/bay_area_pairs_viz.js?v=20261105c"></script>
 <script src="/visualizations/data/bay_area_near_viz.js?v=20261105b"></script>
 <script>
 (function () {
