@@ -60,7 +60,7 @@
       .attr("dy", "0.35em").attr("font-size", 11).attr("fill", INK).text((d) => `${fmt1(d.share)} of 100`);
   }
 
-  d3.json("/visualizations/data/bay_area_near.json?v=20261105a").then((v) => {
+  d3.json("/visualizations/data/bay_area_near.json?v=20261105b").then((v) => {
     V = v; draw();
     let wd = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== wd) { wd = window.innerWidth; draw(); } });

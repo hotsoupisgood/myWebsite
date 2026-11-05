@@ -315,25 +315,6 @@
 	</entry>
 	
 	<entry>
-		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
-		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
-&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
-&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
 		<title>A Queue Model of an Emergency Department, to Size an Intervention</title>
 		<link href="https://lucashenry.xyz/projects/hse-ed-simulation/"/>
 		<updated>2026-10-26T00:00:00Z</updated>
@@ -357,6 +338,25 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
 &lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
+		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
+&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
+&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -1134,7 +1134,7 @@
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_pairs_viz.js?v=20261103e&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105a&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105b&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 (function () {
   var el = document.getElementById(&quot;bay-map&quot;);

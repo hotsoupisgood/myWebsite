@@ -30,7 +30,10 @@ def main():
         for ep in json.loads(f.read_text())["episodes"].values():
             for t in ep["turns"]:
                 raw = t.get("text") or ""
-                for m in re.finditer(r"(?<![.!?]\s)(?<!^)\b([A-Za-z]+)\b", raw):
+                # all-lowercase transcripts (some captions and local speech recognition) carry no case signal,
+                # so they would make a name look like an ordinary word; only text that uses capitals is counted
+                cased = re.search(r"[a-z][^.!?]*\b[A-Z]", raw) is not None
+                for m in (re.finditer(r"(?<![.!?]\s)\b([A-Za-z]+)\b", raw) if cased else ()):
                     w = m.group(1).lower(); uses[w] += 1
                     if m.group(1)[0].isupper():
                         caps[w] += 1
