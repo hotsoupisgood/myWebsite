@@ -42,7 +42,10 @@
     const ln = d3.line().x((p) => x(p[0])).y((p) => y(p[1]));
     S.forEach((s) => {
       // one solid line per route; the dashed vertical rule marks where the A and E routes changed
-      f.g.append("path").attr("d", ln(s.p)).attr("fill", "none").attr("stroke", col(s.q)).attr("stroke-width", 2.6);
+      if (s.q === "BD") {   // one LA Metro figure for two lines: purple (D) under red (B) dashes
+        f.g.append("path").attr("d", ln(s.p)).attr("fill", "none").attr("stroke", D.lines.D.color).attr("stroke-width", 2.6);
+        f.g.append("path").attr("d", ln(s.p)).attr("fill", "none").attr("stroke", D.lines.B.color).attr("stroke-width", 2.6).attr("stroke-dasharray", "7 7");
+      } else f.g.append("path").attr("d", ln(s.p)).attr("fill", "none").attr("stroke", col(s.q)).attr("stroke-width", 2.6);
       const l = s.p[s.p.length - 1];
       s.end = { x: x(l[0]) + 6, y: y(l[1]), t: `${NAME[s.q]} ${fmt(l[1])}`, c: col(s.q) };
     });
