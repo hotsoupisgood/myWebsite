@@ -282,7 +282,10 @@
   let V = null, qWord = "housing", qTopic = null;
   function lookup(D) {
     const el = document.getElementById("tw-word"), q = document.getElementById("tw-q"), tabs = document.getElementById("tw-nview");
-    const head = document.getElementById("tw-h6"), body = document.getElementById("tw-p6");
+    const body = document.getElementById("tw-p6");
+    let lead = "";
+    const head = { set textContent(t) { lead = t; } };
+    document.getElementById("tw-h6").textContent = `Words said within ${V ? V.window : 5} words of a chosen word, all streams`;
     if (!V) return;
     if (!q.dataset.ready) {
       q.dataset.ready = 1; q.value = qWord;
@@ -305,10 +308,10 @@
       label = T.label; n = T.mentions; W = T.words.map((w) => ({ label: w.label, n: w.n }));
     } else {
       const w = qWord, e = V.words[w];
-      if (!w) { head.textContent = "Type a word to see the words said near it"; body.textContent = ""; return; }
+      if (!w) { head.textContent = "Type a word to see the words said near it"; body.textContent = lead; return; }
       if (!e) {
         head.textContent = `"${w}" was said fewer than ${V.min} times in all streams, or is a common short word`;
-        body.textContent = `Only words said at least ${V.min} times are included, and common short words such as "the" are left out. Try another word.`;
+        body.textContent = lead + `. Only words said at least ${V.min} times are included, and common short words such as "the" are left out. Try another word.`;
         return;
       }
       label = `"${w}"`; n = e[0]; W = e[1].map(([x, k]) => ({ label: x, n: k }));
@@ -316,7 +319,7 @@
     W.forEach((w) => (w.share = 100 * w.n / n));
     head.textContent = W.length ? `${label} was said ${fmtInt(n)} times. "${W[0].label}" came within ${win} words of it in ${Math.round(W[0].share)} of every 100 mentions`
       : `${label} was said ${fmtInt(n)} times`;
-    body.textContent = `Across all streams together, ${label} was said ${fmt1(n / V.tokens * 1e4)} times per 10,000 words. Each bar shows how many of every 100 mentions had that word within ${win} words before or after it. A word counts once per mention. Common short words are left out, as in the grids above.`;
+    body.textContent = lead + `. Across all streams together, ${label} was said ${fmt1(n / V.tokens * 1e4)} times per 10,000 words. Each bar shows how many of every 100 mentions had that word within ${win} words before or after it. A word counts once per mention. Common short words are left out, as in the grids above.`;
     const narrow = (el.clientWidth || 640) < 480, lw = narrow ? 96 : 130, rowH = 26;
     const m = { t: 6, r: 74, b: 22, l: lw };
     const f = frame(el, m.t + m.b + rowH * W.length, m);
@@ -351,7 +354,7 @@
     document.getElementById("tw-range").textContent =
       `${S.length} streams from ${S[0].label} to ${S[S.length - 1].label}, 2026`;
     const all = () => { hours(D); topics(D); words(D); lookup(D); names(D); };
-    d3.json("/visualizations/data/twitch_vocab.json?v=202611051300").then((v) => { V = v; lookup(D); });
+    d3.json("/visualizations/data/twitch_vocab.json?v=202611051420").then((v) => { V = v; lookup(D); });
     all();
     let w = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== w) { w = window.innerWidth; all(); } });

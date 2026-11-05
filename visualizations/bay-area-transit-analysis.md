@@ -67,8 +67,16 @@ A YIMBY ("yes in my backyard") speaker supports more housing or transit being bu
     <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="bn-tabs-label">Or pick a word</span>
       <div class="ca-tabs" id="bn-tabs" role="tablist" aria-labelledby="bn-tabs-label" style="justify-content:flex-start"></div>
     </div>
+    <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="bn-emo-label">Nearby words</span>
+      <div class="ca-tabs" id="bn-emo" role="tablist" aria-labelledby="bn-emo-label" style="justify-content:flex-start">
+        <button type="button" role="tab" data-v="all" aria-selected="true">All words</button>
+        <button type="button" role="tab" data-v="emo" aria-selected="false">Emotional words only</button>
+      </div>
+    </div>
   </div>
-  <div class="bp-chart" id="bn-chart" role="img" aria-label="Bar chart of the words said most often within five words of the chosen word, across all coded meeting stretches."></div>
+  <p class="bay-legend" id="bn-key" hidden><span><span class="sw" style="background:#2b6cb0"></span>Positive word</span><span><span class="sw" style="background:#c2410c"></span>Negative word</span></p>
+  <div class="bn-wrap"><div class="bn-tone" id="bn-tone" hidden></div>
+  <div class="bp-chart" id="bn-chart" role="img" aria-label="Bar chart of the words said most often within fifty words of the chosen word, across all coded meeting stretches."></div></div>
   <p class="bp-p" id="bn-p"></p>
 </section>
 
@@ -108,6 +116,10 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .bp-legend .sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 3px; margin: 0 .25rem 0 .6rem; vertical-align: -1px; }
 .bp-tip { position: absolute; z-index: 10; pointer-events: none; background: #fffaf3; border: 1px solid #d4b483; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a1a10; box-shadow: 0 2px 8px rgba(90,58,26,.18); max-width: 16rem; }
 .bn-q { box-sizing: border-box; width: 100%; max-width: 22rem; font: inherit; font-size: 1rem; padding: .5rem .8rem; border: 1px solid #d4b483; border-radius: 999px; background: #fff; color: #2a1a10; margin-top: .3rem; }
+.bn-wrap { position: relative; }
+.bn-tone { text-align: right; font-size: .78rem; line-height: 1.3; color: #6b5440; margin: .2rem 0 0; }
+.bn-tone b { font-size: 1.15rem; color: #2a1a10; margin-right: .3rem; }
+.bay-legend[hidden] { display: none; }
 .bp-tip b { display: block; margin-bottom: .1rem; }
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #bay-map { width: 100%; }
@@ -164,7 +176,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/topojson-client.min.js"></script>
 <script src="/visualizations/data/bay_area_pairs_viz.js?v=20261105c"></script>
-<script src="/visualizations/data/bay_area_near_viz.js?v=20261105b"></script>
+<script src="/visualizations/data/bay_area_near_viz.js?v=20261105e"></script>
 <script>
 (function () {
   var el = document.getElementById("bay-map");

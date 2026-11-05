@@ -75,7 +75,7 @@ FIRST_DAY = "2026-01-01"
 
 # Words near a target (2026-11-05): for each mention of a target's words, the content words within NEAR words on
 # either side. A word counts once per mention. Share = mentions with the word nearby, out of every 100 mentions.
-NEAR = 5
+NEAR = 50
 NEAR_TARGETS = {**{k: (lab, ws) for k, (lab, _n, ws) in TOPICS.items()},
                 "elsayed": ("Abdul El-Sayed", "elsayed"), "stevens": ("Haley Stevens", "stevens"), "rogers": ("Mike Rogers", "rogers")}
 NEAR_SKIP = {"abdul", "haley", "mike", "donald", "benjamin"}   # the target's own first name

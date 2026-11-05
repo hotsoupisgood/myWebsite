@@ -147,7 +147,7 @@
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611051300&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611051420&quot;&gt;&lt;/script&gt;
 </content>
 	</entry>
 	
@@ -1051,8 +1051,16 @@
     &lt;div class=&quot;ca-tabs-wrap&quot; style=&quot;margin-top:.6rem&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bn-tabs-label&quot;&gt;Or pick a word&lt;/span&gt;
       &lt;div class=&quot;ca-tabs&quot; id=&quot;bn-tabs&quot; role=&quot;tablist&quot; aria-labelledby=&quot;bn-tabs-label&quot; style=&quot;justify-content:flex-start&quot;&gt;&lt;/div&gt;
     &lt;/div&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot; style=&quot;margin-top:.6rem&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;bn-emo-label&quot;&gt;Nearby words&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs&quot; id=&quot;bn-emo&quot; role=&quot;tablist&quot; aria-labelledby=&quot;bn-emo-label&quot; style=&quot;justify-content:flex-start&quot;&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;all&quot; aria-selected=&quot;true&quot;&gt;All words&lt;/button&gt;
+        &lt;button type=&quot;button&quot; role=&quot;tab&quot; data-v=&quot;emo&quot; aria-selected=&quot;false&quot;&gt;Emotional words only&lt;/button&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
   &lt;/div&gt;
-  &lt;div class=&quot;bp-chart&quot; id=&quot;bn-chart&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of the words said most often within five words of the chosen word, across all coded meeting stretches.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;bay-legend&quot; id=&quot;bn-key&quot; hidden=&quot;&quot;&gt;&lt;span&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#2b6cb0&quot;&gt;&lt;/span&gt;Positive word&lt;/span&gt;&lt;span&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#c2410c&quot;&gt;&lt;/span&gt;Negative word&lt;/span&gt;&lt;/p&gt;
+  &lt;div class=&quot;bn-wrap&quot;&gt;&lt;div class=&quot;bn-tone&quot; id=&quot;bn-tone&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;bp-chart&quot; id=&quot;bn-chart&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of the words said most often within fifty words of the chosen word, across all coded meeting stretches.&quot;&gt;&lt;/div&gt;&lt;/div&gt;
   &lt;p class=&quot;bp-p&quot; id=&quot;bn-p&quot;&gt;&lt;/p&gt;
 &lt;/section&gt;
 &lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significant means the result passes a test corrected for checking many bodies at once. The correction is the Holm method, applied to the 15 public-speaker results and, separately, to the 24 official results, at 10 in 100. A likely range that excludes zero is not enough on its own. A body is drawn when it has at least 10 speakers with a stance in that group. Faint lines on the map are elevation contours every 150 meters, from the Terrain Tiles data set. Transit boards are placed at their headquarters city and the county board at the county&#39;s center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project&#39;s published data of 2026-10-25.&lt;/p&gt;
@@ -1078,6 +1086,10 @@
 .bp-legend .sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 3px; margin: 0 .25rem 0 .6rem; vertical-align: -1px; }
 .bp-tip { position: absolute; z-index: 10; pointer-events: none; background: #fffaf3; border: 1px solid #d4b483; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a1a10; box-shadow: 0 2px 8px rgba(90,58,26,.18); max-width: 16rem; }
 .bn-q { box-sizing: border-box; width: 100%; max-width: 22rem; font: inherit; font-size: 1rem; padding: .5rem .8rem; border: 1px solid #d4b483; border-radius: 999px; background: #fff; color: #2a1a10; margin-top: .3rem; }
+.bn-wrap { position: relative; }
+.bn-tone { text-align: right; font-size: .78rem; line-height: 1.3; color: #6b5440; margin: .2rem 0 0; }
+.bn-tone b { font-size: 1.15rem; color: #2a1a10; margin-right: .3rem; }
+.bay-legend[hidden] { display: none; }
 .bp-tip b { display: block; margin-bottom: .1rem; }
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #bay-map { width: 100%; }
@@ -1134,7 +1146,7 @@
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_pairs_viz.js?v=20261105c&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105b&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105e&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 (function () {
   var el = document.getElementById(&quot;bay-map&quot;);
