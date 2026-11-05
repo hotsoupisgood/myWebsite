@@ -20,7 +20,7 @@
 
   function lines(D) {
     const el = document.getElementById("lmc-lines"), LR = D.line_ridership, FROM = LR.from || {};
-    const NAME = { A: "A", BD: "B, D", C: "C", E: "E", K: "K" };
+    const NAME = { A: "A", BD: "B & D", C: "C", E: "E", K: "K" };
     const col = (q) => D.lines[q === "BD" ? "B" : q].color;
     const S = Object.keys(LR.fy).map((q) => ({ q, p: Object.keys(LR.fy[q]).map((y) => [+y, LR.fy[q][y]]).sort((a, b) => a[0] - b[0]) }));
     const narrow = (el.clientWidth || 640) < 480;
