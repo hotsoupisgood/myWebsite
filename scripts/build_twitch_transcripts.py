@@ -13,6 +13,7 @@ from plots_stop import STOP  # noqa: E402  (same stopwords as the hasan-stream p
 
 OUT = Path(__file__).resolve().parent.parent / "visualizations" / "data" / "twitch_transcripts.json"
 VOCAB_OUT = OUT.with_name("twitch_vocab.json")
+PHR_OUT = OUT.with_name("twitch_near_phrases.json")
 TOK = re.compile(r"[a-z]+(?:'[a-z]+)?")   # same tokeniser as hasan-stream plots_pairs.py
 N_TOP = 12
 # Left out of the top-word list: spoken filler the shared stopwords miss, first names whose
@@ -242,9 +243,32 @@ def main():
                 nb[w].update(nset)
                 em = [x for x in nset if x in EMO]
                 nbe[w].update(em); tone[w][0] += sum(EMO[x] for x in em); tone[w][1] += len(em)
+    # Phrases near a word (2026-11-05): word pairs, 3- and 4-word phrases within the window, for words said at least
+    # GRAM_MIN times and for the topic buttons. Same phrase rules as the grids above. Own file, loaded on demand.
+    GRAM_MIN = 100
+    pair_ok = lambda g: (g[0] not in STOP and g[1] not in STOP and len(g[0]) > 2 and len(g[1]) > 2 and g[0] != g[1]
+                         and " ".join(g) not in PAIR_DROP)
+    gkeys = {w for w in keys if allc[w] >= GRAM_MIN}
+    tsets = {k: set(ws.split()) for k, (_lab, ws) in NEAR_TARGETS.items()}
+    ph = collections.defaultdict(lambda: {k: collections.Counter() for k in (2, 3, 4)})
+    for toks in tok_lists:
+        for i, w in enumerate(toks):
+            hits = ([w] if w in gkeys else []) + ["t:" + k for k, ts in tsets.items() if w in ts]
+            if not hits:
+                continue
+            win = toks[max(0, i - NEAR):i + NEAR + 1]
+            grams = {k: {tuple(win[j:j + k]) for j in range(len(win) - k + 1)} for k in (2, 3, 4)}
+            for h in hits:
+                own = tsets[h[2:]] if h.startswith("t:") else {w}
+                for k in (2, 3, 4):
+                    ph[h][k].update(" ".join(g) for g in grams[k]
+                                    if not (own & set(g)) and not (NEAR_SKIP & set(g))
+                                    and (pair_ok(g) if k == 2 else gram_ok(list(g))))
+    PHR_OUT.write_text(json.dumps({h: {str(k): [[GLABEL.get(g, PAIR_LABEL.get(g, g)), n] for g, n in c[k].most_common(N_TOP)]
+                                       for k in (2, 3, 4)} for h, c in ph.items()}, separators=(",", ":")))
     allemo = [EMO[x] for toks in tok_lists for x in toks if x in EMO and ok(x)]
     total_tok = sum(n for _, n in per)
-    VOCAB_OUT.write_text(json.dumps({"min": NEAR_MIN, "window": NEAR, "tokens": total_tok,
+    VOCAB_OUT.write_text(json.dumps({"min": NEAR_MIN, "window": NEAR, "tokens": total_tok, "gram_min": GRAM_MIN,
         "tone_all": round(sum(allemo) / len(allemo), 2),
         "words": {w: [allc[w], [[x, k] for x, k in nb[w].most_common(N_TOP)],
                       [[x, k, 1 if EMO[x] > 0 else -1] for x, k in nbe[w].most_common(N_TOP)],

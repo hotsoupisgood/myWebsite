@@ -279,7 +279,7 @@
   // Words near a word, across all streams (Puck 2026-11-05: "not through time just overall"). A typed word uses
   // twitch_vocab.json (every word said at least V.min times); a topic button uses D.near (the topic's word list).
   // The bar is how many mentions, out of every 100, had that word within the window on either side.
-  let V = null, qWord = "housing", qTopic = null, emo = false;
+  let V = null, PH = null, qWord = "housing", qTopic = null, emo = false, glen = 1;
   const POS = "#4a7fc1", NEG = "#d0587a";
   function lookup(D) {
     const el = document.getElementById("tw-word"), q = document.getElementById("tw-q"), tabs = document.getElementById("tw-nview");
@@ -297,10 +297,18 @@
       (D.near ? D.near.targets : []).forEach((t) => { const b = tabs.appendChild(document.createElement("button")); b.type = "button"; b.setAttribute("role", "tab");
         b.dataset.v = t.key; b.textContent = t.label; });
       tabs.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) { qTopic = b.dataset.v; q.value = ""; lookup(D); } });
+      document.getElementById("tw-len").addEventListener("click", (e) => {
+        const b = e.target.closest("button"); if (!b) return;
+        glen = +b.dataset.v;
+        if (glen > 1 && !PH) d3.json("/visualizations/data/twitch_near_phrases.json?v=202611051540").then((p) => { PH = p; lookup(D); });
+        lookup(D);
+      });
       document.getElementById("tw-emo").addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) { emo = b.dataset.v === "emo"; lookup(D); } });
     }
     tabs.querySelectorAll("button").forEach((b) => b.setAttribute("aria-selected", b.dataset.v === qTopic));
-    document.querySelectorAll("#tw-emo button").forEach((b) => b.setAttribute("aria-selected", (b.dataset.v === "emo") === emo));
+    if (glen > 1) emo = false;   // the emotional-word list is for single words
+    document.querySelectorAll("#tw-len button").forEach((b) => b.setAttribute("aria-selected", +b.dataset.v === glen));
+    document.querySelectorAll("#tw-emo button").forEach((b) => { b.setAttribute("aria-selected", (b.dataset.v === "emo") === emo); b.disabled = glen > 1 && b.dataset.v === "emo"; });
     document.getElementById("tw-key").hidden = !emo;
     const toneBox = document.getElementById("tw-tone"); toneBox.hidden = true;
     el.innerHTML = "";
@@ -319,12 +327,18 @@
       }
       label = `"${w}"`; n = e[0]; W = (emo ? e[2] : e[1]).map(([x, k, s]) => ({ label: x, n: k, s })); var t0 = e[3];
     }
+    if (glen > 1) {
+      const pk = qTopic ? "t:" + qTopic : qWord;
+      if (!PH) { head.textContent = "Loading phrases"; body.textContent = ""; el.innerHTML = ""; return; }
+      if (!PH[pk]) { head.textContent = `Phrases are shown only for words said at least ${V.gram_min} times`; body.textContent = "Choose single words, a topic button, or a more common word."; el.innerHTML = ""; toneBox.hidden = true; return; }
+      W = PH[pk][String(glen)].map(([x, k]) => ({ label: x, n: k }));
+    }
     W.forEach((w) => (w.share = 100 * w.n / n));
     if (t0 != null) { toneBox.hidden = false; toneBox.innerHTML = `<b>${t0 > 0 ? "+" : ""}${t0.toFixed(1)}</b>average tone of nearby words (−4 to +4). All streams: ${V.tone_all > 0 ? "+" : ""}${V.tone_all.toFixed(1)}`; }
-    head.textContent = W.length ? `${label} was said ${fmtInt(n)} times. ${emo ? "The emotional word " : ""}"${W[0].label}" came within ${win} words of it in ${Math.round(W[0].share)} of every 100 mentions`
+    head.textContent = W.length ? `${label} was said ${fmtInt(n)} times. ${emo ? "The emotional word " : glen > 1 ? "The phrase " : ""}"${W[0].label}" came within ${win} words of it in ${W[0].share < 1 ? fmt1(W[0].share) : Math.round(W[0].share)} of every 100 mentions`
       : `${label} was said ${fmtInt(n)} times`;
-    body.textContent = `Across all streams together, ${label} was said ${fmt1(n / V.tokens * 1e4)} times per 10,000 words. Each bar shows how many of every 100 mentions had that ${emo ? "emotional word" : "word"} within ${win} words before or after it.${emo ? " Emotional words are the words that VADER, a published word list for sentiment, scores as positive or negative. Political names it scores as feelings, such as \"party\" and \"lobby\", are left out. A nearby emotional word does not show whether the speaker was for or against." : ""} The tone in the top right is the average VADER score of the emotional words near ${label}, from −4 (most negative) to +4 (most positive). A word counts once per mention. Common short words are left out, as in the grids above.`;
-    const narrow = (el.clientWidth || 640) < 480, lw = narrow ? 96 : 130, rowH = 26;
+    body.textContent = `Across all streams together, ${label} was said ${fmt1(n / V.tokens * 1e4)} times per 10,000 words. Each bar shows how many of every 100 mentions had that ${emo ? "emotional word" : glen > 1 ? glen + "-word phrase" : "word"} within ${win} words before or after it.${emo ? " Emotional words are the words that VADER, a published word list for sentiment, scores as positive or negative. Political names it scores as feelings, such as \"party\" and \"lobby\", are left out. A nearby emotional word does not show whether the speaker was for or against." : ""} The tone in the top right is the average VADER score of the emotional words near ${label}, from −4 (most negative) to +4 (most positive). A word counts once per mention. Common short words are left out, as in the grids above.`;
+    const narrow = (el.clientWidth || 640) < 480, lw = glen > 2 ? (narrow ? 150 : 230) : glen > 1 ? (narrow ? 130 : 180) : narrow ? 96 : 130, rowH = 26;
     const m = { t: 6, r: 74, b: 22, l: lw };
     const f = frame(el, m.t + m.b + rowH * W.length, m);
     const x = d3.scaleLinear([0, d3.max(W, (w) => w.share) || 1], [0, f.iw]).nice();

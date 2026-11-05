@@ -70,6 +70,14 @@
     <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="tw-nview-label">Or pick a topic</span>
       <div class="ca-tabs" id="tw-nview" style="justify-content:flex-start" role="tablist" aria-labelledby="tw-nview-label"></div>
     </div>
+    <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="tw-len-label">Show nearby</span>
+      <div class="ca-tabs" id="tw-len" style="justify-content:flex-start" role="tablist" aria-labelledby="tw-len-label">
+        <button type="button" role="tab" data-v="1" aria-selected="true">Single words</button>
+        <button type="button" role="tab" data-v="2" aria-selected="false">Word pairs</button>
+        <button type="button" role="tab" data-v="3" aria-selected="false">3 words</button>
+        <button type="button" role="tab" data-v="4" aria-selected="false">4 words</button>
+      </div>
+    </div>
     <div class="ca-tabs-wrap" style="margin-top:.6rem"><span class="ca-tabs-label" id="tw-emo-label">Nearby words</span>
       <div class="ca-tabs" id="tw-emo" style="justify-content:flex-start" role="tablist" aria-labelledby="tw-emo-label">
         <button type="button" role="tab" data-v="all" aria-selected="true">All words</button>
@@ -153,13 +161,14 @@
 .ca-tabs button:focus-visible { outline: 2px solid #4b3a99; outline-offset: 2px; }
 @media (max-width: 640px) { .ca-tabs { justify-content: flex-start; } .ca-card { padding: .7rem .8rem; } }
 .tw-q input { box-sizing: border-box; width: 100%; max-width: 22rem; font: inherit; font-size: 1rem; padding: .5rem .8rem; border: 1px solid #c9bce3; border-radius: 999px; background: #fff; color: #2a2340; margin-top: .3rem; }
+.ca-tabs button:disabled { opacity: .4; cursor: default; }
 .tw-tone { text-align: right; font-size: .78rem; line-height: 1.3; color: #625a7a; margin: .3rem 0 0; }
 .tw-tone b { font-size: 1.15rem; color: #2a2340; margin-right: .3rem; }
 .tw-legend[hidden] { display: none; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611051500"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611051540"></script>
 
 </div>
 
