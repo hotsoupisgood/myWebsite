@@ -90,7 +90,7 @@ A YIMBY ("yes in my backyard") speaker supports more housing or transit being bu
 
 <section class="bp-sec tp-sec" aria-labelledby="tp-h">
   <h2 id="tp-h" class="bp-h">Topic analysis</h2>
-  <p class="bp-p">The public comments were sorted into 10 topics with a topic model (Latent Dirichlet Allocation, an unsupervised method that groups comments by the words they share). The model was given only the comments' words, after common words, words about running the meeting and names were removed. It was given no labels. The topic names were added afterward from each topic's top words. Each comment is a mix of topics; the charts use that mix. Only comments of at least 25 such words count.</p>
+  <p class="bp-p">The public comments were sorted into 10 topics by clustering: a topic model called LDA (Latent Dirichlet Allocation) grouped the comments by the words they share. Unlike ordinary clustering, it gives each comment a mix of topics rather than a single group. The model was given only the comments' words, after common words, words about running the meeting and names were removed. It was given no labels. The topic names were added afterward from each topic's top words. Each comment is a mix of topics; the charts use that mix. Only comments of at least 25 such words count.</p>
   <h3 class="tp-h3">Share of each body's public comment, by topic</h3>
   <p class="bp-p">Each row is one body, with its number of public comments. Each cell is that topic's share of the body's comments, out of 100. Darker is a larger share. Bodies with fewer than 25 comments are left out.</p>
   <div class="bp-chart" id="tp-grid" role="img" aria-label="Grid of public bodies by topic. Darker cells mean a larger share of that body's comments."></div>
