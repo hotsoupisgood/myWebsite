@@ -88,6 +88,22 @@ A YIMBY ("yes in my backyard") speaker supports more housing or transit being bu
   <p class="bp-p" id="bn-p"></p>
 </section>
 
+<section class="bp-sec tp-sec" aria-labelledby="tp-h">
+  <h2 id="tp-h" class="bp-h">Topic analysis</h2>
+  <p class="bp-p">The public comments were sorted into 10 topics with a topic model (Latent Dirichlet Allocation, an unsupervised method that groups comments by the words they share). The model was given only the comments' words, after common words, words about running the meeting and names were removed. It was given no labels. The topic names were added afterward from each topic's top words. Each comment is a mix of topics; the charts use that mix. Only comments of at least 25 such words count.</p>
+  <h3 class="tp-h3">Share of each body's public comment, by topic</h3>
+  <p class="bp-p">Each row is one body, with its number of public comments. Each cell is that topic's share of the body's comments, out of 100. Darker is a larger share. Bodies with fewer than 25 comments are left out.</p>
+  <div class="bp-chart" id="tp-grid" role="img" aria-label="Grid of public bodies by topic. Darker cells mean a larger share of that body's comments."></div>
+  <h3 class="tp-h3">Map of the comments</h3>
+  <p class="bp-p">Each dot is one public comment, coloured by its main topic. Comments with similar topic mixes sit close together; the position has no other meaning. Hover or tap a dot to read the start of the comment, with names and addresses removed.</p>
+  <p class="bay-legend tp-legend" id="tp-legend"></p>
+  <div class="bp-chart" id="tp-map" role="img" aria-label="Scatter plot of public comments coloured by main topic."></div>
+  <h3 class="tp-h3">Top words in each topic</h3>
+  <p class="bp-p">The 8 words that most define each topic. A longer bar means the word makes up more of the topic.</p>
+  <div class="tp-words" id="tp-words"></div>
+</section>
+
+
 
 **Methods.** Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significant means the result passes a test corrected for checking many bodies at once. The correction is the Holm method, applied to the 15 public-speaker results and, separately, to the 24 official results, at 10 in 100. A likely range that excludes zero is not enough on its own. A body is drawn when it has at least 10 speakers with a stance in that group. Faint lines on the map are elevation contours every 150 meters, from the Terrain Tiles data set. Transit boards are placed at their headquarters city and the county board at the county's center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project's published data of 2026-10-25.
 
@@ -129,6 +145,13 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ca-tabs button:disabled { opacity: .4; cursor: default; }
 .bn-tone b { font-size: 1.15rem; color: #2a1a10; margin-right: .3rem; }
 .bay-legend[hidden] { display: none; }
+.tp-h3 { font-size: 1rem; margin: 1.3rem 0 .2rem; }
+.tp-legend span { display: inline-flex; align-items: center; }
+.tp-words { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .4rem 1rem; margin-top: .4rem; }
+.tp-wh { font-size: .85rem; font-weight: 600; margin: .3rem 0 .1rem; }
+.tp-w svg { width: 100%; height: auto; display: block; }
+.tp-meta { display: block; color: #6b5440; font-size: .78rem; margin-bottom: .2rem; }
+.bp-tip { max-width: 22rem; }
 .bp-tip b { display: block; margin-bottom: .1rem; }
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #bay-map { width: 100%; }
@@ -186,6 +209,7 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 <script src="/visualizations/data/topojson-client.min.js"></script>
 <script src="/visualizations/data/bay_area_pairs_viz.js?v=20261105c"></script>
 <script src="/visualizations/data/bay_area_near_viz.js?v=20261105g"></script>
+<script src="/visualizations/data/bay_area_topics_viz.js?v=20261105c"></script>
 <script>
 (function () {
   var el = document.getElementById("bay-map");

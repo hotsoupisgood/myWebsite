@@ -335,25 +335,6 @@
 	</entry>
 	
 	<entry>
-		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
-		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
-&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
-&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
 		<title>A Queue Model of an Emergency Department, to Size an Intervention</title>
 		<link href="https://lucashenry.xyz/projects/hse-ed-simulation/"/>
 		<updated>2026-10-26T00:00:00Z</updated>
@@ -377,6 +358,25 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
 &lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Gathering Drug Target Evidence With a Model That Only Paraphrases</title>
+		<link href="https://lucashenry.xyz/projects/targetring-evidence-summaries/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/targetring-evidence-summaries/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I set out to make a demo that aggregates the top genetic targets for a disease into one figure, to motivate biologists to take those genes into early in vitro target validation experiments.&lt;/li&gt;
+&lt;li&gt;I built a tool that turns a disease name into that figure: for each differentially expressed gene, its druggability, safety, tissue expression, drug pipeline, literature and mouse phenotypes.&lt;/li&gt;
+&lt;li&gt;I added a language model that writes one short evidence paragraph per gene from the gathered facts only, stored with the run, and never ranks, filters or decides anything.&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;The tool&lt;/a&gt; and &lt;a href=&quot;https://github.com/hotsoupisgood/TargetRing&quot;&gt;the code&lt;/a&gt; are public.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;a href=&quot;https://hotsoupisgood.github.io/TargetRing/&quot;&gt;targetring&lt;/a&gt; takes a disease, finds a public gene expression study for it, picks a comparison of affected against unaffected people, and draws a ring figure for the genes that differ. Each ring is one source: tractability and safety from Open Targets, tissue expression from GTEx, development level from Pharos, mechanisms from ChEMBL, literature counts from Europe PMC and PubTator, mouse phenotypes from MGI. A missing cell is drawn as missing, never as zero, because the figure used to be built by hand from six browser tabs and the hardest part was knowing whether an empty cell meant &amp;quot;not measured&amp;quot; or &amp;quot;the lookup failed&amp;quot;. Clicking a gene opens a drawer with the full drug pipeline, the trials behind it, and a GO or NO-GO line from a fixed three part rule: expressed in a disease tissue, dysregulated in the study, and a phenotype on record.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_figure.png&quot; alt=&quot;The targetring figure for Crohn&#39;s disease: twelve genes as spokes, nine evidence rings, with the comparison and the selection rule stated in the centre&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;The language model&#39;s job is deliberately small, and the prompt is where that is enforced. For each gene the tool assembles the facts it already fetched and sends them once to a model whose only permitted source is that JSON: nothing it knows about the gene, the disease or the drugs may enter the text, and a fact that is not in the JSON does not exist. The prompt fixes the paragraph&#39;s length at four to six sentences and its order sentence by sentence: the rule-based verdict restated word for word, then the hypothesis the fold change implies, then the evidence that is present, then every ring with no data named as absent rather than low. It bans recommendations, rankings against other genes, invented citations, hedging phrases, em dashes, percentages, internal codes and identifiers, and gives the plain gloss to use for each code. The other three model calls in the tool are constrained the same way: each chooses only from a closed list the app supplied, the answer is checked against that list on return, and when a call fails the rule-based fallback runs and the figure records who chose. The paragraph is then stored with the run. The same facts always produce the same stored paragraph, so the four demo runs needed 13 calls for 46 genes, and the whole demo&#39;s model spend was $1.35, measured 18 October 2026 and shown on the tool&#39;s Paid calls tab. A second, smaller call reads the gene&#39;s mouse phenotype terms against the disease area and returns a 0 or 1, printed beside the rule-based phenotype check and never replacing it. The drawer below shows that line for MUC1 in the Crohn&#39;s run. The stored paragraph for the same gene begins with the verdict and its three reasons, then the fold change, the tissue expression against the median across 54 tissues, the mouse phenotypes, and the empty drug pipeline, each with its number and unit, and no opinion of its own.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_targetring_drawer.png&quot; alt=&quot;The MUC1 drawer: the GO verdict with its three checks, the model&#39;s phenotype read beside the rule-based one, and the drug pipeline table&quot; /&gt;&lt;/p&gt;
 </content>
 	</entry>
 	
@@ -1091,6 +1091,20 @@
   &lt;div class=&quot;bp-chart&quot; id=&quot;bn-chart&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of the words or phrases said most often within fifteen words of the chosen word, across all coded meeting stretches.&quot;&gt;&lt;/div&gt;&lt;/div&gt;
   &lt;p class=&quot;bp-p&quot; id=&quot;bn-p&quot;&gt;&lt;/p&gt;
 &lt;/section&gt;
+&lt;section class=&quot;bp-sec tp-sec&quot; aria-labelledby=&quot;tp-h&quot;&gt;
+  &lt;h2 id=&quot;tp-h&quot; class=&quot;bp-h&quot;&gt;Topic analysis&lt;/h2&gt;
+  &lt;p class=&quot;bp-p&quot;&gt;The public comments were sorted into 10 topics with a topic model (Latent Dirichlet Allocation, an unsupervised method that groups comments by the words they share). The model was given only the comments&#39; words, after common words, words about running the meeting and names were removed. It was given no labels. The topic names were added afterward from each topic&#39;s top words. Each comment is a mix of topics; the charts use that mix. Only comments of at least 25 such words count.&lt;/p&gt;
+  &lt;h3 class=&quot;tp-h3&quot;&gt;Share of each body&#39;s public comment, by topic&lt;/h3&gt;
+  &lt;p class=&quot;bp-p&quot;&gt;Each row is one body, with its number of public comments. Each cell is that topic&#39;s share of the body&#39;s comments, out of 100. Darker is a larger share. Bodies with fewer than 25 comments are left out.&lt;/p&gt;
+  &lt;div class=&quot;bp-chart&quot; id=&quot;tp-grid&quot; role=&quot;img&quot; aria-label=&quot;Grid of public bodies by topic. Darker cells mean a larger share of that body&#39;s comments.&quot;&gt;&lt;/div&gt;
+  &lt;h3 class=&quot;tp-h3&quot;&gt;Map of the comments&lt;/h3&gt;
+  &lt;p class=&quot;bp-p&quot;&gt;Each dot is one public comment, coloured by its main topic. Comments with similar topic mixes sit close together; the position has no other meaning. Hover or tap a dot to read the start of the comment, with names and addresses removed.&lt;/p&gt;
+  &lt;p class=&quot;bay-legend tp-legend&quot; id=&quot;tp-legend&quot;&gt;&lt;/p&gt;
+  &lt;div class=&quot;bp-chart&quot; id=&quot;tp-map&quot; role=&quot;img&quot; aria-label=&quot;Scatter plot of public comments coloured by main topic.&quot;&gt;&lt;/div&gt;
+  &lt;h3 class=&quot;tp-h3&quot;&gt;Top words in each topic&lt;/h3&gt;
+  &lt;p class=&quot;bp-p&quot;&gt;The 8 words that most define each topic. A longer bar means the word makes up more of the topic.&lt;/p&gt;
+  &lt;div class=&quot;tp-words&quot; id=&quot;tp-words&quot;&gt;&lt;/div&gt;
+&lt;/section&gt;
 &lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; Word pairs and phrases are counted in the published, redacted transcripts; a redaction mark breaks a phrase. One public commenter opens and closes with the same two lines at many BART and VTA meetings; those lines are removed before counting. A speaker is one voice at one stretch of a meeting. Each statement was scored from -2, opposing more housing or transit, to +2, supporting more of it. A speaker is YIMBY when their statements average +0.5 or higher and NIMBY at -0.5 or lower. The likely range is a 90 in 100 interval from 2,000 resamples of meeting stretches. Significant means the result passes a test corrected for checking many bodies at once. The correction is the Holm method, applied to the 15 public-speaker results and, separately, to the 24 official results, at 10 in 100. A likely range that excludes zero is not enough on its own. A body is drawn when it has at least 10 speakers with a stance in that group. Faint lines on the map are elevation contours every 150 meters, from the Terrain Tiles data set. Transit boards are placed at their headquarters city and the county board at the county&#39;s center. Exploratory analysis. Stance and tone were coded by a large language model and have not been validated against human coders. All figures are copied from the project&#39;s published data of 2026-10-25.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/bay-area-transit-analysis/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
@@ -1119,6 +1133,13 @@
 .ca-tabs button:disabled { opacity: .4; cursor: default; }
 .bn-tone b { font-size: 1.15rem; color: #2a1a10; margin-right: .3rem; }
 .bay-legend[hidden] { display: none; }
+.tp-h3 { font-size: 1rem; margin: 1.3rem 0 .2rem; }
+.tp-legend span { display: inline-flex; align-items: center; }
+.tp-words { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: .4rem 1rem; margin-top: .4rem; }
+.tp-wh { font-size: .85rem; font-weight: 600; margin: .3rem 0 .1rem; }
+.tp-w svg { width: 100%; height: auto; display: block; }
+.tp-meta { display: block; color: #6b5440; font-size: .78rem; margin-bottom: .2rem; }
+.bp-tip { max-width: 22rem; }
 .bp-tip b { display: block; margin-bottom: .1rem; }
 .viz { margin: 1rem auto 1.5rem; max-width: 44rem; }
 #bay-map { width: 100%; }
@@ -1176,6 +1197,7 @@
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/topojson-client.min.js&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_pairs_viz.js?v=20261105c&quot;&gt;&lt;/script&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_near_viz.js?v=20261105g&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/bay_area_topics_viz.js?v=20261105c&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
 (function () {
   var el = document.getElementById(&quot;bay-map&quot;);
