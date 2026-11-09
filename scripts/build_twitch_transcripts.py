@@ -67,7 +67,7 @@ TOPICS = {
     "elections": ("Elections", "Election words", "election elections midterm midterms vote votes voting voter voters ballot ballots poll polls polling"),
     "israel": ("Israel and Gaza", "Israel and Gaza words", "israel israeli israelis gaza palestine palestinian palestinians netanyahu zionist zionists zionism"),
     "trump": ("Trump", "The name Trump", "trump"),
-    "parties": ("Parties", "Party words", "democrat democrats democratic dems republican republicans gop maga"),
+    "parties": ("Political parties", "Words for political parties", "democrat democrats democratic dems republican republicans gop maga"),
     "iran": ("Iran", "Iran words", "iran iranian"),
 }
 

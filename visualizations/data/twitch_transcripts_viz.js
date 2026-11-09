@@ -103,6 +103,31 @@
       .on("pointerleave", hideTip);
   }
 
+  // News events above the date labels, each with a dotted line down through the grid at its date.
+  // A date with no stream falls between the two neighbouring columns.
+  let EV = null;
+  const EV_ROWS = 4, EV_RH = 13, EV_TOP = EV_ROWS * EV_RH + 8;
+  function events(g, x, S, ih) {
+    if (!EV) return;
+    const P = (d) => d3.timeParse("%Y-%m-%d")(d);
+    const xd = d3.scaleTime(S.map((s) => P(s.date)), S.map((s) => x(s.label) + x.bandwidth() / 2)).clamp(true);
+    const gl = g.append("g"), gt = g.append("g");   // every name is drawn above every line
+    const ends = Array(EV_ROWS).fill(-Infinity), W = x.range()[1];
+    EV.events.map((e) => ({ e, cx: xd(P(e.date)) })).sort((a, b) => a.cx - b.cx).forEach(({ e, cx }) => {
+      const w = e.label.length * 6.2, x0 = Math.max(0, Math.min(W - w, cx - w / 2));
+      let r = ends.findIndex((v) => v + 6 < x0); if (r < 0) r = ends.indexOf(Math.min(...ends));
+      ends[r] = x0 + w;
+      const y = -EV_TOP - 30 + r * EV_RH + 10, c = e.kind === "vote" ? "#2ca02c" : FOCUS;
+      const tipOn = (ev) => showTip(ev, `<b>${d3.timeFormat("%b %-d")(P(e.date))}: ${e.label}</b>${e.text}`);
+      gl.append("line").style("cursor", "pointer").on("pointerenter click", tipOn).on("pointerleave", hideTip).attr("x1", cx).attr("x2", cx).attr("y1", y + 3).attr("y2", -7).attr("stroke", c).attr("stroke-dasharray", "2,2");
+      gl.append("path").attr("d", `M${cx - 4},${-8}L${cx + 4},${-8}L${cx},${-1}Z`).attr("fill", c);   // arrow stops at the grid
+      const bg = gt.append("rect").attr("fill", "#fff").attr("y", y - 10).attr("height", 13);
+      const tx = gt.append("text").style("cursor", "pointer").on("pointerenter click", tipOn).on("pointerleave", hideTip).attr("x", x0).attr("y", y).attr("font-size", 11).attr("fill", e.kind === "vote" ? c : INK)
+        .attr("font-weight", e.kind === "vote" ? 600 : 400).attr("paint-order", "stroke").attr("stroke", "#fff").attr("stroke-width", 3).text(e.label);
+      bg.attr("x", x0 - 2).attr("width", tx.node().getComputedTextLength() + 4);
+    });
+  }
+
   // Names grid: the most named people, one column per stream.
   function names(D) {
     const S = D.streams, R = D.top_names, el = document.getElementById("tw-names");
@@ -110,7 +135,7 @@
     document.getElementById("tw-h4").textContent =
       `${R[0].label} was the person named most often over the ${S.length} streams, ${fmtInt(R[0].n)} times.`;
     const narrow = (el.clientWidth || 640) < 480;
-    const m = { t: 34, r: 4, b: 4, l: narrow ? 126 : 150 }, rowH = narrow ? 26 : 28;
+    const m = { t: 34 + (EV ? EV_TOP : 0), r: 4, b: 4, l: narrow ? 126 : 150 }, rowH = narrow ? 26 : 28;
     const f = frame(el, m.t + m.b + rowH * R.length, m, S.length, 22);
     const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
     const y = d3.scaleBand(R.map((r) => r.key), [0, f.ih]).padding(0.08);
@@ -119,7 +144,7 @@
     const hx = f.g.append("g").attr("class", "ax");
     S.forEach((s, i) => {
       if (!showTick(S, i)) return;
-      const t = hx.append("text").attr("text-anchor", "middle");
+      const t = hx.append("text").attr("text-anchor", "middle").attr("paint-order", "stroke").attr("stroke", "#fff").attr("stroke-width", 4).attr("stroke-linejoin", "round");
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -20).text(day(s));
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
     });
@@ -131,6 +156,8 @@
       .attr("rx", 3).attr("fill", (c) => col(c.v))
       .on("pointermove click", (ev, c) => showTip(ev, `<b>${c.r.label}, ${c.s.label}, 2026</b>${fmtInt(c.n)} times, ${fmt1(c.v)} per 10,000 words`))
       .on("pointerleave", hideTip);
+    events(f.g, x, S, f.ih);
+    hx.raise();   // date labels, with a white border, above the event lines
     if (!narrow && !dense(S)) {
       f.g.selectAll(null).data(cells).join("text").attr("class", "cell-lbl")
         .attr("x", (c) => x(c.s.label) + x.bandwidth() / 2).attr("y", (c) => y(c.r.key) + y.bandwidth() / 2)
@@ -367,12 +394,13 @@
     }
   }
 
-  d3.json("/visualizations/data/twitch_transcripts.json?v=202611090706").then((D) => {
+  d3.json("/visualizations/data/twitch_transcripts.json?v=202611091130").then((D) => {
     const S = D.streams;
     document.getElementById("tw-range").textContent =
       `${S.length} streams from ${S[0].label} to ${S[S.length - 1].label}, 2026`;
     const all = () => { hours(D); topics(D); words(D); lookup(D); names(D); };
     d3.json("/visualizations/data/twitch_vocab.json?v=202611051500").then((v) => { V = v; lookup(D); });
+    d3.json("/visualizations/data/twitch_events.json?v=20261109d").then((e) => { EV = e; names(D); });
     all();
     let w = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== w) { w = window.innerWidth; all(); } });
