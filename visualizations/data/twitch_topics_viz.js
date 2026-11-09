@@ -27,31 +27,6 @@
     return { svg, w, h, iw: w - m.l - m.r, ih: h - m.t - m.b, g: svg.append("g").attr("transform", `translate(${m.l},${m.t})`) };
   }
 
-  function timeline(E) {
-    const el = document.getElementById("tt-events"), Dd = D.days.map((b) => parse(b.month));
-    const rowsN = 4, rh = 30, m = { t: 6, r: 16, b: 22, l: 16 };
-    const f = frame(el, m.t + m.b + rh * rowsN + 10, m, 600);
-    const x = d3.scaleTime([d3.timeDay.offset(Dd[0], -1), d3.timeDay.offset(Dd[Dd.length - 1], 1)], [0, f.iw]);
-    const base = rh * rowsN + 4;
-    // stretches with no stream, so an event there has no data under it
-    for (let i = 1; i < Dd.length; i++) if (d3.timeDay.count(Dd[i - 1], Dd[i]) > 3)
-      f.g.append("rect").attr("x", x(Dd[i - 1]) + 4).attr("width", x(Dd[i]) - x(Dd[i - 1]) - 8).attr("y", 0).attr("height", base)
-        .attr("fill", "#f1edf7").append("title").text("No streams in this period");
-    f.g.append("line").attr("x1", 0).attr("x2", f.iw).attr("y1", base).attr("y2", base).attr("stroke", "#c9bce3");
-    f.g.append("g").attr("class", "ax").attr("transform", `translate(0,${base})`)
-      .call(d3.axisBottom(x).ticks(d3.timeWeek.every(1)).tickFormat(day).tickSize(4));
-    E.events.forEach((e, i) => {
-      const xd = x(parse(e.date)), r = i % rowsN, y = r * rh + 14, c = { mi: "#1f77b4", vote: "#2ca02c" }[e.kind] || "#7461c4";
-      const g = f.g.append("g").style("cursor", "pointer")
-        .on("pointerenter click", (ev) => showTip(ev, `<b>${day(parse(e.date))}: ${esc(e.label)}</b>${esc(e.text)}`)).on("pointerleave", hideTip);
-      g.append("line").attr("x1", xd).attr("x2", xd).attr("y1", y + 4).attr("y2", base).attr("stroke", c).attr("stroke-dasharray", "2,2");
-      g.append("circle").attr("cx", xd).attr("cy", base).attr("r", 3.5).attr("fill", c);
-      const anchor = xd > f.iw - 90 ? "end" : xd < 90 ? "start" : "middle";
-      g.append("text").attr("x", xd).attr("y", y).attr("text-anchor", anchor).attr("font-size", 11).attr("fill", e.kind === "world" ? INK : c).attr("font-weight", e.kind === "world" ? 400 : 600)
-        .attr("paint-order", "stroke").attr("stroke", "#fff").attr("stroke-width", 3).text(e.label);
-    });
-  }
-
   function grid() {
     const el = document.getElementById("tt-grid"), T = D.topics, B = D.days;
     const narrow = false;
@@ -110,9 +85,9 @@
     });
   }
 
-  Promise.all([d3.json("/visualizations/data/twitch_topics.json?v=20261109a"), d3.json("/visualizations/data/twitch_events.json?v=20261109c")]).then(([d, E]) => {
-    D = d; timeline(E); grid(); map(); words();
+  Promise.all([d3.json("/visualizations/data/twitch_topics.json?v=20261109a"), null]).then(([d]) => {
+    D = d; map(); words();
     let wd = window.innerWidth;
-    window.addEventListener("resize", () => { if (window.innerWidth !== wd) { wd = window.innerWidth; timeline(E); grid(); map(); } });
+    window.addEventListener("resize", () => { if (window.innerWidth !== wd) { wd = window.innerWidth; map(); } });
   });
 })();

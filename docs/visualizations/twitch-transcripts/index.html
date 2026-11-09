@@ -115,9 +115,6 @@
   <p class="tw-kicker">Topic analysis</p>
   <h2 id="tt-h" class="tw-h">What the streams talk about, found by a topic model</h2>
   <p class="tw-p">Each stream was cut into 3-minute pieces, called chunks. A topic model called LDA (Latent Dirichlet Allocation) sorted the chunks into 12 topics by the words they share. Unlike ordinary clustering, it gives each chunk a mix of topics rather than a single group. The model was given only the words, after common words and filler were removed. It was given no labels. A large language model (Claude) named each topic afterward from its top words and sample chunks. Only chunks with at least 60 such words count.</p>
-  <h3 class="tt-h3">Share of each stream, by topic</h3>
-  <p class="tw-p">Each row is one stream, by start date. Each cell is that topic's share of the stream, out of 100. Darker is a larger share. On a phone, swipe sideways to see every topic.</p>
-  <div class="tw-chart" id="tt-grid" role="img" aria-label="Grid of streams by topic. Darker cells mean a larger share of that stream."></div>
   <h3 class="tt-h3">Map of the chunks</h3>
   <p class="tw-p">Each dot is one 3-minute chunk, coloured by its main topic. Chunks with similar topic mixes sit close together. The position has no other meaning. Each topic's name is written at the middle of its dots. The map shows a random 3,000 of the chunks. Hover or tap a dot to see its topic and date.</p>
   <p class="tw-legend tt-legend" id="tt-legend"></p>
@@ -188,7 +185,7 @@
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/twitch_topics_viz.js?v=20261109e"></script>
+<script src="/visualizations/data/twitch_topics_viz.js?v=20261109f"></script>
 <script src="/visualizations/data/twitch_transcripts_viz.js?v=202611091000"></script>
 
 </div>

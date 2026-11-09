@@ -86,8 +86,8 @@
   }
 
   Promise.all([d3.json("/visualizations/data/twitch_topics.json?v=20261109a"), null]).then(([d]) => {
-    D = d; grid(); map(); words();
+    D = d; map(); words();
     let wd = window.innerWidth;
-    window.addEventListener("resize", () => { if (window.innerWidth !== wd) { wd = window.innerWidth; grid(); map(); } });
+    window.addEventListener("resize", () => { if (window.innerWidth !== wd) { wd = window.innerWidth; map(); } });
   });
 })();
