@@ -117,13 +117,13 @@
       const w = e.label.length * 6.2, x0 = Math.max(0, Math.min(W - w, cx - w / 2));
       let r = ends.findIndex((v) => v + 6 < x0); if (r < 0) r = ends.indexOf(Math.min(...ends));
       ends[r] = x0 + w;
-      const y = -EV_TOP - 30 + r * EV_RH + 10, c = e.kind === "vote" ? "#2ca02c" : FOCUS;
+      const y = -EV_TOP - 30 + r * EV_RH + 10, c = FOCUS;
       const tipOn = (ev) => showTip(ev, `<b>${d3.timeFormat("%b %-d")(P(e.date))}: ${e.label}</b>${e.text}`);
       gl.append("line").style("cursor", "pointer").on("pointerenter click", tipOn).on("pointerleave", hideTip).attr("x1", cx).attr("x2", cx).attr("y1", y + 3).attr("y2", -7).attr("stroke", c).attr("stroke-dasharray", "2,2");
       gl.append("path").attr("d", `M${cx - 4},${-8}L${cx + 4},${-8}L${cx},${-1}Z`).attr("fill", c);   // arrow stops at the grid
       const bg = gt.append("rect").attr("fill", "#fff").attr("y", y - 10).attr("height", 13);
-      const tx = gt.append("text").style("cursor", "pointer").on("pointerenter click", tipOn).on("pointerleave", hideTip).attr("x", x0).attr("y", y).attr("font-size", 11).attr("fill", e.kind === "vote" ? c : INK)
-        .attr("font-weight", e.kind === "vote" ? 600 : 400).attr("paint-order", "stroke").attr("stroke", "#fff").attr("stroke-width", 3).text(e.label);
+      const tx = gt.append("text").style("cursor", "pointer").on("pointerenter click", tipOn).on("pointerleave", hideTip).attr("x", x0).attr("y", y).attr("font-size", 11).attr("fill", INK)
+        .attr("font-weight", 400).attr("paint-order", "stroke").attr("stroke", "#fff").attr("stroke-width", 3).text(e.label);
       bg.attr("x", x0 - 2).attr("width", tx.node().getComputedTextLength() + 4);
     });
   }
