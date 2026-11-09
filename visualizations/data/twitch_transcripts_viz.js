@@ -174,9 +174,9 @@
     const tok = d3.sum(S, (s) => s.tokens);
     const all = T.map((t) => ({ t, v: d3.sum(S, (s) => s.topics_n[t.key]) / tok * 1e4 })).sort((p, q) => q.v - p.v);
     document.getElementById("tw-h2").textContent =
-      `${all[0].t.noun} came up most often of the ${T.length} topics: ${fmt1(all[0].v)} times per 10,000 words over the ${S.length} streams.`;
+      `${all[0].t.noun} came up most often of the ${T.length} word sets: ${fmt1(all[0].v)} times per 10,000 words over the ${S.length} streams.`;
     document.getElementById("tw-p2").textContent =
-      `Each row is a fixed list of words, and each cell gives how often its words were spoken per 10,000 words in that stream. ` +
+      `Each row is a set of words that I chose. Each cell gives how often any word in the set was spoken, per 10,000 words in that stream. The words in each set are: ` +
       T.map((t) => `${t.label}: ${t.words.join(", ")}.`).join(" ");
     const R = all.map((d) => d.t);
     const narrow = (el.clientWidth || 640) < 480;

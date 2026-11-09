@@ -75,9 +75,9 @@ layout: layouts/post.njk
 </section>
 
 <section class="tw-sec" aria-labelledby="tw-h2">
-  <p class="tw-kicker">Selected topics</p>
+  <p class="tw-kicker">Selected word sets</p>
   <h2 id="tw-h2" class="tw-h"></h2>
-  <div class="tw-chart" id="tw-topics" role="img" aria-label="Grid of five topic word lists by stream. Darker cells mean the topic's words were spoken more often per 10,000 words."></div>
+  <div class="tw-chart" id="tw-topics" role="img" aria-label="Grid of five word sets by stream. Darker cells mean the words in the set were spoken more often per 10,000 words."></div>
   <p class="tw-legend" id="tw-tlegend"></p>
   <p class="tw-p" id="tw-p2"></p>
 </section>
@@ -98,7 +98,7 @@ layout: layouts/post.njk
 
 <div class="tw-tip" id="tw-tip" hidden></div>
 
-**Methods.** The streams are the HasanAbi Twitch broadcasts transcribed so far, <span id="tw-range">listed in the charts</span>. New streams and older archived streams are added as they are transcribed. On days with many streams, each chart scrolls sideways. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so "Israel's" counts as "Israel". The speech recognition spells Abdul El-Sayed several ways, such as "Abdullah Al-Sayed" and "Abdel El-Sayed". All of them count as "Abdul El-Sayed". In the "Selected topics" chart, each topic is a fixed word list, shown under its chart. The topic analysis is different: its topics come from the LDA model, with the streams cut into 3-minute chunks. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer's own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example "thank" and "wait". So were first names whose surname is already counted, and the streamer's own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.
+**Methods.** The streams are the HasanAbi Twitch broadcasts transcribed so far, <span id="tw-range">listed in the charts</span>. New streams and older archived streams are added as they are transcribed. On days with many streams, each chart scrolls sideways. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so "Israel's" counts as "Israel". The speech recognition spells Abdul El-Sayed several ways, such as "Abdullah Al-Sayed" and "Abdel El-Sayed". All of them count as "Abdul El-Sayed". In the "Selected word sets" chart, each row is a fixed set of words, listed under the chart. The topic analysis is different: its topics come from the LDA model, with the streams cut into 3-minute chunks. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer's own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example "thank" and "wait". So were first names whose surname is already counted, and the streamer's own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.
 
 ## References
 
@@ -169,4 +169,4 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/twitch_topics_viz.js?v=20261109f"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611091130"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611091135"></script>
