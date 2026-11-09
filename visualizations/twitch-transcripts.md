@@ -82,10 +82,26 @@ layout: layouts/post.njk
   <p class="tw-p" id="tw-p2"></p>
 </section>
 
+<section class="tw-sec" aria-labelledby="tt-h">
+  <p class="tw-kicker">Topic analysis</p>
+  <h2 id="tt-h" class="tw-h">What the streams talk about, found by a topic model</h2>
+  <p class="tw-p">Each stream was cut into 3-minute pieces, called chunks. A topic model called LDA (Latent Dirichlet Allocation) sorted the chunks into 12 topics by the words they share. Unlike ordinary clustering, it gives each chunk a mix of topics rather than a single group. The model was given only the words, after common words and filler were removed. It was given no labels. A large language model (Claude) named each topic afterward from its top words and sample chunks. Only chunks with at least 60 such words count.</p>
+  <h3 class="tt-h3">Share of each stream, by topic</h3>
+  <p class="tw-p">Each row is one stream, by start date. Each cell is that topic's share of the stream, out of 100. Darker is a larger share. On a phone, swipe sideways to see every topic.</p>
+  <div class="tw-chart" id="tt-grid" role="img" aria-label="Grid of streams by topic. Darker cells mean a larger share of that stream."></div>
+  <h3 class="tt-h3">Map of the chunks</h3>
+  <p class="tw-p">Each dot is one 3-minute chunk, coloured by its main topic. Chunks with similar topic mixes sit close together. The position has no other meaning. Each topic's name is written at the middle of its dots. The map shows a random 3,000 of the chunks. Hover or tap a dot to see its topic and date.</p>
+  <p class="tw-legend tt-legend" id="tt-legend"></p>
+  <div class="tw-chart" id="tt-map" role="img" aria-label="Scatter plot of stream chunks coloured by main topic."></div>
+  <h3 class="tt-h3">Top words in each topic</h3>
+  <p class="tw-p">The 8 words that most define each topic. A longer bar means the word makes up more of the topic.</p>
+  <div class="tt-words" id="tt-words"></div>
+</section>
+
 
 <div class="tw-tip" id="tw-tip" hidden></div>
 
-**Methods.** The streams are the HasanAbi Twitch broadcasts transcribed so far, <span id="tw-range">listed in the charts</span>. New streams and older archived streams are added as they are transcribed. On days with many streams, each chart scrolls sideways. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so "Israel's" counts as "Israel". The speech recognition spells Abdul El-Sayed several ways, such as "Abdullah Al-Sayed" and "Abdel El-Sayed". All of them count as "Abdul El-Sayed". Each topic is a fixed word list, shown under its chart. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer's own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example "thank" and "wait". So were first names whose surname is already counted, and the streamer's own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.
+**Methods.** The streams are the HasanAbi Twitch broadcasts transcribed so far, <span id="tw-range">listed in the charts</span>. New streams and older archived streams are added as they are transcribed. On days with many streams, each chart scrolls sideways. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so "Israel's" counts as "Israel". The speech recognition spells Abdul El-Sayed several ways, such as "Abdullah Al-Sayed" and "Abdel El-Sayed". All of them count as "Abdul El-Sayed". In the "Selected topics" chart, each topic is a fixed word list, shown under its chart. The topic analysis is different: its topics come from the LDA model, with the streams cut into 3-minute chunks. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer's own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example "thank" and "wait". So were first names whose surname is already counted, and the streamer's own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.
 
 ## References
 
@@ -147,7 +163,13 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .tw-tone { text-align: right; font-size: .78rem; line-height: 1.3; color: #625a7a; margin: .3rem 0 0; }
 .tw-tone b { font-size: 1.15rem; color: #2a2340; margin-right: .3rem; }
 .tw-legend[hidden] { display: none; }
+.tt-legend { display: flex; flex-wrap: wrap; gap: .2rem .3rem; }
+.tt-h3 { font-size: 1rem; margin: 1.2rem 0 .3rem; }
+.tt-words { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: .8rem 1.2rem; margin-top: .5rem; }
+.tt-wh { font-size: .85rem; font-weight: 600; margin: 0 0 .2rem; }
+.tt-w svg { width: 100%; height: auto; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611080706"></script>
+<script src="/visualizations/data/twitch_topics_viz.js?v=20261108c"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611090706"></script>
