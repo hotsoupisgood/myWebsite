@@ -234,6 +234,12 @@
       body: (W) => `The grid shows the ${W.length} most frequent 4-word phrases. The first and last words are not common English words. ` +
         `Greetings and stock phrases, such as "United States of America", and phrases with the streamer's own name were removed. Each cell gives how often the phrase was spoken per 10,000 words in that stream.`,
       aria: "Grid of the 12 most frequent 4-word phrases by stream. Darker cells mean the phrase was spoken more often per 10,000 words." },
+    names: { tab: "Names", list: "top_names", rate: "names", count: "names_n",
+      head: (W, S) => `${W[0].label} was the person named most often over the ${S.length} streams, ${fmtInt(W[0].n)} times.`,
+      body: (W) => `The grid shows the ${W.length} people named most often. Names were found with spaCy, a language-processing library, which marks the words in a sentence that name a person. ` +
+        `Mentions are grouped by surname, so "Stevens" alone counts as Haley Stevens. A first name alone, such as "Abdul", is not counted. The streamer himself, fictional characters and religious figures were left out. ` +
+        `Each cell gives how often the person was named per 10,000 words in that stream.`,
+      aria: "Grid of the 12 people named most often, by stream. Darker cells mean the person was named more often per 10,000 words." },
   };
 
   function wordTabs(redraw) {
@@ -269,7 +275,7 @@
     document.getElementById("tw-h3").textContent = V.head(W, S);
     document.getElementById("tw-p3").textContent = V.body(W);
     const narrow = (el.clientWidth || 640) < 480;
-    const lw = wordView === "words" ? (narrow ? 74 : 96) : wordView === "pairs" ? (narrow ? 136 : 150) : (narrow ? 150 : 210);
+    const lw = wordView === "words" ? (narrow ? 74 : 96) : wordView === "names" ? (narrow ? 126 : 150) : wordView === "pairs" ? (narrow ? 136 : 150) : (narrow ? 150 : 210);
     const m = { t: 34 + (EV ? EV_TOP : 0), r: 4, b: 4, l: lw };
     const rowH = narrow ? 26 : 28;
     const f = frame(el, m.t + m.b + rowH * W.length, m, S.length, 22);
@@ -401,9 +407,9 @@
     const S = D.streams;
     document.getElementById("tw-range").textContent =
       `${S.length} streams from ${S[0].label} to ${S[S.length - 1].label}, 2026`;
-    const all = () => { hours(D); topics(D); words(D); lookup(D); names(D); };
+    const all = () => { hours(D); topics(D); words(D); lookup(D); };
     d3.json("/visualizations/data/twitch_vocab.json?v=202611051500").then((v) => { V = v; lookup(D); });
-    d3.json("/visualizations/data/twitch_events.json?v=20261109d").then((e) => { EV = e; names(D); words(D); });
+    d3.json("/visualizations/data/twitch_events.json?v=20261109d").then((e) => { EV = e; words(D); });
     all();
     let w = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== w) { w = window.innerWidth; all(); } });
