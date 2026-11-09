@@ -1,0 +1,386 @@
+{
+ "note": "DRAFT, not on the page. Source: Wikipedia, '2026 in the United States', fetched 2026-11-09. One source per event; check before publishing.",
+ "source": [
+  "https://en.wikipedia.org/wiki/2026_in_the_United_States",
+  "https://en.wikipedia.org/wiki/2026_United_States_Senate_election_in_Michigan"
+ ],
+ "events": [
+  {
+   "date": "2026-09-09",
+   "label": "Oil passes $100",
+   "text": "Oil passes $100 a barrel. Trump promises a $5,000 payment to every adult if Republicans keep Congress.",
+   "kind": "world"
+  },
+  {
+   "date": "2026-09-15",
+   "label": "MI debate 1",
+   "kind": "mi",
+   "text": "First Michigan Senate debate (Fox 2 Detroit). El-Sayed takes part; Mike Rogers does not attend."
+  },
+  {
+   "date": "2026-09-23",
+   "label": "Iran's president at UN",
+   "text": "Iran's president arrives in New York for the UN General Assembly during the war with the US.",
+   "kind": "world"
+  },
+  {
+   "date": "2026-09-26",
+   "label": "Ceasefire rejected",
+   "text": "Trump rejects Iran's seven-day ceasefire proposal.",
+   "kind": "world"
+  },
+  {
+   "date": "2026-10-08",
+   "label": "No Iran strikes before vote",
+   "text": "Trump says strikes on Iran will not resume before the November 3 midterm elections.",
+   "kind": "world"
+  },
+  {
+   "date": "2026-10-08",
+   "label": "MI debate 2",
+   "kind": "mi",
+   "text": "Second Michigan Senate debate (WOOD-TV), with El-Sayed and Rogers."
+  },
+  {
+   "date": "2026-10-20",
+   "label": "MI forum",
+   "kind": "mi",
+   "text": "Michigan Senate forum at the Detroit Economic Club."
+  },
+  {
+   "date": "2026-10-21",
+   "label": "AIPAC stops endorsing",
+   "text": "AIPAC says it will stop endorsing candidates and making direct PAC contributions.",
+   "kind": "world"
+  },
+  {
+   "date": "2026-10-30",
+   "label": "MI: ad row",
+   "kind": "mi",
+   "text": "Haley Stevens asks El-Sayed to condemn an ad by an outside group that linked Michigan's economy to US aid to Israel. He declines."
+  },
+  {
+   "date": "2026-11-01",
+   "label": "MI: Stevens backs Rogers",
+   "text": "Haley Stevens endorses Republican Mike Rogers over Abdul El-Sayed in the Michigan Senate race.",
+   "kind": "mi"
+  },
+  {
+   "date": "2026-11-03",
+   "label": "Midterms",
+   "text": "Midterm elections. Democrats win the House and the Senate. In Michigan, Abdul El-Sayed beats Mike Rogers for the open Senate seat.",
+   "kind": "vote"
+  }
+ ],
+ "polls": [
+  {
+   "pollster": "Glengariff Group",
+   "end": "2026-09-03",
+   "el_sayed": 44.0,
+   "rogers": 46.0,
+   "lead": -2.0
+  },
+  {
+   "pollster": "SSRS",
+   "end": "2026-09-06",
+   "el_sayed": 47.0,
+   "rogers": 44.0,
+   "lead": 3.0
+  },
+  {
+   "pollster": "Trafalgar Group (R)",
+   "end": "2026-09-09",
+   "el_sayed": 46.0,
+   "rogers": 45.0,
+   "lead": 1.0
+  },
+  {
+   "pollster": "Emerson College",
+   "end": "2026-09-14",
+   "el_sayed": 48.0,
+   "rogers": 46.0,
+   "lead": 2.0
+  },
+  {
+   "pollster": "Washington Post/SSPG",
+   "end": "2026-09-14",
+   "el_sayed": 48.0,
+   "rogers": 45.0,
+   "lead": 3.0
+  },
+  {
+   "pollster": "InsiderAdvantage (R)",
+   "end": "2026-09-17",
+   "el_sayed": 47.0,
+   "rogers": 45.0,
+   "lead": 2.0
+  },
+  {
+   "pollster": "Torchlight Strategies (R)",
+   "end": "2026-09-19",
+   "el_sayed": 43.0,
+   "rogers": 44.0,
+   "lead": -1.0
+  },
+  {
+   "pollster": "Suffolk University",
+   "end": "2026-09-20",
+   "el_sayed": 47.0,
+   "rogers": 40.0,
+   "lead": 7.0
+  },
+  {
+   "pollster": "Cygnal (R)/Beacon Research (D)",
+   "end": "2026-09-21",
+   "el_sayed": 45.0,
+   "rogers": 40.0,
+   "lead": 5.0
+  },
+  {
+   "pollster": "GBAO (D)",
+   "end": "2026-09-22",
+   "el_sayed": 48.0,
+   "rogers": 44.0,
+   "lead": 4.0
+  },
+  {
+   "pollster": "New York Times/Siena",
+   "end": "2026-09-22",
+   "el_sayed": 49.0,
+   "rogers": 44.0,
+   "lead": 5.0
+  },
+  {
+   "pollster": "co/efficient (R)",
+   "end": "2026-09-23",
+   "el_sayed": 45.0,
+   "rogers": 45.0,
+   "lead": 0.0
+  },
+  {
+   "pollster": "Big Data Poll (R)",
+   "end": "2026-09-24",
+   "el_sayed": 47.0,
+   "rogers": 42.0,
+   "lead": 5.0
+  },
+  {
+   "pollster": "The Tyson Group (R)",
+   "end": "2026-09-27",
+   "el_sayed": 44.0,
+   "rogers": 43.0,
+   "lead": 1.0
+  },
+  {
+   "pollster": "Marist University",
+   "end": "2026-09-27",
+   "el_sayed": 51.0,
+   "rogers": 44.0,
+   "lead": 7.0
+  },
+  {
+   "pollster": "Guidant Polling & Strategy",
+   "end": "2026-09-27",
+   "el_sayed": 48.0,
+   "rogers": 43.0,
+   "lead": 5.0
+  },
+  {
+   "pollster": "Beacon Research (D)/ Shaw & Co. Research (R)",
+   "end": "2026-09-28",
+   "el_sayed": 50.0,
+   "rogers": 49.0,
+   "lead": 1.0
+  },
+  {
+   "pollster": "Trafalgar Group (R)",
+   "end": "2026-09-30",
+   "el_sayed": 47.0,
+   "rogers": 45.0,
+   "lead": 2.0
+  },
+  {
+   "pollster": "Mitchell Research & Communications",
+   "end": "2026-10-01",
+   "el_sayed": 46.0,
+   "rogers": 41.0,
+   "lead": 5.0
+  },
+  {
+   "pollster": "Z to A Research (D)",
+   "end": "2026-10-01",
+   "el_sayed": 49.0,
+   "rogers": 42.0,
+   "lead": 7.0
+  },
+  {
+   "pollster": "YouGov",
+   "end": "2026-10-04",
+   "el_sayed": 49.0,
+   "rogers": 48.0,
+   "lead": 1.0
+  },
+  {
+   "pollster": "Quantus Insights (R)",
+   "end": "2026-10-06",
+   "el_sayed": 48.0,
+   "rogers": 47.0,
+   "lead": 1.0
+  },
+  {
+   "pollster": "The Tyson Group (R)",
+   "end": "2026-10-08",
+   "el_sayed": 44.0,
+   "rogers": 46.0,
+   "lead": -2.0
+  },
+  {
+   "pollster": "InsiderAdvantage (R)",
+   "end": "2026-10-10",
+   "el_sayed": 48.0,
+   "rogers": 46.0,
+   "lead": 2.0
+  },
+  {
+   "pollster": "Rasmussen Reports (R)",
+   "end": "2026-10-14",
+   "el_sayed": 46.0,
+   "rogers": 44.0,
+   "lead": 2.0
+  },
+  {
+   "pollster": "Marist University",
+   "end": "2026-10-18",
+   "el_sayed": 50.0,
+   "rogers": 48.0,
+   "lead": 2.0
+  },
+  {
+   "pollster": "Michigan State University/YouGov",
+   "end": "2026-10-19",
+   "el_sayed": 48.0,
+   "rogers": 46.0,
+   "lead": 2.0
+  },
+  {
+   "pollster": "InsiderAdvantage (R)",
+   "end": "2026-10-22",
+   "el_sayed": 47.0,
+   "rogers": 46.0,
+   "lead": 1.0
+  },
+  {
+   "pollster": "Glengariff Group",
+   "end": "2026-10-22",
+   "el_sayed": 51.0,
+   "rogers": 45.0,
+   "lead": 6.0
+  },
+  {
+   "pollster": "RedBox Research (D)",
+   "end": "2026-10-23",
+   "el_sayed": 49.0,
+   "rogers": 44.0,
+   "lead": 5.0
+  },
+  {
+   "pollster": "Michigan State University/Verasight",
+   "end": "2026-10-23",
+   "el_sayed": 51.0,
+   "rogers": 43.0,
+   "lead": 8.0
+  },
+  {
+   "pollster": "Data for Progress (D)",
+   "end": "2026-10-25",
+   "el_sayed": 50.0,
+   "rogers": 46.0,
+   "lead": 4.0
+  },
+  {
+   "pollster": "Mitchell Research & Communications",
+   "end": "2026-10-27",
+   "el_sayed": 51.0,
+   "rogers": 44.0,
+   "lead": 7.0
+  },
+  {
+   "pollster": "SSRS",
+   "end": "2026-10-27",
+   "el_sayed": 49.0,
+   "rogers": 42.0,
+   "lead": 7.0
+  },
+  {
+   "pollster": "Upswing Research (D)",
+   "end": "2026-10-28",
+   "el_sayed": 50.0,
+   "rogers": 45.0,
+   "lead": 5.0
+  },
+  {
+   "pollster": "Rasmussen Reports (R)",
+   "end": "2026-10-29",
+   "el_sayed": 49.0,
+   "rogers": 44.0,
+   "lead": 5.0
+  },
+  {
+   "pollster": "YouGov",
+   "end": "2026-10-29",
+   "el_sayed": 51.0,
+   "rogers": 47.0,
+   "lead": 4.0
+  },
+  {
+   "pollster": "Emerson College",
+   "end": "2026-11-01",
+   "el_sayed": 51.0,
+   "rogers": 45.0,
+   "lead": 6.0
+  },
+  {
+   "pollster": "Trafalgar Group (R)",
+   "end": "2026-11-01",
+   "el_sayed": 47.0,
+   "rogers": 46.0,
+   "lead": 1.0
+  },
+  {
+   "pollster": "Concord Public Opinion Partners (D)",
+   "end": "2026-11-01",
+   "el_sayed": 51.0,
+   "rogers": 41.0,
+   "lead": 10.0
+  },
+  {
+   "pollster": "Research Co.",
+   "end": "2026-11-01",
+   "el_sayed": 48.0,
+   "rogers": 46.0,
+   "lead": 2.0
+  },
+  {
+   "pollster": "AtlasIntel",
+   "end": "2026-11-01",
+   "el_sayed": 54.0,
+   "rogers": 46.0,
+   "lead": 8.0
+  },
+  {
+   "pollster": "New York Times/Siena",
+   "end": "2026-11-01",
+   "el_sayed": 53.0,
+   "rogers": 42.0,
+   "lead": 11.0
+  },
+  {
+   "pollster": "John Zogby Strategies",
+   "end": "2026-11-02",
+   "el_sayed": 51.0,
+   "rogers": 49.0,
+   "lead": 2.0
+  }
+ ],
+ "polls_note": "Michigan Senate general-election polls, by last day in the field, from the Wikipedia page's poll table. lead = El-Sayed share minus Rogers share."
+}
