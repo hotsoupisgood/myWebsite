@@ -195,12 +195,13 @@
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
     });
     f.g.selectAll(null).data(R).join("text").attr("class", "wl").attr("x", -8)
-      .attr("y", (t) => y(t.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((t) => t.label);
+      .attr("y", (t) => y(t.key) + y.bandwidth() / 2).attr("dy", "0.35em").attr("text-anchor", "end").text((t) => t.label)
+      .style("cursor", "pointer").on("pointerenter click", (ev, t) => showTip(ev, `<b>${t.label}: the words in this set</b>${t.words.join(", ")}`)).on("pointerleave", hideTip);
     const cells = S.flatMap((s) => R.map((t) => ({ s, t, v: s.topics[t.key], n: s.topics_n[t.key] })));
     f.g.selectAll(null).data(cells).join("rect")
       .attr("x", (c) => x(c.s.label)).attr("y", (c) => y(c.t.key)).attr("width", x.bandwidth()).attr("height", y.bandwidth())
       .attr("rx", 3).attr("fill", (c) => col(c.v))
-      .on("pointermove click", (ev, c) => showTip(ev, `<b>${c.t.label}, ${c.s.label}, 2026</b>${fmtInt(c.n)} times, ${fmt1(c.v)} per 10,000 words`))
+      .on("pointermove click", (ev, c) => showTip(ev, `<b>${c.t.label}, ${c.s.label}, 2026</b>${fmtInt(c.n)} times, ${fmt1(c.v)} per 10,000 words<br>Words in this set: ${c.t.words.join(", ")}`))
       .on("pointerleave", hideTip);
     if (!narrow && !dense(S)) {
       f.g.selectAll(null).data(cells).join("text").attr("class", "cell-lbl")
