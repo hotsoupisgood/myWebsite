@@ -270,7 +270,7 @@
     document.getElementById("tw-p3").textContent = V.body(W);
     const narrow = (el.clientWidth || 640) < 480;
     const lw = wordView === "words" ? (narrow ? 74 : 96) : wordView === "pairs" ? (narrow ? 136 : 150) : (narrow ? 150 : 210);
-    const m = { t: 34, r: 4, b: 4, l: lw };
+    const m = { t: 34 + (EV ? EV_TOP : 0), r: 4, b: 4, l: lw };
     const rowH = narrow ? 26 : 28;
     const f = frame(el, m.t + m.b + rowH * W.length, m, S.length, 22);
     const x = d3.scaleBand(S.map((s) => s.label), [0, f.iw]).padding(0.06);
@@ -280,7 +280,7 @@
     const hx = f.g.append("g").attr("class", "ax");
     S.forEach((s, i) => {
       if (!showTick(S, i)) return;
-      const t = hx.append("text").attr("text-anchor", "middle");
+      const t = hx.append("text").attr("text-anchor", "middle").attr("paint-order", "stroke").attr("stroke", "#fff").attr("stroke-width", 4).attr("stroke-linejoin", "round");
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -20).text(day(s));
       t.append("tspan").attr("x", x(s.label) + x.bandwidth() / 2).attr("y", -7).text(tick(s, narrow));
     });
@@ -301,6 +301,8 @@
         .text((c) => fmt1(c.v));
     }
     legend(col, vmax);
+    events(f.g, x, S, f.ih);
+    hx.raise();
   }
 
 
@@ -401,7 +403,7 @@
       `${S.length} streams from ${S[0].label} to ${S[S.length - 1].label}, 2026`;
     const all = () => { hours(D); topics(D); words(D); lookup(D); names(D); };
     d3.json("/visualizations/data/twitch_vocab.json?v=202611051500").then((v) => { V = v; lookup(D); });
-    d3.json("/visualizations/data/twitch_events.json?v=20261109d").then((e) => { EV = e; names(D); });
+    d3.json("/visualizations/data/twitch_events.json?v=20261109d").then((e) => { EV = e; names(D); words(D); });
     all();
     let w = window.innerWidth;
     window.addEventListener("resize", () => { if (window.innerWidth !== w) { w = window.innerWidth; all(); } });
