@@ -28,6 +28,14 @@ layout: layouts/post.njk
   <p class="tw-p" id="tw-p3"></p>
 </section>
 
+<section class="tw-sec" aria-labelledby="tw-h2">
+  <p class="tw-kicker">Selected word sets</p>
+  <h2 id="tw-h2" class="tw-h"></h2>
+  <div class="tw-chart" id="tw-topics" role="img" aria-label="Grid of five word sets by stream. Darker cells mean the words in the set were spoken more often per 10,000 words."></div>
+  <p class="tw-legend" id="tw-tlegend"></p>
+  <p class="tw-p" id="tw-p2"></p>
+</section>
+
 <section class="tw-sec" aria-labelledby="tw-h6">
   <p class="tw-kicker">Words near a word</p>
   <h2 id="tw-h6" class="tw-h"></h2>
@@ -64,14 +72,6 @@ layout: layouts/post.njk
   <div class="tw-chart" id="tw-hours" role="img" aria-label="Bar chart of stream length and hours of speech for each stream."></div>
   <p class="tw-legend"><span class="sw" style="background:#cfe3f7"></span>Stream length <span class="sw" style="background:#7461c4"></span>Speech</p>
   <p class="tw-p" id="tw-p1"></p>
-</section>
-
-<section class="tw-sec" aria-labelledby="tw-h2">
-  <p class="tw-kicker">Selected word sets</p>
-  <h2 id="tw-h2" class="tw-h"></h2>
-  <div class="tw-chart" id="tw-topics" role="img" aria-label="Grid of five word sets by stream. Darker cells mean the words in the set were spoken more often per 10,000 words."></div>
-  <p class="tw-legend" id="tw-tlegend"></p>
-  <p class="tw-p" id="tw-p2"></p>
 </section>
 
 <section class="tw-sec" aria-labelledby="tt-h">
