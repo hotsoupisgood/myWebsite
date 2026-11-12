@@ -161,4 +161,4 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
 <script src="/visualizations/data/twitch_topics_viz.js?v=20261109f"></script>
-<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611110709"></script>
+<script src="/visualizations/data/twitch_transcripts_viz.js?v=202611112210"></script>
