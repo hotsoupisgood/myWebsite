@@ -19,6 +19,33 @@ layout: layouts/post.njk
   <div class="ngs-detail" id="ngs-detail"></div>
 </section>
 
+<section class="tw-sec" aria-labelledby="ngs-fq">
+  <h2 id="ngs-fq" class="tw-h">A sequencing read is 4 lines of text with a quality score for every base</h2>
+  <p class="tw-p">Sequencers write reads to a FASTQ file. Each read takes 4 lines. This is one short read:</p>
+  <pre class="ngs-fq"><code>@READ_0001 sample=A
+GATTTGGGGTTCAAAGCAGTAT
++
+IIIIIIIIIII???????55##</code></pre>
+  <ol class="tw-p">
+    <li>Line 1 is the name of the read. It starts with @.</li>
+    <li>Line 2 is the bases, one letter each: A, C, G or T. N marks a base the sequencer could not read.</li>
+    <li>Line 3 is a + sign that separates the bases from the scores.</li>
+    <li>Line 4 has one character per base. Each character is the quality score of the base above it.</li>
+  </ol>
+  <p class="tw-p">Each character stands for a number. The number is the character's ASCII code minus 33. This encoding is called Phred+33. The quality score Q gives the chance that the base is wrong. A score 10 higher means 10 times fewer errors.</p>
+  <table class="ngs-q">
+    <thead><tr><th>Character</th><th>Calculation</th><th>Score</th><th>Chance the base is wrong</th></tr></thead>
+    <tbody>
+      <tr><td><code>I</code></td><td>73 minus 33</td><td>Q40</td><td>1 in 10,000</td></tr>
+      <tr><td><code>?</code></td><td>63 minus 33</td><td>Q30</td><td>1 in 1,000</td></tr>
+      <tr><td><code>5</code></td><td>53 minus 33</td><td>Q20</td><td>1 in 100</td></tr>
+      <tr><td><code>#</code></td><td>35 minus 33</td><td>Q2</td><td>almost certainly wrong</td></tr>
+    </tbody>
+  </table>
+  <p class="tw-p">In this read the first bases are reliable and the last bases are not. Quality usually falls towards the end of a read. Trimmers such as fastp cut read ends where the score falls below about Q20.</p>
+  <p class="tw-p">Every base has its own score. A run is judged by how many of its bases reach Q30. A good Illumina run has 75 to 80 or more out of every 100 bases at Q30 or above. A real FASTQ file holds millions of these 4-line blocks and is usually compressed as .fastq.gz.</p>
+</section>
+
 <div class="tw-tip" id="ngs-tip" hidden></div>
 
 <div class="references">
@@ -28,6 +55,11 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 </div>
 
 <style>
+.ngs-fq{background:#f6f4fb;border:1px solid #e3def0;border-radius:8px;padding:.7rem .9rem;overflow-x:auto;font-size:.95rem;line-height:1.45}
+table.ngs-q{border-collapse:collapse;font-size:.9rem;margin:.4rem 0 .8rem}
+table.ngs-q th,table.ngs-q td{border-bottom:1px solid #e3def0;padding:.3rem .7rem;text-align:left}
+table.ngs-q th{font-weight:600;color:#4a4360}
+
 .tw-sec { margin: 0 0 2.2rem; }
 .tw-h { font-size: 1.2rem; line-height: 1.35; margin: 0 0 .7rem; }
 .tw-p { font-size: .92rem; margin: .4rem 0 0; }
