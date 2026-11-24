@@ -19,7 +19,7 @@
 		<id>https://lucashenry.xyz/visualizations/ngs-pipeline-map/</id>
 		<content type="html">&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;ngs-h&quot;&gt;
   &lt;h2 id=&quot;ngs-h&quot; class=&quot;tw-h&quot;&gt;There is no single NGS analysis. The question, the organism and the type of data decide the steps.&lt;/h2&gt;
-  &lt;p class=&quot;tw-p&quot;&gt;An RNA-seq study, a search for mutations, a ChIP-seq study and a gut-sample survey all sequence DNA or RNA. Each one then uses different tools at most stages. This map shows 10 such workflows. Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses.&lt;/p&gt;
+  &lt;p class=&quot;tw-p&quot;&gt;This map shows 10 workflows. Each column is a stage and each box is one option at that stage. Turn routes on with the buttons, and select a box for its details. Hover a column name for how to choose, or a dotted word for its meaning.&lt;/p&gt;
   &lt;div class=&quot;ca-card&quot; style=&quot;margin-top:.7rem&quot;&gt;
     &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;ngs-routes-label&quot;&gt;Show routes (any number at once)&lt;/span&gt;
       &lt;div class=&quot;ca-tabs ngs-tabs&quot; id=&quot;ngs-routes&quot; role=&quot;group&quot; aria-labelledby=&quot;ngs-routes-label&quot;&gt;&lt;/div&gt;
@@ -72,11 +72,16 @@
 .ngs-notes { list-style: none; margin: 0; padding: 0; font-size: .9rem; }
 .ngs-notes li { margin: .25rem 0; }
 .ngs-status { font-size: .8rem; color: #625a7a; margin: .4rem 0 0; }
+.ngs-io { font-size: .85rem; color: #2a2340; margin: .4rem 0 0; }
+.ngs-pipe { display: block; font-size: .85rem; color: #625a7a; margin: .1rem 0 0 1.15rem; }
+.ngs-gl { border-bottom: 1px dotted #625a7a; cursor: help; }
+.ngs-gl:focus-visible, .ngs-map .ngs-colh:focus-visible { outline: 2px solid #4b3a99; outline-offset: 2px; }
+.ngs-map .ngs-colh { cursor: help; text-decoration: underline dotted; outline: none; }
 .ngs-hint { font-size: .92rem; color: #625a7a; margin: 0; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/ngs_pipeline_map_viz.js?v=20261124e&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/ngs_pipeline_map_viz.js?v=20261124f&quot;&gt;&lt;/script&gt;
 </content>
 	</entry>
 	
