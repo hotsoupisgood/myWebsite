@@ -14,26 +14,58 @@
   const firstSentence = (t) => { const m = t.match(/^.*?(?<!\be\.g|\bi\.e)[.?!](?=\s|$)/); return m ? m[0] : t; };
   const statEl = document.getElementById("ngs-status");
 
-  function showTip(ev, n) {
-    tip.textContent = firstSentence(n.description);
+  // Tooltip at a pointer position, or under an element when there is no pointer (keyboard focus, tap).
+  function tipAt(text, px, py, title) {
+    tip.textContent = "";
+    if (title) { const b = document.createElement("b"); b.textContent = title; tip.appendChild(b); }
+    tip.appendChild(document.createTextNode(text));
     tip.hidden = false;
     const r = tip.getBoundingClientRect(), pad = 12;
-    let x = ev.pageX + pad, y = ev.pageY - r.height - pad;
-    if (x + r.width > window.scrollX + document.documentElement.clientWidth - 4) x = ev.pageX - r.width - pad;
+    let x = px + pad, y = py - r.height - pad;
+    if (x + r.width > window.scrollX + document.documentElement.clientWidth - 4) x = px - r.width - pad;
     if (x < window.scrollX + 4) x = window.scrollX + 4;
-    if (y < window.scrollY + 4) y = ev.pageY + pad;
+    if (y < window.scrollY + 4) y = py + pad;
     tip.style.left = x + "px"; tip.style.top = y + "px";
   }
+  const showTip = (ev, n) => tipAt(firstSentence(n.description), ev.pageX, ev.pageY);
+  const tipUnder = (elm, text, title) => { const b = elm.getBoundingClientRect(); tipAt(text, b.left + window.scrollX, b.top + window.scrollY, title); };
   const hideTip = () => { tip.hidden = true; };
-  document.addEventListener("touchstart", (e) => { if (!e.target.closest(".ngs-map")) hideTip(); }, { passive: true });
+  document.addEventListener("touchstart", (e) => { if (!e.target.closest(".ngs-map, .ngs-gl")) hideTip(); }, { passive: true });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape") hideTip(); });
 
-  fetch("/visualizations/data/ngs_pipeline_map.json?v=20261124c").then((r) => r.json()).then(draw);
+  fetch("/visualizations/data/ngs_pipeline_map.json?v=20261124f").then((r) => r.json()).then(draw);
 
   function draw(D) {
     const node = new Map(D.nodes.map((n) => [n.id, n]));
     const color = new Map(D.routes.map((r, i) => [r.id, COL[i % COL.length]]));
     const active = new Set(["ours"]);
     let selected = null;
+
+    // Glossary: wrap the first use of each term in a container, matched at render time.
+    const G = D.glossary || {}, terms = Object.keys(G).sort((a, b) => b.length - a.length);
+    const esc = (t) => t.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const termRe = new RegExp(`\\b(${terms.map(esc).join("|")})(s|es)?\\b`, "gi");
+    const keyOf = new Map(terms.map((t) => [t.toLowerCase(), t]));
+    function glossed(text, used) {
+      const f = document.createDocumentFragment(); let last = 0;
+      text.replace(termRe, (m, t, pl, i) => {
+        const k = keyOf.get(t.toLowerCase());
+        if (used.has(k)) return m;
+        used.add(k);
+        f.appendChild(document.createTextNode(text.slice(last, i)));
+        const sp = el("span", "ngs-gl", m); sp.tabIndex = 0; sp.setAttribute("role", "button");
+        sp.setAttribute("aria-label", `${m}: ${G[k]}`);
+        const show = () => tipUnder(sp, G[k], k);
+        sp.addEventListener("mouseenter", show); sp.addEventListener("mouseleave", hideTip);
+        sp.addEventListener("focus", show); sp.addEventListener("blur", hideTip);
+        sp.addEventListener("click", (e) => { e.stopPropagation(); show(); });
+        f.appendChild(sp); last = i + m.length; return m;
+      });
+      f.appendChild(document.createTextNode(text.slice(last)));
+      return f;
+    }
+    const gp = (tag, cls, text, used) => { const e = el(tag, cls); e.appendChild(glossed(text, used)); return e; };
+    let rule = null; // column whose "how to choose" rule is pinned in the panel
 
     const maxRow = d3.max(D.nodes, (n) => n.row);
     const W = m.l + m.r + D.columns.length * colW, H = m.t + head + (maxRow + 1) * rowH + m.b;
@@ -65,8 +97,14 @@
 
     const svg = d3.select(mapEl).append("svg").attr("viewBox", `0 0 ${W} ${H}`).style("min-width", `${W}px`)
       .attr("role", "group").attr("aria-label", "Map of sequencing-analysis options in 8 stages, left to right.");
+    const rules = D.rules || [];
     svg.append("g").attr("class", "ax").selectAll("text").data(D.columns).join("text")
-      .attr("x", (c, i) => m.l + i * colW + colW / 2).attr("y", m.t + 14).attr("text-anchor", "middle").attr("class", "ngs-colh").text((c) => c);
+      .attr("x", (c, i) => m.l + i * colW + colW / 2).attr("y", m.t + 14).attr("text-anchor", "middle").attr("class", "ngs-colh").text((c) => c)
+      .attr("tabindex", 0).attr("role", "button").attr("aria-label", (c, i) => `${c}. How to choose: ${rules[i]}`)
+      .on("mouseenter", function (ev, c) { tipUnder(this, rules[D.columns.indexOf(c)], "How to choose"); }).on("mouseleave", hideTip)
+      .on("focus", function (ev, c) { tipUnder(this, rules[D.columns.indexOf(c)], "How to choose"); }).on("blur", hideTip)
+      .on("click", function (ev, c) { const i = D.columns.indexOf(c); tipUnder(this, rules[i], "How to choose"); rule = rule === i ? null : i; update(); })
+      .on("keydown", function (ev, c) { if (ev.key === "Enter" || ev.key === " ") { ev.preventDefault(); const i = D.columns.indexOf(c); rule = rule === i ? null : i; update(); } });
     svg.append("g").selectAll("path").data([...links.values()]).join("path")
       .attr("d", (L) => curve(L, 0)).attr("fill", "none").attr("stroke", FAINT).attr("stroke-width", 1.2);
     const over = svg.append("g").attr("fill", "none"); // links stay behind the boxes, drawn before them
@@ -125,11 +163,17 @@
     function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
     function detail() {
       detEl.innerHTML = "";
+      const used = new Set();
+      if (rule != null) {
+        detEl.appendChild(el("p", "ca-tabs-label", `How to choose: ${D.columns[rule]}`));
+        detEl.appendChild(gp("p", "tw-p ngs-data", rules[rule], used));
+      }
       if (selected) {
         const n = node.get(selected);
         detEl.appendChild(el("h3", "ngs-dh ngs-data", n.label));
         detEl.appendChild(el("p", "ngs-dtool ngs-data", n.tool));
-        detEl.appendChild(el("p", "tw-p ngs-data", n.description));
+        detEl.appendChild(gp("p", "tw-p ngs-data", n.description, used));
+        if (n.io) detEl.appendChild(el("p", "ngs-io ngs-data", `Takes: ${n.io.takes}. Writes: ${n.io.writes}.`));
         const thru = D.routes.filter((r) => r.path.includes(n.id));
         if (thru.length) {
           detEl.appendChild(el("p", "ca-tabs-label", "Routes through this box"));
@@ -150,7 +194,8 @@
         const ul = el("ul", "ngs-notes");
         on.forEach((r) => {
           const li = el("li", "ngs-data"); const sw = el("span", "sw"); sw.style.background = color.get(r.id);
-          li.appendChild(sw); li.appendChild(el("b", null, r.label + ". ")); li.appendChild(document.createTextNode(r.note));
+          li.appendChild(sw); li.appendChild(el("b", null, r.label + ". ")); li.appendChild(glossed(r.note, used));
+          if (r.pipeline) li.appendChild(el("span", "ngs-pipe", `Ready-made pipeline: ${r.pipeline}.`));
           ul.appendChild(li);
         });
         detEl.appendChild(ul);

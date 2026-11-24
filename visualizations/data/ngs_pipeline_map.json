@@ -16,7 +16,11 @@
    "row": 0,
    "label": "RNA-seq",
    "tool": "cDNA from RNA",
-   "description": "Sequences the RNA in the cell, so read counts per gene show how active each gene is. A common guide is 10 to 30 million reads per sample for bacteria and 20 to 50 million for human. Use at least 3 biological replicates per condition; extra replicates help more than extra depth."
+   "description": "Sequences the RNA in the cell, so read counts per gene show how active each gene is. A common guide is 5 to 10 million reads per sample for bacteria and 20 to 50 million for human. Use at least 3 biological replicates per condition; extra replicates help more than extra depth.",
+   "io": {
+    "takes": "RNA from cells",
+    "writes": "a sequencing library"
+   }
   },
   {
    "id": "dna",
@@ -24,7 +28,11 @@
    "row": 1,
    "label": "DNA-seq (WGS)",
    "tool": "whole genome",
-   "description": "Sequences the genome itself to find mutations, new strains or outbreaks. Coverage is the average number of reads over each base. A common guide is 30x or more for variant calling; bacterial genomes are small, so 50 to 100x is cheap and usual."
+   "description": "Sequences the genome itself to find mutations, new strains or outbreaks. Coverage is the average number of reads over each base. A common guide is 30x or more for variant calling; bacterial genomes are small, so 50 to 100x is cheap and usual.",
+   "io": {
+    "takes": "DNA from cells",
+    "writes": "a sequencing library"
+   }
   },
   {
    "id": "chip",
@@ -32,7 +40,11 @@
    "row": 2,
    "label": "ChIP-seq",
    "tool": "protein-bound DNA",
-   "description": "Pulls down the DNA bound by one protein, such as the oxygen sensor FNR, then sequences it to show where the regulator binds. Always sequence an input control, meaning the same DNA without the pull-down. ENCODE guidelines ask for 2 replicates and a common guide is 10 to 20 million reads each for bacteria."
+   "description": "Pulls down the DNA bound by one protein, then sequences it to show where the regulator binds. Always sequence an input control, meaning the same DNA without the pull-down. ENCODE guidelines ask for 2 replicates and a common guide is 2 to 5 million reads per sample for bacteria.",
+   "io": {
+    "takes": "protein-bound DNA and input DNA",
+    "writes": "two sequencing libraries"
+   }
   },
   {
    "id": "meta",
@@ -40,7 +52,11 @@
    "row": 3,
    "label": "Metagenomics",
    "tool": "mixed community",
-   "description": "Sequences all the DNA in a mixed sample, such as gut or soil, to show which organisms are present and in what proportion. Host DNA can take most of the reads in tissue samples. Sequence a blank (no-sample) control to spot kit contaminants."
+   "description": "Sequences all the DNA in a mixed sample, such as gut or soil, to show which organisms are present and in what proportion. Host DNA can take most of the reads in tissue samples. Sequence a blank (no-sample) control to spot kit contaminants.",
+   "io": {
+    "takes": "DNA from a mixed sample",
+    "writes": "a sequencing library"
+   }
   },
   {
    "id": "sr",
@@ -48,7 +64,11 @@
    "row": 0,
    "label": "Short reads",
    "tool": "Illumina 50 to 300 bp",
-   "description": "Illumina reads of 50 to 300 bases. Cheap and accurate, the standard for counting. Q30 means 1 error in 1,000 bases; a good run has 75 to 80 or more out of every 100 bases at Q30 or above."
+   "description": "A read is the sequence of one DNA fragment; Illumina reads are 50 to 300 bases. Cheap and accurate, the standard for counting. Q30 means 1 error in 1,000 bases; a good run has 75 to 80 or more out of every 100 bases at Q30 or above.",
+   "io": {
+    "takes": "a library",
+    "writes": "FASTQ"
+   }
   },
   {
    "id": "lr",
@@ -56,7 +76,11 @@
    "row": 1,
    "label": "Long reads",
    "tool": "Nanopore / PacBio",
-   "description": "PacBio or Nanopore reads of 10,000 to 100,000 bases or more. Less accurate per base, but they span repeats, so they are best for assembling genomes or full-length transcripts. Current Nanopore chemistry reaches about Q20 (1 error in 100 bases); PacBio HiFi reaches Q30 or above."
+   "description": "PacBio or Nanopore reads of 10,000 to 100,000 bases or more. Less accurate per base, but they span repeats, so they are best for assembling genomes or full-length transcripts. Current Nanopore chemistry reaches about Q20 (1 error in 100 bases); PacBio HiFi reaches Q30 or above.",
+   "io": {
+    "takes": "a library",
+    "writes": "FASTQ"
+   }
   },
   {
    "id": "fastp",
@@ -64,7 +88,11 @@
    "row": 0,
    "label": "fastp",
    "tool": "trim + report",
-   "description": "One fast tool that trims adapters and low-quality ends and writes a QC report. A common setting cuts bases below Q20 and drops reads shorter than about 30 to 36 bases. Usually under 5 out of every 100 reads are dropped; many more points to a library problem."
+   "description": "Adapters are the fixed sequences added to each fragment for sequencing; fastp trims them and low-quality ends, and writes a QC report. A common setting cuts bases below Q20 and drops reads shorter than about 30 to 36 bases. Usually under 5 out of every 100 reads are dropped; many more points to a library problem.",
+   "io": {
+    "takes": "FASTQ",
+    "writes": "FASTQ and a QC report"
+   }
   },
   {
    "id": "cutadapt",
@@ -72,7 +100,11 @@
    "row": 1,
    "label": "cutadapt",
    "tool": "or Trimmomatic",
-   "description": "Older, configurable trimmers (cutadapt, Trimmomatic). Same job as fastp; pick by habit or lab standard. Give the exact adapter sequence for your library kit. Trimming low-quality ends gently, around Q20, is enough for counting with salmon or STAR."
+   "description": "Older, configurable trimmers (cutadapt, Trimmomatic). Same job as fastp; pick by habit or lab standard. Give the exact adapter sequence for your library kit. Trimming low-quality ends gently, around Q20, is enough for counting with salmon or STAR.",
+   "io": {
+    "takes": "FASTQ",
+    "writes": "FASTQ"
+   }
   },
   {
    "id": "fastqc",
@@ -80,7 +112,11 @@
    "row": 2,
    "label": "FastQC + MultiQC",
    "tool": "report only",
-   "description": "Reports read quality without changing reads. MultiQC puts every sample, and every later tool's log, on one page. An adapter content warning means many reads ran into the adapter, so trim. Per-base sequence content always fails for RNA-seq because of biased priming at read starts; that is normal."
+   "description": "Reports read quality without changing reads. MultiQC puts every sample, and every later tool's log, on one page. An adapter content warning means many reads ran into the adapter, so trim. Per-base sequence content usually warns or fails for RNA-seq because of biased priming at read starts; that is normal.",
+   "io": {
+    "takes": "FASTQ",
+    "writes": "an HTML report"
+   }
   },
   {
    "id": "nanoplot",
@@ -88,7 +124,11 @@
    "row": 3,
    "label": "NanoPlot / Filtlong",
    "tool": "long-read QC",
-   "description": "Plots read length and quality for long reads; Filtlong removes short or poor reads. Read N50 is the length where half the bases are in reads that long or longer. A common Filtlong setting drops reads under 1,000 bases and keeps the best 90 out of every 100 bases."
+   "description": "Plots read length and quality for long reads; Filtlong removes short or poor reads. Read N50 is the length where half the bases are in reads that long or longer. A common Filtlong setting drops reads under 1,000 bases and keeps the best 90 out of every 100 bases.",
+   "io": {
+    "takes": "FASTQ",
+    "writes": "plots and filtered FASTQ"
+   }
   },
   {
    "id": "refgen",
@@ -96,7 +136,11 @@
    "row": 0,
    "label": "Reference genome",
    "tool": "e.g. MG1655, hg38",
-   "description": "A finished, annotated genome of the same strain, so every read has a known place to go. Use the genome sequence and gene annotation file (GTF or GFF) from the same release. A mismatched strain shows up as low mapping and false variants."
+   "description": "A finished, annotated genome of the same strain, so every read has a known place to go. Use the genome sequence and gene annotation file (GTF or GFF) from the same release. A mismatched strain shows up as low mapping and false variants.",
+   "io": {
+    "takes": "a download",
+    "writes": "genome FASTA, GTF or GFF, and an index"
+   }
   },
   {
    "id": "denovo",
@@ -104,7 +148,11 @@
    "row": 1,
    "label": "De novo assembly",
    "tool": "SPAdes, Flye, Trinity",
-   "description": "Builds a genome (SPAdes, Flye) or transcripts (Trinity) from the reads when no good reference exists, then annotates genes (Bakta, Prokka). Contig N50: half the assembly is in pieces this long or longer. A good bacterial assembly has CheckM completeness over 95 and contamination under 5 out of every 100."
+   "description": "Builds a genome (SPAdes, Flye) or transcripts (Trinity) from the reads when no good reference exists, then annotates genes (Bakta or Prokka for genomes; Trinotate or eggNOG-mapper for transcripts). Contig N50: half the assembly is in pieces this long or longer. A good bacterial assembly has CheckM completeness over 95 and contamination under 5 out of every 100.",
+   "io": {
+    "takes": "FASTQ",
+    "writes": "contigs in FASTA and a gene annotation"
+   }
   },
   {
    "id": "db",
@@ -112,7 +160,11 @@
    "row": 2,
    "label": "Sequence database",
    "tool": "Kraken2 DB, GTDB",
-   "description": "For mixed samples there is no single genome, so reads are compared against a database of thousands of genomes. Reads from organisms missing from the database stay unclassified or get a wrong close relative. Record the database version, because results change between versions."
+   "description": "For mixed samples there is no single genome, so reads are compared against a database of thousands of genomes. Reads from organisms missing from the database stay unclassified or get a wrong close relative. Record the database version, because results change between versions.",
+   "io": {
+    "takes": "a download",
+    "writes": "a database index"
+   }
   },
   {
    "id": "salmon",
@@ -120,7 +172,11 @@
    "row": 0,
    "label": "salmon",
    "tool": "selective alignment",
-   "description": "Maps reads to transcripts and estimates counts with an EM algorithm, which splits reads that fit several transcripts. Fast and needs little memory. A mapping rate of 70 to 90 out of every 100 reads is normal; under 50 suggests contamination or the wrong reference. Add the genome as a decoy to cut false matches."
+   "description": "Maps reads to transcripts and estimates counts with an EM algorithm, which splits reads that fit several transcripts. Fast and needs little memory. A mapping rate of 70 to 90 out of every 100 reads is normal; under 50 suggests contamination or the wrong reference. Add the genome as a decoy to cut false matches.",
+   "io": {
+    "takes": "FASTQ and transcripts",
+    "writes": "a counts table"
+   }
   },
   {
    "id": "kallisto",
@@ -128,15 +184,23 @@
    "row": 1,
    "label": "kallisto",
    "tool": "pseudoalignment",
-   "description": "Like salmon: fast and gives almost the same counts. It has no decoy option and fewer bias corrections. Expect a similar share of reads to map, about 70 to 90 out of every 100. Both tools report estimated counts, which DESeq2 reads through tximport."
+   "description": "Like salmon: fast and gives almost the same counts. It has no decoy option and fewer bias corrections. Expect a similar share of reads to map, about 70 to 90 out of every 100. Both tools report estimated counts, which DESeq2 reads through tximport.",
+   "io": {
+    "takes": "FASTQ and transcripts",
+    "writes": "a counts table"
+   }
   },
   {
    "id": "bowtie",
    "col": 4,
    "row": 2,
    "label": "bowtie2 / BWA",
-   "tool": "exact genome positions",
-   "description": "Aligns each read to one position on the genome, then featureCounts counts reads per gene. Works for RNA-seq in bacteria, which have no introns. It cannot split a read across an intron, so for human, yeast or plant RNA-seq use STAR or HISAT2. The BAM file it writes is what variant calling, ChIP-seq and IGV need. Expect over 90 out of every 100 reads to align to the correct reference."
+   "tool": "align, then featureCounts",
+   "description": "Aligns each read to one position on the genome, then featureCounts counts reads per gene. Writes a BAM file: every read with its position on the genome. Works for RNA-seq in bacteria, which have no introns. It cannot split a read across an intron, so for human, yeast or plant RNA-seq use STAR or HISAT2. The BAM file is what variant calling, ChIP-seq and IGV need. Expect over 90 out of every 100 reads to align to the correct reference.",
+   "io": {
+    "takes": "FASTQ and genome",
+    "writes": "BAM, then a counts table"
+   }
   },
   {
    "id": "star",
@@ -144,7 +208,11 @@
    "row": 3,
    "label": "STAR / HISAT2",
    "tool": "spliced aligner",
-   "description": "Genome aligners that can split a read across an intron. Needed for eukaryotes such as human and yeast; not needed for E. coli. For human RNA-seq, a common guide is 75 or more out of every 100 reads uniquely mapped. STAR needs about 32 GB of memory for the human genome; HISAT2 needs far less."
+   "description": "Genome aligners that can split a read across an intron. Needed for eukaryotes such as human and yeast; not needed for E. coli. For human RNA-seq, a common guide is 75 or more out of every 100 reads uniquely mapped. STAR needs about 32 GB of memory for the human genome; HISAT2 needs far less.",
+   "io": {
+    "takes": "FASTQ and genome",
+    "writes": "BAM and a counts table"
+   }
   },
   {
    "id": "kraken",
@@ -152,23 +220,35 @@
    "row": 4,
    "label": "Kraken2",
    "tool": "classify reads",
-   "description": "Assigns each read to a taxon, the most specific group it matches, by looking up short subsequences (k-mers) in the database. The default confidence of 0 accepts any match; a common guide is 0.1 to 0.2 to cut false hits. Bracken then corrects the counts into species abundances."
+   "description": "Assigns each read to a taxon, the most specific group it matches, by looking up short subsequences (k-mers) in the database. The default confidence of 0 accepts any match; a common guide is 0.1 to 0.2 to cut false hits. Bracken then corrects the counts into species abundances.",
+   "io": {
+    "takes": "FASTQ and database",
+    "writes": "a report per sample"
+   }
   },
   {
    "id": "deseq",
    "col": 5,
    "row": 0,
-   "label": "Diff. expression",
+   "label": "Differential expression",
    "tool": "DESeq2 / PyDESeq2",
-   "description": "Compares gene counts between conditions with a negative-binomial model to find genes that change. It needs at least 3 replicates per condition. A gene usually counts as changed when its adjusted p (the p corrected for testing thousands of genes) is under 0.05; some labs also require a change of 2 times or more."
+   "description": "Compares gene counts between conditions with a negative-binomial model to find genes that change. DESeq2 recommends at least 3 replicates per condition; with 2 it runs but finds little. A gene usually counts as changed when its adjusted p (the p corrected for testing thousands of genes) is under 0.05; some labs also require a change of 2 times or more.",
+   "io": {
+    "takes": "a counts table",
+    "writes": "a table of changed genes"
+   }
   },
   {
    "id": "edger",
    "col": 5,
    "row": 1,
    "label": "edgeR / limma-voom",
-   "tool": "DE, other models",
-   "description": "Alternatives to DESeq2 (edgeR, limma-voom). Results usually agree on strong changes; limma-voom is fastest on big studies. Remove genes with almost no reads before testing. A common edgeR guide keeps genes with at least about 10 reads in each sample of the smallest group."
+   "tool": "other count models",
+   "description": "Alternatives to DESeq2 (edgeR, limma-voom). Results usually agree on strong changes; limma-voom is fastest on big studies. Remove genes with almost no reads before testing. A common edgeR guide keeps genes with at least about 10 reads in each sample of the smallest group.",
+   "io": {
+    "takes": "a counts table",
+    "writes": "a table of changed genes"
+   }
   },
   {
    "id": "var",
@@ -176,7 +256,11 @@
    "row": 2,
    "label": "Variant calling",
    "tool": "breseq, bcftools",
-   "description": "Checks each base for whether the reads disagree with the reference, to ask whether the DNA differs. It uses no read counts, so it cannot show which genes changed. Here both groups are the same MG1655 strain, so few variants is the expected sanity check. For E. coli, breseq is the standard. Trust calls with 10 or more reads."
+   "description": "Checks each base for whether the reads disagree with the reference, to show where the DNA differs. It uses no read counts, so it cannot show which genes changed. For E. coli, breseq is the standard. Trust calls with 10 or more reads.",
+   "io": {
+    "takes": "BAM",
+    "writes": "VCF"
+   }
   },
   {
    "id": "peaks",
@@ -184,7 +268,11 @@
    "row": 3,
    "label": "Peak calling",
    "tool": "MACS3",
-   "description": "Finds stretches of genome with many more reads than the input control, which is where the protein sat. MACS3 with an adjusted p (q) value under 0.05 is the usual default. FRiP, the share of reads inside peaks, should be at least 1 out of every 100 by ENCODE guidelines; good runs reach 5 or more."
+   "description": "Finds stretches of genome with many more reads than the input control, which is where the protein sat. MACS3 with an adjusted p (q) value under 0.05 is the usual default. FRiP, the share of reads inside peaks, should be at least 1 out of every 100 by ENCODE guidelines; good runs reach 5 or more.",
+   "io": {
+    "takes": "BAM",
+    "writes": "narrowPeak"
+   }
   },
   {
    "id": "abund",
@@ -192,7 +280,11 @@
    "row": 4,
    "label": "Taxon abundance",
    "tool": "Bracken",
-   "description": "Turns classified reads into the share of each species. Bracken adjusts for reads that could only be placed at genus level or above. Abundance is the share of reads, not of cells: big genomes give more reads. A common guide ignores taxa under 1 out of every 1,000 reads as possible noise."
+   "description": "Turns classified reads into the share of each species. Bracken adjusts for reads that could only be placed at genus level or above. Abundance is the share of reads, not of cells: big genomes give more reads. A common guide ignores taxa under 1 out of every 1,000 reads as possible noise.",
+   "io": {
+    "takes": "Kraken2 reports",
+    "writes": "an abundance table"
+   }
   },
   {
    "id": "go",
@@ -200,7 +292,11 @@
    "row": 0,
    "label": "GO enrichment",
    "tool": "hypergeometric",
-   "description": "Asks whether the changed genes include more genes with a given function than chance would give. Use all genes that were tested as the background, not the whole genome. Correct for testing many terms; an adjusted p under 0.05 is the usual cut-off."
+   "description": "Tests whether the changed genes include more genes with a given function than chance would give. Use all genes that were tested as the background, not the whole genome. Correct for testing many terms; an adjusted p under 0.05 is the usual cut-off.",
+   "io": {
+    "takes": "changed genes",
+    "writes": "a table of enriched functions"
+   }
   },
   {
    "id": "gsea",
@@ -208,7 +304,11 @@
    "row": 1,
    "label": "GSEA / KEGG",
    "tool": "fgsea, rank-based",
-   "description": "Uses the full ranked gene list, so no cut-off is needed. It picks up pathways where many genes shift a little. The usual GSEA cut-off is an FDR (the expected share of false findings) under 0.25, looser than for single genes, because it is meant for finding leads."
+   "description": "Uses the full ranked gene list, so no cut-off is needed. It picks up pathways where many genes shift a little. The usual GSEA cut-off is an FDR (the expected share of false findings) under 0.25, looser than for single genes, because it is meant for finding leads.",
+   "io": {
+    "takes": "a ranked gene list",
+    "writes": "a table of enriched pathways"
+   }
   },
   {
    "id": "snpeff",
@@ -216,7 +316,11 @@
    "row": 2,
    "label": "Variant effects",
    "tool": "SnpEff",
-   "description": "Labels each variant with its gene and whether it changes the protein (missense, stop) or not (synonymous). Stop and frameshift changes are the most likely to break a gene. Use the annotation built for the exact reference genome you aligned to."
+   "description": "Labels each variant with its gene and whether it changes the protein (missense, stop) or not (synonymous). Stop and frameshift changes are the most likely to break a gene. Use the annotation built for the exact reference genome you aligned to.",
+   "io": {
+    "takes": "VCF",
+    "writes": "annotated VCF"
+   }
   },
   {
    "id": "motif",
@@ -224,7 +328,11 @@
    "row": 3,
    "label": "Motif finding",
    "tool": "MEME, HOMER",
-   "description": "Finds the short DNA sequence the protein recognises inside the peaks, with tools such as MEME or HOMER. Use the 100 to 200 bases around each peak summit, not the whole peak. Compare the result with known motifs in a database such as JASPAR or RegulonDB."
+   "description": "Finds the short DNA sequence the protein recognises inside the peaks, with tools such as MEME or HOMER. Use the 100 to 200 bases around each peak summit, not the whole peak. Compare the result with known motifs in a database such as JASPAR or RegulonDB.",
+   "io": {
+    "takes": "peak sequences",
+    "writes": "motifs and matches"
+   }
   },
   {
    "id": "div",
@@ -232,7 +340,11 @@
    "row": 4,
    "label": "Diversity",
    "tool": "alpha / beta",
-   "description": "Summarises how many species each sample has (alpha diversity, such as Shannon) and how samples differ (beta diversity, such as Bray-Curtis). Bring samples to the same read depth or use methods that adjust for depth first. PERMANOVA tests whether groups differ."
+   "description": "Summarises how many species each sample has (alpha diversity, such as Shannon) and how samples differ (beta diversity, such as Bray-Curtis). Bring samples to the same read depth or use methods that adjust for depth first. PERMANOVA tests whether groups differ.",
+   "io": {
+    "takes": "an abundance table",
+    "writes": "diversity values and plots"
+   }
   },
   {
    "id": "paper",
@@ -240,7 +352,11 @@
    "row": 0,
    "label": "Compare to known",
    "tool": "published results",
-   "description": "Checks your answer against an independent source, such as a published dataset or RegulonDB for E. coli regulators. Known target genes of the regulator showing up in your list is a good sign. Missing well-known targets usually means a sample or analysis problem."
+   "description": "Checks your answer against an independent source, such as a published dataset or RegulonDB for E. coli regulators. Known target genes of the regulator showing up in your list is a good sign. Missing well-known targets usually means a sample or analysis problem.",
+   "io": {
+    "takes": "your results",
+    "writes": "a list of agreements"
+   }
   },
   {
    "id": "igv",
@@ -248,7 +364,11 @@
    "row": 1,
    "label": "Look at the reads",
    "tool": "IGV",
-   "description": "Opens the BAM so you can look at coverage over a gene, peak or variant. It catches errors no statistic will, such as reads piling up in one repeat or on one strand. It needs an aligner (bowtie2 or STAR) because salmon writes no BAM."
+   "description": "Opens the BAM so you can look at coverage over a gene, peak or variant. It catches errors no statistic will, such as reads piling up in one repeat or on one strand. salmon writes no genome BAM, so IGV needs bowtie2 or STAR output.",
+   "io": {
+    "takes": "BAM",
+    "writes": "views of reads"
+   }
   },
   {
    "id": "qpcr",
@@ -256,13 +376,41 @@
    "row": 2,
    "label": "Wet-lab validation",
    "tool": "qPCR, knockouts",
-   "description": "Measures a few genes again by another method, such as qPCR, or tests one gene by deleting it. Use 2 or more stable reference genes for qPCR and 3 biological replicates. Expect the direction of change to agree with RNA-seq; exact fold sizes often differ."
+   "description": "Measures a few genes again by another method, such as qPCR, or tests one gene by deleting it. Use 2 or more stable reference genes for qPCR and 3 biological replicates. Expect the direction of change to agree with RNA-seq; exact fold sizes often differ.",
+   "io": {
+    "takes": "chosen genes",
+    "writes": "fold changes"
+   }
+  },
+  {
+   "id": "asmqc",
+   "col": 7,
+   "row": 3,
+   "label": "Assembly QC",
+   "tool": "CheckM, BUSCO, QUAST",
+   "description": "Measures how complete and clean an assembly is. CheckM and BUSCO count expected single-copy genes; QUAST reports contig N50 and total length. A good bacterial genome is over 95 out of every 100 expected genes complete and under 5 out of every 100 contaminated.",
+   "io": {
+    "takes": "contigs in FASTA",
+    "writes": "completeness and contamination values"
+   }
+  },
+  {
+   "id": "controls",
+   "col": 7,
+   "row": 4,
+   "label": "Controls",
+   "tool": "blank and mock community",
+   "description": "Compares the samples with a blank, which has no sample, and a mock community, which has known species in known amounts. Taxa found in the blank are likely kit or lab contaminants. The mock should give back every species it contains, at roughly the expected shares.",
+   "io": {
+    "takes": "blank and mock results",
+    "writes": "a list of contaminant taxa"
+   }
   }
  ],
  "routes": [
   {
    "id": "ours",
-   "label": "Our E. coli RNA-seq run",
+   "label": "E. coli RNA-seq, salmon + DESeq2",
    "path": [
     "rna",
     "sr",
@@ -273,7 +421,8 @@
     "go",
     "paper"
    ],
-   "note": "Read counts → which genes change with oxygen → which functions those genes share."
+   "note": "Read counts, then which genes change between conditions, then which functions those genes share.",
+   "pipeline": "nf-core/rnaseq"
   },
   {
    "id": "align",
@@ -288,7 +437,8 @@
     "gsea",
     "igv"
    ],
-   "note": "Same question, classic bacterial route. Gives a BAM you can view in IGV. Counts agree closely with salmon for E. coli."
+   "note": "Same question, the classic bacterial route. Gives a BAM to view in IGV. Counts agree closely with salmon for E. coli.",
+   "pipeline": "nf-core/rnaseq"
   },
   {
    "id": "euk",
@@ -303,7 +453,8 @@
     "gsea",
     "qpcr"
    ],
-   "note": "Same question in an organism with introns, so a spliced aligner is required."
+   "note": "Same question in an organism with introns, so a spliced aligner is required.",
+   "pipeline": "nf-core/rnaseq"
   },
   {
    "id": "kallisto",
@@ -318,7 +469,8 @@
     "gsea",
     "paper"
    ],
-   "note": "Same question with a pseudoaligner and edgeR; strong changes usually agree with the salmon + DESeq2 route."
+   "note": "Same question with a pseudoaligner and edgeR; strong changes usually agree with the salmon + DESeq2 route.",
+   "pipeline": "nf-core/rnaseq"
   },
   {
    "id": "var",
@@ -333,7 +485,8 @@
     "snpeff",
     "igv"
    ],
-   "note": "Different question: what changed in the DNA? Sequence the genome, align to exact positions, call variants."
+   "note": "A different question: what changed in the DNA. Sequence the genome, align to exact positions, call variants.",
+   "pipeline": "nf-core/sarek, or snippy for bacteria"
   },
   {
    "id": "rnavar",
@@ -348,7 +501,8 @@
     "snpeff",
     "igv"
    ],
-   "note": "Possible, but only expressed genes get coverage, and RNA editing or mapping errors can look like variants."
+   "note": "Possible, but only expressed genes get coverage, and RNA editing or mapping errors can look like variants.",
+   "pipeline": "nf-core/sarek, or snippy for bacteria"
   },
   {
    "id": "newbug",
@@ -357,9 +511,11 @@
     "dna",
     "lr",
     "nanoplot",
-    "denovo"
+    "denovo",
+    "asmqc"
    ],
-   "note": "Assemble a genome from long reads first. Once it's annotated, it becomes the reference for every other route."
+   "note": "Assemble a genome from long reads first. Once it is annotated and checked, it becomes the reference for every other route.",
+   "pipeline": "nf-core/bacass"
   },
   {
    "id": "noref",
@@ -374,11 +530,12 @@
     "go",
     "qpcr"
    ],
-   "note": "Build transcripts from the reads (Trinity), then quantify as usual. Gene names come from similarity searches."
+   "note": "Build transcripts from the reads (Trinity), then quantify as usual. Gene names come from similarity searches.",
+   "pipeline": "nf-core/denovotranscript"
   },
   {
    "id": "chip",
-   "label": "Where does FNR bind? (ChIP)",
+   "label": "ChIP-seq: where a regulator binds",
    "path": [
     "chip",
     "sr",
@@ -389,11 +546,12 @@
     "motif",
     "igv"
    ],
-   "note": "Follows on from this study: FNR is E. coli's main oxygen sensor, so where it binds would explain many of our DE genes."
+   "note": "FNR is the main oxygen sensor of E. coli. Where it binds explains which genes it controls.",
+   "pipeline": "nf-core/chipseq"
   },
   {
    "id": "meta",
-   "label": "Who's in the gut? (metagenomics)",
+   "label": "Metagenomics: which organisms are present",
    "path": [
     "meta",
     "sr",
@@ -401,9 +559,47 @@
     "db",
     "kraken",
     "abund",
-    "div"
+    "div",
+    "controls"
    ],
-   "note": "Many organisms in one tube. Reads are matched to a database, not to one genome."
+   "note": "Many organisms in one tube. Reads are matched to a database, not to one genome.",
+   "pipeline": "nf-core/taxprofiler"
   }
- ]
+ ],
+ "rules": [
+  "Start from the question: gene activity, DNA changes, protein binding or which organisms are present.",
+  "Short reads for counting and variants. Long reads for assembling a new genome or full-length transcripts.",
+  "fastp for most short-read data. FastQC + MultiQC to report without trimming. NanoPlot and Filtlong for long reads.",
+  "A finished genome of your strain if one exists; otherwise assemble; many organisms at once: a database.",
+  "Counting genes only: salmon or kallisto. Exact positions for variants, peaks or IGV: bowtie2 or BWA. Introns: STAR or HISAT2.",
+  "Counts between conditions: DESeq2 or edgeR. DNA differences: variant calling. Protein binding: peak calling. Mixed samples: Bracken.",
+  "A list of changed genes: GO enrichment. A full ranked list: GSEA. Variants: SnpEff. Peaks: motif finding. Mixed samples: diversity.",
+  "Always look at the reads in IGV for a few key results. Compare with published results. Assemblies need assembly QC; mixed samples need controls."
+ ],
+ "glossary": {
+  "transcript": "An RNA copy of a gene; one gene can give several transcripts.",
+  "intron": "A stretch inside a gene that is cut out of the RNA before use; bacteria have almost none.",
+  "read": "The sequence of one DNA fragment, as written by the sequencer.",
+  "adapter": "A fixed sequence added to each fragment so the sequencer can read it.",
+  "BAM": "A file with every read and its position on the genome.",
+  "FASTQ": "A text file with each read and a quality score for every base.",
+  "VCF": "A file that lists each variant with its position and the evidence for it.",
+  "k-mer": "A short subsequence of fixed length, k bases long.",
+  "coverage": "The number of reads that lie over a base, averaged over the genome.",
+  "pseudoalignment": "Finding which transcripts a read fits without working out its exact position.",
+  "EM algorithm": "A repeated estimate that shares reads between transcripts until the counts stop changing.",
+  "decoy": "Extra sequence added to an index so reads from outside genes do not match genes by mistake.",
+  "contig": "One continuous piece of an assembled genome.",
+  "N50": "The length where half of all bases are in pieces that long or longer.",
+  "replicate": "An independent repeat of the same condition, such as a separate culture.",
+  "adjusted p": "A p value corrected for running many tests at once.",
+  "FDR": "The expected share of findings that are false.",
+  "peak": "A stretch of genome with many more reads than the input control.",
+  "motif": "A short DNA pattern that a protein recognises.",
+  "taxon": "A named group of organisms, such as a species or a genus.",
+  "Q30": "A base quality score meaning 1 error in 1,000 bases.",
+  "input control": "The same DNA sequenced without the pull-down, used as a baseline.",
+  "annotation": "The list of genes and their positions on a genome.",
+  "spliced aligner": "An aligner that can split one read across an intron."
+ }
 }

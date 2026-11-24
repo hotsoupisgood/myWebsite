@@ -7,7 +7,7 @@ layout: layouts/post.njk
 
 <section class="tw-sec" aria-labelledby="ngs-h">
   <h2 id="ngs-h" class="tw-h">There is no single NGS analysis. The question, the organism and the type of data decide the steps.</h2>
-  <p class="tw-p">An RNA-seq study, a search for mutations, a ChIP-seq study and a gut-sample survey all sequence DNA or RNA. Each one then uses different tools at most stages. This map shows 10 such workflows. Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses.</p>
+  <p class="tw-p">An RNA-seq study, a search for mutations, a ChIP-seq study and a gut-sample survey all sequence DNA or RNA. Each one then uses different tools at most stages. This map shows 10 such workflows. Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses. Columns are stages, not run order; QC and reference indexing run side by side. Each column name shows a rule for choosing at that stage, and words with a dotted underline show a short definition. One route is on at first. Add or remove routes with the buttons, and select any box for its details.</p>
   <div class="ca-card" style="margin-top:.7rem">
     <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="ngs-routes-label">Show routes (any number at once)</span>
       <div class="ca-tabs ngs-tabs" id="ngs-routes" role="group" aria-labelledby="ngs-routes-label"></div>
@@ -65,8 +65,13 @@ Bostock, M. (2023). *D3.js* (Version 7) [Computer software]. https://d3js.org/
 .ngs-notes { list-style: none; margin: 0; padding: 0; font-size: .9rem; }
 .ngs-notes li { margin: .25rem 0; }
 .ngs-status { font-size: .8rem; color: #625a7a; margin: .4rem 0 0; }
+.ngs-io { font-size: .85rem; color: #2a2340; margin: .4rem 0 0; }
+.ngs-pipe { display: block; font-size: .85rem; color: #625a7a; margin: .1rem 0 0 1.15rem; }
+.ngs-gl { border-bottom: 1px dotted #625a7a; cursor: help; }
+.ngs-gl:focus-visible, .ngs-map .ngs-colh:focus-visible { outline: 2px solid #4b3a99; outline-offset: 2px; }
+.ngs-map .ngs-colh { cursor: help; text-decoration: underline dotted; outline: none; }
 .ngs-hint { font-size: .92rem; color: #625a7a; margin: 0; }
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/ngs_pipeline_map_viz.js?v=20261124e"></script>
+<script src="/visualizations/data/ngs_pipeline_map_viz.js?v=20261124f"></script>
