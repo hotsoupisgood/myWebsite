@@ -136,7 +136,7 @@
    "row": 2,
    "label": "bowtie2 / BWA",
    "tool": "exact genome positions",
-   "description": "Aligns each read to one position on the genome, then featureCounts counts reads per gene. Classic for bacteria, which have no introns. The BAM file it writes is what variant calling, ChIP-seq and IGV need. Expect over 90 out of every 100 reads to align to the correct reference."
+   "description": "Aligns each read to one position on the genome, then featureCounts counts reads per gene. Works for RNA-seq in bacteria, which have no introns. It cannot split a read across an intron, so for human, yeast or plant RNA-seq use STAR or HISAT2. The BAM file it writes is what variant calling, ChIP-seq and IGV need. Expect over 90 out of every 100 reads to align to the correct reference."
   },
   {
    "id": "star",
