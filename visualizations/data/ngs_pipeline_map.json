@@ -148,7 +148,7 @@
    "row": 1,
    "label": "De novo assembly",
    "tool": "SPAdes, Flye, Trinity",
-   "description": "Builds a genome (SPAdes, Flye) or transcripts (Trinity) from the reads when no good reference exists, then annotates genes (Bakta or Prokka for genomes; Trinotate or eggNOG-mapper for transcripts). Contig N50: half the assembly is in pieces this long or longer. A good bacterial assembly has CheckM completeness over 95 and contamination under 5 out of every 100.",
+   "description": "Builds a genome de novo (SPAdes, Flye) or transcripts (Trinity) from the reads when no good reference exists, then annotates genes (Bakta or Prokka for genomes; Trinotate or eggNOG-mapper for transcripts). Contig N50: half the assembly is in pieces this long or longer. A good bacterial assembly has CheckM completeness over 95 and contamination under 5 out of every 100.",
    "io": {
     "takes": "FASTQ",
     "writes": "contigs in FASTA and a gene annotation"
@@ -600,6 +600,7 @@
   "Q30": "A base quality score meaning 1 error in 1,000 bases.",
   "input control": "The same DNA sequenced without the pull-down, used as a baseline.",
   "annotation": "The list of genes and their positions on a genome.",
-  "spliced aligner": "An aligner that can split one read across an intron."
+  "spliced aligner": "An aligner that can split one read across an intron.",
+  "de novo": "Built from the reads alone, with no reference genome to compare against."
  }
 }

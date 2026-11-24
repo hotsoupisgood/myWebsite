@@ -33,7 +33,7 @@
   document.addEventListener("touchstart", (e) => { if (!e.target.closest(".ngs-map, .ngs-gl")) hideTip(); }, { passive: true });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape") hideTip(); });
 
-  fetch("/visualizations/data/ngs_pipeline_map.json?v=20261124f").then((r) => r.json()).then(draw);
+  fetch("/visualizations/data/ngs_pipeline_map.json?v=20261124g").then((r) => r.json()).then(draw);
 
   function draw(D) {
     const node = new Map(D.nodes.map((n) => [n.id, n]));
