@@ -601,6 +601,7 @@
   "input control": "The same DNA sequenced without the pull-down, used as a baseline.",
   "annotation": "The list of genes and their positions on a genome.",
   "spliced aligner": "An aligner that can split one read across an intron.",
-  "de novo": "Built from the reads alone, with no reference genome to compare against."
+  "de novo": "Built from the reads alone, with no reference genome to compare against.",
+  "Q20": "A base quality score meaning about 1 wrong base in every 100; Q30 means 1 in every 1,000."
  }
 }
