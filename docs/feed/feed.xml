@@ -18,8 +18,8 @@
 		<updated>2026-11-24T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/ngs-pipeline-map/</id>
 		<content type="html">&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;ngs-h&quot;&gt;
-  &lt;h2 id=&quot;ngs-h&quot; class=&quot;tw-h&quot;&gt;Most analyses share the first steps and split at mapping and analysis&lt;/h2&gt;
-  &lt;p class=&quot;tw-p&quot;&gt;Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses.&lt;/p&gt;
+  &lt;h2 id=&quot;ngs-h&quot; class=&quot;tw-h&quot;&gt;Sequencing analysis is not one workflow. The question decides the steps.&lt;/h2&gt;
+  &lt;p class=&quot;tw-p&quot;&gt;An RNA-seq study, a search for mutations, a ChIP-seq study and a gut-sample survey all sequence DNA or RNA. Each one then uses different tools at most stages. This map shows 10 such workflows. Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses.&lt;/p&gt;
   &lt;div class=&quot;ca-card&quot; style=&quot;margin-top:.7rem&quot;&gt;
     &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;ngs-routes-label&quot;&gt;Show routes (any number at once)&lt;/span&gt;
       &lt;div class=&quot;ca-tabs ngs-tabs&quot; id=&quot;ngs-routes&quot; role=&quot;group&quot; aria-labelledby=&quot;ngs-routes-label&quot;&gt;&lt;/div&gt;
@@ -433,29 +433,6 @@
 	</entry>
 	
 	<entry>
-		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
-		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
-		<updated>2026-10-26T00:00:00Z</updated>
-		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
-		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
-&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
-&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
-&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
-&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
-&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
-&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
-</content>
-	</entry>
-	
-	<entry>
 		<title>A Queue Model of an Emergency Department, to Size an Intervention</title>
 		<link href="https://lucashenry.xyz/projects/hse-ed-simulation/"/>
 		<updated>2026-10-26T00:00:00Z</updated>
@@ -479,6 +456,29 @@
 &lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_ed_simpy_dose_response.png&quot; alt=&quot;Three panels showing the average trolley count falling steeply with the first few extra beds, the first hours cut from the average stay, and the first patients removed from boarding&quot; /&gt;&lt;/p&gt;
 &lt;p&gt;The panels above vary one lever at a time, and in each the curve is steep at the left and flat at the right. That is the answer I wanted, and it shows that my assumption was too large. Half a day off a six day stay frees about as many bed days as 39 beds, and removing 15 of 100 admissions frees about as many as 70. Against a shortfall of 8 beds all three are far larger than the problem. An intervention that genuinely delivered a 15 of 100 reduction would not cut pressure at this hospital by 15 of 100. It would end boarding. Against a January level baseline, where the shortfall is larger, the ordering held: 20 beds leave 20 trolleys behind rather than 13.&lt;/p&gt;
 &lt;p&gt;What this is: a demonstration that a queue model fitted to one real series answers a question a forecast cannot, which is how large a change has to be before it moves anything. What it is not: a description of how University Hospital Limerick works, a forecast, or evidence about any intervention. The notebook keeps what was observed apart from what was assumed, so each input can be checked. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding_simpy.ipynb&quot;&gt;executed notebook&lt;/a&gt; and the &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/simulation/ed_boarding.py&quot;&gt;model module&lt;/a&gt; are on GitHub.&lt;/p&gt;
+</content>
+	</entry>
+	
+	<entry>
+		<title>Learning Decision Analysis on Top of a Hospital Forecast</title>
+		<link href="https://lucashenry.xyz/projects/hse-decision-analysis/"/>
+		<updated>2026-10-26T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/projects/hse-decision-analysis/</id>
+		<content type="html">&lt;p&gt;&lt;strong&gt;TLDR:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;I wanted to learn what decision analysis adds to a forecast, so I put a small decision model on top of the trolley forecast from my thesis.&lt;/li&gt;
+&lt;li&gt;I read two books on decision analysis and built the smallest version of the idea: one region, one week, one yes or no choice.&lt;/li&gt;
+&lt;li&gt;Found that the forecast alone never said what to do. The answer came from three assumptions I had to write down, and the model showed where each one changed it.&lt;/li&gt;
+&lt;li&gt;The executed notebook, design notes and figures are on &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis#decision-science-demonstration&quot;&gt;GitHub&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My &lt;a href=&quot;https://lucashenry.xyz/projects/hse-trolleys/&quot;&gt;trolley post&lt;/a&gt; ended with a forecast of how many admitted patients would be waiting on trolleys for a hospital bed. A forecast does not tell a manager whether to act on it. This post adds that step. The question is simple: should a hospital switch on an extra patient flow intervention before a forecast spike? The hospital data are real. The spike, the effect of the intervention and its cost are made up, because the point was to learn the method.&lt;/p&gt;
+&lt;p&gt;The model has four parts. A forecast for one week in one region, HSE Dublin and Midlands, with its spread of plausible values. A made up spike added to it. An assumed effect of the intervention, a cut of 15 of 100 in the growth above the current rate, with its own spread. And a penalty for acting, written on the same scale as the trolley rate. The rule is to pick the choice with the lower expected loss, where the loss is the trolley rate left over plus the penalty.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_forecast_densities.png&quot; alt=&quot;Recent observed weekly trolley rates for HSE Dublin and Midlands, then the forecast week drawn twice: the original forecast at 3.48 per 10,000 and the version with the hypothetical spike at 5.48, each with its spread of plausible values and the pressure cutoff as a dashed line&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_treatment_effect.png&quot; alt=&quot;The assumed treatment effect: a bell curve centred on a 15 of 100 reduction in predicted growth, with the small tail below zero where the intervention would do harm&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;With the spike, the forecast was 5.48 trolleys per 10,000 residents, likely range 5.26 to 5.69. Intervening cut the expected loss from 5.48 to 5.15 after the penalty, and beat doing nothing in 92 of 100 scenarios drawn from the model. The most useful number was the break even penalty, 0.35 per 10,000: below that cost the model intervenes, above it the model does not. That turns &amp;quot;should we act&amp;quot; into &amp;quot;is acting cheaper than this&amp;quot;, which someone who knows the hospital can answer.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://lucashenry.xyz/img/fig_decision_cost_uncertainty.png&quot; alt=&quot;Left: expected loss under usual care is flat while expected loss if treated rises with the activation cost, crossing at 0.35. Right: the spread of expected net benefit across simulation draws, most of it above zero&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Changing one input at a time showed where the answer flips. A spike too small to cross the pressure cutoff means no intervention is considered. A zero average effect means doing nothing wins. A penalty of 0.40 means doing nothing wins. Doubling the spread of the effect kept the same average answer but cut the winning share from 92 of 100 to 76 of 100. The recommendation was never a property of the forecast. It was the forecast plus three assumptions, and the model let me change each one and see when the answer changed.&lt;/p&gt;
+&lt;p&gt;This is a learning exercise, not evidence that the intervention reduces crowding or saves money. The books were &lt;a href=&quot;https://www.oreilly.com/library/view/smart-choices/9781633691056/Text/Smart_Choices.html&quot;&gt;Smart Choices&lt;/a&gt; and &lt;a href=&quot;https://assets.cambridge.org/97805217/64544/excerpt/9780521764544_excerpt.pdf&quot;&gt;Bayesian Decision Analysis&lt;/a&gt;. The &lt;a href=&quot;https://github.com/hotsoupisgood/hse-urgent-care-report-trolley-analysis/blob/main/decision_science_demo.ipynb&quot;&gt;executed notebook&lt;/a&gt; has every number.&lt;/p&gt;
 </content>
 	</entry>
 	
