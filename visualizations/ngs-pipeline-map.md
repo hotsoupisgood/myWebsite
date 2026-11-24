@@ -19,8 +19,8 @@ layout: layouts/post.njk
   <div class="ngs-detail" id="ngs-detail"></div>
 </section>
 
-<section class="tw-sec" aria-labelledby="ngs-fq">
-  <h2 id="ngs-fq" class="tw-h">A sequencing read is 4 lines of text with a quality score for every base</h2>
+<template id="ngs-extra-fastqc"><div class="ngs-extra">
+  <p class="ca-tabs-label">What a read looks like</p>
   <p class="tw-p">Sequencers write reads to a FASTQ file. Each read takes 4 lines. This is one short read:</p>
   <pre class="ngs-fq"><code>@READ_0001 sample=A
 GATTTGGGGTTCAAAGCAGTAT
@@ -44,7 +44,7 @@ IIIIIIIIIII???????55##</code></pre>
   </table>
   <p class="tw-p">In this read the first bases are reliable and the last bases are not. Quality usually falls towards the end of a read. Trimmers such as fastp cut read ends where the score falls below about Q20.</p>
   <p class="tw-p">Every base has its own score. A run is judged by how many of its bases reach Q30. A good Illumina run has 75 to 80 or more out of every 100 bases at Q30 or above. A real FASTQ file holds millions of these 4-line blocks and is usually compressed as .fastq.gz.</p>
-</section>
+</div></template>
 
 <div class="tw-tip" id="ngs-tip" hidden></div>
 
@@ -106,4 +106,4 @@ table.ngs-q th{font-weight:600;color:#4a4360}
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 </style>
 <script src="/visualizations/data/d3.v7.min.js"></script>
-<script src="/visualizations/data/ngs_pipeline_map_viz.js?v=20261124h"></script>
+<script src="/visualizations/data/ngs_pipeline_map_viz.js?v=20261124i"></script>

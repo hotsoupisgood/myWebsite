@@ -174,6 +174,8 @@
         detEl.appendChild(el("p", "ngs-dtool ngs-data", n.tool));
         detEl.appendChild(gp("p", "tw-p ngs-data", n.description, used));
         if (n.io) detEl.appendChild(el("p", "ngs-io ngs-data", `Takes: ${n.io.takes}. Writes: ${n.io.writes}.`));
+        const extra = document.getElementById(`ngs-extra-${n.id}`);
+        if (extra) detEl.appendChild(extra.content.cloneNode(true));
         const thru = D.routes.filter((r) => r.path.includes(n.id));
         if (thru.length) {
           detEl.appendChild(el("p", "ca-tabs-label", "Routes through this box"));
