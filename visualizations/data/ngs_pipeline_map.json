@@ -47,7 +47,7 @@
    "col": 1,
    "row": 0,
    "label": "Short reads",
-   "tool": "Illumina 75 to 150 bp",
+   "tool": "Illumina 50 to 300 bp",
    "description": "Illumina reads of 50 to 300 bases. Cheap and accurate, the standard for counting. Q30 means 1 error in 1,000 bases; a good run has 75 to 80 or more out of every 100 bases at Q30 or above."
   },
   {
@@ -184,7 +184,7 @@
    "row": 3,
    "label": "Peak calling",
    "tool": "MACS3",
-   "description": "Finds stretches of genome with many more reads than the input control, which is where the protein sat. MACS2 with an adjusted p (q) value under 0.05 is the usual default. FRiP, the share of reads inside peaks, should be at least 1 out of every 100 by ENCODE guidelines; good runs reach 5 or more."
+   "description": "Finds stretches of genome with many more reads than the input control, which is where the protein sat. MACS3 with an adjusted p (q) value under 0.05 is the usual default. FRiP, the share of reads inside peaks, should be at least 1 out of every 100 by ENCODE guidelines; good runs reach 5 or more."
   },
   {
    "id": "abund",
