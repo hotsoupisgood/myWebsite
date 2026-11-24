@@ -18,7 +18,7 @@
 		<updated>2026-11-24T00:00:00Z</updated>
 		<id>https://lucashenry.xyz/visualizations/ngs-pipeline-map/</id>
 		<content type="html">&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;ngs-h&quot;&gt;
-  &lt;h2 id=&quot;ngs-h&quot; class=&quot;tw-h&quot;&gt;Sequencing analysis is not one workflow. The question decides the steps.&lt;/h2&gt;
+  &lt;h2 id=&quot;ngs-h&quot; class=&quot;tw-h&quot;&gt;Sequencing analysis is not one workflow. The question, the organism and the type of data decide the steps.&lt;/h2&gt;
   &lt;p class=&quot;tw-p&quot;&gt;An RNA-seq study, a search for mutations, a ChIP-seq study and a gut-sample survey all sequence DNA or RNA. Each one then uses different tools at most stages. This map shows 10 such workflows. Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses.&lt;/p&gt;
   &lt;div class=&quot;ca-card&quot; style=&quot;margin-top:.7rem&quot;&gt;
     &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;ngs-routes-label&quot;&gt;Show routes (any number at once)&lt;/span&gt;

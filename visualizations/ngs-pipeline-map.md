@@ -1,12 +1,12 @@
 ---
 title: NGS Pipeline Map
-description: Sequencing analysis is many workflows, not one. This map shows 10 of them, each chosen by the question asked.
+description: Sequencing analysis is many workflows, not one. This map shows 10 of them, each chosen by the question, the organism and the type of data.
 date: 2026-11-24
 layout: layouts/post.njk
 ---
 
 <section class="tw-sec" aria-labelledby="ngs-h">
-  <h2 id="ngs-h" class="tw-h">Sequencing analysis is not one workflow. The question decides the steps.</h2>
+  <h2 id="ngs-h" class="tw-h">Sequencing analysis is not one workflow. The question, the organism and the type of data decide the steps.</h2>
   <p class="tw-p">An RNA-seq study, a search for mutations, a ChIP-seq study and a gut-sample survey all sequence DNA or RNA. Each one then uses different tools at most stages. This map shows 10 such workflows. Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses.</p>
   <div class="ca-card" style="margin-top:.7rem">
     <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="ngs-routes-label">Show routes (any number at once)</span>
