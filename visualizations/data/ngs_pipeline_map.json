@@ -47,7 +47,7 @@
    "col": 1,
    "row": 0,
    "label": "Short reads",
-   "tool": "Illumina 75–150 bp",
+   "tool": "Illumina 75 to 150 bp",
    "description": "Cheap, very accurate (Q30+), the standard for counting."
   },
   {
@@ -56,7 +56,7 @@
    "row": 1,
    "label": "Long reads",
    "tool": "Nanopore / PacBio",
-   "description": "Reads of 10–100 kb. Less accurate per base (newer chemistry is Q20+) but they span repeats, so they're best for assembling genomes or full-length transcripts."
+   "description": "Reads of 10 to 100 kb. Less accurate per base (newer chemistry is Q20+) but they span repeats, so they're best for assembling genomes or full-length transcripts."
   },
   {
    "id": "fastp",
@@ -135,7 +135,7 @@
    "col": 4,
    "row": 2,
    "label": "bowtie2 / BWA",
-   "tool": "+ featureCounts",
+   "tool": "exact genome positions",
    "description": "Align each read to an exact position on the genome, then count reads per gene with featureCounts. Classic for bacteria (no splicing). The resulting BAM file (reads at genome positions) is what variant calling, ChIP-seq and IGV need; salmon doesn't produce one."
   },
   {
@@ -152,7 +152,7 @@
    "row": 4,
    "label": "Kraken2",
    "tool": "classify reads",
-   "description": "Assigns each read to a species by k-mer lookup in the database."
+   "description": "Assigns each read to a taxon (the most specific group the read matches) by k-mer lookup in the database."
   },
   {
    "id": "deseq",
@@ -304,6 +304,21 @@
     "qpcr"
    ],
    "note": "Same question in an organism with introns, so a spliced aligner is required."
+  },
+  {
+   "id": "kallisto",
+   "label": "RNA-seq, kallisto + edgeR",
+   "path": [
+    "rna",
+    "sr",
+    "fastp",
+    "refgen",
+    "kallisto",
+    "edger",
+    "gsea",
+    "paper"
+   ],
+   "note": "Same question with a pseudoaligner and edgeR; strong changes usually agree with the salmon + DESeq2 route."
   },
   {
    "id": "var",

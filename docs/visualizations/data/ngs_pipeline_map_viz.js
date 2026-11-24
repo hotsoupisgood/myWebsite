@@ -1,19 +1,21 @@
 // NGS Pipeline Map: sequencing-analysis options as columns of boxes, with toggleable route overlays.
 // Data: ngs_pipeline_map.json (columns, nodes, routes), kept separate from the drawing code.
 (function () {
-  const INK = "#2a2340", MUTED = "#625a7a", BOX = "#fcfaff", EDGE = "#c9bce3", FAINT = "#ddd3ec";
+  const INK = "#2a2340", SHARED = "#4a4360", MUTED = "#625a7a", BOX = "#fcfaff", EDGE = "#c9bce3", FAINT = "#ddd3ec";
   const COL = ["#1f77b4", "#ff7f0e", "#2ca02c", "#d62728", "#9467bd", "#8c564b", "#e377c2", "#7f7f7f", "#bcbd22", "#17becf"];
-  const colW = 128, boxW = 120, boxH = 44, rowH = 60, head = 34, m = { t: 6, r: 4, b: 8, l: 4 };
+  const colW = 170, boxW = 128, boxH = 44, rowH = 60, head = 34, m = { t: 6, r: 4, b: 8, l: 4 };
   const tip = document.getElementById("ngs-tip");
   const mapEl = document.getElementById("ngs-map");
   const togEl = document.getElementById("ngs-routes");
   const detEl = document.getElementById("ngs-detail");
   const HINT = "Pick a route, or select any box to see what it does.";
 
+  // First sentence of the description; "e.g." and "i.e." do not end a sentence.
+  const firstSentence = (t) => { const m = t.match(/^.*?(?<!\be\.g|\bi\.e)[.?!](?=\s|$)/); return m ? m[0] : t; };
+  const statEl = document.getElementById("ngs-status");
+
   function showTip(ev, n) {
-    tip.innerHTML = "";
-    const b = document.createElement("b"); b.textContent = n.label; tip.appendChild(b);
-    tip.appendChild(document.createTextNode(n.tool));
+    tip.textContent = firstSentence(n.description);
     tip.hidden = false;
     const r = tip.getBoundingClientRect(), pad = 12;
     let x = ev.pageX + pad, y = ev.pageY - r.height - pad;
@@ -25,7 +27,7 @@
   const hideTip = () => { tip.hidden = true; };
   document.addEventListener("touchstart", (e) => { if (!e.target.closest(".ngs-map")) hideTip(); }, { passive: true });
 
-  fetch("/visualizations/data/ngs_pipeline_map.json?v=20261124a").then((r) => r.json()).then(draw);
+  fetch("/visualizations/data/ngs_pipeline_map.json?v=20261124b").then((r) => r.json()).then(draw);
 
   function draw(D) {
     const node = new Map(D.nodes.map((n) => [n.id, n]));
@@ -48,6 +50,18 @@
       const x1 = X(L.a) + boxW, y1 = Y(L.a) + boxH / 2 + dy, x2 = X(L.b), y2 = Y(L.b) + boxH / 2 + dy, mx = (x1 + x2) / 2;
       return `M${x1},${y1}C${mx},${y1} ${mx},${y2} ${x2},${y2}`;
     };
+    // Same curve, shifted by `off` px along its normal at every point, so parallel routes stay apart on the bends.
+    const line = d3.line().curve(d3.curveBasis);
+    const offCurve = (L, off) => {
+      const x1 = X(L.a) + boxW, y1 = Y(L.a) + boxH / 2, x2 = X(L.b), y2 = Y(L.b) + boxH / 2, mx = (x1 + x2) / 2, pts = [];
+      for (let k = 0; k <= 24; k++) {
+        const t = k / 24, u = 1 - t;
+        const x = u * u * u * x1 + 3 * u * t * (u + t) * mx + t * t * t * x2, y = (u * u * u + 3 * u * u * t) * y1 + (3 * u * t * t + t * t * t) * y2;
+        const dx = 3 * u * u * (mx - x1) + 3 * t * t * (x2 - mx), dy = 6 * u * t * (y2 - y1), len = Math.hypot(dx, dy) || 1;
+        pts.push([x - (dy / len) * off, y + (dx / len) * off]);
+      }
+      return line(pts);
+    };
 
     const svg = d3.select(mapEl).append("svg").attr("viewBox", `0 0 ${W} ${H}`).style("min-width", `${W}px`)
       .attr("role", "group").attr("aria-label", "Map of sequencing-analysis options in 8 stages, left to right.");
@@ -55,7 +69,7 @@
       .attr("x", (c, i) => m.l + i * colW + colW / 2).attr("y", m.t + 14).attr("text-anchor", "middle").attr("class", "ngs-colh").text((c) => c);
     svg.append("g").selectAll("path").data([...links.values()]).join("path")
       .attr("d", (L) => curve(L, 0)).attr("fill", "none").attr("stroke", FAINT).attr("stroke-width", 1.2);
-    const over = svg.append("g").attr("fill", "none");
+    const over = svg.append("g").attr("fill", "none"); // links stay behind the boxes, drawn before them
 
     const g = svg.append("g").selectAll("g").data(D.nodes).join("g").attr("class", "ngs-node")
       .attr("transform", (n) => `translate(${X(n)},${Y(n)})`).attr("tabindex", 0).attr("role", "button")
@@ -66,6 +80,11 @@
     g.append("rect").attr("class", "ngs-box").attr("width", boxW).attr("height", boxH).attr("rx", 8);
     g.append("text").attr("class", "ngs-lbl").attr("x", boxW / 2).attr("y", 18).attr("text-anchor", "middle").text((n) => n.label);
     g.append("text").attr("class", "ngs-tool").attr("x", boxW / 2).attr("y", 32).attr("text-anchor", "middle").text((n) => n.tool);
+    // Shrink any label or tool line that would overflow its box.
+    g.selectAll("text").each(function () {
+      let fs = parseFloat(getComputedStyle(this).fontSize);
+      while (this.getComputedTextLength() > boxW - 10 && fs > 8) { fs -= 0.5; this.style.fontSize = fs + "px"; }
+    });
     const dots = g.append("g").attr("transform", `translate(${boxW / 2},${boxH - 4})`);
 
     // Route toggles above the map.
@@ -87,18 +106,20 @@
       const segs = [];
       links.forEach((L) => {
         const on = L.routes.filter((id) => active.has(id));
-        on.forEach((id, i) => segs.push({ L, id, dy: (i - (on.length - 1) / 2) * 3.5 }));
+        on.forEach((id, i) => segs.push({ L, id, dy: (i - (on.length - 1) / 2) * 3.6 }));
       });
-      over.selectAll("path").data(segs).join("path").attr("d", (s) => curve(s.L, s.dy))
-        .attr("stroke", (s) => color.get(s.id)).attr("stroke-width", 2.6).attr("stroke-linecap", "round");
+      over.selectAll("path").data(segs).join("path").attr("d", (s) => offCurve(s.L, s.dy))
+        .attr("stroke", (s) => color.get(s.id)).attr("stroke-width", 2.4).attr("stroke-linecap", "round");
       g.attr("aria-pressed", (n) => n.id === selected).classed("on", (n) => onRoutes(n.id).length > 0).classed("sel", (n) => n.id === selected);
-      g.select("rect").attr("stroke", (n) => { const o = onRoutes(n.id); return n.id === selected ? INK : o.length ? color.get(o[0]) : EDGE; });
+      g.select("rect").attr("stroke", (n) => { const o = onRoutes(n.id); return n.id === selected ? INK : o.length > 1 ? SHARED : o.length ? color.get(o[0]) : EDGE; });
       dots.each(function (n) {
         const o = onRoutes(n.id);
         d3.select(this).selectAll("circle").data(o).join("circle").attr("r", 2.6)
           .attr("cx", (id, i) => (i - (o.length - 1) / 2) * 7).attr("fill", (id) => color.get(id));
       });
       detail();
+      const on = D.routes.filter((r) => active.has(r.id)).length;
+      statEl.textContent = `${on} of ${D.routes.length} routes on.` + (selected ? ` Selected: ${node.get(selected).label}.` : "");
     }
 
     function el(tag, cls, text) { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
