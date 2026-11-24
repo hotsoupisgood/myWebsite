@@ -1,0 +1,394 @@
+{
+ "columns": [
+  "Question",
+  "Sequencing",
+  "QC / trim",
+  "Reference",
+  "Map / count",
+  "Analysis",
+  "Interpret",
+  "Check"
+ ],
+ "nodes": [
+  {
+   "id": "rna",
+   "col": 0,
+   "row": 0,
+   "label": "RNA-seq",
+   "tool": "cDNA from RNA",
+   "description": "Sequences the RNA in the cell. Read counts per gene = how active each gene is. Answers: what is the cell doing?"
+  },
+  {
+   "id": "dna",
+   "col": 0,
+   "row": 1,
+   "label": "DNA-seq (WGS)",
+   "tool": "whole genome",
+   "description": "Sequences the genome itself. Answers: what is the cell's DNA? (mutations, new strains, outbreaks). Coverage is even, so every base can be checked."
+  },
+  {
+   "id": "chip",
+   "col": 0,
+   "row": 2,
+   "label": "ChIP-seq",
+   "tool": "protein-bound DNA",
+   "description": "Pulls down DNA bound by one protein (e.g. FNR, which senses O₂ directly, or ArcA, which responds to the respiratory state), then sequences it. Answers: where does this regulator bind?"
+  },
+  {
+   "id": "meta",
+   "col": 0,
+   "row": 3,
+   "label": "Metagenomics",
+   "tool": "mixed community",
+   "description": "Sequences everything in a sample (gut, soil). Answers: who is there and in what proportion?"
+  },
+  {
+   "id": "sr",
+   "col": 1,
+   "row": 0,
+   "label": "Short reads",
+   "tool": "Illumina 75–150 bp",
+   "description": "Cheap, very accurate (Q30+), the standard for counting."
+  },
+  {
+   "id": "lr",
+   "col": 1,
+   "row": 1,
+   "label": "Long reads",
+   "tool": "Nanopore / PacBio",
+   "description": "Reads of 10–100 kb. Less accurate per base (newer chemistry is Q20+) but they span repeats, so they're best for assembling genomes or full-length transcripts."
+  },
+  {
+   "id": "fastp",
+   "col": 2,
+   "row": 0,
+   "label": "fastp",
+   "tool": "trim + report",
+   "description": "One fast tool that trims adapters and low-quality tails and writes a QC report."
+  },
+  {
+   "id": "cutadapt",
+   "col": 2,
+   "row": 1,
+   "label": "cutadapt",
+   "tool": "or Trimmomatic",
+   "description": "Older, very configurable trimmers. Same job as fastp; pick by habit or lab standard."
+  },
+  {
+   "id": "fastqc",
+   "col": 2,
+   "row": 2,
+   "label": "FastQC + MultiQC",
+   "tool": "report only",
+   "description": "Reports quality without changing reads. MultiQC rolls every sample (and every later tool's logs) into one page. Good to run alongside any trimmer."
+  },
+  {
+   "id": "nanoplot",
+   "col": 2,
+   "row": 3,
+   "label": "NanoPlot / Filtlong",
+   "tool": "long-read QC",
+   "description": "Length and quality plots for long reads, and filtering of short or poor reads."
+  },
+  {
+   "id": "refgen",
+   "col": 3,
+   "row": 0,
+   "label": "Reference genome",
+   "tool": "e.g. MG1655, hg38",
+   "description": "A finished, annotated genome of the same strain. Best case: every read has a known home."
+  },
+  {
+   "id": "denovo",
+   "col": 3,
+   "row": 1,
+   "label": "De novo assembly",
+   "tool": "SPAdes, Flye, Trinity",
+   "description": "No good reference? Build one from the reads (genome: SPAdes/Flye; transcripts: Trinity), then annotate genes (Bakta/Prokka). Slower and messier, but works for any organism."
+  },
+  {
+   "id": "db",
+   "col": 3,
+   "row": 2,
+   "label": "Sequence database",
+   "tool": "Kraken2 DB, GTDB",
+   "description": "For mixed samples there's no single genome; reads are compared against a database of thousands of genomes instead."
+  },
+  {
+   "id": "salmon",
+   "col": 4,
+   "row": 0,
+   "label": "salmon",
+   "tool": "selective alignment",
+   "description": "Maps reads to transcripts and estimates counts with EM. Fast and needs little RAM."
+  },
+  {
+   "id": "kallisto",
+   "col": 4,
+   "row": 1,
+   "label": "kallisto",
+   "tool": "pseudoalignment",
+   "description": "Like salmon: very fast and gives almost the same counts. No decoy and fewer bias corrections."
+  },
+  {
+   "id": "bowtie",
+   "col": 4,
+   "row": 2,
+   "label": "bowtie2 / BWA",
+   "tool": "+ featureCounts",
+   "description": "Align each read to an exact position on the genome, then count reads per gene with featureCounts. Classic for bacteria (no splicing). The resulting BAM file (reads at genome positions) is what variant calling, ChIP-seq and IGV need; salmon doesn't produce one."
+  },
+  {
+   "id": "star",
+   "col": 4,
+   "row": 3,
+   "label": "STAR / HISAT2",
+   "tool": "spliced aligner",
+   "description": "Genome aligners that can split a read across an intron. Needed for eukaryotes (human, yeast); unnecessary for E. coli."
+  },
+  {
+   "id": "kraken",
+   "col": 4,
+   "row": 4,
+   "label": "Kraken2",
+   "tool": "classify reads",
+   "description": "Assigns each read to a species by k-mer lookup in the database."
+  },
+  {
+   "id": "deseq",
+   "col": 5,
+   "row": 0,
+   "label": "Diff. expression",
+   "tool": "DESeq2 / PyDESeq2",
+   "description": "Compares gene counts between conditions with a negative-binomial model. Answers: which genes change?"
+  },
+  {
+   "id": "edger",
+   "col": 5,
+   "row": 1,
+   "label": "edgeR / limma-voom",
+   "tool": "DE, other models",
+   "description": "Alternatives to DESeq2. Results usually agree on strong changes; limma-voom is fastest on big studies."
+  },
+  {
+   "id": "var",
+   "col": 5,
+   "row": 2,
+   "label": "Variant calling",
+   "tool": "breseq, bcftools",
+   "description": "Looks at each base and asks whether the reads disagree with the reference. Same slot as DE, but answers a different question: is the DNA different? It doesn't use read counts, so it can't tell you which genes changed. It can run on RNA-seq reads, but only covers expressed genes. Here both groups are the same MG1655 strain, so you'd expect almost no variants: a sanity check, not the hypothesis. For E. coli, breseq is the standard."
+  },
+  {
+   "id": "peaks",
+   "col": 5,
+   "row": 3,
+   "label": "Peak calling",
+   "tool": "MACS3",
+   "description": "Finds the stretches of genome with many more reads than background, which is where the protein sat."
+  },
+  {
+   "id": "abund",
+   "col": 5,
+   "row": 4,
+   "label": "Taxon abundance",
+   "tool": "Bracken",
+   "description": "Turns classified reads into the proportion of each species."
+  },
+  {
+   "id": "go",
+   "col": 6,
+   "row": 0,
+   "label": "GO enrichment",
+   "tool": "hypergeometric",
+   "description": "Asks whether DE genes include more genes with a given function than chance would give."
+  },
+  {
+   "id": "gsea",
+   "col": 6,
+   "row": 1,
+   "label": "GSEA / KEGG",
+   "tool": "fgsea, rank-based",
+   "description": "Uses the full ranked gene list, so no cut-off is needed. Picks up pathways where many genes shift a little."
+  },
+  {
+   "id": "snpeff",
+   "col": 6,
+   "row": 2,
+   "label": "Variant effects",
+   "tool": "SnpEff",
+   "description": "Labels each variant: which gene, and whether it changes the protein (missense, stop) or not (synonymous)."
+  },
+  {
+   "id": "motif",
+   "col": 6,
+   "row": 3,
+   "label": "Motif finding",
+   "tool": "MEME, HOMER",
+   "description": "Finds the DNA word the protein recognises inside the peaks."
+  },
+  {
+   "id": "div",
+   "col": 6,
+   "row": 4,
+   "label": "Diversity",
+   "tool": "alpha / beta",
+   "description": "Summarises how many species are present and how communities differ."
+  },
+  {
+   "id": "paper",
+   "col": 7,
+   "row": 0,
+   "label": "Compare to known",
+   "tool": "published results",
+   "description": "Checks your answer against an independent source."
+  },
+  {
+   "id": "igv",
+   "col": 7,
+   "row": 1,
+   "label": "Look at the reads",
+   "tool": "IGV",
+   "description": "Open the BAM and eyeball coverage over a gene, peak or variant. It catches artefacts no statistic will. Needs an aligner (bowtie2/STAR), not salmon."
+  },
+  {
+   "id": "qpcr",
+   "col": 7,
+   "row": 2,
+   "label": "Wet-lab validation",
+   "tool": "qPCR, knockouts",
+   "description": "Measures a few genes again by another method, or tests one by deleting it."
+  }
+ ],
+ "routes": [
+  {
+   "id": "ours",
+   "label": "Our E. coli RNA-seq run",
+   "path": [
+    "rna",
+    "sr",
+    "fastp",
+    "refgen",
+    "salmon",
+    "deseq",
+    "go",
+    "paper"
+   ],
+   "note": "Read counts → which genes change with oxygen → which functions those genes share."
+  },
+  {
+   "id": "align",
+   "label": "RNA-seq, align + count",
+   "path": [
+    "rna",
+    "sr",
+    "fastqc",
+    "refgen",
+    "bowtie",
+    "deseq",
+    "gsea",
+    "igv"
+   ],
+   "note": "Same question, classic bacterial route. Gives a BAM you can view in IGV. Counts agree closely with salmon for E. coli."
+  },
+  {
+   "id": "euk",
+   "label": "Human / yeast RNA-seq",
+   "path": [
+    "rna",
+    "sr",
+    "cutadapt",
+    "refgen",
+    "star",
+    "edger",
+    "gsea",
+    "qpcr"
+   ],
+   "note": "Same question in an organism with introns, so a spliced aligner is required."
+  },
+  {
+   "id": "var",
+   "label": "Variant calling (DNA)",
+   "path": [
+    "dna",
+    "sr",
+    "fastp",
+    "refgen",
+    "bowtie",
+    "var",
+    "snpeff",
+    "igv"
+   ],
+   "note": "Different question: what changed in the DNA? Sequence the genome, align to exact positions, call variants."
+  },
+  {
+   "id": "rnavar",
+   "label": "Variants from RNA-seq",
+   "path": [
+    "rna",
+    "sr",
+    "fastp",
+    "refgen",
+    "bowtie",
+    "var",
+    "snpeff",
+    "igv"
+   ],
+   "note": "Possible, but only expressed genes get coverage, and RNA editing or mapping errors can look like variants."
+  },
+  {
+   "id": "newbug",
+   "label": "New bacterium, no reference",
+   "path": [
+    "dna",
+    "lr",
+    "nanoplot",
+    "denovo"
+   ],
+   "note": "Assemble a genome from long reads first. Once it's annotated, it becomes the reference for every other route."
+  },
+  {
+   "id": "noref",
+   "label": "RNA-seq, no reference",
+   "path": [
+    "rna",
+    "sr",
+    "fastp",
+    "denovo",
+    "salmon",
+    "deseq",
+    "go",
+    "qpcr"
+   ],
+   "note": "Build transcripts from the reads (Trinity), then quantify as usual. Gene names come from similarity searches."
+  },
+  {
+   "id": "chip",
+   "label": "Where does FNR bind? (ChIP)",
+   "path": [
+    "chip",
+    "sr",
+    "fastp",
+    "refgen",
+    "bowtie",
+    "peaks",
+    "motif",
+    "igv"
+   ],
+   "note": "Follows on from this study: FNR is E. coli's main oxygen sensor, so where it binds would explain many of our DE genes."
+  },
+  {
+   "id": "meta",
+   "label": "Who's in the gut? (metagenomics)",
+   "path": [
+    "meta",
+    "sr",
+    "fastp",
+    "db",
+    "kraken",
+    "abund",
+    "div"
+   ],
+   "note": "Many organisms in one tube. Reads are matched to a database, not to one genome."
+  }
+ ]
+}
