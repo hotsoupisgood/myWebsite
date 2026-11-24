@@ -5,12 +5,80 @@
 	
 	<link href="https://lucashenry.xyz/feed/feed.xml" rel="self"/>
 	<link href="https://lucashenry.xyz/"/>
-	<updated>2026-11-04T00:00:00Z</updated>
+	<updated>2026-11-24T00:00:00Z</updated>
 	<id>https://lucashenry.xyz/</id>
 	<author>
 		<name>Lucas</name>
 		<email>contact@lucashenry.xyz</email>
 	</author>
+	
+	<entry>
+		<title>NGS Pipeline Map</title>
+		<link href="https://lucashenry.xyz/visualizations/ngs-pipeline-map/"/>
+		<updated>2026-11-24T00:00:00Z</updated>
+		<id>https://lucashenry.xyz/visualizations/ngs-pipeline-map/</id>
+		<content type="html">&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;ngs-h&quot;&gt;
+  &lt;h2 id=&quot;ngs-h&quot; class=&quot;tw-h&quot;&gt;Most analyses share the first steps and split at mapping and analysis&lt;/h2&gt;
+  &lt;p class=&quot;tw-p&quot;&gt;Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses.&lt;/p&gt;
+  &lt;div class=&quot;ca-card&quot; style=&quot;margin-top:.7rem&quot;&gt;
+    &lt;div class=&quot;ca-tabs-wrap&quot;&gt;&lt;span class=&quot;ca-tabs-label&quot; id=&quot;ngs-routes-label&quot;&gt;Show routes (any number at once)&lt;/span&gt;
+      &lt;div class=&quot;ca-tabs ngs-tabs&quot; id=&quot;ngs-routes&quot; role=&quot;group&quot; aria-labelledby=&quot;ngs-routes-label&quot;&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;tw-chart ngs-map&quot; id=&quot;ngs-map&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-legend&quot;&gt;Lines and dots take the colour of each route that is on. On a narrow screen, the map scrolls sideways.&lt;/p&gt;
+  &lt;p class=&quot;ngs-status&quot; id=&quot;ngs-status&quot; aria-live=&quot;polite&quot;&gt;&lt;/p&gt;
+  &lt;div class=&quot;ngs-detail&quot; id=&quot;ngs-detail&quot;&gt;&lt;/div&gt;
+&lt;/section&gt;
+&lt;div class=&quot;tw-tip&quot; id=&quot;ngs-tip&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
+&lt;div class=&quot;references&quot;&gt;
+&lt;p&gt;Bostock, M. (2023). &lt;em&gt;D3.js&lt;/em&gt; (Version 7) [Computer software]. &lt;a href=&quot;https://d3js.org/&quot;&gt;https://d3js.org/&lt;/a&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;style&gt;
+.tw-sec { margin: 0 0 2.2rem; }
+.tw-h { font-size: 1.2rem; line-height: 1.35; margin: 0 0 .7rem; }
+.tw-p { font-size: .92rem; margin: .4rem 0 0; }
+.tw-chart { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.tw-chart svg { display: block; width: 100%; height: auto; font-family: inherit; touch-action: manipulation; }
+.tw-legend { font-size: .8rem; color: #625a7a; margin: .3rem 0 0; }
+.sw { display: inline-block; width: .8rem; height: .8rem; border-radius: 3px; margin-right: .35rem; vertical-align: -1px; flex: none; }
+.tw-tip { position: absolute; z-index: 10; pointer-events: none; background: #fcfaff; border: 1px solid #c9bce3; border-radius: 8px; padding: .4rem .6rem; font-size: .82rem; color: #2a2340; box-shadow: 0 2px 8px rgba(60,48,110,.18); max-width: 16rem; }
+.tw-tip b { display: block; margin-bottom: .1rem; }
+.ca-card { box-sizing: border-box; max-width: 100%; background: #f6f1fb; border: 1px solid #e2d6f0; border-radius: 12px; padding: .7rem 1rem; margin-bottom: .6rem; }
+.ca-tabs-wrap { display: flex; flex-direction: column; gap: .3rem; min-width: 0; max-width: 100%; }
+.ca-tabs-label { font-size: .8rem; font-weight: 600; color: #625a7a; }
+.ca-tabs { display: flex; gap: .4rem; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 2px; }
+.ca-tabs::-webkit-scrollbar { display: none; }
+.ngs-tabs { flex-wrap: wrap; }
+.ca-tabs button { flex: none; font: inherit; font-size: .92rem; min-height: 40px; padding: .35rem .95rem; border: 1px solid #c9bce3; border-radius: 999px; background: #fcfaff; color: #2a2340; cursor: pointer; white-space: nowrap; display: inline-flex; align-items: center; }
+.ca-tabs button:hover { background: #ece4f8; }
+.ca-tabs button[aria-pressed=&quot;true&quot;] { background: #e4dbf6; border-color: #7461c4; color: #2a2340; font-weight: 600; }
+.sw { box-sizing: border-box; border: 1px solid rgba(42,35,64,.75); box-shadow: 0 0 0 1.5px #fff; }
+.ca-tabs button:focus-visible { outline: 2px solid #4b3a99; outline-offset: 2px; }
+@media (max-width: 640px) { .ca-card { padding: .7rem .8rem; } .ca-tabs button { font-size: .85rem; } }
+.ngs-map .ngs-colh { font-size: 12px; font-weight: 600; fill: #625a7a; }
+.ngs-node { cursor: pointer; outline: none; }
+.ngs-box { fill: #fcfaff; stroke-width: 1; }
+.ngs-node.on .ngs-box { fill: #fff; stroke-width: 2; }
+.ngs-node.sel .ngs-box { fill: #ece4f8; stroke-width: 2.5; }
+.ngs-node:hover .ngs-box { fill: #ece4f8; }
+.ngs-node:focus-visible .ngs-box { stroke: #4b3a99; stroke-width: 3; }
+.ngs-lbl { font-size: 12px; font-weight: 600; fill: #2a2340; pointer-events: none; }
+.ngs-tool { font-size: 10.5px; fill: #625a7a; pointer-events: none; }
+.ngs-detail { box-sizing: border-box; background: #f6f1fb; border: 1px solid #e2d6f0; border-radius: 12px; padding: .7rem 1rem; margin-top: .8rem; min-height: 6rem; }
+.ngs-dh { font-size: 1.05rem; margin: 0; }
+.ngs-dtool { font-size: .85rem; color: #625a7a; margin: .1rem 0 0; }
+.ngs-detail .ca-tabs-label { display: block; margin: .7rem 0 .3rem; }
+.ngs-notes { list-style: none; margin: 0; padding: 0; font-size: .9rem; }
+.ngs-notes li { margin: .25rem 0; }
+.ngs-status { font-size: .8rem; color: #625a7a; margin: .4rem 0 0; }
+.ngs-hint { font-size: .92rem; color: #625a7a; margin: 0; }
+.references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
+&lt;/style&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/ngs_pipeline_map_viz.js?v=20261124d&quot;&gt;&lt;/script&gt;
+</content>
+	</entry>
 	
 	<entry>
 		<title>A Swipe Labeller for YIMBY and NIMBY Comments</title>
@@ -60,6 +128,13 @@
   &lt;p class=&quot;tw-legend&quot; id=&quot;tw-wlegend&quot;&gt;&lt;/p&gt;
   &lt;p class=&quot;tw-p&quot; id=&quot;tw-p3&quot;&gt;&lt;/p&gt;
 &lt;/section&gt;
+&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h2&quot;&gt;
+  &lt;p class=&quot;tw-kicker&quot;&gt;Selected word sets&lt;/p&gt;
+  &lt;h2 id=&quot;tw-h2&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
+  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-topics&quot; role=&quot;img&quot; aria-label=&quot;Grid of five word sets by stream. Darker cells mean the words in the set were spoken more often per 10,000 words.&quot;&gt;&lt;/div&gt;
+  &lt;p class=&quot;tw-legend&quot; id=&quot;tw-tlegend&quot;&gt;&lt;/p&gt;
+  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p2&quot;&gt;&lt;/p&gt;
+&lt;/section&gt;
 &lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h6&quot;&gt;
   &lt;p class=&quot;tw-kicker&quot;&gt;Words near a word&lt;/p&gt;
   &lt;h2 id=&quot;tw-h6&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
@@ -89,13 +164,6 @@
   &lt;div class=&quot;tw-chart&quot; id=&quot;tw-word&quot; role=&quot;img&quot; aria-label=&quot;Bar chart of the words said most often within fifteen words of the chosen word, across all streams.&quot;&gt;&lt;/div&gt;
   &lt;p class=&quot;tw-p&quot; id=&quot;tw-p6&quot;&gt;&lt;/p&gt;
 &lt;/section&gt;
-&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h4&quot;&gt;
-  &lt;p class=&quot;tw-kicker&quot;&gt;People named&lt;/p&gt;
-  &lt;h2 id=&quot;tw-h4&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
-  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-names&quot; role=&quot;img&quot; aria-label=&quot;Grid of the 12 people named most often, by stream. Darker cells mean the person was named more often per 10,000 words.&quot;&gt;&lt;/div&gt;
-  &lt;p class=&quot;tw-legend&quot; id=&quot;tw-nlegend&quot;&gt;&lt;/p&gt;
-  &lt;p class=&quot;tw-p&quot;&gt;Names were found with spaCy, a language-processing library, which marks the words in a sentence that name a person. Mentions are grouped by surname, so &quot;Stevens&quot; alone counts as Haley Stevens. A first name alone, such as &quot;Abdul&quot;, is not counted. The streamer himself, fictional characters and religious figures were left out. Each cell gives how often the person was named per 10,000 words in that stream.&lt;/p&gt;
-&lt;/section&gt;
 &lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h1&quot;&gt;
   &lt;h2 id=&quot;tw-h1&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
   &lt;div class=&quot;tw-tiles&quot; id=&quot;tw-tiles&quot;&gt;&lt;/div&gt;
@@ -103,23 +171,10 @@
   &lt;p class=&quot;tw-legend&quot;&gt;&lt;span class=&quot;sw&quot; style=&quot;background:#cfe3f7&quot;&gt;&lt;/span&gt;Stream length &lt;span class=&quot;sw&quot; style=&quot;background:#7461c4&quot;&gt;&lt;/span&gt;Speech&lt;/p&gt;
   &lt;p class=&quot;tw-p&quot; id=&quot;tw-p1&quot;&gt;&lt;/p&gt;
 &lt;/section&gt;
-&lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tw-h2&quot;&gt;
-  &lt;p class=&quot;tw-kicker&quot;&gt;Selected topics&lt;/p&gt;
-  &lt;h2 id=&quot;tw-h2&quot; class=&quot;tw-h&quot;&gt;&lt;/h2&gt;
-  &lt;div class=&quot;tw-chart&quot; id=&quot;tw-topics&quot; role=&quot;img&quot; aria-label=&quot;Grid of five topic word lists by stream. Darker cells mean the topic&#39;s words were spoken more often per 10,000 words.&quot;&gt;&lt;/div&gt;
-  &lt;p class=&quot;tw-legend&quot; id=&quot;tw-tlegend&quot;&gt;&lt;/p&gt;
-  &lt;p class=&quot;tw-p&quot; id=&quot;tw-p2&quot;&gt;&lt;/p&gt;
-&lt;/section&gt;
 &lt;section class=&quot;tw-sec&quot; aria-labelledby=&quot;tt-h&quot;&gt;
   &lt;p class=&quot;tw-kicker&quot;&gt;Topic analysis&lt;/p&gt;
   &lt;h2 id=&quot;tt-h&quot; class=&quot;tw-h&quot;&gt;What the streams talk about, found by a topic model&lt;/h2&gt;
   &lt;p class=&quot;tw-p&quot;&gt;Each stream was cut into 3-minute pieces, called chunks. A topic model called LDA (Latent Dirichlet Allocation) sorted the chunks into 12 topics by the words they share. Unlike ordinary clustering, it gives each chunk a mix of topics rather than a single group. The model was given only the words, after common words and filler were removed. It was given no labels. A large language model (Claude) named each topic afterward from its top words and sample chunks. Only chunks with at least 60 such words count.&lt;/p&gt;
-  &lt;h3 class=&quot;tt-h3&quot;&gt;News events in the same weeks&lt;/h3&gt;
-  &lt;p class=&quot;tw-p&quot;&gt;Selected news events in the same weeks, for context. They are not causes. Blue marks the Michigan Senate race, green the November 3 election, and purple other news. The shaded stretch had no streams. Tap an event to read it.&lt;/p&gt;
-  &lt;div class=&quot;tw-chart&quot; id=&quot;tt-events&quot; role=&quot;img&quot; aria-label=&quot;Timeline of news events from September 9 to November 6, 2026.&quot;&gt;&lt;/div&gt;
-  &lt;h3 class=&quot;tt-h3&quot;&gt;Share of each stream, by topic&lt;/h3&gt;
-  &lt;p class=&quot;tw-p&quot;&gt;Each row is one stream, by start date. Each cell is that topic&#39;s share of the stream, out of 100. Darker is a larger share. On a phone, swipe sideways to see every topic.&lt;/p&gt;
-  &lt;div class=&quot;tw-chart&quot; id=&quot;tt-grid&quot; role=&quot;img&quot; aria-label=&quot;Grid of streams by topic. Darker cells mean a larger share of that stream.&quot;&gt;&lt;/div&gt;
   &lt;h3 class=&quot;tt-h3&quot;&gt;Map of the chunks&lt;/h3&gt;
   &lt;p class=&quot;tw-p&quot;&gt;Each dot is one 3-minute chunk, coloured by its main topic. Chunks with similar topic mixes sit close together. The position has no other meaning. Each topic&#39;s name is written at the middle of its dots. The map shows a random 3,000 of the chunks. Hover or tap a dot to see its topic and date.&lt;/p&gt;
   &lt;p class=&quot;tw-legend tt-legend&quot; id=&quot;tt-legend&quot;&gt;&lt;/p&gt;
@@ -129,7 +184,7 @@
   &lt;div class=&quot;tt-words&quot; id=&quot;tt-words&quot;&gt;&lt;/div&gt;
 &lt;/section&gt;
 &lt;div class=&quot;tw-tip&quot; id=&quot;tw-tip&quot; hidden=&quot;&quot;&gt;&lt;/div&gt;
-&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; The streams are the HasanAbi Twitch broadcasts transcribed so far, &lt;span id=&quot;tw-range&quot;&gt;listed in the charts&lt;/span&gt;. New streams and older archived streams are added as they are transcribed. On days with many streams, each chart scrolls sideways. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so &amp;quot;Israel&#39;s&amp;quot; counts as &amp;quot;Israel&amp;quot;. The speech recognition spells Abdul El-Sayed several ways, such as &amp;quot;Abdullah Al-Sayed&amp;quot; and &amp;quot;Abdel El-Sayed&amp;quot;. All of them count as &amp;quot;Abdul El-Sayed&amp;quot;. In the &amp;quot;Selected topics&amp;quot; chart, each topic is a fixed word list, shown under its chart. The topic analysis is different: its topics come from the LDA model, with the streams cut into 3-minute chunks. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer&#39;s own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example &amp;quot;thank&amp;quot; and &amp;quot;wait&amp;quot;. So were first names whose surname is already counted, and the streamer&#39;s own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Methods.&lt;/strong&gt; The streams are the HasanAbi Twitch broadcasts transcribed so far, &lt;span id=&quot;tw-range&quot;&gt;listed in the charts&lt;/span&gt;. New streams and older archived streams are added as they are transcribed. On days with many streams, each chart scrolls sideways. Dates are stream start dates in Pacific time. The audio of each archived stream was transcribed in full with WhisperX, using the Whisper large-v3 model. Speech hours are the summed length of the segments where the model wrote text. Words are counted as the model wrote them, split on spaces. The transcripts include every voice on stream: the host, guests, and audio from videos played on stream. Topic and word rates count word tokens, which are runs of letters with an optional apostrophe, per 10,000 tokens in the stream. A possessive counts as its word, so &amp;quot;Israel&#39;s&amp;quot; counts as &amp;quot;Israel&amp;quot;. The speech recognition spells Abdul El-Sayed several ways, such as &amp;quot;Abdullah Al-Sayed&amp;quot; and &amp;quot;Abdel El-Sayed&amp;quot;. All of them count as &amp;quot;Abdul El-Sayed&amp;quot;. In the &amp;quot;Selected word sets&amp;quot; chart, each row is a fixed set of words, listed under the chart. The topic analysis is different: its topics come from the LDA model, with the streams cut into 3-minute chunks. The word grid opens on word pairs. A pair is two tokens spoken one after the other in the same segment. Neither token is a common English word, and each has at least three letters. Pairs with the streamer&#39;s own name were removed. The single-words view uses the 12 most frequent words over all eight streams after common English words were removed. Spoken filler that the common-word list misses was also removed, for example &amp;quot;thank&amp;quot; and &amp;quot;wait&amp;quot;. So were first names whose surname is already counted, and the streamer&#39;s own names. Speech recognition makes mistakes, mostly in names and in crosstalk, so counts are approximate. This page shows only counts and rates; no transcript text is published.&lt;/p&gt;
 &lt;h2 id=&quot;references&quot; tabindex=&quot;-1&quot;&gt;References &lt;a class=&quot;direct-link&quot; href=&quot;https://lucashenry.xyz/visualizations/twitch-transcripts/#references&quot; aria-hidden=&quot;true&quot;&gt;#&lt;/a&gt;&lt;/h2&gt;
 &lt;div class=&quot;references&quot;&gt;
 &lt;p&gt;HasanAbi. (2026). &lt;em&gt;Twitch past broadcasts, 2026&lt;/em&gt; [Video recordings]. Twitch. &lt;a href=&quot;https://www.twitch.tv/hasanabi&quot;&gt;https://www.twitch.tv/hasanabi&lt;/a&gt;&lt;/p&gt;
@@ -190,8 +245,8 @@
 .references p { padding-left: 2em; text-indent: -2em; overflow-wrap: anywhere; font-size: .85rem; }
 &lt;/style&gt;
 &lt;script src=&quot;https://lucashenry.xyz/visualizations/data/d3.v7.min.js&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_topics_viz.js?v=20261109d&quot;&gt;&lt;/script&gt;
-&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611090706&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_topics_viz.js?v=20261109f&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;https://lucashenry.xyz/visualizations/data/twitch_transcripts_viz.js?v=202611240907&quot;&gt;&lt;/script&gt;
 </content>
 	</entry>
 	

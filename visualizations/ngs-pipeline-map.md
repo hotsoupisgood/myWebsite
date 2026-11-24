@@ -6,7 +6,7 @@ layout: layouts/post.njk
 ---
 
 <section class="tw-sec" aria-labelledby="ngs-h">
-  <h2 id="ngs-h" class="tw-h">Most analyses share the first steps and split at mapping and analysis</h2>
+  <h2 id="ngs-h" class="tw-h">Ten sequencing analyses, each drawn as a route through eight stages</h2>
   <p class="tw-p">Each column is one stage of an analysis. Each box is one option at that stage. A route is one full analysis, read left to right. Faint lines join every pair of boxes that some route uses.</p>
   <div class="ca-card" style="margin-top:.7rem">
     <div class="ca-tabs-wrap"><span class="ca-tabs-label" id="ngs-routes-label">Show routes (any number at once)</span>
