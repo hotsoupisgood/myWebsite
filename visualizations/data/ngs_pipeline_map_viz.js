@@ -174,7 +174,7 @@
         detEl.appendChild(el("p", "ngs-dtool ngs-data", n.tool));
         detEl.appendChild(gp("p", "tw-p ngs-data", n.description, used));
         if (n.io) detEl.appendChild(el("p", "ngs-io ngs-data", `Takes: ${n.io.takes}. Writes: ${n.io.writes}.`));
-        const extra = document.getElementById(`ngs-extra-${n.id}`);
+        const extra = ["fastqc", "fastp", "cutadapt", "nanoplot"].includes(n.id) ? document.getElementById("ngs-extra-fastqc") : null;
         if (extra) detEl.appendChild(extra.content.cloneNode(true));
         const thru = D.routes.filter((r) => r.path.includes(n.id));
         if (thru.length) {
