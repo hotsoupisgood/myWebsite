@@ -27,7 +27,7 @@
   const hideTip = () => { tip.hidden = true; };
   document.addEventListener("touchstart", (e) => { if (!e.target.closest(".ngs-map")) hideTip(); }, { passive: true });
 
-  fetch("/visualizations/data/ngs_pipeline_map.json?v=20261124b").then((r) => r.json()).then(draw);
+  fetch("/visualizations/data/ngs_pipeline_map.json?v=20261124c").then((r) => r.json()).then(draw);
 
   function draw(D) {
     const node = new Map(D.nodes.map((n) => [n.id, n]));

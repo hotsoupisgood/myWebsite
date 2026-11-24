@@ -1,0 +1,16 @@
+{
+  "note": "DRAFT, not on the page. Source: Wikipedia, '2026 in the United States', fetched 2026-11-09. One source per event; check before publishing.",
+  "source": "https://en.wikipedia.org/wiki/2026_in_the_United_States",
+  "events": [
+    {"date": "2026-09-09", "label": "Oil passes $100", "text": "Oil passes $100 a barrel. Trump promises a $5,000 payment to every adult if Republicans keep Congress."},
+    {"date": "2026-09-16", "label": "Fed raises rates", "text": "The Federal Reserve raises interest rates for the first time in three years."},
+    {"date": "2026-09-23", "label": "Iran's president at UN", "text": "Iran's president arrives in New York for the UN General Assembly during the war with the US."},
+    {"date": "2026-09-24", "label": "Xi visits Trump", "text": "Xi Jinping meets Trump at the White House."},
+    {"date": "2026-09-26", "label": "Ceasefire rejected", "text": "Trump rejects Iran's seven-day ceasefire proposal."},
+    {"date": "2026-10-08", "label": "No Iran strikes before vote", "text": "Trump says strikes on Iran will not resume before the November 3 midterm elections."},
+    {"date": "2026-10-21", "label": "AIPAC stops endorsing", "text": "AIPAC says it will stop endorsing candidates and making direct PAC contributions."},
+    {"date": "2026-11-01", "label": "Stevens endorses Rogers", "text": "Haley Stevens endorses Republican Mike Rogers over Abdul El-Sayed in the Michigan Senate race."},
+    {"date": "2026-11-03", "label": "Midterms", "text": "Midterm elections. Democrats win majorities in the House and the Senate. Trump says US military aid to Israel will end by the end of 2026."},
+    {"date": "2026-11-06", "label": "Miller replaces Wiles", "text": "Stephen Miller replaces Susie Wiles as Trump's chief of staff."}
+  ]
+}
